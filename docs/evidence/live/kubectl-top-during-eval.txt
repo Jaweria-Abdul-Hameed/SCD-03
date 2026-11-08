@@ -1,0 +1,2733 @@
+$ kubectl top pods -n rahbar --containers   (sampled every 4 s while eval/run_eval.py asked the 15 golden questions of the live stack; 207 samples)
+--- 22:29:31
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:32
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:35
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:36
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:39
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:40
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:43
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:45
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:47
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:49
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:52
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:53
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:56
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:29:57
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:00
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:01
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:04
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:05
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:08
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:09
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:12
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:14
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:17
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:18
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:21
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:22
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:25
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:26
+api-7955894968-mqz5q      api      2m    78Mi    
+api-7955894968-nhzm9      api      2m    85Mi    
+api-7955894968-ptjsq      api      2m    77Mi    
+chroma-0                  chroma   7m    175Mi   
+ollama-778795c865-g2lq9   ollama   25m   24Mi    
+redis-59b78d9bf9-bzg74    redis    3m    20Mi    
+ui-89d7b7d6c-v6cpz        ui       1m    5Mi     
+--- 22:30:29
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:30
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:33
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:34
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:37
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:38
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:41
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:43
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:46
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:47
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:50
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:51
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:54
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:55
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:58
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:30:59
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:02
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:03
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:06
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:07
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:10
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:12
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:15
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:16
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:19
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:20
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:23
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:24
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:27
+api-7955894968-mqz5q      api      48m     86Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   6m      174Mi    
+ollama-778795c865-g2lq9   ollama   2974m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    4m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:31:28
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:31
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:32
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:35
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:36
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:39
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:41
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:43
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:45
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:48
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:49
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:52
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:53
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:56
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:31:57
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:00
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:01
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:04
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:05
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:08
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:09
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:12
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:14
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:17
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:18
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:21
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:22
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:25
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:26
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3981m   3010Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:29
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:30
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:33
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:34
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:37
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:38
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:41
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:43
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:46
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:47
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:50
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:51
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:54
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:55
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:58
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:32:59
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:02
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:03
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:06
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:07
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:10
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:12
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:15
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:19
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:23
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:27
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3970m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:31
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:35
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:39
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:44
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:48
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:52
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:33:56
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:00
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:04
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:08
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:12
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:17
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:21
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:25
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      86Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3020Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:29
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:33
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:37
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:41
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:46
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:50
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:54
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:34:58
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:35:02
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:35:06
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:35:10
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:35:14
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:35:19
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:35:23
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:35:27
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3978m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:35:31
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:35:35
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:35:39
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:35:44
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:35:48
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:35:52
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:35:56
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:00
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:04
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:08
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:12
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:17
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:21
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:25
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      21Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:29
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:33
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:37
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:41
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:46
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:50
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:54
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:36:58
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:37:02
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:37:06
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:37:10
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:37:15
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:37:19
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:37:23
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:37:27
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3973m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:37:31
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:37:35
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:37:39
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:37:44
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:37:48
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:37:52
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:37:56
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:00
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:04
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:08
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:13
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:17
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:21
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:25
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   3982m   3021Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:29
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:33
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:37
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:41
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:46
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:50
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:54
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:38:58
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:02
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:06
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:10
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:15
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:19
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:23
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:27
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3972m   3024Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:31
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:35
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:39
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:44
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:48
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:52
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:39:56
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:40:00
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:40:04
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:40:08
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:40:12
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:40:17
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:40:21
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:40:25
+api-7955894968-mqz5q      api      2m      84Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3976m   3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      5Mi      
+--- 22:40:29
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:40:33
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:40:37
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:40:41
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:40:46
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:40:50
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:40:54
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:40:58
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:41:02
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:41:06
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:41:10
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:41:14
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:41:19
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:41:23
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-89d7b7d6c-v6cpz        ui       1m      6Mi      
+--- 22:41:27
+api-7955894968-mqz5q      api      2m      85Mi     
+api-7955894968-nhzm9      api      2m      85Mi     
+api-7955894968-ptjsq      api      2m      78Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1366m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+--- 22:41:31
+api-7955894968-mqz5q      api      2m    85Mi     
+api-7955894968-nhzm9      api      2m    85Mi     
+api-7955894968-ptjsq      api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:41:35
+api-7955894968-nhzm9      api      2m    85Mi     
+api-7955894968-ptjsq      api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:41:39
+api-7955894968-ptjsq      api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:41:43
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:41:48
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:41:52
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:41:56
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:42:00
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:42:04
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:42:08
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:42:12
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:42:17
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:42:21
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:42:25
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3023Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:42:29
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:42:33
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:42:37
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:42:41
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:42:45
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:42:50
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:42:54
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:42:58
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:43:02
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:43:06
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:43:10
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:43:14
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:43:19
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:43:23
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:43:27
+api-989b99fbd-b4xgl       api      21m   77Mi     
+api-989b99fbd-qs7n4       api      24m   76Mi     
+api-989b99fbd-rnmbb       api      24m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3007Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:43:31
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:43:35
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:43:39
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:43:43
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:43:48
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:43:52
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:43:56
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:00
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:04
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:08
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:12
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:17
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:21
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:25
+api-989b99fbd-b4xgl       api      2m      76Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      175Mi    
+ollama-778795c865-g2lq9   ollama   3005m   3022Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:29
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:33
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:37
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:41
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:45
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:50
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:54
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:44:58
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:02
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:06
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:10
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:14
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:19
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:23
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:27
+api-989b99fbd-b4xgl       api      2m      78Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      78Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3941m   3026Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:31
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:35
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:39
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:43
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:48
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:52
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:45:56
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:00
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:04
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:08
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:12
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:17
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:21
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:25
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      76Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   4m      174Mi    
+ollama-778795c865-g2lq9   ollama   3933m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:29
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:33
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:37
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:41
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:46
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:50
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:54
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:46:58
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:47:02
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:47:06
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:47:10
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:47:14
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:47:19
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:47:23
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:47:27
+api-989b99fbd-b4xgl       api      2m      77Mi     
+api-989b99fbd-qs7n4       api      2m      77Mi     
+api-989b99fbd-rnmbb       api      2m      77Mi     
+chroma-0                  chroma   3m      174Mi    
+ollama-778795c865-g2lq9   ollama   1088m   3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m      20Mi     
+ui-9849f9c79-dhff2        ui       1m      4Mi      
+--- 22:47:31
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:47:35
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:47:39
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:47:43
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:47:48
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:47:52
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:47:56
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:48:00
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:48:04
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:48:08
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:48:12
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:48:17
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-9849f9c79-dhff2        ui       1m    4Mi      
+--- 22:48:21
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+--- 22:48:25
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    77Mi     
+api-989b99fbd-rnmbb       api      2m    77Mi     
+chroma-0                  chroma   3m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3018Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+--- 22:48:29
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+api-989b99fbd-b4xgl       api      2m    77Mi     
+api-989b99fbd-qs7n4       api      2m    78Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:48:33
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:48:37
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:48:41
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:48:45
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:48:50
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:48:54
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:48:58
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:49:02
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:49:06
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:49:10
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:49:14
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:49:19
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:49:23
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:49:27
+api-68f4b99cbd-4dp6b      api      91m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3008Mi   
+redis-59b78d9bf9-bzg74    redis    3m    21Mi     
+--- 22:49:31
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-79f98ddd8c-fwln9       ui       1m    2Mi      
+--- 22:49:35
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-79f98ddd8c-fwln9       ui       1m    2Mi      
+--- 22:49:39
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-79f98ddd8c-fwln9       ui       1m    2Mi      
+--- 22:49:43
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-79f98ddd8c-fwln9       ui       1m    2Mi      
+--- 22:49:47
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-79f98ddd8c-fwln9       ui       1m    2Mi      
+--- 22:49:52
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+ui-79f98ddd8c-fwln9       ui       1m    2Mi      
+--- 22:49:56
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+--- 22:50:00
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+--- 22:50:04
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     
+--- 22:50:08
+api-68f4b99cbd-4dp6b      api      17m   77Mi     
+api-68f4b99cbd-9h6h4      api      19m   77Mi     
+api-68f4b99cbd-nmxps      api      17m   76Mi     
+chroma-0                  chroma   4m    174Mi    
+ollama-778795c865-g2lq9   ollama   1m    3002Mi   
+redis-59b78d9bf9-bzg74    redis    3m    20Mi     

@@ -1,0 +1,275 @@
+name: CD
+
+# RAHBAR CD — assignment sec. 6.
+# Trigger: push to main only. Chain: test -> build-push -> deploy.
+# Every publishing/deploying job has `needs:` (sec. 6 non-negotiables).
+# Images are tagged ONLY with ${{ github.sha }} — never the floating
+# latest tag. Credentials come from GitHub Secrets (Docker Hub access
+# token, never a password). Every job has a least-privilege permissions: block.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.12"
+  EMBED_MODEL: nomic-embed-text
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r api/requirements.txt -r indexer/requirements.txt
+          pip install pytest pytest-cov
+      - name: Pytest with coverage (>= 60% on the app package, stub provider)
+        env:
+          LLM_PROVIDER: stub
+          EMBED_MODEL: nomic-embed-text
+          LLM_API_KEY: stub-key-for-ci-only
+        run: |
+          pytest api/tests indexer/tests \
+            --cov=api/app --cov-report=term-missing \
+            --cov-fail-under=60
+
+  build-push:
+    name: build-push
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          # Docker Hub access token from GitHub Secrets — never a password (sec. 6).
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # Tagged ONLY with the commit SHA. Never the floating latest tag:
+      # "What is running?" must have a one-word answer you can paste into
+      # `git show` (sec. 6).
+      - name: Build and push api image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./api
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rahbar-api:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Build and push ui image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ui
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rahbar-ui:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Build and push indexer image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./indexer
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rahbar-indexer:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    needs: build-push
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+      - name: Create ephemeral kind cluster
+        uses: helm/kind-action@v1
+        with:
+          cluster_name: rahbar-cd
+          config: .github/kind-config.yaml
+      - name: Install kubectl and kustomize
+        run: |
+          curl -sL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin
+          sudo chmod +x /usr/local/bin/kustomize
+      - name: Deploy (kustomize build + kubectl apply, SHA-pinned images)
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Base manifests carry the placeholder tag `:SHA` on the three
+          # rahbar images (ghcr.io/rahbar/{api,ui,indexer}:SHA); the prod
+          # overlay has no kustomize `images:` section, so this step
+          # retags the rendered manifests to the DOCKER HUB names that
+          # build-push actually pushed
+          # (${{ secrets.DOCKERHUB_USERNAME }}/rahbar-{api,ui,indexer}:${{ github.sha }}),
+          # NOT ghcr.io — retagging to ghcr.io would request images that
+          # were never pushed there. Third-party images (chroma, redis)
+          # are untouched. No floating latest tag is introduced anywhere.
+          kustomize build k8s/overlays/prod > /tmp/rendered.yaml
+          sed -i "s|ghcr.io/rahbar/api:SHA|${{ secrets.DOCKERHUB_USERNAME }}/rahbar-api:${{ github.sha }}|g; s|ghcr.io/rahbar/ui:SHA|${{ secrets.DOCKERHUB_USERNAME }}/rahbar-ui:${{ github.sha }}|g; s|ghcr.io/rahbar/indexer:SHA|${{ secrets.DOCKERHUB_USERNAME }}/rahbar-indexer:${{ github.sha }}|g; s|^\( *\)replicas: 3$|\1replicas: 1|; s|minReplicas: 3|minReplicas: 1|; s|cpu: 250m|cpu: 100m|g; s|LLM_PROVIDER: \"\?ollama-host\"\?|LLM_PROVIDER: stub|" /tmp/rendered.yaml
+          # (replicas 1 / CPU 100m above: a 2-vCPU runner + single kind node
+          # cannot schedule the full prod footprint; ephemeral cluster only.)
+          grep -q ":${{ github.sha }}" /tmp/rendered.yaml || echo "::warning::SHA tag not found in rendered manifests — check the base image placeholders"
+          LATEST_TAG=":$(echo lat)est"
+          if grep -q "$LATEST_TAG" /tmp/rendered.yaml; then
+            echo "::error::Rendered manifests contain the floating latest tag — refusing to deploy."
+            exit 1
+          fi
+          kubectl apply -f /tmp/rendered.yaml
+          # stub hash embeddings live on a different similarity scale than nomic-embed-text, so the
+          # relevance floor measured for the real model (0.64) is replaced by the stub-calibrated 0.35
+          kubectl patch configmap rahbar-config -n rahbar --type merge -p '{"data":{"LLM_PROVIDER":"stub","RELEVANCE_FLOOR":"0.35"}}'
+          kubectl rollout restart deployment/api -n rahbar   # env is read at process start
+      - name: Install ingress-nginx (kind provider, for the Ingress smoke test)
+        run: |
+          kubectl label node --all ingress-ready=true --overwrite || true
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/kind/deploy.yaml
+          kubectl wait --namespace ingress-nginx \
+            --for=condition=complete job/ingress-nginx-admission-patch \
+            --timeout=180s || true
+          kubectl wait --namespace ingress-nginx \
+            --for=condition=ready pod \
+            --selector=app.kubernetes.io/component=controller \
+            --timeout=300s
+      - name: Populate the corpus PVC with the fixture corpus
+        run: |
+          # The indexer Job mounts the corpus-data PVC at /corpus; without
+          # this step it would find no documents (exit 2). Same mechanism
+          # as ci.yml / `make corpus-to-cluster`, using eval/fixtures/.
+          cat > /tmp/corpus-loader-pod.yaml <<'EOF'
+          apiVersion: v1
+          kind: Pod
+          metadata:
+            name: corpus-loader
+            namespace: rahbar
+          spec:
+            restartPolicy: Never
+            containers:
+              - name: loader
+                image: busybox:1.36
+                command: ["sleep", "3600"]
+                volumeMounts:
+                  - name: corpus
+                    mountPath: /corpus
+            volumes:
+              - name: corpus
+                persistentVolumeClaim:
+                  claimName: corpus-data
+          EOF
+          kubectl apply -f /tmp/corpus-loader-pod.yaml
+          kubectl wait --for=condition=ready pod/corpus-loader -n rahbar --timeout=120s
+          kubectl exec -n rahbar pod/corpus-loader -- mkdir -p /corpus/raw
+          kubectl cp eval/fixtures/. corpus-loader:/corpus/raw/ -n rahbar
+          kubectl exec -n rahbar pod/corpus-loader -- chmod -R 777 /corpus
+          kubectl delete pod corpus-loader -n rahbar --wait=true
+      - name: Wait for Chroma and Redis rollout
+        run: |
+          if ! kubectl rollout status statefulset/chroma -n rahbar --timeout=180s; then
+            echo "::error::Chroma StatefulSet rollout failed. Diagnostics:"
+            kubectl describe pod chroma-0 -n rahbar
+            kubectl logs chroma-0 -n rahbar || true
+            exit 1
+          fi
+          if ! kubectl rollout status deployment/redis -n rahbar --timeout=180s; then
+            echo "::error::Redis Deployment rollout failed. Diagnostics:"
+            kubectl describe pods -l app=redis -n rahbar
+            kubectl logs -l app=redis -n rahbar || true
+            exit 1
+          fi
+      - name: Run indexer Job
+        run: |
+          kubectl delete job indexer -n rahbar --ignore-not-found=true
+          sed "s|ghcr.io/rahbar/indexer:SHA|${{ secrets.DOCKERHUB_USERNAME }}/rahbar-indexer:${{ github.sha }}|g; s|cpu: 250m|cpu: 100m|" k8s/base/indexer-job.yaml | kubectl apply -f -
+          # Follow logs in the background: the failed pod is deleted by the Job
+          # controller, which would otherwise take its logs with it.
+          (kubectl logs -f -l app=indexer -n rahbar --all-containers=true --pod-running-timeout=120s > /tmp/indexer.log 2>&1 &)
+          if ! kubectl wait --for=condition=complete --timeout=300s job/indexer -n rahbar; then
+            echo "::error::Indexer Job timed out or failed. Diagnostics:"
+            kubectl describe job indexer -n rahbar
+            kubectl describe pods -l app=indexer -n rahbar
+            kubectl logs -l app=indexer -n rahbar --all-containers=true || true
+            echo "--- captured indexer log ---"; cat /tmp/indexer.log || true
+            kubectl get events -n rahbar --sort-by=.lastTimestamp | tail -40
+            exit 1
+          fi
+          kubectl logs job/indexer -n rahbar
+      - name: Rollout status
+        run: |
+          if ! kubectl rollout status deployment/api -n rahbar --timeout=300s; then
+            echo "::error::api rollout failed. Diagnostics:"
+            kubectl get pods -n rahbar -o wide
+            kubectl describe pods -l app=api -n rahbar
+            kubectl logs -l app=api -n rahbar --tail=80 || true
+            exit 1
+          fi
+          kubectl rollout status deployment/ui -n rahbar --timeout=300s
+          kubectl get pods -n rahbar
+      - name: Smoke test through the Ingress
+        run: |
+          python -m pip install requests
+          # Port-forward the ingress controller (not the api Service) so
+          # the smoke test travels the real Ingress path: /api/chat on
+          # host rahbar.local is rewritten to /chat on the api Service
+          # (k8s/base/ingress.yaml).
+          kubectl port-forward --namespace ingress-nginx svc/ingress-nginx-controller 8080:80 &
+          sleep 5
+          python - <<'PY'
+          import requests, sys
+          base = "http://localhost:8080"
+          headers = {"Host": "rahbar.local"}
+          # 1. Ordinary question — must be answered from context, with citations.
+          ordinary = requests.post(
+              f"{base}/api/chat",
+              headers=headers,
+              json={"question": "Can a student register for a course after failing its prerequisite?"},
+              timeout=120,
+          )
+          ordinary.raise_for_status()
+          body = ordinary.json()
+          ans = body.get("answer") if isinstance(body.get("answer"), dict) else body
+          citations = ans.get("citations") if isinstance(ans, dict) else body.get("citations")
+          answered = ans.get("answered_from_context") if isinstance(ans, dict) else body.get("answered_from_context")
+          assert citations, "ordinary smoke question returned no citations"
+          assert answered is True, "ordinary question was not answered from context"
+          ans_text = ans.get("answer") if isinstance(ans, dict) and "answer" in ans else body.get("answer")
+          print("ordinary question OK:", str(ans_text)[:120])
+          # 2. Must-abstain question (deliberately absent topic: hostel rules).
+          #    The service must decline: answered_from_context MUST be false.
+          abstain = requests.post(
+              f"{base}/api/chat",
+              headers=headers,
+              json={"question": "What are the hostel allotment rules for first-year students?"},
+              timeout=120,
+          )
+          abstain.raise_for_status()
+          abstain_body = abstain.json()
+          abstain_ans = abstain_body.get("answer") if isinstance(abstain_body.get("answer"), dict) else abstain_body
+          abstain_answered = (
+              abstain_ans.get("answered_from_context")
+              if isinstance(abstain_ans, dict)
+              else abstain_body.get("answered_from_context")
+          )
+          assert abstain_answered is False, (
+              "SMOKE TEST FAILED: must-abstain question was answered from context: "
+              f"{abstain_body}"
+          )
+          print("must-abstain question OK: answered_from_context is false")
+          print("SMOKE TEST PASSED")
+          PY

@@ -1,0 +1,47 @@
+# RAHBAR .gitignore
+#
+# Rules (sec. 4.7, sec. 8):
+# - *-secret.yaml is gitignored: Secrets are created from the command line,
+#   never from a committed file. Base64 is encoding, not encryption.
+# - The corpus PDFs are NOT committed: commit corpus/MANIFEST.md + the
+#   fetch script instead (sec. 2). corpus/raw/ and *.pdf under corpus/
+#   stay local.
+# - eval/results.json MUST be COMMITTED (sec. 8: submit results.json and
+#   baseline.json), so it is deliberately NOT ignored here.
+
+# --- Secrets (never commit) ---
+*-secret.yaml
+**/*-secret.yaml
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+
+# --- Corpus PDFs (MANIFEST.md + fetch script are committed instead) ---
+corpus/raw/
+corpus/**/*.pdf
+corpus/*.pdf
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+coverage.xml
+htmlcov/
+
+# --- Agent tooling / internal logs ---
+.agents/
+
+# --- Local tooling / OS ---
+.DS_Store
+.idea/
+.vscode/
+*.log

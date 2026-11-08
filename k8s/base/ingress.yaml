@@ -1,0 +1,33 @@
+# Ingress — one host, two routes (§4.1): / -> ui, /api -> api.
+# Requires: minikube addons enable ingress
+# Local access: add "127.0.0.1 rahbar.local" to /etc/hosts, or use
+# `minikube tunnel` / `minikube ip` with the ingress IP.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rahbar
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: rahbar.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ui
+                port:
+                  number: 80
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: api
+                port:
+                  number: 8000

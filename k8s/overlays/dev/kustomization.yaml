@@ -1,0 +1,45 @@
+# Dev overlay — same manifests, smaller footprint for a laptop cluster.
+# api replicas 1 (dev only; prod keeps 3). No namePrefix: prefixing names
+# would break the Service selectors and the StatefulSet serviceName, so
+# dev is distinguished by image tag + replica count only, documented here.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: rahbar
+resources:
+  - ../../base
+images:
+  - name: ghcr.io/rahbar/api
+    newTag: dev
+  - name: ghcr.io/rahbar/indexer
+    newTag: dev
+  - name: ghcr.io/rahbar/ui
+    newTag: dev
+patches:
+  - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: api
+      spec:
+        replicas: 1
+    target:
+      kind: Deployment
+      name: api
+  # HPA fight fix: the base HPA has minReplicas 3, which would fight the
+  # dev api replicas: 1 above (the HPA would scale dev back up to 3).
+  # Patch the HPA's minReplicas to 1 in dev only; prod keeps min 3.
+  - patch: |-
+      apiVersion: autoscaling/v2
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: api
+      spec:
+        minReplicas: 1
+    target:
+      kind: HorizontalPodAutoscaler
+      name: api
+labels:
+  - pairs:
+      env: dev
+    includeSelectors: false
+    includeTemplates: true

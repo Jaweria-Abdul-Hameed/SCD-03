@@ -1,0 +1,73 @@
+# Weekly re-index — same image and arguments as the indexer Job (§4.1).
+# concurrencyPolicy: Forbid prevents two re-index runs racing on Chroma.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reindex
+  namespace: rahbar
+  labels:
+    app: indexer
+    app.kubernetes.io/part-of: rahbar
+spec:
+  schedule: "0 3 * * 0"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      activeDeadlineSeconds: 1800
+      template:
+        metadata:
+          labels:
+            app: indexer
+            app.kubernetes.io/part-of: rahbar
+        spec:
+          serviceAccountName: indexer-sa
+          automountServiceAccountToken: false
+          # Service-link env vars (API_PORT=tcp://..., REDIS_PORT=..., CHROMA_PORT=...)
+          # collide with app settings (pydantic int parse crash). Config comes from the ConfigMap.
+          enableServiceLinks: false
+          restartPolicy: OnFailure
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            fsGroup: 10001
+            seccompProfile:
+              type: RuntimeDefault
+          containers:
+            - name: indexer
+              image: ghcr.io/rahbar/indexer:SHA  # replaced by cd.yml with ${{ github.sha }}
+              imagePullPolicy: IfNotPresent
+              # No command override: image ENTRYPOINT is already
+              # `python -m pipeline`; args only, flag is --corpus-dir.
+              args:
+                - --corpus-dir
+                - /corpus/raw
+              envFrom:
+                - configMapRef:
+                    name: rahbar-config
+              volumeMounts:
+                - name: corpus
+                  mountPath: /corpus
+                - name: tmp
+                  mountPath: /tmp
+              resources:
+                requests:
+                  cpu: 250m
+                  memory: 384Mi
+                limits:
+                  cpu: 1000m
+                  memory: 1Gi
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities:
+                  drop:
+                    - ALL
+          volumes:
+            - name: corpus
+              persistentVolumeClaim:
+                claimName: corpus-data
+            - name: tmp
+              emptyDir: {}

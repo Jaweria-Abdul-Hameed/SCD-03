@@ -1,0 +1,29 @@
+$ curl -s -H 'Host: rahbar.local' -X POST http://localhost:8080/api/chat -H 'Content-Type: application/json' -d '{"question": "How many program learning outcomes (PLOs) does the Electrical Engineering program have?"}'
+# (localhost:8080 = kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80; same path as minikube ip + Host header)
+# captured 2026-11-08T00:06:11Z
+{
+ "answer": {
+  "reasoning": "",
+  "answer": "PLO-1 to PLO-11",
+  "citations": [
+   {
+    "source": "EE_PLOs_2024_onwards_11.pdf",
+    "section": "Introduction",
+    "page": 1
+   }
+  ],
+  "answered_from_context": true,
+  "confidence": "high"
+ },
+ "request_id": "ba7074f04ddbaf650a2e7f8b1fe90f49",
+ "cache_hit": false,
+ "latency_ms": 34556.50076500024,
+ "retrieved_chunk_ids": [
+  "7561b626cb31edda7a0c5f5a314246a72e8756eea19e2fccf45f0d4d3cb6b3c6",
+  "e0fc376cbcf6c50c3a9af3947b0e03bdff5b7b9eea559ecdb98cf4855e691696",
+  "ec4dcf24c886965b36c280184ded8af482701bdf0e785135d5baef2b30961dd8",
+  "466dbfce95fd91ebb09b0b98193b49b41f0f99234b98b9f44feb118d3ea19dd6",
+  "b5e60e973f64c975cbab86dbe63e26195c2110152cf248eda4c881de0dfd1ea0"
+ ]
+}
+# wall time: 34.7 s

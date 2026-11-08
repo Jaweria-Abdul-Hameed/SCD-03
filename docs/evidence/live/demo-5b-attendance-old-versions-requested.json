@@ -1,0 +1,29 @@
+$ curl -s -H 'Host: rahbar.local' -X POST http://localhost:8080/api/chat -H 'Content-Type: application/json' -d '{"question": "Which clause states the attendance requirement, and what does the current version say?", "include_old_versions": true}'
+# (localhost:8080 = kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80; same path as minikube ip + Host header)
+# captured 2026-11-08T00:07:28Z
+{
+ "answer": {
+  "reasoning": "",
+  "answer": "The Undergraduate Academic Rules state that students are required to maintain 100% attendance in lectures, labs, tutorials, seminars, and discussions as prescribed by the course instructor. The maximum absence allowed is 20% of total attendance.",
+  "citations": [
+   {
+    "source": "Undergraduate_Academic_Rules_Aug_2023.pdf",
+    "section": "1.21 Students are required to maintain 100% attendance in lectures, labs…",
+    "page": 7
+   }
+  ],
+  "answered_from_context": true,
+  "confidence": "high"
+ },
+ "request_id": "a5844e174f490e553a1605dd199ab635",
+ "cache_hit": false,
+ "latency_ms": 21470.289240001875,
+ "retrieved_chunk_ids": [
+  "4bc37b4f45768da572037e98e7276f3e612f94a554053c7038506980f3ba9f1f",
+  "11cd877263186a42287260463168fe09ff1b53d585391fbaa5a16886622b325f",
+  "62b1112cf8d070961a4f0e9f72ddb74d06680bc791982119500afa5c5f5d6b6b",
+  "2c23ccd7ba434579d459a5e55dbc53fd51a4fa529d7f114199dd86e8643fb292",
+  "7babe4d9b8d75ab33f9c1eaa2e3aabc1a6d73c5502a7e522d73301e5054945fa"
+ ]
+}
+# wall time: 21.6 s

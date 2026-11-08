@@ -1,0 +1,35 @@
+$ kubectl apply -f stagea-pod.yaml  # indexer image, corpus PVC, runs: python /probe/probe.py = scripts/stageA_noocr_probe.py
+{
+ "Faculty_Entrepreneurship_Technical_Startups_Policy.pdf": [
+  {
+   "ocr": true,
+   "pages": 8,
+   "chars": 11910,
+   "chunks": 7,
+   "first_120_chars": "30.05.2022/FacultyEntrepreneurshipPolicy  Faculty Entrepreneurship / Technical Start-ups  Policy and Procedure  1. Purpo"
+  },
+  {
+   "ocr": false,
+   "pages": 8,
+   "chars": 0,
+   "chunks": 0,
+   "first_120_chars": ""
+  }
+ ],
+ "Undergraduate_Academic_Rules_Aug_2023.pdf": [
+  {
+   "ocr": true,
+   "pages": 26,
+   "chars": 34199,
+   "chunks": 166,
+   "first_120_chars": "Chiniot-Faisalabad-Islamabad-Karachi-Lahore-Peshawar www.nu.edu.pk UNDERGRADUATE ACADEMIC RULES AND  REGULATIONS 2023 "
+  },
+  {
+   "ocr": false,
+   "pages": 26,
+   "chars": 214,
+   "chunks": 2,
+   "first_120_chars": "Chiniot-Faisalabad-Islamabad-Karachi-Lahore-Peshawar www.nu.edu.pk UNDERGRADUATE ACADEMIC RULES AND  REGULATIONS 2023 "
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+$ curl -s -H 'Host: rahbar.local' -X POST http://localhost:8080/api/chat -H 'Content-Type: application/json' -d '{"question": "What is the tuition fee per credit hour?"}'
+# (localhost:8080 = kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80; same path as minikube ip + Host header)
+# captured 2026-11-08T00:05:41Z
+{
+ "answer": {
+  "reasoning": "The relevant item from the evidence is: Tuition Fee (w.e.f. Fall 2026 semester) Tuition Fee is payable in full before the start of each semester. Annual revision will be applicable as per University Internal Rules. For the academic year 2026-27 the tuition fee per credit hour applicable to all batches is as follows: [TABLE] Program | Fee BBA / BS | Rs. 12,000 MBA / MS | Rs. 12,000 PhD | Rs. 12,000 [/TABLE]",
+  "answer": "Rs. 12,000",
+  "citations": [
+   {
+    "source": "Fee_Structure_page.html",
+    "section": "Introduction",
+    "page": 1
+   }
+  ],
+  "answered_from_context": true,
+  "confidence": "high"
+ },
+ "request_id": "3eb356389365a3c2e8011582c5b98e7f",
+ "cache_hit": true,
+ "latency_ms": 29.359814998315414,
+ "retrieved_chunk_ids": []
+}
+# wall time: 0.3 s

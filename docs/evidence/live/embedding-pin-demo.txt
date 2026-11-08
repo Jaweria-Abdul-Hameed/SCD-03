@@ -1,0 +1,51 @@
+$ bash /c/Users/mohsi/Desktop/work/pin.sh
+# captured 2026-11-07T22:51:55Z
+--- before
+EMBED_MODEL=nomic-embed-text
+NAME                   READY   STATUS    RESTARTS   AGE
+api-68f4b99cbd-9h6h4   1/1     Running   0          3m31s
+api-68f4b99cbd-nmxps   1/1     Running   0          3m34s
+api-68f4b99cbd-wjtcd   1/1     Running   0          42s
+--- change EMBED_MODEL in the ConfigMap and restart ONLY the api
+configmap/rahbar-config patched
+deployment.apps/api restarted
+--- kubectl get pods (new pod 0/1: withheld from the Service; maxUnavailable 0 keeps the 3 old pods serving)
+NAME                   READY   STATUS    RESTARTS   AGE
+api-5c6f5f4ffc-jbhbq   0/1     Running   0          45s
+api-68f4b99cbd-9h6h4   1/1     Running   0          4m16s
+api-68f4b99cbd-nmxps   1/1     Running   0          4m19s
+api-68f4b99cbd-wjtcd   1/1     Running   0          87s
+--- newest pod: api-5c6f5f4ffc-jbhbq
+--- kubectl logs api-5c6f5f4ffc-jbhbq  (the conflict, named)
+{"event": "embedding_pin_mismatch", "collection_model": "nomic-embed-text", "collection_dimension": 768, "expected_model": "some-other-model", "expected_dimension": 768, "detail": "API will report not-ready until the index is rebuilt with the pinned model"}
+--- GET /readyz on that pod (inside the pod)
+HTTP 503 {"status":"not_ready","dependency":"embedding_pin","detail":"embedding pin mismatch: collection model_name='nomic-embed-text' dimension=768 != EMBED_MODEL='some-other-model' dim=768"}
+--- kubectl describe pod (readiness probe failing)
+    Ready:          False
+    Readiness:  http-get http://:8000/readyz delay=0s timeout=1s period=10s #success=1 #failure=3
+  Warning  Unhealthy  2s (x6 over 43s)  kubelet            spec.containers{api}: Readiness probe failed: HTTP probe failed with statuscode: 503
+45s         Normal    Created     pod/api-5c6f5f4ffc-jbhbq   Container created
+45s         Normal    Started     pod/api-5c6f5f4ffc-jbhbq   Container started
+2s          Warning   Unhealthy   pod/api-5c6f5f4ffc-jbhbq   Readiness probe failed: HTTP probe failed with statuscode: 503
+--- restore EMBED_MODEL
+configmap/rahbar-config patched
+deployment.apps/api restarted
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+deployment "api" successfully rolled out
+NAME                   READY   STATUS        RESTARTS   AGE
+api-68f4b99cbd-9h6h4   1/1     Terminating   0          4m26s
+api-68f4b99cbd-nmxps   1/1     Terminating   0          4m29s
+api-86db7c7567-5m8lr   1/1     Running       0          9s
+api-86db7c7567-gj4cc   1/1     Running       0          6s
+api-86db7c7567-r4ms6   1/1     Running       0          3s
+EMBED_MODEL=nomic-embed-text
+{"status":"ready","collection_count":480,"embed_model":"nomic-embed-text"}

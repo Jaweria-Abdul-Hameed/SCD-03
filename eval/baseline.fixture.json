@@ -1,0 +1,7 @@
+{
+  "measured_on": "fixture corpus (eval/fixtures/) with the stub provider - CI only; NOT the real-corpus baseline (see eval/baseline.json)",
+  "recall_at_5": 1.0,
+  "recall_at_3": 1.0,
+  "citation_validity": 1.0,
+  "abstention_correctness": 1.0
+}

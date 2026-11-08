@@ -1,0 +1,29 @@
+$ curl -s -H 'Host: rahbar.local' -X POST http://localhost:8080/api/chat -H 'Content-Type: application/json' -d '{"question": "What is the tuition fee per credit hour?"}'
+# (localhost:8080 = kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80; same path as minikube ip + Host header)
+# captured 2026-11-08T00:05:26Z
+{
+ "answer": {
+  "reasoning": "The relevant item from the evidence is: Tuition Fee (w.e.f. Fall 2026 semester) Tuition Fee is payable in full before the start of each semester. Annual revision will be applicable as per University Internal Rules. For the academic year 2026-27 the tuition fee per credit hour applicable to all batches is as follows: [TABLE] Program | Fee BBA / BS | Rs. 12,000 MBA / MS | Rs. 12,000 PhD | Rs. 12,000 [/TABLE]",
+  "answer": "Rs. 12,000",
+  "citations": [
+   {
+    "source": "Fee_Structure_page.html",
+    "section": "Introduction",
+    "page": 1
+   }
+  ],
+  "answered_from_context": true,
+  "confidence": "high"
+ },
+ "request_id": "4b72eaae70aa6d286b2d4a5929c38344",
+ "cache_hit": false,
+ "latency_ms": 13879.682012000558,
+ "retrieved_chunk_ids": [
+  "ea0167ab43b997be06f87cc2196e74c70d27156720953c2fbc04369df5daed70",
+  "4431bedb1ffc41cea6cecfdcab2da047347d850e151542ad62c324708345f118",
+  "c817be75525dd428de7804fe26c6ead8ba9ff01c26cfeeeb1da7db61a933d32f",
+  "3ed21e41cefceb5ebeb15ed28f87540df8f15987c3ba820f636d88b8dbd7b0c4",
+  "96c01dfe330632220f6749812015deb93544aadbd5b661a2438f6a7c2b1a6e55"
+ ]
+}
+# wall time: 14.0 s

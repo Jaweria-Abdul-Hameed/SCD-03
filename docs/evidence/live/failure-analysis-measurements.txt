@@ -1,0 +1,58 @@
+# Failure-analysis live measurements (stack: index 512/64, TOP_K 5, temperature 0.0, image c955c0f lineage). Commands are the first line of each block.
+
+$ kubectl exec -i deploy/api -n rahbar -- python - "How many program learning outcomes (PLOs) does the Electrical Engineering program have?"  gen < scripts/failure_probe.py   # stage E: superseded filter ON
+TOP_K=5 include_old_versions=False temperature=0.0
+1. sim=0.875 EE_PLOs_2024_onwards_11.pdf v=2024+ superseded=False p1
+2. sim=0.866 EE_PLOs_2024_onwards_11.pdf v=2024+ superseded=False p1
+3. sim=0.705 Annual_Report_2023-24.pdf v=2023-24 superseded=False p49
+4. sim=0.652 Annual_Report_2023-24.pdf v=2023-24 superseded=False p10
+5. sim=0.639 Annual_Report_2023-24.pdf v=2023-24 superseded=False p13
+ANSWER: PLO-1 to PLO-11 | answered_from_context: False
+
+$ kubectl exec -i deploy/api -n rahbar -- python - "How many program learning outcomes (PLOs) does the Electrical Engineering program have?" old gen < scripts/failure_probe.py   # stage E: superseded filter old
+TOP_K=5 include_old_versions=True temperature=0.0
+1. sim=0.888 EE_PLOs_before_2024_12.pdf v=pre-2024 superseded=True p1
+2. sim=0.875 EE_PLOs_2024_onwards_11.pdf v=2024+ superseded=False p1
+3. sim=0.869 EE_PLOs_before_2024_12.pdf v=pre-2024 superseded=True p1
+4. sim=0.866 EE_PLOs_2024_onwards_11.pdf v=2024+ superseded=False p1
+5. sim=0.705 Annual_Report_2023-24.pdf v=2023-24 superseded=False p49
+ANSWER: The corpus does not cover this question. | answered_from_context: False
+
+$ stage E (2): attendance question with the superseded filter OFF (include_old_versions)
+TOP_K=5 include_old_versions=True temperature=0.0
+1. sim=0.722 Undergraduate_Academic_Rules_Aug_2023.pdf v=2023-08 superseded=True p7
+2. sim=0.718 Undergraduate_Academic_Rules_Aug_2023.pdf v=2023-08 superseded=True p8
+3. sim=0.701 Undergraduate_Academic_Rules_Aug_2023.pdf v=2023-08 superseded=True p7
+4. sim=0.701 Prospectus_2026_Academic_Rules_and_Regulations.pdf v=2026-06 superseded=False p1
+5. sim=0.672 Undergraduate_Academic_Rules_Aug_2023.pdf v=2023-08 superseded=True p12
+ANSWER: The Undergraduate Academic Rules state that students are required to maintain 100% attendance in lectures, labs, tutorials, seminars, and discussions as prescribed by the course instructor. The maximum absence allowed is 20% of total attendance. | answered_from_context: False
+
+$ stage D: variant=shipped | What are the hostel allotment rules for first-year students?
+{"variant": "shipped", "temperature": 0.0, "answer": "", "answered_from_context": false, "n_citations": 0, "llm_seconds": 30.0}
+
+$ stage D: variant=shipped | Which bus routes serve the university campus, and what are their timings?
+{"variant": "shipped", "temperature": 0.0, "answer": "The corpus does not cover this question.", "answered_from_context": false, "n_citations": 0, "llm_seconds": 28.5}
+
+$ stage D: variant=noctx | What are the hostel allotment rules for first-year students?
+{"variant": "noctx", "temperature": 0.0, "answer": "", "answered_from_context": false, "n_citations": 0, "llm_seconds": 32.9}
+
+$ stage D: variant=noctx | Which bus routes serve the university campus, and what are their timings?
+{"variant": "noctx", "temperature": 0.0, "answer": "The university has arranged buses to operate between the campus and designated points in various localities of Faisalabad. The transport facility is available on self-finance basis.", "answered_from_context": false, "n_citations": 1, "llm_seconds": 33.0}
+
+$ stage F: variant=temp12 run 1 | How many program learning outcomes (PLOs) does the Electrical Engineering program have?
+{"variant": "temp12", "temperature": 1.2, "answer": "The Electrical Engineering program has a total of 11 PLOs.", "answered_from_context": true, "n_citations": 1, "llm_seconds": 47.0}
+
+$ stage F: variant=temp12 run 2 | How many program learning outcomes (PLOs) does the Electrical Engineering program have?
+{"variant": "temp12", "temperature": 1.2, "answer": "PLO-1, PLO-2, PLO-3, PLO-4, PLO-5, PLO-6 and PLO-7.", "answered_from_context": false, "n_citations": 1, "llm_seconds": 9.1}
+
+$ stage F: variant=temp12 run 3 | How many program learning outcomes (PLOs) does the Electrical Engineering program have?
+{"variant": "temp12", "temperature": 1.2, "answer": "PLO-10", "answered_from_context": true, "n_citations": 1, "llm_seconds": 6.3}
+
+$ stage F: variant=temp12 run 1 | What is the tuition fee per credit hour?
+{"variant": "temp12", "temperature": 1.2, "answer": "Rs. 12,000", "answered_from_context": false, "n_citations": 1, "llm_seconds": 38.5}
+
+$ stage F: variant=temp12 run 2 | What is the tuition fee per credit hour?
+{"variant": "temp12", "temperature": 1.2, "answer": "The tuition fee per credit hour is Rs. 12,000.", "answered_from_context": false, "n_citations": 1, "llm_seconds": 7.9}
+
+$ stage F control: variant=shipped (temperature 0.0) | How many program learning outcomes (PLOs) does the Electrical Engineering program have?
+{"variant": "shipped", "temperature": 0.0, "answer": "PLO-1 to PLO-11", "answered_from_context": false, "n_citations": 1, "llm_seconds": 34.6}

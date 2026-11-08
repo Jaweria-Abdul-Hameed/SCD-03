@@ -1,0 +1,27 @@
+# HorizontalPodAutoscaler on the API (§4.1, §4.5).
+# minReplicas 3 / maxReplicas 8, target 70% CPU utilisation.
+# Utilisation = usage / requests.cpu, so this only works because every
+# container sets requests.cpu (without it HPA shows <unknown>/70%).
+# Requires: minikube addons enable metrics-server
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api
+  namespace: rahbar
+  labels:
+    app: api
+    app.kubernetes.io/part-of: rahbar
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api
+  minReplicas: 3
+  maxReplicas: 8
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
