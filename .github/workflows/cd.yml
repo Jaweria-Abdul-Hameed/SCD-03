@@ -105,10 +105,10 @@ jobs:
         with:
           cluster_name: rahbar-cd
           config: .github/kind-config.yaml
-      - name: Install kubectl and kustomize
+      - name: Check kubectl and kustomize (preinstalled on ubuntu-latest runners; no release download needed)
         run: |
-          curl -fsSL --retry 5 --retry-all-errors --retry-delay 5 "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin
-          sudo chmod +x /usr/local/bin/kustomize
+          kubectl version --client
+          kustomize version
       - name: Deploy (kustomize build + kubectl apply, SHA-pinned images)
         env:
           IMAGE_TAG: ${{ github.sha }}
@@ -140,7 +140,9 @@ jobs:
       - name: Install ingress-nginx (kind provider, for the Ingress smoke test)
         run: |
           kubectl label node --all ingress-ready=true --overwrite || true
-          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/kind/deploy.yaml
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 5 -o /tmp/ingress-nginx.yaml https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/kind/deploy.yaml
+          grep -q 'kind: Deployment' /tmp/ingress-nginx.yaml  # fail loudly if an error page was saved instead of the manifest
+          kubectl apply -f /tmp/ingress-nginx.yaml
           kubectl wait --namespace ingress-nginx \
             --for=condition=complete job/ingress-nginx-admission-patch \
             --timeout=180s || true

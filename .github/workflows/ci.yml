@@ -84,13 +84,23 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Install kustomize and kubeconform
+      - name: Check kustomize (preinstalled on ubuntu-latest runners, same as e2e-eval uses)
+        run: kustomize version
+      - name: Install kubeconform from its ghcr.io image (GitHub release downloads returned HTTP 504 and non-gzip bodies)
         run: |
-          curl -fsSL --retry 5 --retry-all-errors --retry-delay 5 "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
-          sudo mv kustomize /usr/local/bin/kustomize
           KUBECONFORM_VERSION=v0.6.7
-          curl -fsSL --retry 5 --retry-all-errors --retry-delay 5 "https://github.com/yannh/kubeconform/releases/download/${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" \
-            | sudo tar -xz -C /usr/local/bin kubeconform
+          IMG="ghcr.io/yannh/kubeconform:${KUBECONFORM_VERSION}"
+          for attempt in 1 2 3 4 5; do
+            docker rm -f kc >/dev/null 2>&1 || true
+            if docker pull -q "$IMG" && docker create --name kc "$IMG" >/dev/null && docker cp kc:/kubeconform /tmp/kubeconform; then
+              break
+            fi
+            if [ "$attempt" = "5" ]; then echo "::error::could not obtain kubeconform from $IMG after 5 attempts"; exit 1; fi
+            echo "attempt $attempt failed, retrying in 10s"; sleep 10
+          done
+          docker rm -f kc >/dev/null 2>&1 || true
+          sudo install -m 0755 /tmp/kubeconform /usr/local/bin/kubeconform
+          kubeconform -v
       - name: Kustomize build (prod overlay)
         run: kustomize build k8s/overlays/prod > /tmp/prod-manifests.yaml
       - name: Kubeconform (strict) — catches a broken manifest in ~20s, not on the cluster
