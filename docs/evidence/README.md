@@ -67,8 +67,14 @@ command. Nothing is hand-written except this index. Captured 2026-11-07/08 on th
 |---|---|
 | `demo-transcript.md` | full recorded output of the rehearsed live demo (`docs/DEMO.md`), the fallback if the live cluster fails |
 
+## Screenshots (`screenshots/`)
+
+| File | What it shows |
+|---|---|
+| `pr2-merge-box-FAILING-e2e-eval-merge-blocked.png` | PR #2: `CI / e2e-eval` failing, "Merging is blocked", merge button greyed out |
+| `pr2-overview-demo-failing-gate-do-not-merge.png` | PR #2 overview with the "do not merge" note and the red commit status |
+| `pr2-merge-box-GREEN-6-checks-passed.png` | PR #2 after the revert: "All checks have passed" (6 successful checks); only the 1-review rule still blocks the merge |
+
 ## Not in this directory
 
-* Screenshots (greyed-out merge button, green merge button, Docker Hub tags): an automated session cannot take them -
-  see the PR links in `pr-gate-failing.txt` and the manual to-do list of the final report.
-* A video: none was recorded.
+* A Docker Hub screenshot and a video: none was recorded.
