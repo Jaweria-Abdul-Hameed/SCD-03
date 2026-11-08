@@ -574,3 +574,18 @@ def test_duplicate_citations_are_returned_once():
     )
     out = grounding_mod.validate_answer(ans, [chunk])
     assert len(out.citations) == 1
+
+
+def test_heading_only_answer_is_detected_but_real_short_answers_are_not():
+    def mk(text):
+        return Answer(
+            reasoning="r",
+            answer=text,
+            citations=[],
+            answered_from_context=True,
+            confidence="high",
+        )
+
+    assert grounding_mod.is_heading_only(mk("All rules for examination"))
+    for ok in ("Rs. 12,000", "PLO-1 to PLO-11", "Yes.", "Clause 1.21 applies"):
+        assert not grounding_mod.is_heading_only(mk(ok))

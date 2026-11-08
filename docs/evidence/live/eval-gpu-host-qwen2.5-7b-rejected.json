@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-08T06:16:47.105656+00:00",
+  "timestamp": "2026-11-08T08:38:55.369463+00:00",
   "mode": "live",
   "api_base": "http://localhost:8000",
   "golden": "eval\\golden.yaml",
@@ -24,7 +24,7 @@
       "count": 8,
       "recall_at_3": 0.6875,
       "recall_at_5": 0.9375,
-      "citation_validity": 0.9090909090909091,
+      "citation_validity": 0.9,
       "abstention_correctness": null
     },
     "prompt-injection": {
@@ -42,10 +42,10 @@
       "abstention_correctness": null
     }
   },
-  "citation_validity": 0.8571428571428571,
+  "citation_validity": 0.8461538461538461,
   "abstention_correctness": 1.0,
-  "total_citations": 14,
-  "valid_citations": 12,
+  "total_citations": 13,
+  "valid_citations": 11,
   "unverified_expected_answers": [],
   "warnings": [],
   "per_question": [
@@ -74,26 +74,16 @@
           "source": "Academic_Rules_Handbook_2026.pdf",
           "section": "3.32 A new admission is closed if an awaited result does not meet the…",
           "page": 18
-        },
-        {
-          "source": "Academic_Rules_Handbook_2026.pdf",
-          "section": "3.32 A new admission is closed if an awaited result does not meet the…",
-          "page": 18
-        },
-        {
-          "source": "Academic_Rules_Handbook_2026.pdf",
-          "section": "3.32 A new admission is closed if an awaited result does not meet the…",
-          "page": 18
         }
       ],
-      "citation_valid": 3,
-      "citation_total": 3,
+      "citation_valid": 1,
+      "citation_total": 1,
       "citation_validity": 1.0,
       "citation_check_method": "chunk-ids+relevant-proxy",
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The evidence does not explicitly state whether a student can register for a course after failing its prerequisite."
+      "answer_text": "The evidence does not provide clear information on whether a student can register for a course after failing its prerequisite."
     },
     {
       "id": "G02",
@@ -128,7 +118,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The university's attendance requirement for a course is 80% (100% - 20% max absence allowed)."
+      "answer_text": "Students must attend 80% of undergraduate courses and 75% of graduate and postgraduate courses without any exceptions, unless there are genuine reasons like illness that allow up to 20% absence."
     },
     {
       "id": "G03",
@@ -169,7 +159,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The key rules include authorized users must meet specified criteria and undergo appropriate training, access levels tailored to roles, time limits for usage, acceptable uses are for preparatory research work, assignments, and projects but not the sole source of information."
+      "answer_text": "- Authorized users are granted access to Generative AI tools upon meeting specified criteria and undergoing appropriate training.\n- Access levels are tailored to the specific roles and responsibilities of users.\n- Acceptable use policies outline the intended educational purposes for which Generative AI tools may be utilized, emphasizing ethical and lawful conduct in all interactions.\n- Prohibited activities include behaviors such as plagiarism, unauthorized data manipulation, or any other misuse of Generative AI capabilities."
     },
     {
       "id": "G04",
@@ -240,7 +230,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "Grade points for each letter grade are as follows: A+ = 4.00, A = 4.00, A- = 3.67, B+ = 3.33, B = 3.00, B- = 2.67, C+ = 2.33, C = 2.00, C- = 1.67, D+ = 1.33, D = 1.00, and F = 0.00."
+      "answer_text": "Grade points for each letter grade are as follows:\n- A+: 4.00\n- A: 4.00\n- A-: 3.67\n- B+: 3.33\n- B: 3.00\n- B-: 2.67\n- C+: 2.33\n- C: 2.00\n- C-: 1.67\n- D+: 1.33\n- D: 1.00\n- F: 0.00"
     },
     {
       "id": "G06",
@@ -259,17 +249,23 @@
       "recall_at_3": 1.0,
       "recall_at_5": 1.0,
       "recall_source": "chunk-ids",
-      "answered_from_context": false,
-      "confidence": "low",
-      "citations": [],
-      "citation_valid": 0,
-      "citation_total": 0,
-      "citation_validity": null,
-      "citation_check_method": "no-citations",
+      "answered_from_context": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source": "Fee_Structure_page.html",
+          "section": "Introduction",
+          "page": 1
+        }
+      ],
+      "citation_valid": 1,
+      "citation_total": 1,
+      "citation_validity": 1.0,
+      "citation_check_method": "chunk-ids+relevant-proxy",
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The corpus does not cover this question."
+      "answer_text": "If a student withdraws from a course, the fee refund timeline is as follows:\n- Upto 10th day of commencement of classes: 100% Fee Refund\n- Upto 15th day of commencement of classes: 80% Fee Refund\n- Upto 20th day of commencement of classes: 60% Fee Refund\n- Upto 30th day of commencement of classes: 50% Fee Refund\n- 31st day onwards of commencement of classes: No Refund"
     },
     {
       "id": "G07",
@@ -310,7 +306,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The Faculty Entrepreneurship and Technical Start-ups Policy covers the guidelines for 'Faculty Entrepreneurship/Technical Start-up' for full-time faculty members at NUCES, including objectives, eligibility criteria, application procedures, evaluation criteria, and mandatory periodic reporting requirements."
+      "answer_text": "- Objectives\n- Eligibility criteria\n- Application procedure\n- Evaluation criteria\n- Mandatory periodic reporting requirements"
     },
     {
       "id": "G08",
@@ -345,7 +341,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The holidays observed in the 2026-27 academic year are Pakistan Day, Labour Day, Eid-ul-Fitr, Eid-ul-Adha, and Ashura."
+      "answer_text": "- Pakistan Day (March 23, Saturday)\n- Labour Day (May 1, Wednesday)\n- Eid-ul-Fitr (April 10 - 12, Wednesday - Friday)\n- Eid-ul-Adha (June 17 - June 19, Monday - Wednesday)\n- Ashura (July 27 - 28, Thursday - Friday)"
     },
     {
       "id": "G09",
@@ -380,7 +376,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The current version states that students must maintain 100% attendance in lectures, labs, tutorials, seminars and discussions as prescribed by the course instructor. Absence of up to 20% may be condoned for genuine reasons like illness."
+      "answer_text": "Students are required to maintain 100% attendance in lectures, labs, tutorials, seminars, and discussions as prescribed by the course instructor. Absence of a maximum of 20% of the total lectures may be condoned for genuine reasons, such as illness. Failure to meet attendance requirements will render a student ineligible to appear in the final examination of the concerned course."
     },
     {
       "id": "G10",
@@ -479,7 +475,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The minimum CGPA required to remain in good academic standing is 2.00 for BS/BBA programs, 2.50 for MS/MBA programs, and 3.00 for PhD programs."
+      "answer_text": "The minimum CGPA required to remain in good academic standing is 2.00 for BSc/BS or BBA programs, 2.50 for MS/MBA programs, and 3.00 for PhD programs."
     },
     {
       "id": "G13",
