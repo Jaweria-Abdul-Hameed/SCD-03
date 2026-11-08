@@ -1,0 +1,59 @@
+# Prod overlay + the laptop's own Ollama (runs on the host GPU) instead of an Ollama pod.
+#
+# Why: a pod in minikube (docker driver) cannot see the GPU, so the in-cluster Ollama is CPU-only
+# (about 16 tok/s, answers in 15-55 s). The host Ollama on the RTX GPU does about 130 tok/s.
+#
+# How it is reached WITHOUT exposing anything: the minikube node resolves host.minikube.internal
+# to the Docker Desktop host gateway (192.168.65.254 on this machine; check with
+#   minikube ssh "grep host.minikube.internal /etc/hosts"
+# ), which forwards to the Ollama listening on 127.0.0.1:11434. The host Ollama is NOT rebound to
+# 0.0.0.0 and its configuration is untouched. Only the api and indexer pods may reach that one
+# address and port (NetworkPolicy below); the default-deny posture is otherwise unchanged.
+#
+# Same model as the CPU deployment (llama3.2:3b) so evaluation results do not change; the model
+# and nomic-embed-text must exist on the host: ollama pull llama3.2:3b && ollama pull nomic-embed-text
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: rahbar
+resources:
+  - ../prod
+patches:
+  - patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: rahbar-config
+      data:
+        LLM_PROVIDER: "ollama-host"
+        OLLAMA_HOST: "host.minikube.internal:11434"
+        LLM_MODEL: "llama3.2:3b"
+        LLM_TIMEOUT_S: "120"
+    target:
+      kind: ConfigMap
+      name: rahbar-config
+  - patch: |-
+      - op: add
+        path: /spec/egress/-
+        value:
+          to:
+            - ipBlock:
+                cidr: 192.168.65.254/32
+          ports:
+            - port: 11434
+              protocol: TCP
+    target:
+      kind: NetworkPolicy
+      name: allow-api
+  - patch: |-
+      - op: add
+        path: /spec/egress/-
+        value:
+          to:
+            - ipBlock:
+                cidr: 192.168.65.254/32
+          ports:
+            - port: 11434
+              protocol: TCP
+    target:
+      kind: NetworkPolicy
+      name: allow-indexer

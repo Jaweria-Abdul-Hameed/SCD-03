@@ -1,0 +1,26 @@
+$ bash /c/Users/mohsi/Desktop/work/reidx.sh
+# captured 2026-11-07T22:53:01Z
+--- cache entries before:
+1
+--- kubectl create job --from=cronjob/reindex manual-reindex-1 -n rahbar
+job.batch/manual-reindex-1 created
+t+1s api readyReplicas=3 /api/readyz=200 job.succeeded=0
+t+31s api readyReplicas=3 /api/readyz=200 job.succeeded=0
+t+61s api readyReplicas=3 /api/readyz=200 job.succeeded=0
+t+92s api readyReplicas=3 /api/readyz=200 job.succeeded=0
+t+122s api readyReplicas=3 /api/readyz=200 job.succeeded=0
+t+152s api readyReplicas=3 /api/readyz=200 job.succeeded=0
+t+182s api readyReplicas=3 /api/readyz=200 job.succeeded=0
+t+213s api readyReplicas=3 /api/readyz=200 job.succeeded=0
+--- job complete after 243 s
+NAME               STATUS     COMPLETIONS   DURATION   AGE
+manual-reindex-1   Complete   1/1           4m1s       4m3s
+{"level": "info", "stage": "store", "event": "cache_invalidated", "pattern": "rahbar:cache:*", "keys_deleted": 1}
+{"level": "info", "stage": "indexer", "event": "index_done", "run_id": "4c4d9b4d-10b4-4ebe-9bc7-b31fde1ce560", "documents": 15, "chunks": 480, "stored": 480, "original_tokens": 153996, "stored_tokens": 164969, "storage_amplification": 1.071, "per_document": [{"source": "Academic_Calendar_page.html", "chunks": 1, "stored": 1, "or
+--- cache entries after:
+0
+NAME                   READY   STATUS    RESTARTS   AGE
+api-86db7c7567-5m8lr   1/1     Running   0          4m23s
+api-86db7c7567-gj4cc   1/1     Running   0          4m20s
+api-86db7c7567-r4ms6   1/1     Running   0          4m17s
+{"status":"ready","collection_count":480,"embed_model":"nomic-embed-text"}

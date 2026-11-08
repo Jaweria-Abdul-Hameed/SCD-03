@@ -1,0 +1,7 @@
+========================================================================
+RAHBAR KUSTOMIZE VALIDATION REPORT (re-run 2026-11-08)
+========================================================================
+k8s/base -> [PASS] (27 objects)
+k8s/overlays/dev -> [PASS] (27 objects)
+k8s/overlays/prod -> [PASS] (27 objects)
+k8s/overlays/incluster-ollama -> [PASS] (32 objects)

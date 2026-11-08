@@ -1,0 +1,20 @@
+# Corpus PVC — the indexer Job / reindex CronJob read the corpus from here.
+# The corpus PDFs are NOT baked into the indexer image and NOT an emptyDir
+# (an emptyDir starts empty, so the Job would find no documents and exit 2).
+# Populate it with `make corpus-to-cluster` (see Makefile / README step 6):
+# a temporary busybox pod mounts this claim and `kubectl cp` copies
+# corpus/raw/ (or eval/fixtures/ in CI) into /corpus/raw/ on the claim.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: corpus-data
+  namespace: rahbar
+  labels:
+    app: indexer
+    app.kubernetes.io/part-of: rahbar
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

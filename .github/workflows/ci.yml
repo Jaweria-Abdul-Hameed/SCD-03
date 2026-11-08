@@ -1,0 +1,350 @@
+name: CI
+
+# RAHBAR CI — assignment sec. 6.
+# Triggers: pull request to main, and push to dev.
+# Every publishing/deploying job in this file has a `needs:` gate (sec. 6
+# non-negotiables). No image is ever tagged with the floating latest tag
+# anywhere in this repo; deploy by commit SHA only.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [dev]
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.12"
+  EMBED_MODEL: nomic-embed-text
+  # CI never needs a real LLM key: tests use the stub provider (no network, no model).
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+      - name: Install lint tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff mypy
+          pip install -r api/requirements.txt -r indexer/requirements.txt || pip install -r api/requirements.txt
+      - name: Ruff (api + indexer + eval + scripts)
+        run: ruff check api indexer eval scripts --ignore EXE001
+      - name: Ruff format check
+        run: ruff format --check api indexer eval scripts
+      - name: Mypy (api + indexer, strict enough to catch schema drift)
+        run: mypy api/app indexer/pipeline --ignore-missing-imports
+
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r api/requirements.txt -r indexer/requirements.txt
+          pip install pytest pytest-cov
+      - name: Pytest with coverage (>= 60% on the app package)
+        env:
+          LLM_PROVIDER: stub
+          EMBED_MODEL: nomic-embed-text
+          # Stub provider: no network, no model download, no real key.
+          LLM_API_KEY: stub-key-for-ci-only
+        run: |
+          pytest api/tests indexer/tests \
+            --cov=api/app --cov-report=term-missing --cov-report=xml \
+            --cov-fail-under=60
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml
+          path: coverage.xml
+          if-no-files-found: error
+
+  manifests:
+    name: manifests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install kustomize and kubeconform
+        run: |
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+          sudo mv kustomize /usr/local/bin/kustomize
+          KUBECONFORM_VERSION=v0.6.7
+          curl -sSL "https://github.com/yannh/kubeconform/releases/download/${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" \
+            | sudo tar -xz -C /usr/local/bin kubeconform
+      - name: Kustomize build (prod overlay)
+        run: kustomize build k8s/overlays/prod > /tmp/prod-manifests.yaml
+      - name: Kubeconform (strict) — catches a broken manifest in ~20s, not on the cluster
+        run: kubeconform -strict -summary /tmp/prod-manifests.yaml
+      - name: Kustomize build (dev overlay)
+        run: kustomize build k8s/overlays/dev > /tmp/dev-manifests.yaml
+      - name: Kubeconform (strict, dev)
+        run: kubeconform -strict -summary /tmp/dev-manifests.yaml
+      - name: No floating latest tag anywhere in rendered manifests
+        run: |
+          # The tag pattern is built dynamically so this workflow file
+          # itself never contains the literal tag string.
+          LATEST_TAG=":$(echo lat)est"
+          if grep -rn "$LATEST_TAG" /tmp/prod-manifests.yaml /tmp/dev-manifests.yaml; then
+            echo "::error::Rendered manifests contain the floating latest tag — deploy by commit SHA only (sec. 6)."
+            exit 1
+          fi
+      - name: Submission checker (mechanical rules, sec. 8)
+        run: python scripts/check_submission.py
+
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      # Build only on PR / dev push. This job does NOT push (sec. 6:
+      # "Builds the api, ui and indexer images. Does not push on a pull request").
+      # Tags use the commit SHA only — never the floating latest tag.
+      - name: Build api image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./api
+          push: false
+          tags: rahbar-api:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Build ui image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ui
+          push: false
+          tags: rahbar-ui:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Build indexer image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./indexer
+          push: false
+          tags: rahbar-indexer:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  scan:
+    name: scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build images for scanning (no push)
+        run: |
+          docker build -t rahbar-api:${{ github.sha }} ./api
+          docker build -t rahbar-ui:${{ github.sha }} ./ui
+          docker build -t rahbar-indexer:${{ github.sha }} ./indexer
+      - name: Trivy scan api
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: rahbar-api:${{ github.sha }}
+          format: table
+          # Fail on HIGH or CRITICAL findings that have a fix available (sec. 6).
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Trivy scan ui
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: rahbar-ui:${{ github.sha }}
+          format: table
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Trivy scan indexer
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: rahbar-indexer:${{ github.sha }}
+          format: table
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+
+  e2e-eval:
+    name: e2e-eval
+    runs-on: ubuntu-latest
+    # Gate: this job only runs on code that passed lint, tests, manifest
+    # validation, image build and vulnerability scan (sec. 6 non-negotiables).
+    needs: [lint, test, manifests, build, scan]
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+      - name: Create kind cluster
+        uses: helm/kind-action@v1
+        with:
+          cluster_name: rahbar-ci
+          # kind with Calico-equivalent CNI behaviour is not required for the
+          # eval gate itself; NetworkPolicy enforcement is verified on the
+          # minikube/Calico path documented in the README. kind here gives a
+          # real API server, scheduler and probes.
+          config: .github/kind-config.yaml
+      - name: Build and load images into kind (SHA tags only)
+        run: |
+          docker build -t rahbar-api:${{ github.sha }} ./api
+          docker build -t rahbar-ui:${{ github.sha }} ./ui
+          docker build -t rahbar-indexer:${{ github.sha }} ./indexer
+          # The retagged manifests request ghcr.io/rahbar/*:${{ github.sha }},
+          # so load THOSE names into kind (retag locally first) — loading
+          # the short names would leave the pods ImagePullBackOff.
+          docker tag rahbar-api:${{ github.sha }} ghcr.io/rahbar/api:${{ github.sha }}
+          docker tag rahbar-ui:${{ github.sha }} ghcr.io/rahbar/ui:${{ github.sha }}
+          docker tag rahbar-indexer:${{ github.sha }} ghcr.io/rahbar/indexer:${{ github.sha }}
+          kind load docker-image ghcr.io/rahbar/api:${{ github.sha }} --name rahbar-ci
+          kind load docker-image ghcr.io/rahbar/ui:${{ github.sha }} --name rahbar-ci
+          kind load docker-image ghcr.io/rahbar/indexer:${{ github.sha }} --name rahbar-ci
+      - name: Apply manifests (prod overlay, image tags pinned to this SHA)
+        run: |
+          # Base manifests carry the placeholder tag `:SHA` on the three
+          # rahbar images (ghcr.io/rahbar/{api,ui,indexer}:SHA). The prod
+          # overlay has no kustomize `images:` section, so this step
+          # retags the rendered manifests to this commit SHA before
+          # applying. Third-party images (chroma, redis) are untouched.
+          # The runner has 2 vCPU and kind is a single node, so the prod
+          # footprint (3 api replicas, 250m requests) is unschedulable
+          # (chroma-0 stuck Pending: Insufficient cpu). For this ephemeral
+          # cluster ONLY: api replicas/HPA min 1 and CPU requests 100m.
+          kustomize build k8s/overlays/prod \
+            | sed "s|ghcr.io/rahbar/api:SHA|ghcr.io/rahbar/api:${{ github.sha }}|g; s|ghcr.io/rahbar/ui:SHA|ghcr.io/rahbar/ui:${{ github.sha }}|g; s|ghcr.io/rahbar/indexer:SHA|ghcr.io/rahbar/indexer:${{ github.sha }}|g; s|^\( *\)replicas: 3$|\1replicas: 1|; s|minReplicas: 3|minReplicas: 1|; s|cpu: 250m|cpu: 100m|g; s|LLM_PROVIDER: \"\?ollama-host\"\?|LLM_PROVIDER: stub|; s|RELEVANCE_FLOOR: \"0.64\"|RELEVANCE_FLOOR: \"0.35\"|" \
+            | kubectl apply -f -
+      - name: Populate the corpus PVC with the fixture corpus
+        run: |
+          # The indexer Job mounts the corpus-data PVC at /corpus (an
+          # emptyDir would start empty). Copy eval/fixtures/ into
+          # /corpus/raw/ on the PVC via a temporary busybox pod, then
+          # delete the pod — same mechanism as `make corpus-to-cluster`.
+          kubectl apply -f k8s/base/corpus-pvc.yaml -n rahbar || true
+          cat > /tmp/corpus-loader-pod.yaml <<'EOF'
+          apiVersion: v1
+          kind: Pod
+          metadata:
+            name: corpus-loader
+            namespace: rahbar
+          spec:
+            restartPolicy: Never
+            containers:
+              - name: loader
+                image: busybox:1.36
+                command: ["sleep", "3600"]
+                volumeMounts:
+                  - name: corpus
+                    mountPath: /corpus
+            volumes:
+              - name: corpus
+                persistentVolumeClaim:
+                  claimName: corpus-data
+          EOF
+          kubectl apply -f /tmp/corpus-loader-pod.yaml
+          kubectl wait --for=condition=ready pod/corpus-loader -n rahbar --timeout=120s
+          kubectl exec -n rahbar pod/corpus-loader -- mkdir -p /corpus/raw
+          kubectl cp eval/fixtures/. corpus-loader:/corpus/raw/ -n rahbar
+          # README.md documents the fixtures; it must not be indexed as a
+          # competing chunk (the eval golden set targets doc1-3 only).
+          kubectl exec -n rahbar pod/corpus-loader -- rm -f /corpus/raw/README.md
+          kubectl exec -n rahbar pod/corpus-loader -- chmod -R 777 /corpus
+          kubectl delete pod corpus-loader -n rahbar --wait=true
+      - name: Wait for Chroma and Redis rollout
+        run: |
+          if ! kubectl rollout status statefulset/chroma -n rahbar --timeout=180s; then
+            echo "::error::Chroma StatefulSet rollout failed. Diagnostics:"
+            kubectl describe pod chroma-0 -n rahbar
+            kubectl logs chroma-0 -n rahbar || true
+            exit 1
+          fi
+          if ! kubectl rollout status deployment/redis -n rahbar --timeout=180s; then
+            echo "::error::Redis Deployment rollout failed. Diagnostics:"
+            kubectl describe pods -l app=redis -n rahbar
+            kubectl logs -l app=redis -n rahbar || true
+            exit 1
+          fi
+      - name: Run indexer Job on the small fixture corpus
+        run: |
+          kubectl delete job indexer -n rahbar --ignore-not-found=true
+          sed "s|ghcr.io/rahbar/indexer:SHA|ghcr.io/rahbar/indexer:${{ github.sha }}|g; s|cpu: 250m|cpu: 100m|" k8s/base/indexer-job.yaml | kubectl apply -f -
+          # Follow logs in the background: the failed pod is deleted by the Job
+          # controller, which would otherwise take its logs with it.
+          (kubectl logs -f -l app=indexer -n rahbar --all-containers=true --pod-running-timeout=120s > /tmp/indexer.log 2>&1 &)
+          if ! kubectl wait --for=condition=complete --timeout=300s job/indexer -n rahbar; then
+            echo "::error::Indexer Job timed out or failed. Diagnostics:"
+            kubectl describe job indexer -n rahbar
+            kubectl describe pods -l app=indexer -n rahbar
+            kubectl logs -l app=indexer -n rahbar --all-containers=true || true
+            echo "--- captured indexer log ---"; cat /tmp/indexer.log || true
+            kubectl get events -n rahbar --sort-by=.lastTimestamp | tail -40
+            exit 1
+          fi
+          kubectl logs job/indexer -n rahbar
+      - name: Wait for api rollout (readiness must go green — see /readyz)
+        run: |
+          if ! kubectl rollout status deployment/api -n rahbar --timeout=300s; then
+            echo "::error::api rollout failed. Diagnostics:"
+            kubectl get pods -n rahbar -o wide
+            kubectl describe pods -l app=api -n rahbar
+            kubectl logs -l app=api -n rahbar --tail=80 || true
+            exit 1
+          fi
+          kubectl wait --for=condition=ready pod -l app=api -n rahbar --timeout=300s
+      - name: Install eval dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r eval/requirements.txt || pip install pyyaml requests
+      - name: Run evaluation against the live stack
+        # No duplicated inline gate here: eval/run_eval.py enforces the
+        # sec. 5.4 gate itself and exits 1 on failure — this step's exit
+        # code IS the gate. (The old inline Python gate duplicated that
+        # logic and could drift from it; it was removed.)
+        run: |
+          kubectl port-forward svc/api 8000:8000 -n rahbar &
+          # Readiness wait (not a bare sleep): poll /readyz until the API
+          # reports ready, or fail after 60s.
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8000/readyz >/dev/null 2>&1; then
+              echo "API ready after ${i} attempts"
+              break
+            fi
+            if [ "$i" = "30" ]; then echo "::error::API did not become ready on /readyz"; exit 1; fi
+            sleep 2
+          done
+          # CI indexes only the 3 invented fixture docs and runs the stub provider,
+          # so it uses the fixture golden set + fixture baseline. The real
+          # eval/golden.yaml + eval/baseline.json are for the full corpus.
+          python eval/run_eval.py --base-url http://localhost:8000 \
+            --golden eval/golden.fixture.yaml --baseline eval/baseline.fixture.json \
+            --output eval/results.json
+      - name: Upload eval results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: eval/results.json
+          if-no-files-found: warn

@@ -1,0 +1,16 @@
+RAHBAR submission checker — repo root: C:\Users\mohsi\Desktop\SCD-02
+========================================================================
+[PASS] required paths (sec. 10 layout): all 51 required paths exist
+[PASS] no secrets in tracked files: no secret patterns in tracked files; no real-value base64 Secret
+[PASS] namespace rahbar everywhere: namespace rahbar everywhere; no 'namespace: default'
+[PASS] Chroma StatefulSet + PVC: Chroma is a StatefulSet (1 replica) with volumeClaimTemplates
+[PASS] no NodePort/LoadBalancer on Chroma/Redis: no NodePort/LoadBalancer; Chroma and Redis are ClusterIP
+[PASS] every container has requests+limits: all 7 containers specify CPU+memory requests and limits
+[PASS] no floating latest tag in workflows/manifests: no ':latest' tag in workflows or manifests
+[PASS] needs: on publishing/deploying jobs: all 3 publishing/deploying jobs have needs:
+[PASS] golden set >= 15, all 5 types: golden.yaml: 15 questions, counts {'ordinary': 8, 'version-sensitive': 2, 'exact-term': 2, 'must-abstain': 2, 'prompt-injection': 1}
+[PASS] ADR 0001 covers four failure modes: ADR 0001 covers all four failure modes + manual reindex command
+[PASS] ENGINEERING-NOTES answers 7 questions: ENGINEERING-NOTES answers all 7 questions (Q1–Q7 headings present)
+[PASS] .gitignore covers *-secret.yaml: .gitignore covers *-secret.yaml; eval/results.json is not ignored
+========================================================================
+RESULT: all 12 checks PASSED — clean run.

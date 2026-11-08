@@ -1,0 +1,14 @@
+$ kubectl get pods -n rahbar -o wide; kubectl get nodes -o wide
+# captured 2026-11-08T00:08:29Z
+NAME                      READY   STATUS      RESTARTS      AGE     IP               NODE       NOMINATED NODE   READINESS GATES
+api-57d4cbd8c6-kvspp      1/1     Running     0             5m27s   10.244.120.107   minikube   <none>           <none>
+api-57d4cbd8c6-rd2q5      1/1     Running     0             5m24s   10.244.120.109   minikube   <none>           <none>
+api-57d4cbd8c6-xjdmp      1/1     Running     0             5m32s   10.244.120.103   minikube   <none>           <none>
+chroma-0                  1/1     Running     2 (25m ago)   116m    10.244.120.72    minikube   <none>           <none>
+indexer-gv4kn             0/1     Completed   0             103m    <none>           minikube   <none>           <none>
+ollama-778795c865-g2lq9   1/1     Running     2 (25m ago)   99m     10.244.120.78    minikube   <none>           <none>
+redis-59b78d9bf9-bzg74    1/1     Running     2 (25m ago)   116m    10.244.120.71    minikube   <none>           <none>
+ui-6984494fd4-hcnj6       1/1     Running     0             5m20s   10.244.120.105   minikube   <none>           <none>
+ui-6984494fd4-m7zf4       1/1     Running     0             5m31s   10.244.120.100   minikube   <none>           <none>
+NAME       STATUS   ROLES           AGE     VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                              CONTAINER-RUNTIME
+minikube   Ready    control-plane   6h20m   v1.37.0   192.168.49.2   <none>        Debian GNU/Linux 12 (bookworm)   6.18.33.2-microsoft-standard-WSL2 (amd64)   containerd://2.3.4

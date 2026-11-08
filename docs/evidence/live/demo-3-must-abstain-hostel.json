@@ -1,0 +1,23 @@
+$ curl -s -H 'Host: rahbar.local' -X POST http://localhost:8080/api/chat -H 'Content-Type: application/json' -d '{"question": "What are the hostel allotment rules for first-year students?"}'
+# (localhost:8080 = kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80; same path as minikube ip + Host header)
+# captured 2026-11-08T00:05:41Z
+{
+ "answer": {
+  "reasoning": "",
+  "answer": "The corpus does not cover this question.",
+  "citations": [],
+  "answered_from_context": false,
+  "confidence": "medium"
+ },
+ "request_id": "5a68b3898d6bcc57b2565f53fed09d18",
+ "cache_hit": false,
+ "latency_ms": 29286.701167999126,
+ "retrieved_chunk_ids": [
+  "f9d67bf5d81c06e4c803236a152ab6cbcf7e8f2aee8569a51c1cfb206770386c",
+  "c817be75525dd428de7804fe26c6ead8ba9ff01c26cfeeeb1da7db61a933d32f",
+  "2896efce2e23f083c96b30b2961b4f20f4d46d17738179e9ab87156876242dde",
+  "cf50b1b49199cddd099900f124c8aedf210068bf024dc25190e8ae0958ecd69a",
+  "96c01dfe330632220f6749812015deb93544aadbd5b661a2438f6a7c2b1a6e55"
+ ]
+}
+# wall time: 29.4 s

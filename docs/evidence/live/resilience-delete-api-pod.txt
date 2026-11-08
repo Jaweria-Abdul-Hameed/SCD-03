@@ -1,0 +1,15 @@
+$ bash /c/Users/mohsi/Desktop/work/resil.sh
+# captured 2026-11-07T22:50:26Z
+--- warm the cache so loop requests are fast: one real question
+warm-up chat HTTP 200 in 41.176077s
+NAME                   READY   STATUS    RESTARTS   AGE
+api-68f4b99cbd-4dp6b   1/1     Running   0          2m51s
+api-68f4b99cbd-9h6h4   1/1     Running   0          2m44s
+api-68f4b99cbd-nmxps   1/1     Running   0          2m47s
+--- loop: 60 requests (30 x /api/readyz + 30 x cached /api/chat), one every 0.5 s through the Ingress; deleting api-68f4b99cbd-4dp6b after request 10
+pod "api-68f4b99cbd-4dp6b" deleted from rahbar namespace
+RESULT: ok=60 failed=0 of 60
+NAME                   READY   STATUS    RESTARTS   AGE
+api-68f4b99cbd-9h6h4   1/1     Running   0          3m20s
+api-68f4b99cbd-nmxps   1/1     Running   0          3m23s
+api-68f4b99cbd-wjtcd   1/1     Running   0          31s

@@ -1,0 +1,13 @@
+$ sleep 45; kubectl top pods -n rahbar --containers; kubectl top node
+# captured 2026-11-08T00:08:30Z
+POD                       NAME     CPU(cores)   MEMORY(bytes)   
+api-57d4cbd8c6-kvspp      api      2m           77Mi            
+api-57d4cbd8c6-rd2q5      api      2m           77Mi            
+api-57d4cbd8c6-xjdmp      api      2m           77Mi            
+chroma-0                  chroma   3m           139Mi           
+ollama-778795c865-g2lq9   ollama   3173m        2874Mi          
+redis-59b78d9bf9-bzg74    redis    3m           3Mi             
+ui-6984494fd4-hcnj6       ui       1m           2Mi             
+ui-6984494fd4-m7zf4       ui       1m           2Mi             
+NAME       CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
+minikube   3122m        13%      4552Mi          28%         

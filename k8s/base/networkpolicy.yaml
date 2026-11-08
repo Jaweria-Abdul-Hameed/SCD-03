@@ -1,0 +1,267 @@
+# NetworkPolicy — default deny, then allow only the paths the architecture
+# needs (assignment §4.7). Requires a CNI that enforces policy:
+#   minikube start --driver=docker --cni=calico ...
+# The default CNI accepts these manifests and silently ignores them.
+#
+# ALLOWED:
+#   Ingress controller -> UI (80)
+#   UI / Ingress -> API (8000)
+#   API / Indexer -> Chroma (8000)
+#   API / Indexer -> Redis (6379)
+#   API / Indexer -> LLM provider on the host (host.minikube.internal:11434)
+#   All pods -> DNS (UDP+TCP 53) in kube-system (without this, every
+#     service name stops resolving the moment default-deny is applied)
+#
+# EXPLICITLY BLOCKED — there is NO rule allowing UI -> Chroma.
+# The UI must never reach the vector store directly; it talks only to the
+# API (via the Ingress), and the API is the only reader of Chroma.
+# Likewise Redis is reachable only from the API and indexer (for cache
+# invalidation), and Chroma only from the API and the indexer.
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: rahbar-default-deny
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+---
+# UI: ingress from the ingress controller only; egress to API + DNS only.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ui
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+spec:
+  podSelector:
+    matchLabels:
+      app: ui
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+      ports:
+        - port: 8080
+          protocol: TCP
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: api
+      ports:
+        - port: 8000
+          protocol: TCP
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+---
+# API: ingress from UI + ingress controller; egress to Chroma, Redis,
+# LLM host, and DNS only.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-api
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+spec:
+  podSelector:
+    matchLabels:
+      app: api
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: ui
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+      ports:
+        - port: 8000
+          protocol: TCP
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: chroma
+      ports:
+        - port: 8000
+          protocol: TCP
+    - to:
+        - podSelector:
+            matchLabels:
+              app: redis
+      ports:
+        - port: 6379
+          protocol: TCP
+    # LLM provider on the laptop host (ollama-host mode).
+    # Fill in the host IP from: minikube ssh "grep host.minikube.internal /etc/hosts"
+    # (typically 192.168.49.1 on the docker driver; verify before applying).
+    - to:
+        - ipBlock:
+            cidr: 192.168.49.1/32
+      ports:
+        - port: 11434
+          protocol: TCP
+    # OPTIONAL — hosted LLM provider (e.g. Groq / OpenAI / OpenRouter):
+    # uncomment ONLY when LLM_PROVIDER is switched to "hosted", so the API
+    # can reach the provider's HTTPS endpoint (port 443, any destination).
+    # It is DISABLED by default: with ollama-host the API must not be able
+    # to reach the public internet, and an always-on 0.0.0.0/0 egress rule
+    # would defeat the default-deny posture for no benefit.
+    # - to:
+    #     - ipBlock:
+    #         cidr: 0.0.0.0/0
+    #   ports:
+    #     - port: 443
+    #       protocol: TCP
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+---
+# Chroma: ingress from API + indexer only; egress to DNS only.
+# NOTE: no `from` entry with app: ui — UI -> Chroma is blocked.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-chroma
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+spec:
+  podSelector:
+    matchLabels:
+      app: chroma
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: api
+        - podSelector:
+            matchLabels:
+              app: indexer
+      ports:
+        - port: 8000
+          protocol: TCP
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+---
+# Redis: ingress from API and indexer (for cache invalidation); egress to DNS only.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-redis
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+spec:
+  podSelector:
+    matchLabels:
+      app: redis
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: api
+        - podSelector:
+            matchLabels:
+              app: indexer
+      ports:
+        - port: 6379
+          protocol: TCP
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+---
+# Indexer: no ingress (nothing calls it); egress to Chroma, Redis (for
+# cache invalidation), LLM host (embedding via ollama-host), and DNS only.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-indexer
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+spec:
+  podSelector:
+    matchLabels:
+      app: indexer
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: chroma
+      ports:
+        - port: 8000
+          protocol: TCP
+    - to:
+        - podSelector:
+            matchLabels:
+              app: redis
+      ports:
+        - port: 6379
+          protocol: TCP
+    - to:
+        - ipBlock:
+            cidr: 192.168.49.1/32
+      ports:
+        - port: 11434
+          protocol: TCP
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP

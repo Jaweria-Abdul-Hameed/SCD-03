@@ -1,0 +1,51 @@
+# Prod overlay + Ollama running inside the cluster (LLM_PROVIDER=ollama-incluster).
+# The default mode stays ollama-host (see k8s/base/configmap.yaml); use this
+# overlay when the cluster cannot reach a host Ollama. Images are retagged by
+# the same `sed ':SHA'` step as the prod overlay.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: rahbar
+resources:
+  - ../prod
+  - ollama.yaml
+patches:
+  - patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: rahbar-config
+      data:
+        LLM_PROVIDER: "ollama-incluster"
+        OLLAMA_HOST: "ollama:11434"
+        LLM_TIMEOUT_S: "400"
+        OLLAMA_NUM_THREAD: "4"
+    target:
+      kind: ConfigMap
+      name: rahbar-config
+  # api and indexer may call the in-cluster Ollama (appended to existing egress)
+  - patch: |-
+      - op: add
+        path: /spec/egress/-
+        value:
+          to:
+            - podSelector:
+                matchLabels:
+                  app: ollama
+          ports:
+            - port: 11434
+    target:
+      kind: NetworkPolicy
+      name: allow-api
+  - patch: |-
+      - op: add
+        path: /spec/egress/-
+        value:
+          to:
+            - podSelector:
+                matchLabels:
+                  app: ollama
+          ports:
+            - port: 11434
+    target:
+      kind: NetworkPolicy
+      name: allow-indexer

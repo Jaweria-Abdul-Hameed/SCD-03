@@ -1,0 +1,91 @@
+# Chat UI — nginx serving the static chat page. No secrets, no API keys:
+# the browser calls /api/chat through the Ingress, which routes to the API.
+# nginx listens on 8080 inside the container (non-root cannot bind 80);
+# the Service exposes port 80 -> targetPort 8080.
+# Image placeholder: replaced by cd.yml with ${{ github.sha }} — never use a floating latest tag.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+  namespace: rahbar
+  labels:
+    app: ui
+    app.kubernetes.io/part-of: rahbar
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1        # a new pod must be Ready before an old one is removed
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: ui
+  template:
+    metadata:
+      labels:
+        app: ui
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: ui-sa
+      terminationGracePeriodSeconds: 30
+      automountServiceAccountToken: false
+      # Service-link env vars (API_PORT=tcp://..., REDIS_PORT=..., CHROMA_PORT=...)
+      # collide with app settings (pydantic int parse crash). Config comes from the ConfigMap.
+      enableServiceLinks: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: ui
+          image: ghcr.io/rahbar/ui:SHA  # replaced by cd.yml with ${{ github.sha }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: nginx-cache
+              mountPath: /var/cache/nginx
+            - name: nginx-run
+              mountPath: /var/run
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          lifecycle:
+            preStop:   # leave the Service endpoints before nginx stops accepting
+              exec:
+                command: ["/bin/sh", "-c", "sleep 5"]
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 20
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10
+            failureThreshold: 3
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: nginx-cache
+          emptyDir: {}
+        - name: nginx-run
+          emptyDir: {}

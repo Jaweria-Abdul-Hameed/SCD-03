@@ -1,0 +1,2853 @@
+--- 18:07:01
+POD                      NAME     CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api      2m           76Mi            
+api-6476f7fb47-qwqt7     api      2m           76Mi            
+api-6476f7fb47-v6hrc     api      2m           76Mi            
+chroma-0                 chroma   3m           88Mi            
+ollama-ddf7db474-wrmz2   ollama   106m         163Mi           
+redis-7f65ff4f5b-vkdnl   redis    4m           3Mi             
+ui-7f5b989bd6-csdtd      ui       1m           2Mi             
+--- 18:07:05
+POD                      NAME     CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api      2m           76Mi            
+api-6476f7fb47-qwqt7     api      2m           76Mi            
+api-6476f7fb47-v6hrc     api      2m           76Mi            
+chroma-0                 chroma   3m           88Mi            
+ollama-ddf7db474-wrmz2   ollama   106m         163Mi           
+redis-7f65ff4f5b-vkdnl   redis    4m           3Mi             
+ui-7f5b989bd6-csdtd      ui       1m           2Mi             
+--- 18:07:09
+POD                      NAME     CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api      2m           76Mi            
+api-6476f7fb47-qwqt7     api      2m           76Mi            
+api-6476f7fb47-v6hrc     api      2m           76Mi            
+chroma-0                 chroma   3m           88Mi            
+ollama-ddf7db474-wrmz2   ollama   106m         163Mi           
+redis-7f65ff4f5b-vkdnl   redis    4m           3Mi             
+ui-7f5b989bd6-csdtd      ui       1m           2Mi             
+--- 18:07:13
+POD                      NAME     CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api      2m           76Mi            
+api-6476f7fb47-qwqt7     api      2m           76Mi            
+api-6476f7fb47-v6hrc     api      2m           76Mi            
+chroma-0                 chroma   3m           88Mi            
+ollama-ddf7db474-wrmz2   ollama   106m         163Mi           
+redis-7f65ff4f5b-vkdnl   redis    4m           3Mi             
+ui-7f5b989bd6-csdtd      ui       1m           2Mi             
+--- 18:07:17
+POD                      NAME     CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api      2m           76Mi            
+api-6476f7fb47-qwqt7     api      2m           76Mi            
+api-6476f7fb47-v6hrc     api      2m           76Mi            
+chroma-0                 chroma   3m           88Mi            
+ollama-ddf7db474-wrmz2   ollama   106m         163Mi           
+redis-7f65ff4f5b-vkdnl   redis    4m           3Mi             
+ui-7f5b989bd6-csdtd      ui       1m           2Mi             
+--- 18:07:21
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:26
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:30
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:34
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:38
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:42
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:46
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:51
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:55
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:07:59
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:03
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:07
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:11
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:15
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:20
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   262m         121Mi           
+ollama-ddf7db474-wrmz2   ollama    189m         593Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:24
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:28
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:32
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:36
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:40
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:44
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:49
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:53
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:08:57
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:01
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:05
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:09
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:14
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:18
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           120Mi           
+ollama-ddf7db474-wrmz2   ollama    2989m        686Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:22
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:26
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:30
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:34
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:38
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:43
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:47
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:51
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:55
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:09:59
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:03
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:07
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:12
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:16
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:20
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           88Mi            
+indexer-z92hc            indexer   1m           121Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        691Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:24
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:28
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:32
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:37
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:41
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:45
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:49
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:53
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:10:57
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:01
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:06
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:10
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:14
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:18
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           98Mi            
+indexer-z92hc            indexer   11m          149Mi           
+ollama-ddf7db474-wrmz2   ollama    2963m        839Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:22
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:26
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:30
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:35
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:39
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:43
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:47
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:51
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:55
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:11:59
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:04
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:08
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:12
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:16
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:20
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           98Mi            
+indexer-z92hc            indexer   1m           150Mi           
+ollama-ddf7db474-wrmz2   ollama    3001m        838Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:24
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:29
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:33
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:37
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:41
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:45
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:49
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:54
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:12:58
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:02
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:06
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:10
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:14
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:18
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           100Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:23
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:27
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:31
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:35
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:39
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:43
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:48
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:52
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:13:56
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:00
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:04
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:08
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:12
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:17
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           101Mi           
+indexer-z92hc            indexer   2m           151Mi           
+ollama-ddf7db474-wrmz2   ollama    2997m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:21
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:25
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:29
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:33
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:37
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:42
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:46
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:50
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:54
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:14:58
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:02
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:07
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:11
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:15
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:19
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           103Mi           
+indexer-z92hc            indexer   2m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    2994m        840Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:23
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:27
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:31
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:35
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:40
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:44
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:48
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:52
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:15:56
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:00
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:05
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:09
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:13
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:17
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           103Mi           
+indexer-z92hc            indexer   1m           152Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        843Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:21
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:25
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:30
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:34
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:38
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:42
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:46
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:50
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:55
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:16:59
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:03
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:07
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:11
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:15
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:19
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           104Mi           
+indexer-z92hc            indexer   3m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2992m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:24
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:28
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:32
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:36
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:40
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:44
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:49
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:53
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:17:57
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:01
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:05
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:09
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:14
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:18
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    2998m        869Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           4Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:22
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:26
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:30
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:34
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:38
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:43
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:47
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:51
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:55
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:18:59
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:03
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:08
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:12
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:16
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:20
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           157Mi           
+ollama-ddf7db474-wrmz2   ollama    3003m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:24
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:28
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:32
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:37
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:41
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:45
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:49
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:53
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:19:57
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:02
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:06
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:10
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:14
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:18
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           104Mi           
+indexer-z92hc            indexer   1m           158Mi           
+ollama-ddf7db474-wrmz2   ollama    2999m        868Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:22
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:26
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:31
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:35
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:39
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:43
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:47
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:51
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:20:56
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:00
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:04
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:08
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:12
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:16
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:20
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    5m           116Mi           
+indexer-z92hc            indexer   2m           161Mi           
+ollama-ddf7db474-wrmz2   ollama    2991m        870Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:25
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:29
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:33
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:37
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:41
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:45
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:50
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:54
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:21:58
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:22:02
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:22:06
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:22:10
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:22:14
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:22:19
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       3m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   386m         181Mi           
+ollama-ddf7db474-wrmz2   ollama    1815m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:22:23
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:22:27
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:22:31
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:22:35
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:22:39
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:22:44
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:22:48
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:22:52
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:22:56
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:23:00
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:23:04
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:23:08
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:23:13
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:23:17
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           77Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           114Mi           
+indexer-z92hc            indexer   47m          214Mi           
+ollama-ddf7db474-wrmz2   ollama    2853m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           3Mi             
+--- 18:23:21
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:25
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:29
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:33
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:38
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:42
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:46
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:50
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:54
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:23:58
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:02
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:07
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:11
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:15
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:19
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           77Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           114Mi           
+indexer-z92hc            indexer   1m           213Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:23
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:27
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:31
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:36
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:40
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:44
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:48
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:52
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:24:56
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:00
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:05
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:09
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:13
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:17
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    4m           115Mi           
+indexer-z92hc            indexer   450m         289Mi           
+ollama-ddf7db474-wrmz2   ollama    1516m        862Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:21
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:25
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:30
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:34
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:38
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:42
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:46
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:50
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:55
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:25:59
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:03
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:07
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:11
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:15
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:20
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           77Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   288m         228Mi           
+ollama-ddf7db474-wrmz2   ollama    2233m        866Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:24
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   2m           227Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:28
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   2m           227Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:32
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   2m           227Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:36
+POD                      NAME      CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api       2m           76Mi            
+api-6476f7fb47-qwqt7     api       2m           76Mi            
+api-6476f7fb47-v6hrc     api       2m           76Mi            
+chroma-0                 chroma    3m           115Mi           
+indexer-z92hc            indexer   2m           227Mi           
+ollama-ddf7db474-wrmz2   ollama    3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis     3m           3Mi             
+ui-7f5b989bd6-csdtd      ui        1m           2Mi             
+--- 18:26:40
+POD                      NAME     CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api      2m           76Mi            
+api-6476f7fb47-qwqt7     api      2m           76Mi            
+api-6476f7fb47-v6hrc     api      2m           76Mi            
+chroma-0                 chroma   3m           115Mi           
+ollama-ddf7db474-wrmz2   ollama   3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis    3m           3Mi             
+ui-7f5b989bd6-csdtd      ui       1m           2Mi             
+--- 18:26:44
+POD                      NAME     CPU(cores)   MEMORY(bytes)   
+api-6476f7fb47-9b258     api      2m           76Mi            
+api-6476f7fb47-qwqt7     api      2m           76Mi            
+api-6476f7fb47-v6hrc     api      2m           76Mi            
+chroma-0                 chroma   3m           115Mi           
+ollama-ddf7db474-wrmz2   ollama   3002m        867Mi           
+redis-7f65ff4f5b-vkdnl   redis    3m           3Mi             
+ui-7f5b989bd6-csdtd      ui       1m           2Mi             

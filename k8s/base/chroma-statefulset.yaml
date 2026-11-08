@@ -1,0 +1,122 @@
+# Chroma vector store — StatefulSet, NOT a Deployment (assignment §4.1/§4.2).
+# A Deployment with a shared PVC would let replicas race on one volume;
+# a StatefulSet gives this single replica a stable identity (chroma-0) and a
+# dedicated PVC via volumeClaimTemplates that survives pod deletion and
+# rescheduling. Only the API and the indexer may reach it (NetworkPolicy).
+# Service is ClusterIP only — NEVER NodePort/LoadBalancer (§4.1, §8: -8).
+apiVersion: v1
+kind: Service
+metadata:
+  name: chroma
+  namespace: rahbar
+  labels:
+    app: chroma
+    app.kubernetes.io/part-of: rahbar
+spec:
+  type: ClusterIP
+  selector:
+    app: chroma
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chroma
+  namespace: rahbar
+  labels:
+    app: chroma
+    app.kubernetes.io/part-of: rahbar
+spec:
+  serviceName: chroma
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chroma
+  template:
+    metadata:
+      labels:
+        app: chroma
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: chroma-sa
+      automountServiceAccountToken: false
+      # Service-link env vars (API_PORT=tcp://..., REDIS_PORT=..., CHROMA_PORT=...)
+      # collide with app settings (pydantic int parse crash). Config comes from the ConfigMap.
+      enableServiceLinks: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: chroma
+          image: chromadb/chroma:0.5.20
+          imagePullPolicy: IfNotPresent
+          args:
+            - --workers
+            - "1"
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8000"
+            - --proxy-headers
+            - --timeout-keep-alive
+            - "30"
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: IS_PERSISTENT
+              value: "1"
+            - name: PERSIST_DIRECTORY
+              value: "/chroma/chroma"
+            - name: ANONYMIZED_TELEMETRY
+              value: "false"
+          volumeMounts:
+            - name: data
+              mountPath: /chroma/chroma
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              cpu: 50m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            httpGet:
+              path: /api/v2/heartbeat
+              port: 8000
+            periodSeconds: 20
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api/v2/heartbeat
+              port: 8000
+            periodSeconds: 10
+            failureThreshold: 3
+      volumes:
+        - name: tmp
+          emptyDir: {}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          app: chroma
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi

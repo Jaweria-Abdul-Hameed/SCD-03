@@ -1,0 +1,29 @@
+$ curl -s -H 'Host: rahbar.local' -X POST http://localhost:8080/api/chat -H 'Content-Type: application/json' -d '{"question": "Which clause states the attendance requirement, and what does the current version say?"}'
+# (localhost:8080 = kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80; same path as minikube ip + Host header)
+# captured 2026-11-08T00:06:46Z
+{
+ "answer": {
+  "reasoning": "1.21 Students are required to maintain 100% attendance in lectures, labs, tutorials, seminars and discussions as prescribed by the course instructor. Absence of a maximum of 20% of the total lectures may be condoned for genuine reasons, such as illness.",
+  "answer": "The attendance requirement is stated in clause 1.21, which requires students to maintain 100% attendance in all courses. The current version allows for a maximum absence of 20% of the total lectures for genuine reasons.",
+  "citations": [
+   {
+    "source": "Academic_Rules_Handbook_2026.pdf",
+    "section": "1.9 A theory course is normally assigned 2 to 4 credit hours, depending on its…",
+    "page": 9
+   }
+  ],
+  "answered_from_context": true,
+  "confidence": "high"
+ },
+ "request_id": "d36ae1d36e69f4e465490cae4acc79dc",
+ "cache_hit": false,
+ "latency_ms": 41977.1166740029,
+ "retrieved_chunk_ids": [
+  "2c23ccd7ba434579d459a5e55dbc53fd51a4fa529d7f114199dd86e8643fb292",
+  "c817be75525dd428de7804fe26c6ead8ba9ff01c26cfeeeb1da7db61a933d32f",
+  "b030d9c18cd3e1f0bfcfed1c26170d7d56d6d79f4e2021fc1d8dd07a23c4fa6f",
+  "f8f185b1c114d9633cb0814ec711a6fa43786b4f4c158aa43a460ad712bcc2ac",
+  "7c2c3ea290b88ab4736d05c45b104d6f21cd4b62ab3a88a77b424aa2087f8b7e"
+ ]
+}
+# wall time: 42.1 s

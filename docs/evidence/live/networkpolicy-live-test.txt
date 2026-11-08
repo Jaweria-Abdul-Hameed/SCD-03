@@ -1,0 +1,15 @@
+# Live NetworkPolicy test on minikube + Calico (2026-11-07T18:20:33Z)
+
+$ kubectl exec deploy/ui -n rahbar -- wget -qO- -T 4 http://chroma:8000/api/v2/heartbeat   # EXPECT: blocked
+wget: download timed out
+command terminated with exit code 1
+exit=0
+
+$ kubectl exec deploy/api -n rahbar -- python -c "...GET http://chroma:8000/api/v2/heartbeat"   # EXPECT: allowed
+{"nanosecond heartbeat":1794075637596632390}
+
+$ kubectl exec deploy/api -n rahbar -- ... http://redis:6379 (TCP reachability)   # EXPECT: allowed
+redis tcp OK
+
+$ ui -> redis   # EXPECT: blocked
+command terminated with exit code 143

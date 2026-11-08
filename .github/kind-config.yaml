@@ -1,0 +1,24 @@
+# kind cluster config for CI (ci.yml e2e-eval) and CD (cd.yml deploy).
+# Single control-plane node is enough for the eval gate: the fixture corpus
+# is three short documents, so the indexer Job finishes in seconds.
+# NOTE: kind's default CNI does not enforce NetworkPolicy the way Calico
+# does. NetworkPolicy enforcement is verified on the minikube + Calico path
+# in the README (sec. 9); this cluster exists to prove the manifests apply,
+# the probes go green, and the eval gate passes on a real API server.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP

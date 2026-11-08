@@ -1,0 +1,55 @@
+$ bash /c/Users/mohsi/Desktop/work/obs.sh
+# captured 2026-11-07T22:58:49Z
+--- /healthz
+{"status":"ok"}
+--- /readyz
+{"status":"ready","collection_count":480,"embed_model":"nomic-embed-text"}
+=== pod/api-86db7c7567-5m8lr /metrics (non-zero samples of the RAHBAR families)
+http_requests_total{method="GET",path="/healthz",status="200"} 20.0
+http_requests_total{method="GET",path="/readyz",status="200"} 42.0
+http_requests_total{method="GET",path="/metrics",status="200"} 1.0
+request_latency_seconds_count{path="/healthz"} 20.0
+request_latency_seconds_sum{path="/healthz"} 0.011954759997024667
+request_latency_seconds_count{path="/readyz"} 42.0
+request_latency_seconds_sum{path="/readyz"} 0.2889748319903447
+request_latency_seconds_count{path="/metrics"} 1.0
+request_latency_seconds_sum{path="/metrics"} 0.0013815659985993989
+=== pod/api-86db7c7567-gj4cc /metrics (non-zero samples of the RAHBAR families)
+http_requests_total{method="GET",path="/healthz",status="200"} 19.0
+http_requests_total{method="GET",path="/readyz",status="200"} 40.0
+http_requests_total{method="POST",path="/chat",status="200"} 1.0
+request_latency_seconds_count{path="/healthz"} 19.0
+request_latency_seconds_sum{path="/healthz"} 0.010386089996245573
+request_latency_seconds_count{path="/readyz"} 40.0
+request_latency_seconds_sum{path="/readyz"} 0.2635243230051856
+request_latency_seconds_count{path="/chat"} 1.0
+request_latency_seconds_sum{path="/chat"} 51.50797548399896
+retrieval_latency_seconds_count 2.0
+retrieval_latency_seconds_sum 0.04310414900101023
+generation_latency_seconds_count 1.0
+generation_latency_seconds_sum 51.45932051700038
+cache_misses_total 1.0
+tokens_in_total 1792.0
+tokens_out_total 22.0
+=== pod/api-86db7c7567-r4ms6 /metrics (non-zero samples of the RAHBAR families)
+http_requests_total{method="GET",path="/healthz",status="200"} 20.0
+http_requests_total{method="GET",path="/readyz",status="200"} 40.0
+http_requests_total{method="POST",path="/chat",status="200"} 2.0
+request_latency_seconds_count{path="/healthz"} 20.0
+request_latency_seconds_sum{path="/healthz"} 0.012404187002175604
+request_latency_seconds_count{path="/readyz"} 40.0
+request_latency_seconds_sum{path="/readyz"} 0.2625658100005239
+request_latency_seconds_count{path="/chat"} 2.0
+request_latency_seconds_sum{path="/chat"} 30.671722845001568
+retrieval_latency_seconds_count 3.0
+retrieval_latency_seconds_sum 0.07819421499880264
+generation_latency_seconds_count 1.0
+generation_latency_seconds_sum 30.589048443000138
+cache_hits_total 1.0
+cache_misses_total 1.0
+abstentions_total 1.0
+tokens_in_total 1665.0
+tokens_out_total 7.0
+=== one JSON request log line per pod that served a /chat (request_id, top_k, chunk ids, scores, cache_hit, abstention)
+{"request_id": "b53cb0deb718faf6d557ec31966a7ab9", "path": "/chat", "top_k": 5, "chunk_ids": ["576cd80d5d8f22a34072d9a48aa85f2d7d04eab8d240eba8ab19acfd3f282cf6", "b924e9e5f5f5e82e8f2cf2e6d7efca6d06e51b7f6bfbbfa6d756b6a4d0f79071", "11cc19bfc60bc66e3762e74fbcdca92950c2a6a3093c410aab4c9b410edceb82", "f08738959525b199b739743266cb53df14f3bc3f1a953ad8a6fddeba05e78305", "aa55293a1cb738ce4329c588316995d244b003f180543d7a3bd4cd28b5765114"], "scores": [0.825, 0.7402, 0.7361, 0.7281, 0.7263], "cache_hit": false, "abstention": false, "latency_ms": 51506.33, "question": "What is the minimum CGPA to avoid academic warning?"}
+{"request_id": "961d430a48499b0a3e2e13d579297ab9", "path": "/chat", "top_k": 5, "chunk_ids": [], "scores": [], "cache_hit": true, "abstention": false, "latency_ms": 32.32, "question": "What is the minimum CGPA to avoid academic warning?"}

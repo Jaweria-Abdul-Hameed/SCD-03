@@ -1,0 +1,77 @@
+# Indexer — one-shot Job, the ONLY writer to Chroma (§4.2).
+# Indexing is never done in API startup: 3 API replicas racing on one
+# volume, re-indexing on every restart, and falsified readiness are exactly
+# what this Job prevents. Re-index without a redeploy:
+#   kubectl create job --from=cronjob/reindex manual-reindex-1 -n rahbar
+# Image placeholder: replaced by cd.yml with ${{ github.sha }} — never use a floating latest tag.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: indexer
+  namespace: rahbar
+  labels:
+    app: indexer
+    app.kubernetes.io/part-of: rahbar
+spec:
+  backoffLimit: 3
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: indexer
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: indexer-sa
+      automountServiceAccountToken: false
+      # Service-link env vars (API_PORT=tcp://..., REDIS_PORT=..., CHROMA_PORT=...)
+      # collide with app settings (pydantic int parse crash). Config comes from the ConfigMap.
+      enableServiceLinks: false
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: indexer
+          image: ghcr.io/rahbar/indexer:SHA  # replaced by cd.yml with ${{ github.sha }}
+          imagePullPolicy: IfNotPresent
+          # No command override: the indexer image ENTRYPOINT is already
+          # `python -m pipeline` (indexer/Dockerfile), so only args are
+          # given here. The flag is --corpus-dir (not --corpus).
+          # Corpus comes from the `corpus-data` PVC (k8s/base/corpus-pvc.yaml),
+          # populated with `make corpus-to-cluster` — never an emptyDir:
+          # an emptyDir would start empty and the Job would exit 2
+          # (no input documents). On completion the Job invalidates the
+          # Redis semantic cache (see indexer/pipeline/store.py).
+          args:
+            - --corpus-dir
+            - /corpus/raw
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+          volumeMounts:
+            - name: corpus
+              mountPath: /corpus
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              cpu: 250m
+              memory: 384Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: corpus
+          persistentVolumeClaim:
+            claimName: corpus-data
+        - name: tmp
+          emptyDir: {}

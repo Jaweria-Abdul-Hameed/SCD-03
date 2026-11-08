@@ -1,0 +1,86 @@
+$ kubectl get all,pvc,hpa,networkpolicy,ingress -n rahbar
+# captured 2026-11-08T00:08:29Z
+NAME                          READY   STATUS      RESTARTS      AGE
+pod/api-57d4cbd8c6-kvspp      1/1     Running     0             5m27s
+pod/api-57d4cbd8c6-rd2q5      1/1     Running     0             5m24s
+pod/api-57d4cbd8c6-xjdmp      1/1     Running     0             5m32s
+pod/chroma-0                  1/1     Running     2 (25m ago)   116m
+pod/indexer-gv4kn             0/1     Completed   0             103m
+pod/ollama-778795c865-g2lq9   1/1     Running     2 (25m ago)   99m
+pod/redis-59b78d9bf9-bzg74    1/1     Running     2 (25m ago)   116m
+pod/ui-6984494fd4-hcnj6       1/1     Running     0             5m20s
+pod/ui-6984494fd4-m7zf4       1/1     Running     0             5m31s
+
+NAME             TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)     AGE
+service/api      ClusterIP   10.97.88.27      <none>        8000/TCP    6h12m
+service/chroma   ClusterIP   10.100.17.148    <none>        8000/TCP    6h12m
+service/ollama   ClusterIP   10.97.174.114    <none>        11434/TCP   6h12m
+service/redis    ClusterIP   10.103.179.210   <none>        6379/TCP    6h12m
+service/ui       ClusterIP   10.107.249.234   <none>        80/TCP      6h12m
+
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/api      3/3     3            3           6h12m
+deployment.apps/ollama   1/1     1            1           6h12m
+deployment.apps/redis    1/1     1            1           6h12m
+deployment.apps/ui       2/2     2            2           6h12m
+
+NAME                                DESIRED   CURRENT   READY   AGE
+replicaset.apps/api-57d4cbd8c6      3         3         3       5m32s
+replicaset.apps/api-5b9bf95d7b      0         0         0       19m
+replicaset.apps/api-5c6f5f4ffc      0         0         0       76m
+replicaset.apps/api-65d8fdc97c      0         0         0       19m
+replicaset.apps/api-68f4b99cbd      0         0         0       80m
+replicaset.apps/api-7955894968      0         0         0       103m
+replicaset.apps/api-86cb5576b6      0         0         0       116m
+replicaset.apps/api-86db7c7567      0         0         0       75m
+replicaset.apps/api-989b99fbd       0         0         0       86m
+replicaset.apps/api-ccb44f8d4       0         0         0       87m
+replicaset.apps/api-db95b6c4c       0         0         0       130m
+replicaset.apps/ollama-5765bb6ddd   0         0         0       171m
+replicaset.apps/ollama-778795c865   1         1         1       99m
+replicaset.apps/ollama-7c87d5c854   0         0         0       4h19m
+replicaset.apps/ollama-7f8877469d   0         0         0       152m
+replicaset.apps/ollama-ddf7db474    0         0         0       6h12m
+replicaset.apps/redis-59b78d9bf9    1         1         1       116m
+replicaset.apps/redis-7f65ff4f5b    0         0         0       6h12m
+replicaset.apps/ui-578657d5cb       0         0         0       5h8m
+replicaset.apps/ui-6984494fd4       2         2         2       5m31s
+replicaset.apps/ui-6df7fd646c       0         0         0       174m
+replicaset.apps/ui-74864c9b88       0         0         0       144m
+replicaset.apps/ui-76566c8cc7       0         0         0       116m
+replicaset.apps/ui-79f98ddd8c       0         0         0       80m
+replicaset.apps/ui-89d7b7d6c        0         0         0       103m
+replicaset.apps/ui-95694cffc        0         0         0       78m
+replicaset.apps/ui-9849f9c79        0         0         0       87m
+replicaset.apps/ui-c5bcddd7f        0         0         0       78m
+replicaset.apps/ui-d7d7dd9b7        0         0         0       130m
+
+NAME                      READY   AGE
+statefulset.apps/chroma   1/1     6h12m
+
+NAME                                      REFERENCE        TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/api   Deployment/api   cpu: 2%/70%   3         8         3          6h12m
+
+NAME                    SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+cronjob.batch/reindex   0 3 * * 0   <none>     False     0        <none>          6h12m
+
+NAME                STATUS     COMPLETIONS   DURATION   AGE
+job.batch/indexer   Complete   1/1           3m59s      103m
+
+NAME                                  STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/corpus-data     Bound    pvc-9faf7221-e98d-4a5c-9d0e-ead9e475f69c   1Gi        RWO            standard       <unset>                 6h12m
+persistentvolumeclaim/data-chroma-0   Bound    pvc-507198c7-d267-4652-b0f8-96e6b06e8e31   5Gi        RWO            standard       <unset>                 6h12m
+persistentvolumeclaim/ollama-models   Bound    pvc-db3179ea-620b-4ef1-b943-6010c84c68a5   10Gi       RWO            standard       <unset>                 6h12m
+persistentvolumeclaim/redis-data      Bound    pvc-a04ca719-a080-4186-a82b-f18b39f16fc1   2Gi        RWO            standard       <unset>                 6h12m
+
+NAME                                                  POD-SELECTOR   AGE
+networkpolicy.networking.k8s.io/allow-api             app=api        6h12m
+networkpolicy.networking.k8s.io/allow-chroma          app=chroma     6h12m
+networkpolicy.networking.k8s.io/allow-indexer         app=indexer    6h12m
+networkpolicy.networking.k8s.io/allow-ollama          app=ollama     6h12m
+networkpolicy.networking.k8s.io/allow-redis           app=redis      6h12m
+networkpolicy.networking.k8s.io/allow-ui              app=ui         6h12m
+networkpolicy.networking.k8s.io/rahbar-default-deny   <none>         6h12m
+
+NAME                               CLASS   HOSTS          ADDRESS        PORTS   AGE
+ingress.networking.k8s.io/rahbar   nginx   rahbar.local   192.168.49.2   80      6h12m

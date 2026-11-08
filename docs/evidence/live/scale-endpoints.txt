@@ -1,0 +1,24 @@
+$ kubectl get endpoints api -n rahbar; kubectl scale deployment/api -n rahbar --replicas=4; kubectl rollout status deployment/api -n rahbar --timeout=120s; kubectl get pods -l app=api -n rahbar; kubectl get endpoints api -n rahbar -o wide; kubectl get endpoints api -n rahbar -o jsonpath="{.subsets[0].addresses[*].ip}"; echo; kubectl scale deployment/api -n rahbar --replicas=3; sleep 15; kubectl get endpoints api -n rahbar; kubectl get hpa -n rahbar
+# captured 2026-11-07T22:48:37Z
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME   ENDPOINTS                                                     AGE
+api    10.244.120.104:8000,10.244.120.106:8000,10.244.120.108:8000   4h52m
+deployment.apps/api scaled
+Waiting for deployment "api" rollout to finish: 3 of 4 updated replicas are available...
+deployment "api" successfully rolled out
+NAME                   READY   STATUS    RESTARTS   AGE
+api-68f4b99cbd-4dp6b   1/1     Running   0          24s
+api-68f4b99cbd-9h6h4   1/1     Running   0          17s
+api-68f4b99cbd-c4nmv   1/1     Running   0          4s
+api-68f4b99cbd-nmxps   1/1     Running   0          20s
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME   ENDPOINTS                                                                 AGE
+api    10.244.120.104:8000,10.244.120.106:8000,10.244.120.107:8000 + 1 more...   4h52m
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+10.244.120.104 10.244.120.106 10.244.120.107 10.244.120.108
+deployment.apps/api scaled
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME   ENDPOINTS                                                     AGE
+api    10.244.120.104:8000,10.244.120.106:8000,10.244.120.108:8000   4h52m
+NAME   REFERENCE        TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+api    Deployment/api   cpu: <unknown>/70%   3         8         3          4h52m

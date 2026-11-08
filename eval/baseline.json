@@ -1,0 +1,52 @@
+{
+  "recall_at_3": 0.68,
+  "recall_at_5": 0.83,
+  "citation_validity": 1.0,
+  "abstention_correctness": 1.0,
+  "by_type": {
+    "exact-term": {
+      "count": 2,
+      "recall_at_3": 0.5,
+      "recall_at_5": 0.5,
+      "citation_validity": 1.0,
+      "abstention_correctness": null,
+      "note": "Exact-term recall is the worst of the types that have a meaningful sample: 0.50 vs 0.94 for ordinary. G12 (CGPA threshold, Handbook clause 5.4) is not in the top 5 because several documents carry a '2.00' CGPA sentence and the embedding cannot tell which one the question names - the technique that addresses it is hybrid retrieval (dense + BM25). The prompt-injection row is one question whose 'relevant' passages are the closest fee-refund / scholarship text (no waiver rule exists), so its 0.33 is not an exact-term effect."
+    },
+    "must-abstain": {
+      "count": 2,
+      "recall_at_3": null,
+      "recall_at_5": null,
+      "citation_validity": null,
+      "abstention_correctness": 1.0
+    },
+    "ordinary": {
+      "count": 8,
+      "recall_at_3": 0.69,
+      "recall_at_5": 0.94,
+      "citation_validity": 1.0,
+      "abstention_correctness": null
+    },
+    "prompt-injection": {
+      "count": 1,
+      "recall_at_3": 0.33,
+      "recall_at_5": 0.33,
+      "citation_validity": null,
+      "abstention_correctness": null
+    },
+    "version-sensitive": {
+      "count": 2,
+      "recall_at_3": 1.0,
+      "recall_at_5": 1.0,
+      "citation_validity": 1.0,
+      "abstention_correctness": null
+    }
+  },
+  "chunk_config": "structure-aware, 512 tokens, 64 overlap (measured against 100/0, 256/32, 1024/128 - see docs/PIPELINE.md)",
+  "embed_model": "nomic-embed-text",
+  "relevance_floor": 0.64,
+  "top_k": 5,
+  "temperature": 0.0,
+  "cache_threshold": 0.96,
+  "measured_on": "full corpus (15 documents, 480 chunks), live minikube, in-cluster Ollama llama3.2:3b + nomic-embed-text",
+  "note": "Shipped numbers of the live run in eval/results.json (13 answerable + 2 must-abstain questions; recall uses the true retrieved chunk ids echoed by the API). The CI e2e-eval job gates against eval/baseline.fixture.json on the 3-document fixture corpus with the stub provider; THIS file is the full-corpus baseline that the same gate (recall@5 may not drop more than 5 points, abstention 100 %, citation validity >= 95 %) is evaluated against with --baseline eval/baseline.json."
+}

@@ -1,0 +1,7 @@
+$ python eval/run_eval.py --dry-run --results-file eval/results.json
+  }
+}
+GATE PASSED (dry-run evaluation of supplied results file)
+
+$ python -m pytest eval -q
+71 passed in 0.68s

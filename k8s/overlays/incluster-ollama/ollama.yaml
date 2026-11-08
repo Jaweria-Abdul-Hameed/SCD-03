@@ -1,0 +1,170 @@
+# Bonus LLM mode (assignment sec. 3.5): Ollama as a Deployment with a PVC for
+# model weights. Needs >= 8 GB for minikube. startupProbe failureThreshold 30
+# (x periodSeconds 10): weights take minutes to load and liveness would
+# otherwise kill the pod halfway. Models are pulled once with `kubectl exec`
+# (see README / docs/evidence), not at pod start, so a restart never re-downloads.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ollama-sa
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ollama-models
+  namespace: rahbar
+  labels:
+    app: ollama
+    app.kubernetes.io/part-of: rahbar
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama
+  namespace: rahbar
+  labels:
+    app: ollama
+    app.kubernetes.io/part-of: rahbar
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate   # one RWO volume: never two pods on it
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: ollama-sa
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: ollama
+          image: ollama/ollama:0.32.1   # pinned; never the floating latest tag
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: HOME
+              value: /models
+            - name: OLLAMA_MODELS
+              value: /models/models
+            - name: OLLAMA_HOST
+              value: 0.0.0.0:11434
+            - name: LLAMA_ARG_CACHE_RAM
+              value: "0"   # llama.cpp prompt cache (275 MiB per distinct prompt) grew Ollama to 5.7 GiB
+            - name: OLLAMA_NUM_PARALLEL
+              value: "1"   # one request at a time: bounds KV-cache memory
+          ports:
+            - name: http
+              containerPort: 11434
+          volumeMounts:
+            - name: models
+              mountPath: /models
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              cpu: "1"
+              memory: 3Gi
+            limits:
+              cpu: "5"
+              memory: 5Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          startupProbe:
+            httpGet:
+              path: /api/tags
+              port: 11434
+            failureThreshold: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/tags
+              port: 11434
+            periodSeconds: 20
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api/tags
+              port: 11434
+            periodSeconds: 10
+            failureThreshold: 3
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: ollama-models
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ollama
+  namespace: rahbar
+  labels:
+    app: ollama
+    app.kubernetes.io/part-of: rahbar
+spec:
+  type: ClusterIP
+  selector:
+    app: ollama
+  ports:
+    - name: http
+      port: 11434
+      targetPort: 11434
+---
+# Deny-by-default still applies: ollama accepts traffic from api and indexer
+# only, and needs DNS plus HTTPS egress (443) to pull model weights once.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ollama
+  namespace: rahbar
+spec:
+  podSelector:
+    matchLabels:
+      app: ollama
+  policyTypes: ["Ingress", "Egress"]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: api
+        - podSelector:
+            matchLabels:
+              app: indexer
+      ports:
+        - port: 11434
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+    - ports:
+        - port: 443

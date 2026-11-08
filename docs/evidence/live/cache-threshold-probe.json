@@ -1,0 +1,111 @@
+{
+ "pairs": {
+  "paraphrase": [
+   {
+    "a": "What is the tuition fee per credit hour?",
+    "b": "How much is tuition per credit hour?",
+    "cosine": 0.9632
+   },
+   {
+    "a": "What is the university's attendance requirement for a course?",
+    "b": "How much attendance do I need in a course?",
+    "cosine": 0.8774
+   },
+   {
+    "a": "What is the minimum CGPA to avoid academic warning?",
+    "b": "What CGPA do I need to avoid an academic warning?",
+    "cosine": 0.949
+   },
+   {
+    "a": "How many program learning outcomes does Electrical Engineering have?",
+    "b": "What is the number of PLOs for the Electrical Engineering program?",
+    "cosine": 0.7629
+   },
+   {
+    "a": "What is the fee refund timeline if I withdraw from a course?",
+    "b": "When can I get a fee refund after withdrawing from a course?",
+    "cosine": 0.9234
+   },
+   {
+    "a": "Can a student register for a course after failing its prerequisite?",
+    "b": "Is it allowed to take a course if I failed its prerequisite?",
+    "cosine": 0.9015
+   }
+  ],
+  "near_miss": [
+   {
+    "a": "What is the tuition fee per credit hour?",
+    "b": "What is the admission fee?",
+    "cosine": 0.6651
+   },
+   {
+    "a": "What is the attendance requirement for undergraduate programmes?",
+    "b": "What is the attendance requirement for graduate programmes?",
+    "cosine": 0.9167
+   },
+   {
+    "a": "How many PLOs does the Electrical Engineering program have?",
+    "b": "How many PLOs did the Electrical Engineering program have before 2024?",
+    "cosine": 0.9519
+   },
+   {
+    "a": "What fee refund applies if I withdraw by the 10th day of classes?",
+    "b": "What fee refund applies if I withdraw by the 20th day of classes?",
+    "cosine": 0.9015
+   },
+   {
+    "a": "What is the minimum CGPA to avoid academic warning?",
+    "b": "What is the minimum CGPA required for graduation?",
+    "cosine": 0.8208
+   },
+   {
+    "a": "What does clause 4.4 say about registering for failed courses?",
+    "b": "What does clause 5.8 say about failed courses?",
+    "cosine": 0.8587
+   },
+   {
+    "a": "What are the hostel allotment rules?",
+    "b": "What are the bus routes and timings?",
+    "cosine": 0.4889
+   }
+  ]
+ },
+ "thresholds": {
+  "0.8": {
+   "paraphrase_hits": 5,
+   "paraphrase_total": 6,
+   "false_hits": 5,
+   "near_miss_total": 7
+  },
+  "0.85": {
+   "paraphrase_hits": 5,
+   "paraphrase_total": 6,
+   "false_hits": 4,
+   "near_miss_total": 7
+  },
+  "0.88": {
+   "paraphrase_hits": 4,
+   "paraphrase_total": 6,
+   "false_hits": 3,
+   "near_miss_total": 7
+  },
+  "0.9": {
+   "paraphrase_hits": 4,
+   "paraphrase_total": 6,
+   "false_hits": 3,
+   "near_miss_total": 7
+  },
+  "0.92": {
+   "paraphrase_hits": 3,
+   "paraphrase_total": 6,
+   "false_hits": 1,
+   "near_miss_total": 7
+  },
+  "0.95": {
+   "paraphrase_hits": 1,
+   "paraphrase_total": 6,
+   "false_hits": 1,
+   "near_miss_total": 7
+  }
+ }
+}

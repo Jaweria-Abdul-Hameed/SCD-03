@@ -1,0 +1,25 @@
+$ bash /c/Users/mohsi/Desktop/work/np.sh
+# captured 2026-11-07T22:59:01Z
+CNI: 1 calico-node pod(s) (NetworkPolicy is enforced)
+--- api -> ollama:11434 (must be ALLOWED)
+RESULT: ALLOWED  (200 )
+--- ui  -> ollama:11434 (must be BLOCKED)
+RESULT: BLOCKED/FAILED  (wget: download timed out command terminated with exit code 1 )
+--- api -> chroma:8000 (must be ALLOWED)
+RESULT: ALLOWED  (200 )
+--- ui  -> chroma:8000 (must be BLOCKED)
+RESULT: BLOCKED/FAILED  (wget: download timed out command terminated with exit code 1 )
+--- ui  -> redis:6379 (must be BLOCKED)
+RESULT: BLOCKED/FAILED  (wget: download timed out command terminated with exit code 1 )
+--- ui  -> api:8000 (must be ALLOWED)
+RESULT: ALLOWED  ({"status":"ok"})
+--- api -> redis:6379 (must be ALLOWED: TCP connect)
+RESULT: ALLOWED  (connected )
+NAME                  POD-SELECTOR   AGE
+allow-api             app=api        5h3m
+allow-chroma          app=chroma     5h3m
+allow-indexer         app=indexer    5h3m
+allow-ollama          app=ollama     5h3m
+allow-redis           app=redis      5h3m
+allow-ui              app=ui         5h3m
+rahbar-default-deny   <none>         5h3m
