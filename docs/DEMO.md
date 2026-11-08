@@ -244,3 +244,17 @@ A pod in minikube (docker driver) cannot see the laptop GPU, so the in-cluster O
   Ollama. If the GPU is unavailable, apply the CPU path: `kubectl patch cm rahbar-config -n rahbar --type merge
   -p '{"data":{"LLM_PROVIDER":"ollama-incluster","OLLAMA_HOST":"ollama:11434","LLM_TIMEOUT_S":"400"}}'` and
   `kubectl rollout restart deployment/api -n rahbar` (the in-cluster Ollama is still deployed).
+
+## Answer quality fixes found while testing the chat page (2026-11-08)
+
+* **Context window:** the model call set no `num_ctx`; five ~2000-character chunks plus the instructions can exceed Ollama's
+  default window, so evidence was cut off silently. `LLM_NUM_CTX=8192` is now sent.
+* **Answer style:** the prompt asked for "one or two sentences" for every question, which made list questions
+  ("tell me all rules for examination") answer with one line. It now asks for one or two sentences for a specific fact and a
+  Markdown bulleted list of every relevant item (with clause numbers) for overview / list questions.
+* **Heading-only answers:** the 3B model sometimes stops after the heading; for list-style questions the API retries once with an
+  explicit instruction (3 of 3 runs now return the full list).
+* **Display:** the chat page renders bullets, numbered lists and bold (HTML-escaped first); each cited chunk is shown once.
+* Result: the evaluation still passes the gate (recall@5 0.83, citation validity 12/12, abstention 1.00) and now answers all 12
+  answerable golden questions (G03 and G08 used to abstain). `qwen2.5:7b` was re-tested with the fixed context and still fails
+  the citation gate (0.846), so `llama3.2:3b` stays.
