@@ -370,6 +370,13 @@ def validate_answer(answer: Answer, chunks: list[dict]) -> Answer:
             answered_from_context=False,
             confidence="low",
         )
+    # The same chunk is often cited several times (once per bullet): show it once.
+    _seen: set[tuple[str, str, int]] = set()
+    kept = [
+        c
+        for c in kept
+        if not ((k := (c.source, c.section, c.page)) in _seen or _seen.add(k))
+    ]
     if kept != answer.citations:
         answer = answer.model_copy(update={"citations": kept})
     # An abstention always tells the user plainly that the corpus does not cover the

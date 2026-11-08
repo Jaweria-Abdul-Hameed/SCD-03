@@ -559,3 +559,18 @@ def test_unsupported_extra_citation_is_pruned_when_another_citation_supports_the
     )
     out = grounding_mod.validate_answer(answer, chunks)
     assert [(c.section, c.page) for c in out.citations] == [("2.1", 3)]
+
+
+def test_duplicate_citations_are_returned_once():
+    chunk = dict(CHUNK)
+    meta = chunk["metadata"]
+    cite = Citation(source=meta["source"], section=meta["section"], page=meta["page"])
+    ans = Answer(
+        reasoning="r",
+        answer="- a\n- b\n- c",
+        citations=[cite, cite, cite],
+        answered_from_context=True,
+        confidence="high",
+    )
+    out = grounding_mod.validate_answer(ans, [chunk])
+    assert len(out.citations) == 1
