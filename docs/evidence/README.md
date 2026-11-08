@@ -2,14 +2,16 @@
 
 Every file here is raw output of a real command or run; the first line of each `live/*.txt` capture is the
 command. Nothing is hand-written except this index. Captured 2026-11-07/08 on the reference machine
-(Windows 11, minikube v1.39, docker driver, Calico, 8 GB / 6 CPUs, in-cluster Ollama).
+(Windows 11, minikube v1.39, docker driver, Calico, 8 GB / 6 CPUs). Most captures from 2026-11-07/08 used the in-cluster Ollama on CPU; the files named `*gpu*` and the final verification (`final-verification-2026-11-08.md`) used the host Ollama on the GPU.
 
 ## Automated checks (re-run 2026-11-08)
 
 | File | What it shows |
 |---|---|
 | `submission_check.txt` | `python scripts/check_submission.py` - 12/12 PASS |
-| `pytest_suite.txt` | `pytest -v api/tests eval indexer/tests` - 150 passed |
+| `pytest_suite.txt` | `pytest -v api/tests eval indexer/tests` - 154 passed |
+| `final-verification-2026-11-08.md` | the last end-to-end verification: automated checks, live stack, every chatbot question judged against the source text, problems found and fixed (CI download outage, wrong page numbers), what is not verified |
+| `live/reindex-pagefix.txt` | the re-index with the page-number fix: Job result, `index_done`, pages of the checked chunks before and after |
 | `kustomize_validation.txt` | `kubectl kustomize` renders base, dev, prod and incluster-ollama |
 | `eval_dry_run.txt` | gate evaluation of the committed `eval/results.json` against `eval/baseline.json` (PASSED) + eval tests |
 | `ci_cd_green_runs.md` | links to the green CI and CD runs and the root cause of every pipeline failure fixed on the way |

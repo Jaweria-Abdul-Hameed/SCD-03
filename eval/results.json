@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-08T08:51:28.714867+00:00",
+  "timestamp": "2026-11-08T09:50:29.406462+00:00",
   "mode": "live",
   "api_base": "http://localhost:8000",
   "golden": "eval\\golden.yaml",
@@ -44,8 +44,8 @@
   },
   "citation_validity": 1.0,
   "abstention_correctness": 1.0,
-  "total_citations": 12,
-  "valid_citations": 12,
+  "total_citations": 13,
+  "valid_citations": 13,
   "unverified_expected_answers": [],
   "warnings": [],
   "per_question": [
@@ -74,10 +74,15 @@
           "source": "Academic_Rules_Handbook_2026.pdf",
           "section": "3.32 A new admission is closed if an awaited result does not meet the…",
           "page": 18
+        },
+        {
+          "source": "Academic_Rules_Handbook_2026.pdf",
+          "section": "3.32 A new admission is closed if an awaited result does not meet the…",
+          "page": 20
         }
       ],
-      "citation_valid": 1,
-      "citation_total": 1,
+      "citation_valid": 2,
+      "citation_total": 2,
       "citation_validity": 1.0,
       "citation_check_method": "chunk-ids+relevant-proxy",
       "abstention_correct": null,
@@ -142,9 +147,9 @@
       "confidence": "high",
       "citations": [
         {
-          "source": "Academic_Rules_Handbook_2026.pdf",
-          "section": "8.18 A student who is found guilty of an academic or other violation by a…",
-          "page": 3
+          "source": "Student_Handbook_2026.pdf",
+          "section": "Introduction",
+          "page": 50
         }
       ],
       "citation_valid": 1,
@@ -154,7 +159,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "> The key rules of the university's Generative AI policy for students are:\n> - The University will support students and faculty in becoming AI-literate, leading to improved understanding and proficiency in using Generative AI tools, thereby enhancing academic and professional skills.\n> - Faculty should be equipped to support students in effectively and appropriately using Generative AI tools in their learning experience, resulting in increased student competence and confidence, which leads to better learning outcomes.\n> - Promoting innovation and creativity in curriculum development and assessment design by incorporating Generative AI technologies will lead to the creation of dynamic and adaptive educational resources tailored to individual student needs."
+      "answer_text": "> The key rules of the university's Generative AI policy for students include: \n> - Using Generative AI tools for preparatory research work, assignment and project is considered acceptable practice, however such tools should never be the only source of information used. (Section 4, page 50) \n> - Generative AI tools are not academic sources; they do not produce fact-checked content, and they can, and often do, reproduce inherent biases in provision of information, and they often do not accurately state the sources from which the content provided has been gathered. (Section 4, page 50)"
     },
     {
       "id": "G04",
@@ -166,8 +171,8 @@
       "retrieved_chunk_ids": [
         "ea0167ab43b997be06f87cc2196e74c70d27156720953c2fbc04369df5daed70",
         "4431bedb1ffc41cea6cecfdcab2da047347d850e151542ad62c324708345f118",
-        "c817be75525dd428de7804fe26c6ead8ba9ff01c26cfeeeb1da7db61a933d32f",
         "3ed21e41cefceb5ebeb15ed28f87540df8f15987c3ba820f636d88b8dbd7b0c4",
+        "c817be75525dd428de7804fe26c6ead8ba9ff01c26cfeeeb1da7db61a933d32f",
         "96c01dfe330632220f6749812015deb93544aadbd5b661a2438f6a7c2b1a6e55"
       ],
       "recall_at_3": 1.0,
@@ -260,7 +265,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "> The fee refund timeline is as follows:\n> Up to the 10th day of class commencement: 100% refund\n> Up to the 15th day of class commencement: 80% refund\n> Up to the 20th day of class commencement: 60% refund\n> Up to the 30th day of class commencement: 50% refund\n> After the 31st day of class commencement: No refund"
+      "answer_text": "The fee refund timeline if a student withdraws from a course is as follows:\n- Within 10 days: 100% refund\n- Between 11-15 days: 80% refund\n- Between 16-20 days: 60% refund\n- After 30 days: No refund"
     },
     {
       "id": "G07",
@@ -366,7 +371,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The attendance requirement states that students must maintain 100% attendance in all courses, with an absence of up to 20% of total lectures being excused for legitimate reasons."
+      "answer_text": "The attendance requirement states that students must maintain 100% attendance in all courses, with an exception for up to 20% absence due to genuine reasons like illness."
     },
     {
       "id": "G10",
@@ -436,7 +441,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "- Must register for all such courses, in which the grade was F, provided these courses are being offered."
+      "answer_text": "> a student must register for all such courses, in which the grade was F, provided these courses are being offered."
     },
     {
       "id": "G12",

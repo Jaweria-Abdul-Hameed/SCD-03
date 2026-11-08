@@ -279,6 +279,18 @@ derives it from the filename). Retrieval filters out
 `superseded: true` by default — metadata filtering, not a prompt,
 fixes failure mode E.
 
+### How `page` is assigned (and the bug fixed on 2026-11-08)
+
+`page` is the page a chunk **starts** on. `chunk.py` joins all pages into one whitespace-normalised string, finds
+each chunk's text in it starting from the previous chunk's position (the search only moves forward), and maps the
+offset to a page. The first version searched every page for the chunk's first 60 characters and took the first hit:
+the running header `NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES` and the table of contents match an
+earlier page, so the Generative AI policy was cited as Handbook page 3 (the cover) and the examination rules as
+Student Handbook page 9 (they are on 24-26). Measured offline before the fix: 16 of 66 (Handbook) and 37 of 88
+(Student Handbook) chunks had a suspect page; after: 1 and 4 (chunks that really span pages). The index was re-run
+(same 480 chunks and chunk ids, amplification 1.071; `docs/evidence/live/reindex-pagefix.txt`); regression test
+`test_chunk_page_is_the_page_the_text_starts_on_not_the_first_page_with_the_header`.
+
 ### Chunk count (full corpus, shipped configuration)
 
 **480 chunks from 15 documents** (index run `efcfe397`, 236 s, storage amplification

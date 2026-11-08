@@ -233,7 +233,7 @@ A pod in minikube (docker driver) cannot see the laptop GPU, so the in-cluster O
   (`host.minikube.internal`, 192.168.65.254 here - verify with `minikube ssh "grep host.minikube.internal /etc/hosts"`).
   A NetworkPolicy lets only the api and indexer pods reach that one address and port.
 * **Same model, same quality.** `llama3.2:3b` on the host GPU gave the identical evaluation as the CPU
-  deployment (recall@3 0.68, recall@5 0.83, citation validity 11/11, abstention 1.00, gate passed -
+  deployment (recall@3 0.68, recall@5 0.83, citation validity 11/11 in that run (13/13 in the latest committed `eval/results.json`), abstention 1.00, gate passed -
   `docs/evidence/live/eval-gpu-host-llama3.2-3b.json`), in **31 s instead of about 12 minutes**; one
   question takes about 3 s (47.8 s on CPU), 131 tok/s measured against 15.6.
 * **A bigger model was tried and rejected.** `qwen2.5:7b` (also on the GPU) cited retrieved-but-irrelevant

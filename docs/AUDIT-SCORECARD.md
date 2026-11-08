@@ -7,7 +7,7 @@ Phase 2 — 5 independent auditor subagents adversarially audited it against the
 automatic-deduction clauses (§8). One fixer agent then applied every finding.
 The orchestrator independently re-verified: `python3 scripts/check_submission.py`
 (12/12 PASS), `python3 -m py_compile` on all Python files (OK), and the full
-pytest suites (re-run at the end: 150 passed).
+pytest suites (re-run at the end: 154 passed).
 
 ## Status update (2026-11-08, final) - supersedes the 2026-11-05 "Open items" list at the end
 
@@ -15,7 +15,7 @@ pytest suites (re-run at the end: 150 passed).
 - **Real evaluation on the live stack** (full corpus, in-cluster Ollama): recall@3 0.68, recall@5 0.83, citation validity 1.00 (12/12), abstention correctness 1.00 (2/2), injection not obeyed - `eval/results.json`, `eval/baseline.json`, `golden.yaml` chunk ids resolved from verbatim quotes (`scripts/map_golden_to_chunks.py`).
 - **Live-cluster evidence** under `docs/evidence/live/` (kubectl top idle/index/eval, HPA, endpoints scale 3->4->3, rollout + undo, pod deletion under load 60/60 OK, embedding-pin demo, manual re-index with cache invalidation, NetworkPolicy tests incl. ollama, security, observability, ingress demo answers).
 - Q4 indexer peak memory measured: 298 Mi (limit 1 Gi). Chunking experiment, failure analysis (all six stages) and the cache-threshold table are measured, not reasoned (`docs/PIPELINE.md`, `docs/FAILURE-ANALYSIS.md`, ADR 0002).
-- Tests: 150 (api 39, eval 71, indexer 40), ruff / mypy clean, `scripts/check_submission.py` 12/12.
+- Tests: 154 (api 42, eval 71, indexer 41), ruff / mypy clean, `scripts/check_submission.py` 12/12.
 
 ## Automatic deductions — all zero
 

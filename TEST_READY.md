@@ -2,7 +2,7 @@
 
 ## Test Runner
 - **Command**: `pytest api/tests eval indexer/tests -v`
-- **Expected Outcome**: All 150 tests pass with exit code 0.
+- **Expected Outcome**: All 154 tests pass with exit code 0.
 - **Additional Quality Gates**:
   - `python scripts/check_submission.py` (12/12 mechanical submission checks pass)
   - `mypy api/app indexer/pipeline --ignore-missing-imports` (27 source files clean, 0 typing errors)
