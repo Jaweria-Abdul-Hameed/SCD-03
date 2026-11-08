@@ -100,11 +100,19 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
-      - name: Create ephemeral kind cluster
-        uses: helm/kind-action@v1
-        with:
-          cluster_name: rahbar-cd
-          config: .github/kind-config.yaml
+      - name: Create kind cluster (rahbar-cd)
+        run: |
+          # ephemeral cluster for the deploy job
+          # kind is built with go install (Go module proxy) because the GitHub release
+          # downloads that helm/kind-action uses were returning HTTP 504.
+          for attempt in 1 2 3 4 5; do
+            if GOBIN="$RUNNER_TEMP/bin" go install sigs.k8s.io/kind@v0.31.0; then break; fi
+            if [ "$attempt" = "5" ]; then echo "::error::could not build kind"; exit 1; fi
+            echo "go install attempt $attempt failed, retrying in 10s"; sleep 10
+          done
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/bin/kind" create cluster --name rahbar-cd --config .github/kind-config.yaml --wait 120s
+          kubectl cluster-info --context kind-rahbar-cd
       - name: Check kubectl and kustomize (preinstalled on ubuntu-latest runners; no release download needed)
         run: |
           kubectl version --client

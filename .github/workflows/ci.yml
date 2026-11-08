@@ -210,15 +210,19 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
-      - name: Create kind cluster
-        uses: helm/kind-action@v1
-        with:
-          cluster_name: rahbar-ci
-          # kind with Calico-equivalent CNI behaviour is not required for the
-          # eval gate itself; NetworkPolicy enforcement is verified on the
-          # minikube/Calico path documented in the README. kind here gives a
-          # real API server, scheduler and probes.
-          config: .github/kind-config.yaml
+      - name: Create kind cluster (rahbar-ci)
+        run: |
+          # kind's default CNI does not enforce NetworkPolicy; that is verified on minikube + Calico (README sec. 9). kind here gives a real API server, scheduler and probes.
+          # kind is built with go install (Go module proxy) because the GitHub release
+          # downloads that helm/kind-action uses were returning HTTP 504.
+          for attempt in 1 2 3 4 5; do
+            if GOBIN="$RUNNER_TEMP/bin" go install sigs.k8s.io/kind@v0.31.0; then break; fi
+            if [ "$attempt" = "5" ]; then echo "::error::could not build kind"; exit 1; fi
+            echo "go install attempt $attempt failed, retrying in 10s"; sleep 10
+          done
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/bin/kind" create cluster --name rahbar-ci --config .github/kind-config.yaml --wait 120s
+          kubectl cluster-info --context kind-rahbar-ci
       - name: Build and load images into kind (SHA tags only)
         run: |
           docker build -t rahbar-api:${{ github.sha }} ./api
