@@ -37,7 +37,7 @@
     const out = []; let list = null;
     const close = () => { if (list) { out.push('</' + list + '>'); list = null; } };
     text.split(/\r?\n/).forEach((raw) => {
-      const line = raw.trim();
+      const line = raw.replace(/^\s*(>\s*)+/, '').trim();  // the model sometimes prefixes lines with '>'
       const b = line.match(/^[-*\u2022]\s+(.*)$/), n = line.match(/^\d+[.)]\s+(.*)$/);
       if (b || n) {
         const kind = b ? 'ul' : 'ol';
