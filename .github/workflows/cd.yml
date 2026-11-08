@@ -100,15 +100,23 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
-      - name: Create ephemeral kind cluster
-        uses: helm/kind-action@v1
-        with:
-          cluster_name: rahbar-cd
-          config: .github/kind-config.yaml
-      - name: Install kubectl and kustomize
+      - name: Create kind cluster (rahbar-cd)
         run: |
-          curl -sL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin
-          sudo chmod +x /usr/local/bin/kustomize
+          # ephemeral cluster for the deploy job
+          # kind is built with go install (Go module proxy) because the GitHub release
+          # downloads that helm/kind-action uses were returning HTTP 504.
+          for attempt in 1 2 3 4 5; do
+            if GOBIN="$RUNNER_TEMP/bin" go install sigs.k8s.io/kind@v0.31.0; then break; fi
+            if [ "$attempt" = "5" ]; then echo "::error::could not build kind"; exit 1; fi
+            echo "go install attempt $attempt failed, retrying in 10s"; sleep 10
+          done
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/bin/kind" create cluster --name rahbar-cd --config .github/kind-config.yaml --wait 120s
+          kubectl cluster-info --context kind-rahbar-cd
+      - name: Check kubectl and kustomize (preinstalled on ubuntu-latest runners; no release download needed)
+        run: |
+          kubectl version --client
+          kustomize version
       - name: Deploy (kustomize build + kubectl apply, SHA-pinned images)
         env:
           IMAGE_TAG: ${{ github.sha }}
@@ -140,7 +148,9 @@ jobs:
       - name: Install ingress-nginx (kind provider, for the Ingress smoke test)
         run: |
           kubectl label node --all ingress-ready=true --overwrite || true
-          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/kind/deploy.yaml
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 5 -o /tmp/ingress-nginx.yaml https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/kind/deploy.yaml
+          grep -q 'kind: Deployment' /tmp/ingress-nginx.yaml  # fail loudly if an error page was saved instead of the manifest
+          kubectl apply -f /tmp/ingress-nginx.yaml
           kubectl wait --namespace ingress-nginx \
             --for=condition=complete job/ingress-nginx-admission-patch \
             --timeout=180s || true

@@ -27,6 +27,7 @@ twice, so amplification grows with overlap/size.
 from __future__ import annotations
 
 import argparse
+import bisect
 import hashlib
 import json
 import os
@@ -170,16 +171,40 @@ def chunk_document(
     if not full_text.strip():
         return []
 
-    # Page lookup: first page whose text contains the section title,
-    # else the document's first page. (Chunk-level page is the page
-    # the chunk starts on; exact per-chunk pages are refined below
-    # by searching for the chunk's first sentence.)
+    # Page lookup. A chunk's page is the page its first unit starts on. The
+    # pages are joined into one whitespace-normalised string and every unit is
+    # searched for from the position of the previous one, so the search only
+    # moves forward through the document. The earlier "first page whose text
+    # contains the first 60 characters" search was wrong in two ways, measured
+    # on the live index (the Generative AI policy cited as Handbook page 3, the
+    # cover; the examination rules cited as Student Handbook page 9, they are
+    # on page 24):
+    #   * running headers ("NATIONAL UNIVERSITY OF COMPUTER AND EMERGING
+    #     SCIENCES") and text that also sits in the table of contents match an
+    #     EARLIER page, so dozens of chunks got page 3 or page 5;
+    #   * page text keeps its line breaks while a chunk joins units with
+    #     spaces, so a needle that crossed a line break never matched at all.
+    # A miss keeps the current position instead of jumping back to page 1.
+    norm_pages = [(no, re.sub(r"\s+", " ", t).strip()) for no, t in page_texts]
+    norm_pages = [(no, t) for no, t in norm_pages if t]
+    page_starts: list[int] = []
+    offset = 0
+    for _, page_text in norm_pages:
+        page_starts.append(offset)
+        offset += len(page_text) + 1
+    norm_full = " ".join(page_text for _, page_text in norm_pages)
+    position = 0
+
     def page_for(snippet: str) -> int:
-        needle = snippet.strip()[:60]
-        for page_no, text in page_texts:
-            if needle and needle in text:
-                return page_no
-        return page_texts[0][0]
+        nonlocal position
+        needle = re.sub(r"\s+", " ", snippet).strip()[:120]
+        if needle:
+            hit = norm_full.find(needle, position)
+            if hit < 0 and len(needle) > 40:
+                hit = norm_full.find(needle[:40], position)
+            if hit >= 0:
+                position = hit
+        return norm_pages[max(bisect.bisect_right(page_starts, position) - 1, 0)][0]
 
     chunks: list[dict] = []
     for section in split_sections(full_text):
@@ -205,7 +230,7 @@ def chunk_document(
                     {
                         "text": " ".join(current),
                         "section": section_title,
-                        "page": page_for(current[0]),
+                        "page": page_for(" ".join(current)),
                         "chunk_index": len(chunks),
                     }
                 )
@@ -228,7 +253,7 @@ def chunk_document(
                 {
                     "text": " ".join(current),
                     "section": section_title,
-                    "page": page_for(current[0]),
+                    "page": page_for(" ".join(current)),
                     "chunk_index": len(chunks),
                 }
             )

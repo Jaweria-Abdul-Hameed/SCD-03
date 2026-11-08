@@ -84,13 +84,23 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Install kustomize and kubeconform
+      - name: Check kustomize (preinstalled on ubuntu-latest runners, same as e2e-eval uses)
+        run: kustomize version
+      - name: Install kubeconform from its ghcr.io image (GitHub release downloads returned HTTP 504 and non-gzip bodies)
         run: |
-          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
-          sudo mv kustomize /usr/local/bin/kustomize
           KUBECONFORM_VERSION=v0.6.7
-          curl -sSL "https://github.com/yannh/kubeconform/releases/download/${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" \
-            | sudo tar -xz -C /usr/local/bin kubeconform
+          IMG="ghcr.io/yannh/kubeconform:${KUBECONFORM_VERSION}"
+          for attempt in 1 2 3 4 5; do
+            docker rm -f kc >/dev/null 2>&1 || true
+            if docker pull -q "$IMG" && docker create --name kc "$IMG" >/dev/null && docker cp kc:/kubeconform /tmp/kubeconform; then
+              break
+            fi
+            if [ "$attempt" = "5" ]; then echo "::error::could not obtain kubeconform from $IMG after 5 attempts"; exit 1; fi
+            echo "attempt $attempt failed, retrying in 10s"; sleep 10
+          done
+          docker rm -f kc >/dev/null 2>&1 || true
+          sudo install -m 0755 /tmp/kubeconform /usr/local/bin/kubeconform
+          kubeconform -v
       - name: Kustomize build (prod overlay)
         run: kustomize build k8s/overlays/prod > /tmp/prod-manifests.yaml
       - name: Kubeconform (strict) — catches a broken manifest in ~20s, not on the cluster
@@ -200,15 +210,19 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
-      - name: Create kind cluster
-        uses: helm/kind-action@v1
-        with:
-          cluster_name: rahbar-ci
-          # kind with Calico-equivalent CNI behaviour is not required for the
-          # eval gate itself; NetworkPolicy enforcement is verified on the
-          # minikube/Calico path documented in the README. kind here gives a
-          # real API server, scheduler and probes.
-          config: .github/kind-config.yaml
+      - name: Create kind cluster (rahbar-ci)
+        run: |
+          # kind's default CNI does not enforce NetworkPolicy; that is verified on minikube + Calico (README sec. 9). kind here gives a real API server, scheduler and probes.
+          # kind is built with go install (Go module proxy) because the GitHub release
+          # downloads that helm/kind-action uses were returning HTTP 504.
+          for attempt in 1 2 3 4 5; do
+            if GOBIN="$RUNNER_TEMP/bin" go install sigs.k8s.io/kind@v0.31.0; then break; fi
+            if [ "$attempt" = "5" ]; then echo "::error::could not build kind"; exit 1; fi
+            echo "go install attempt $attempt failed, retrying in 10s"; sleep 10
+          done
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/bin/kind" create cluster --name rahbar-ci --config .github/kind-config.yaml --wait 120s
+          kubectl cluster-info --context kind-rahbar-ci
       - name: Build and load images into kind (SHA tags only)
         run: |
           docker build -t rahbar-api:${{ github.sha }} ./api

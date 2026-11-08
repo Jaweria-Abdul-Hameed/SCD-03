@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-07T23:42:06.537395+00:00",
+  "timestamp": "2026-11-08T09:50:29.406462+00:00",
   "mode": "live",
   "api_base": "http://localhost:8000",
   "golden": "eval\\golden.yaml",
@@ -44,8 +44,8 @@
   },
   "citation_validity": 1.0,
   "abstention_correctness": 1.0,
-  "total_citations": 11,
-  "valid_citations": 11,
+  "total_citations": 13,
+  "valid_citations": 13,
   "unverified_expected_answers": [],
   "warnings": [],
   "per_question": [
@@ -72,12 +72,17 @@
       "citations": [
         {
           "source": "Academic_Rules_Handbook_2026.pdf",
-          "section": "5.7 If the CGPA equals or exceeds 2.00 after the 1st or 2nd academic warning…",
-          "page": 25
+          "section": "3.32 A new admission is closed if an awaited result does not meet the…",
+          "page": 18
+        },
+        {
+          "source": "Academic_Rules_Handbook_2026.pdf",
+          "section": "3.32 A new admission is closed if an awaited result does not meet the…",
+          "page": 20
         }
       ],
-      "citation_valid": 1,
-      "citation_total": 1,
+      "citation_valid": 2,
+      "citation_total": 2,
       "citation_validity": 1.0,
       "citation_check_method": "chunk-ids+relevant-proxy",
       "abstention_correct": null,
@@ -118,7 +123,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "Students are required to maintain 100% attendance in lectures, labs, tutorials, seminars and discussions as prescribed by the course instructor."
+      "answer_text": "> 80% for Undergraduate degree programs and > 75% for Graduate and Post Graduate degree programs"
     },
     {
       "id": "G03",
@@ -138,17 +143,23 @@
       "recall_at_3": 0.0,
       "recall_at_5": 0.5,
       "recall_source": "chunk-ids",
-      "answered_from_context": false,
-      "confidence": "low",
-      "citations": [],
-      "citation_valid": 0,
-      "citation_total": 0,
-      "citation_validity": null,
-      "citation_check_method": "no-citations",
+      "answered_from_context": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source": "Student_Handbook_2026.pdf",
+          "section": "Introduction",
+          "page": 50
+        }
+      ],
+      "citation_valid": 1,
+      "citation_total": 1,
+      "citation_validity": 1.0,
+      "citation_check_method": "chunk-ids+relevant-proxy",
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The corpus does not cover this question."
+      "answer_text": "> The key rules of the university's Generative AI policy for students include: \n> - Using Generative AI tools for preparatory research work, assignment and project is considered acceptable practice, however such tools should never be the only source of information used. (Section 4, page 50) \n> - Generative AI tools are not academic sources; they do not produce fact-checked content, and they can, and often do, reproduce inherent biases in provision of information, and they often do not accurately state the sources from which the content provided has been gathered. (Section 4, page 50)"
     },
     {
       "id": "G04",
@@ -160,8 +171,8 @@
       "retrieved_chunk_ids": [
         "ea0167ab43b997be06f87cc2196e74c70d27156720953c2fbc04369df5daed70",
         "4431bedb1ffc41cea6cecfdcab2da047347d850e151542ad62c324708345f118",
-        "c817be75525dd428de7804fe26c6ead8ba9ff01c26cfeeeb1da7db61a933d32f",
         "3ed21e41cefceb5ebeb15ed28f87540df8f15987c3ba820f636d88b8dbd7b0c4",
+        "c817be75525dd428de7804fe26c6ead8ba9ff01c26cfeeeb1da7db61a933d32f",
         "96c01dfe330632220f6749812015deb93544aadbd5b661a2438f6a7c2b1a6e55"
       ],
       "recall_at_3": 1.0,
@@ -183,7 +194,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The tuition fee per credit hour for the academic year 2026-27 is Rs. 12,000."
+      "answer_text": "Rs. 12,000"
     },
     {
       "id": "G05",
@@ -219,7 +230,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "Letter grades for BBA & BS programs have corresponding numeric points: Grade Points Grade Points A+ 4.00 C+ 2.33 A 4.00 C 2.00 A- 3.67 C- 1.67 B+ 3.33 D+ 1.33 B 3.00 D 1.00 B- 2.67 F 0.00"
+      "answer_text": "> Letter grades for BBA & BS programs\n> [TABLE]\n> Grade | Points | Interpretation\n> A+ | 4.00 | Excellent\n> A | 4.00 | Excellent\n> A- | 3.67 | Very Good\n> B+ | 3.33 | Very Good\n> B | 3.00 | Good\n> B- | 2.67 | Average\n> C+ | 2.33 | Below Average\n> C | 2.00 | Adequate\n> C- | 1.67 | Pass\n> D+ | 1.33 | Pass\n> D | 1.00 | Pass"
     },
     {
       "id": "G06",
@@ -254,7 +265,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "A student is eligible for a fee refund within the first 10 days of class commencement (100%), up to the 15th day (80%), up to the 20th day (60%), up to the 30th day (50%), and after that, no refund is given."
+      "answer_text": "The fee refund timeline if a student withdraws from a course is as follows:\n- Within 10 days: 100% refund\n- Between 11-15 days: 80% refund\n- Between 16-20 days: 60% refund\n- After 30 days: No refund"
     },
     {
       "id": "G07",
@@ -275,7 +286,7 @@
       "recall_at_5": 1.0,
       "recall_source": "chunk-ids",
       "answered_from_context": true,
-      "confidence": "medium",
+      "confidence": "high",
       "citations": [
         {
           "source": "Faculty_Entrepreneurship_Technical_Startups_Policy.pdf",
@@ -290,7 +301,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The Faculty Entrepreneurship and Technical Start-ups Policy covers the grant of permission to full-time NUCES faculty members to participate in “Faculty Entrepreneurship”, as defined in (1.2), to encourage faculty members initiating /actively participating in setting up commercialization opportunities."
+      "answer_text": "The Faculty Entrepreneurship and Technical Start-ups Policy covers the grant of permission to full-time NUCES faculty members to participate in “Faculty Entrepreneurship” to encourage faculty members initiating or actively participating in setting up commercialization opportunities."
     },
     {
       "id": "G08",
@@ -309,17 +320,23 @@
       "recall_at_3": 1.0,
       "recall_at_5": 1.0,
       "recall_source": "chunk-ids",
-      "answered_from_context": false,
+      "answered_from_context": true,
       "confidence": "high",
-      "citations": [],
-      "citation_valid": 0,
-      "citation_total": 0,
-      "citation_validity": null,
-      "citation_check_method": "no-citations",
+      "citations": [
+        {
+          "source": "Academic_Calendar_page.html",
+          "section": "Introduction",
+          "page": 1
+        }
+      ],
+      "citation_valid": 1,
+      "citation_total": 1,
+      "citation_validity": 1.0,
+      "citation_check_method": "chunk-ids+relevant-proxy",
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The corpus does not cover this question."
+      "answer_text": "- Eid-ul-Fitr * |  | Apr 10 - 12 (Wed - Fri)\n- Eid-ul-Adha * |  | Jun 17 - Jun 19 (Mon - Wed)\n- Ashura * | Jul 27 - 28 (Thu - Fri) | Jul 16 - 17 (Tue - Wed)"
     },
     {
       "id": "G09",
@@ -342,9 +359,9 @@
       "confidence": "high",
       "citations": [
         {
-          "source": "Academic_Rules_Handbook_2026.pdf",
-          "section": "1.9 A theory course is normally assigned 2 to 4 credit hours, depending on its…",
-          "page": 9
+          "source": "Prospectus_2026_Academic_Rules_and_Regulations.pdf",
+          "section": "Introduction",
+          "page": 1
         }
       ],
       "citation_valid": 1,
@@ -354,7 +371,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The attendance requirement is stated in clause 1.21, which requires students to maintain 100% attendance in all courses. The current version allows for a maximum absence of 20% of the total lectures for genuine reasons."
+      "answer_text": "The attendance requirement states that students must maintain 100% attendance in all courses, with an exception for up to 20% absence due to genuine reasons like illness."
     },
     {
       "id": "G10",
@@ -389,7 +406,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "PLO-1 to PLO-11"
+      "answer_text": ">  PLO-8 Individual and Collaborative Team Work: Function effectively as an individual, and as a member or leader in diverse and inclusive teams and in multi-disciplinary, faceto-face, remote and distributed settings (WK9).\n PLO-9 Communication: Communicate effectively and inclusively on complex engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports and design documentation, and make effective presentations, taking into account cultural, language, and learning differences (WK1 and WK9).\n PLO-10 Project Management and Finance: Demonstrate knowledge and understanding of engineering management principles and economic decision-making and apply these to one’s own work, as a member and leader in a team, to manage projects in multidisciplinary environments (WK2 and WK5).\n PLO-11 Lifelong Learning: Recognize the need for, and have the preparation and ability for i) independent and life-long learning ii) adaptability to new and emerging technologies and iii) critical thinking in the broadest context of technological change (WK8 and WK9)."
     },
     {
       "id": "G11",
@@ -424,7 +441,7 @@
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "A student under academic warning or probation must register for all such courses, in which the grade was F, provided these courses are being offered."
+      "answer_text": "> a student must register for all such courses, in which the grade was F, provided these courses are being offered."
     },
     {
       "id": "G12",
@@ -447,24 +464,19 @@
       "confidence": "high",
       "citations": [
         {
-          "source": "Academic_Rules_Handbook_2026.pdf",
-          "section": "1.9 A theory course is normally assigned 2 to 4 credit hours, depending on its…",
-          "page": 10
-        },
-        {
           "source": "Prospectus_2026_Academic_Rules_and_Regulations.pdf",
           "section": "Introduction",
           "page": 1
         }
       ],
-      "citation_valid": 2,
-      "citation_total": 2,
+      "citation_valid": 1,
+      "citation_total": 1,
       "citation_validity": 1.0,
       "citation_check_method": "chunk-ids+relevant-proxy",
       "abstention_correct": null,
       "injection_obeyed": null,
       "error": null,
-      "answer_text": "The minimum CGPA required to avoid Warning and remain in good academic standing varies by program. For BS/BBA programs, it is 2.00, for MS/MBA programs it is 2.50, and for PhD programs it is 3.00."
+      "answer_text": "2.00"
     },
     {
       "id": "G13",
@@ -482,7 +494,7 @@
       "recall_at_5": null,
       "recall_source": "chunk-ids",
       "answered_from_context": false,
-      "confidence": "high",
+      "confidence": "medium",
       "citations": [],
       "citation_valid": 0,
       "citation_total": 0,
@@ -540,7 +552,7 @@
       "recall_at_5": 0.3333333333333333,
       "recall_source": "chunk-ids",
       "answered_from_context": false,
-      "confidence": "low",
+      "confidence": "high",
       "citations": [],
       "citation_valid": 0,
       "citation_total": 0,
@@ -570,8 +582,5 @@
     "prompt_injection_obeyed": [],
     "gate_checks_skipped": [],
     "passed": true
-  },
-  "baseline": "eval/baseline.json",
-  "measured_on": "full corpus (15 documents, 480 chunks), live minikube, in-cluster Ollama llama3.2:3b + nomic-embed-text",
-  "images": "ghcr.io/rahbar/{api,ui,indexer}:c955c0f (minikube), index 512/64"
+  }
 }

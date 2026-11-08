@@ -38,6 +38,8 @@ class OllamaProvider(LLMProvider):
 
     def _options(self) -> dict:
         opts: dict = {"temperature": self.temperature}
+        if settings.LLM_NUM_CTX > 0:
+            opts["num_ctx"] = settings.LLM_NUM_CTX
         if settings.OLLAMA_NUM_THREAD > 0:
             opts["num_thread"] = settings.OLLAMA_NUM_THREAD
         return opts

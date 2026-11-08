@@ -71,9 +71,15 @@ def build_augmented_prompt(question: str, chunks: list[dict]) -> str:
         (
             "How to answer: in `reasoning`, first quote or list the relevant items "
             "from the evidence one by one (for a counting question write every "
-            "numbered item, then count them). Then write `answer` as one or two "
-            "complete sentences that state the fact, including the exact figure, "
-            "clause or name."
+            "numbered item, then count them). Then write `answer` in Markdown. "
+            "For a specific factual question, state the fact in one or two complete "
+            "sentences, including the exact figure, clause or name. For an overview "
+            "or list question (for example 'all rules', 'what are the rules', "
+            "'explain', 'summarise'), write one short introductory sentence and then "
+            "a bulleted list (one '- ' item per line) of EVERY relevant rule or item "
+            "found in the evidence, each stating its content and its clause or "
+            "section number. Never reply with 'refer to ...' or point at another "
+            "rule: state what the evidence says. Use only what the evidence contains."
         ),
         (
             "Return ONLY a JSON object matching the Answer schema: reasoning, "
@@ -364,6 +370,15 @@ def validate_answer(answer: Answer, chunks: list[dict]) -> Answer:
             answered_from_context=False,
             confidence="low",
         )
+    # The same chunk is often cited several times (once per bullet): show it once.
+    _seen: set[tuple[str, str, int]] = set()
+    _unique = []
+    for c in kept:
+        key = (c.source, c.section, c.page)
+        if key not in _seen:
+            _seen.add(key)
+            _unique.append(c)
+    kept = _unique
     if kept != answer.citations:
         answer = answer.model_copy(update={"citations": kept})
     # An abstention always tells the user plainly that the corpus does not cover the
@@ -373,6 +388,33 @@ def validate_answer(answer: Answer, chunks: list[dict]) -> Answer:
     ):
         answer = answer.model_copy(update={"answer": ABSTAIN_ANSWER})
     return answer
+
+
+_LIST_CUES = re.compile(
+    r"\b(all|rules?|list|policy|policies|explain|summar\w*|overview|what are|key|requirements?)\b",
+    re.IGNORECASE,
+)
+
+
+def is_list_question(question: str) -> bool:
+    """Questions that ask for several items rather than one fact."""
+    return bool(_LIST_CUES.search(question))
+
+
+def is_heading_only(answer: Answer) -> bool:
+    """A grounded answer that is just a title ("All rules for examination").
+
+    The 3B model sometimes stops after the heading of a list answer. A heading has
+    no digit and no sentence punctuation; real short answers ("Rs. 12,000",
+    "PLO-1 to PLO-11", "Yes.") always have one of them.
+    """
+    text = answer.answer.strip()
+    return (
+        answer.answered_from_context
+        and 0 < len(text) < 60
+        and len(text.split()) >= 3
+        and not re.search(r"[0-9.:;,?!]", text)
+    )
 
 
 def parse_answer(raw: str) -> Answer:

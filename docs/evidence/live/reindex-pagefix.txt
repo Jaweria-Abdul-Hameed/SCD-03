@@ -1,0 +1,20 @@
+# Re-index with the page-number fix (indexer commit 7da0b5c), 2026-11-08T09:50Z
+
+$ kubectl set image cronjob/reindex indexer=ghcr.io/rahbar/indexer:7da0b5c -n rahbar
+$ kubectl create job --from=cronjob/reindex manual-reindex-pagefix -n rahbar
+NAME                     STATUS     COMPLETIONS   DURATION   AGE
+manual-reindex-pagefix   Complete   1/1           94s        2m53s
+
+--- index_done / cache_invalidated lines of the Job log
+{"level": "info", "stage": "store", "event": "cache_invalidated", "pattern": "rahbar:cache:*", "keys_deleted": 3}
+{"level": "info", "stage": "indexer", "event": "index_done", "run_id": "9685e69d-1481-494d-880a-74e0d7ec5180", "documents": 15, "chunks": 480, "stored": 480, "original_tokens": 153996, "stored_tokens": 164969, "storage_amplification": 1.071}
+
+--- page numbers in Chroma after the re-index (480 chunks, 15 sources, dim 768 unchanged)
+exam rules (Student_Handbook) 'answer book on your seat': [24, 26]
+GenAI 'To optimize the advantages' (Handbook): [41]
+clause 4.4 text (Handbook): [18]
+smoking fine (Student_Handbook): [10]
+attendance 1.21 (Handbook): [9]
+chunks with page<=3 in Handbook/Student Handbook: Counter({'Academic_Rules_Handb': 1, 'Student_Handbook_202': 1})
+
+BEFORE (measured on the previous index): Generative AI policy chunk page 3 (the cover), examination rules chunk page 9 (true page 24), clause 4.4 chunk page 20/18.

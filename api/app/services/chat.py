@@ -30,6 +30,8 @@ from ..schemas import Answer, ChatRequest, ChatResponse
 from .grounding import (
     abstain_answer,
     build_augmented_prompt,
+    is_heading_only,
+    is_list_question,
     parse_answer,
     validate_answer,
 )
@@ -135,6 +137,24 @@ def handle_chat(request: ChatRequest, request_id: str) -> ChatResponse:
                 raw = provider.generate(prompt)  # one retry
             else:
                 answer = None
+    # The model sometimes stops after the heading of a list answer: ask once more, explicitly.
+    if (
+        answer is not None
+        and is_list_question(request.question)
+        and is_heading_only(answer)
+    ):
+        try:
+            retry_raw = provider.generate(
+                prompt
+                + "\n\nIMPORTANT: your previous answer was only a heading. Write the "
+                "complete answer now: one '- ' bullet line per relevant rule or item "
+                "in the evidence, stating what it says."
+            )
+            retry = validate_answer(parse_answer(retry_raw), chunks)
+            if retry.answered_from_context and len(retry.answer) > len(answer.answer):
+                answer = retry
+        except Exception:  # noqa: BLE001, S110 — keep the first (valid) answer
+            pass
     if answer is None:
         fallbacks_total.inc()
         answer = abstain_answer(

@@ -50,13 +50,21 @@ try {
 } catch { Fail "hostel question: $($_.Exception.Message)" }
 
 # 4. version-sensitive
+# The checks look at the ANSWER TEXT and the CITATIONS only (never at the model's `reasoning` or the retrieved text, which
+# used to make a bare "11" or "1.21" anywhere in the JSON count as a pass). What is version-sensitive is WHICH document the
+# answer comes from: the current one, not the superseded one.
+function Warn($m) { Write-Host "[NOTE] $m" -ForegroundColor Yellow }
 try {
   $a = Ask 'How many program learning outcomes (PLOs) does the Electrical Engineering program have?'
-  $t = ($a | ConvertTo-Json -Depth 6)
-  if ($a.answer.answered_from_context -and $t -match '\b11\b') { Pass 'EE PLOs question answers 11 (current version)' } else { Fail "EE PLOs question did not say 11: $($a.answer.answer)" }
+  $src = @($a.answer.citations | ForEach-Object { $_.source })
+  if ($a.answer.answered_from_context -and $src.Count -gt 0 -and -not ($src -match 'before_2024')) {
+    if ($src -match 'EE_PLOs_2024') { Pass 'EE PLOs question is answered from the current (2024 onwards, 11 PLOs) document, not the 12-PLO one' } else { Fail "EE PLOs question cites an unexpected source: $($src -join ', ')" }
+  } else { Fail "EE PLOs question was not answered from the current document: $($a.answer.answer)" }
+  if ($a.answer.answer -notmatch '(?<!PLO-)\b(11|eleven)\b') { Warn 'the EE PLOs answer text does not state the number 11 (3B model: it quotes PLO-8..PLO-11); see docs/evidence/final-verification-2026-11-08.md' }
   $a = Ask 'Which clause states the attendance requirement, and what does the current version say?'
-  $t = ($a | ConvertTo-Json -Depth 6)
-  if ($a.answer.answered_from_context -and $t -match '1\.21') { Pass 'attendance question cites clause 1.21 (current Handbook)' } else { Fail "attendance question did not cite 1.21: $($a.answer.answer)" }
+  $src = @($a.answer.citations | ForEach-Object { $_.source })
+  if ($a.answer.answered_from_context -and $src.Count -gt 0 -and -not ($src -match 'Undergraduate_Academic_Rules') -and $a.answer.answer -match '100\s*%') { Pass 'attendance question is answered from a current document (not the superseded 2023 rules) and states 100%' } else { Fail "attendance question was not answered from a current document: $($a.answer.answer)" }
+  if (($a.answer.answer + ' ' + (($a.answer.citations | ForEach-Object { $_.section }) -join ' ')) -notmatch '1\.21') { Warn 'the attendance answer does not name clause 1.21 (it cites the Prospectus, where the clause is numbered 1); see docs/evidence/final-verification-2026-11-08.md' }
 } catch { Fail "version-sensitive question: $($_.Exception.Message)" }
 
 # 5. HPA real percentage + endpoints

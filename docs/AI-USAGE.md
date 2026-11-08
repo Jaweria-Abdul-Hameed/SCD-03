@@ -132,7 +132,7 @@ do: no secrets, no host-Ollama exposure, no invented measurements, no lowered ga
 - docs and scripts: the failure analysis with live measurements, ENGINEERING-NOTES Q3-Q7, PIPELINE, CORPUS
   verification, `docs/DEMO.md` and the PowerShell `demo-*.ps1` / `rebuild-from-scratch.ps1` scripts.
 
-**What was verified, and how.** Each change was followed by `ruff`, `mypy` and the test suite (150 tests at
+**What was verified, and how.** Each change was followed by `ruff`, `mypy` and the test suite (154 tests at
 the end) and, for behaviour that unit tests cannot show, by measurement on the live stack: the retrieval
 experiments (four chunk configurations), the full 15-question evaluation (repeated after every pipeline
 change), `kubectl top` during indexing and evaluation, and the cluster demonstrations (rollout/undo, pod
@@ -149,3 +149,20 @@ and the 3B model's counting/format reliability are weaker than a hosted model wo
 fixes (prompt, schema, attribution) make the *pipeline* robust to that, they do not make the model larger.
 We (the submitters) are responsible for being able to explain every file; the assistant's explanations in
 `docs/ENGINEERING-NOTES.md` are written to be checked against the cited lines and evidence files.
+
+## Addendum (2026-11-08, afternoon): the pre-submission verification (Claude Code, Claude Sonnet 5.5)
+
+**Tools.** Claude Code (Claude Sonnet 5.5) with shell, `kubectl`, `minikube`, `docker`, `gh` and the built-in browser,
+asked to verify the whole assignment end to end and fix real problems, with the same rules as before (no secrets, no
+lowered gate, no push without asking).
+
+**What it did.** Re-ran the static checks, the 154 tests, the live evaluation and `demo-check.ps1`; tested the
+chatbot with about 40 questions through the UI path and compared each answer with the source text in Chroma; read the
+failed CI logs. It changed: `ci.yml`/`cd.yml` (tool downloads no longer depend on GitHub release URLs, which were
+returning HTTP 504), `indexer/pipeline/chunk.py` (wrong `page` metadata) with a test, `scripts/demo-check.ps1` (checks
+that matched a number anywhere in the JSON), the evidence and the stale test counts. It tried two answer-quality
+changes (a prompt rule for counts, and moving a citation to the best-supporting chunk), measured both on the live
+stack, saw that they made answers worse (a PLO count of "4"; an old-version answer moved to the Prospectus) and
+reverted them; the findings and the remaining weak answers are in `docs/evidence/final-verification-2026-11-08.md`.
+The re-index with the new indexer was run by the assistant after the submitters approved it; the submitters still have to review these changes before submitting.
+

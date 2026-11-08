@@ -7,15 +7,15 @@ Phase 2 — 5 independent auditor subagents adversarially audited it against the
 automatic-deduction clauses (§8). One fixer agent then applied every finding.
 The orchestrator independently re-verified: `python3 scripts/check_submission.py`
 (12/12 PASS), `python3 -m py_compile` on all Python files (OK), and the full
-pytest suites (re-run at the end: 150 passed).
+pytest suites (re-run at the end: 154 passed).
 
 ## Status update (2026-11-08, final) - supersedes the 2026-11-05 "Open items" list at the end
 
 - GitHub repository, branch protection on `main`, CI and CD green (`docs/evidence/ci_cd_green_runs.md`); history rewritten to a single clean commit at the end (secret scan of the tree and of `git log -p`: nothing found).
-- **Real evaluation on the live stack** (full corpus, in-cluster Ollama): recall@3 0.68, recall@5 0.83, citation validity 1.00 (11/11), abstention correctness 1.00 (2/2), injection not obeyed - `eval/results.json`, `eval/baseline.json`, `golden.yaml` chunk ids resolved from verbatim quotes (`scripts/map_golden_to_chunks.py`).
+- **Real evaluation on the live stack** (full corpus, in-cluster Ollama): recall@3 0.68, recall@5 0.83, citation validity 1.00 (12/12), abstention correctness 1.00 (2/2), injection not obeyed - `eval/results.json`, `eval/baseline.json`, `golden.yaml` chunk ids resolved from verbatim quotes (`scripts/map_golden_to_chunks.py`).
 - **Live-cluster evidence** under `docs/evidence/live/` (kubectl top idle/index/eval, HPA, endpoints scale 3->4->3, rollout + undo, pod deletion under load 60/60 OK, embedding-pin demo, manual re-index with cache invalidation, NetworkPolicy tests incl. ollama, security, observability, ingress demo answers).
 - Q4 indexer peak memory measured: 298 Mi (limit 1 Gi). Chunking experiment, failure analysis (all six stages) and the cache-threshold table are measured, not reasoned (`docs/PIPELINE.md`, `docs/FAILURE-ANALYSIS.md`, ADR 0002).
-- Tests: 150 (api 39, eval 71, indexer 40), ruff / mypy clean, `scripts/check_submission.py` 12/12.
+- Tests: 154 (api 42, eval 71, indexer 41), ruff / mypy clean, `scripts/check_submission.py` 12/12.
 
 ## Automatic deductions — all zero
 
@@ -66,7 +66,7 @@ pytest suites (re-run at the end: 150 passed).
 1. **Human-only:** add both instructors to the private repository (or make it public); take the two screenshots of the
    assignment (greyed-out merge button on the open "DEMO: failing eval gate" PR, then green) - an automated session cannot
    screenshot; confirm Docker Hub shows the SHA-tagged images.
-2. **Known quality limits, measured:** exact-term recall@5 is 0.50 (hybrid retrieval not implemented); G03 (Generative AI
-   rules) and G08 (2026-27 holidays) abstain; G12 retrieves the wrong CGPA clause. The 3B model on CPU takes 30-55 s per
+2. **Known quality limits, measured:** exact-term recall@5 is 0.50 (hybrid retrieval not implemented); G12 retrieves the wrong CGPA clause (all 12 answerable
+   golden questions are answered and cited since the 8192-token context and the list-answer prompt; G03 and G08 used to abstain). The 3B model on CPU takes 30-55 s per
    answer. HTML pages all have the section title "Introduction". The Aug 2023 rules (OCR) yield 147 noisy chunks (superseded, filtered).
 3. **Not done:** no hybrid (BM25) retrieval, no custom-metrics HPA, no demo video, no course-code golden question (none in the corpus).

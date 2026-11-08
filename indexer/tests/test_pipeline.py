@@ -647,3 +647,36 @@ def test_embed_truncates_over_long_input_instead_of_failing_the_job(monkeypatch)
     vectors = embed_mod.embed_texts(["x" * 5000])
     assert len(vectors[0]) == 768
     assert seen[0] == 5000 and seen[-1] <= 3000
+
+
+def test_chunk_page_is_the_page_the_text_starts_on_not_the_first_page_with_the_header():
+    """Regression: a running header repeated on every page (and text that is also in the
+    table of contents) used to match the FIRST page, so chunks cited the cover page."""
+    header = "NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES"
+    pages = [
+        {"page": 1, "text": f"{header}\n\nUndergraduate rules cover"},
+        {"page": 2, "text": f"{header}\n\nContents\n3.1 Examination rules ........ 3"},
+        {
+            "page": 3,
+            "text": f"{header}\n\n3.1 Examination rules\n\n"
+            "Mobile phones are not allowed in the examination hall.\n\n"
+            "3.2 Library rules\n\nSmoking is prohibited in the library.",
+        },
+        {
+            "page": 4,
+            "text": f"{header}\n\n3.3 Disciplinary rules\n\n"
+            "Anyone found smoking on campus must pay a fine.",
+        },
+    ]
+    doc = {"source": "t.pdf", "doc_version": "v1", "superseded": False, "pages": pages}
+    chunks = chunk_mod.chunk_document(doc, chunk_size=40, chunk_overlap=8)
+    by_text = {c["text"]: c["page"] for c in chunks}
+
+    def page_of(fragment: str) -> int:
+        hits = [p for t, p in by_text.items() if fragment in t]
+        assert hits, fragment
+        return hits[0]
+
+    assert page_of("Mobile phones are not allowed") == 3
+    assert page_of("Anyone found smoking on campus") == 4
+    assert [c["page"] for c in chunks] == sorted(c["page"] for c in chunks)
