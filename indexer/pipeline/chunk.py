@@ -189,10 +189,10 @@ def chunk_document(
     norm_pages = [(no, t) for no, t in norm_pages if t]
     page_starts: list[int] = []
     offset = 0
-    for _, t in norm_pages:
+    for _, page_text in norm_pages:
         page_starts.append(offset)
-        offset += len(t) + 1
-    norm_full = " ".join(t for _, t in norm_pages)
+        offset += len(page_text) + 1
+    norm_full = " ".join(page_text for _, page_text in norm_pages)
     position = 0
 
     def page_for(snippet: str) -> int:
