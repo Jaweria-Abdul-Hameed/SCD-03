@@ -44,6 +44,9 @@ class Settings(BaseSettings):
     # >0 pins Ollama num_thread (needed in-cluster: Ollama sees the host core
     # count, not the pod CPU quota, and over-subscribed threads run ~13x slower).
     OLLAMA_NUM_THREAD: int = 0
+    # Context window sent to Ollama. Five ~2000-char chunks + instructions exceed the 4096
+    # default and the evidence would be cut off silently; 8192 fits with room for the answer.
+    LLM_NUM_CTX: int = 8192
     # Hosted provider: base URL + key from env/Secret only, never logged.
     LLM_HOSTED_BASE_URL: str = "https://api.openai.com/v1"
     LLM_API_KEY: str = ""

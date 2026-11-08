@@ -71,9 +71,15 @@ def build_augmented_prompt(question: str, chunks: list[dict]) -> str:
         (
             "How to answer: in `reasoning`, first quote or list the relevant items "
             "from the evidence one by one (for a counting question write every "
-            "numbered item, then count them). Then write `answer` as one or two "
-            "complete sentences that state the fact, including the exact figure, "
-            "clause or name."
+            "numbered item, then count them). Then write `answer` in Markdown. "
+            "For a specific factual question, state the fact in one or two complete "
+            "sentences, including the exact figure, clause or name. For an overview "
+            "or list question (for example 'all rules', 'what are the rules', "
+            "'explain', 'summarise'), write one short introductory sentence and then "
+            "a bulleted list (one '- ' item per line) of EVERY relevant rule or item "
+            "found in the evidence, each stating its content and its clause or "
+            "section number. Never reply with 'refer to ...' or point at another "
+            "rule: state what the evidence says. Use only what the evidence contains."
         ),
         (
             "Return ONLY a JSON object matching the Answer schema: reasoning, "
