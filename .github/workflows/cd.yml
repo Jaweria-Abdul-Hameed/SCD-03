@@ -107,7 +107,7 @@ jobs:
           config: .github/kind-config.yaml
       - name: Install kubectl and kustomize
         run: |
-          curl -sL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin
+          curl -fsSL --retry 5 --retry-all-errors --retry-delay 5 "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz" | sudo tar -xz -C /usr/local/bin
           sudo chmod +x /usr/local/bin/kustomize
       - name: Deploy (kustomize build + kubectl apply, SHA-pinned images)
         env:
