@@ -15,12 +15,14 @@ class Settings(BaseSettings):
 
     # Embedding pin — MUST match the indexer / Chroma collection metadata.
     EMBED_MODEL: str = "nomic-embed-text"
+    EMBED_VERSION: str = "nomic-embed-text:v1.5"
     # Reads EMBED_DIMENSION (the ConfigMap key, k8s/base/configmap.yaml)
     # with EMBED_DIM as a fallback alias for older env/configs.
     EMBED_DIMENSION: int = Field(
         default=768, validation_alias=AliasChoices("EMBED_DIMENSION", "EMBED_DIM")
     )
     CHROMA_COLLECTION: str = "rahbar_corpus"
+    COLLECTION_VERSION: str = "v1"
     CHROMA_HOST: str = "chroma"
     CHROMA_PORT: int = 8000
 
@@ -33,6 +35,12 @@ class Settings(BaseSettings):
     TOP_K: int = 5
     RELEVANCE_FLOOR: float = 0.35
     TEMPERATURE: float = 0.2  # ConfigMap; valid range 0.0-0.3 (facts + JSON)
+    LLM_SEED: int = 42
+    PROMPT_TEMPLATE: str = "grounded_v1"
+    RETRIEVAL_RAIL_MODE: str = "redact"  # redact | exclude
+
+    # Observability / tracing (Part D).
+    TRACE_FILE: str = ""  # e.g. /traces/traces.jsonl in Kubernetes
 
     # LLM provider selection.
     LLM_PROVIDER: str = "ollama-host"  # ollama-host | ollama-incluster | hosted | stub

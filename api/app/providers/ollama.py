@@ -37,7 +37,10 @@ class OllamaProvider(LLMProvider):
         self.temperature = settings.TEMPERATURE
 
     def _options(self) -> dict:
-        opts: dict = {"temperature": self.temperature}
+        opts: dict = {
+            "temperature": self.temperature,
+            "seed": settings.LLM_SEED,
+        }
         if settings.LLM_NUM_CTX > 0:
             opts["num_ctx"] = settings.LLM_NUM_CTX
         if settings.OLLAMA_NUM_THREAD > 0:

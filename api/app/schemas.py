@@ -57,6 +57,9 @@ class ChatResponse(BaseModel):
     request_id: str = Field(
         ..., description="Request ID from X-Request-ID header or generated UUID"
     )
+    trace_id: str | None = Field(
+        default=None, description="Trace ID matching the emitted JSONL trace record"
+    )
     cache_hit: bool = Field(
         default=False, description="True if this answer came from the semantic cache"
     )
@@ -66,4 +69,12 @@ class ChatResponse(BaseModel):
         description="Ids of the chunks retrieved for this request, best first. "
         "Lets eval/run_eval.py compute true recall@k instead of a citation proxy. "
         "Empty on a semantic-cache hit (no retrieval ran).",
+    )
+    retrieved_chunks: list[dict] = Field(
+        default_factory=list,
+        description="Retrieved chunks with id, text, metadata (source, section, page, doc_version), and similarity.",
+    )
+    guardrail_actions: list[dict] = Field(
+        default_factory=list,
+        description="Guardrail rail actions logged during this query (Part D4).",
     )
