@@ -1,0 +1,32 @@
+{"id": "P01", "label": "paraphrase", "text_a": "What is the minimum class attendance percentage required for undergraduate students?", "text_b": "How much lecture attendance must bachelor students maintain to sit final exams?"}
+{"id": "P02", "label": "paraphrase", "text_a": "What is the tuition fee per credit hour for BS programs?", "text_b": "How much does each credit hour cost in undergraduate tuition?"}
+{"id": "P03", "label": "paraphrase", "text_a": "Can a student enroll in a course after failing its prerequisite?", "text_b": "What are the rules for registering when a prerequisite course has an F grade?"}
+{"id": "P04", "label": "paraphrase", "text_a": "What is the minimum CGPA required to stay in good academic standing?", "text_b": "Below what cumulative grade point average does a student receive an academic warning?"}
+{"id": "P05", "label": "paraphrase", "text_a": "How much tuition refund is given if a student drops a course within 15 days?", "text_b": "What percentage of fees is refunded upon course withdrawal by the fifteenth day of classes?"}
+{"id": "P06", "label": "paraphrase", "text_a": "How many program learning outcomes exist for Electrical Engineering batches from 2024 onwards?", "text_b": "What is the current count of EE PLOs starting with the 2024 cohort?"}
+{"id": "P07", "label": "paraphrase", "text_a": "What grade points correspond to an A minus grade?", "text_b": "How many grade points is an A- worth on the university grading scale?"}
+{"id": "P08", "label": "paraphrase", "text_a": "When is the refundable security deposit paid during admission?", "text_b": "How much refundable security deposit must new students submit at the time of admission?"}
+{"id": "P09", "label": "paraphrase", "text_a": "Are generative AI tools allowed for student coursework under the handbook?", "text_b": "What does the university policy say about students using AI writing assistants?"}
+{"id": "P10", "label": "paraphrase", "text_a": "When does Fall 2026 semester instruction begin according to the academic calendar?", "text_b": "What date do classes start for the Fall 2026 term?"}
+{"id": "P11", "label": "paraphrase", "text_a": "When is a student's academic warning counter cleared back to zero?", "text_b": "Under what CGPA condition does an academic warning count reset?"}
+{"id": "P12", "label": "paraphrase", "text_a": "How many credit hours are required before registering for Final Year Project I?", "text_b": "What is the earned credit threshold to start FYP Part 1?"}
+{"id": "P13", "label": "paraphrase", "text_a": "What is the maximum Turnitin similarity percentage allowed for FYP reports?", "text_b": "What plagiarism cap applies to Final Year Project documentation?"}
+{"id": "P14", "label": "paraphrase", "text_a": "What is the maximum ORIC internal research seed grant budget?", "text_b": "Up to how many rupees can a faculty seed grant from ORIC fund?"}
+{"id": "P15", "label": "paraphrase", "text_a": "How many library books can undergraduate students borrow at one time?", "text_b": "What is the borrowing quota for bachelor students at the university library?"}
+{"id": "P16", "label": "paraphrase", "text_a": "What SGPA is needed to continue receiving a merit scholarship?", "text_b": "What semester GPA must merit scholarship holders maintain for renewal?"}
+{"id": "U01", "label": "unrelated", "text_a": "What is the tuition fee per credit hour for BS programs?", "text_b": "How many books may an undergraduate student borrow from the library?"}
+{"id": "U02", "label": "unrelated", "text_a": "What is the minimum attendance required to take final exams?", "text_b": "When does IRB ethics clearance need to be submitted for ORIC seed grants?"}
+{"id": "U03", "label": "unrelated", "text_a": "How many PLOs does the Electrical Engineering program have?", "text_b": "What is the maximum Turnitin similarity percentage for FYP reports?"}
+{"id": "U04", "label": "unrelated", "text_a": "What grade points correspond to a B+ grade?", "text_b": "What date do Fall 2026 classes commence on the academic calendar?"}
+{"id": "U05", "label": "unrelated", "text_a": "What does the Generative AI policy say about disclosure?", "text_b": "What is the one-time admission fee at enrollment?"}
+{"id": "U06", "label": "unrelated", "text_a": "When is the academic warning count reset to zero?", "text_b": "How many months after graduation does Qarz-e-Hasna repayment begin?"}
+{"id": "U07", "label": "unrelated", "text_a": "What is the fee refund percentage up to the tenth day of classes?", "text_b": "What are the faculty entrepreneurship start-up IP rules?"}
+{"id": "U08", "label": "unrelated", "text_a": "How many credit hours are needed to enroll in FYP-I?", "text_b": "What grade does an incomplete I grade convert to if unresolved?"}
+{"id": "U09", "label": "unrelated", "text_a": "What is the daily overdue fine for library books?", "text_b": "What is the minimum CGPA required for graduation?"}
+{"id": "U10", "label": "unrelated", "text_a": "How many students can form a single Final Year Project group?", "text_b": "Are FAST alumni exempt from paying the admission fee again?"}
+{"id": "U11", "label": "unrelated", "text_a": "What is the ORIC seed grant funding duration in months?", "text_b": "What percentage of attendance can the HoD condone for illness?"}
+{"id": "U12", "label": "unrelated", "text_a": "What is the Student Activities Fund fee per semester?", "text_b": "Who serves on the external examination panel for FYP?"}
+{"id": "U13", "label": "unrelated", "text_a": "How are S and U grades treated in CGPA calculation?", "text_b": "When does Spring 2027 course registration open?"}
+{"id": "U14", "label": "unrelated", "text_a": "What is the refundable security deposit amount?", "text_b": "What percentage of FYP grade comes from the external examiner?"}
+{"id": "U15", "label": "unrelated", "text_a": "What happens if a student fails a repeated prerequisite after passing the post-requisite?", "text_b": "What is the equipment procurement approval threshold in ORIC grants?"}
+{"id": "U16", "label": "unrelated", "text_a": "What CGPA qualifies a student for the Dean's Honor List?", "text_b": "How many days can graduate students keep borrowed library books?"}

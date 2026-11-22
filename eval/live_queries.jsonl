@@ -1,0 +1,42 @@
+{"id": "L01", "domain": "in_domain", "query": "What happens if I register for a class after getting an F in its prerequisite?"}
+{"id": "L02", "domain": "in_domain", "query": "How much lecture attendance do undergraduate students need to take finals?"}
+{"id": "L03", "domain": "in_domain", "query": "Can I use ChatGPT for brainstorming coursework under the GenAI policy?"}
+{"id": "L04", "domain": "in_domain", "query": "How much is the per-credit-hour tuition fee for BS Computer Science?"}
+{"id": "L05", "domain": "in_domain", "query": "What GPA points does a B+ or A- grade carry?"}
+{"id": "L06", "domain": "in_domain", "query": "If I drop a course on the 12th day of classes, what fee refund do I get?"}
+{"id": "L07", "domain": "in_domain", "query": "Does the ORIC entrepreneurship policy permit faculty members to start spin-off companies?"}
+{"id": "L08", "domain": "in_domain", "query": "When do Fall 2026 classes start according to the academic schedule?"}
+{"id": "L09", "domain": "in_domain", "query": "Which rule clause governs student attendance percentage in the current handbook?"}
+{"id": "L10", "domain": "in_domain", "query": "How many Program Learning Outcomes apply to EE students admitted in 2024 or later?"}
+{"id": "L11", "domain": "in_domain", "query": "What does Clause 4.4 require for students currently placed on academic warning?"}
+{"id": "L12", "domain": "in_domain", "query": "What minimum CGPA avoids academic warning and allows graduation?"}
+{"id": "L13", "domain": "in_domain", "query": "Are there official rules for first-year student hostel room allotment?"}
+{"id": "L14", "domain": "in_domain", "query": "What are the campus shuttle bus routes and departure schedules?"}
+{"id": "L15", "domain": "in_domain", "query": "Is the admission fee payable again if a FAST alumnus joins an MS degree?"}
+{"id": "L16", "domain": "in_domain", "query": "How much is the refundable security deposit collected at admission?"}
+{"id": "L17", "domain": "in_domain", "query": "When does a student's first or second academic warning counter reset back to zero?"}
+{"id": "L18", "domain": "in_domain", "query": "What steps are listed in Clause 4.1 for semester course registration?"}
+{"id": "L19", "domain": "in_domain", "query": "What SGPA must a merit scholarship student maintain to keep their scholarship?"}
+{"id": "L20", "domain": "in_domain", "query": "What happens to a passed post-requisite grade if a repeated prerequisite is failed?"}
+{"id": "L21", "domain": "in_domain", "query": "How many earned credit hours are needed to register for Final Year Project I?"}
+{"id": "L22", "domain": "in_domain", "query": "What Turnitin similarity cap is enforced on Final Year Project reports?"}
+{"id": "L23", "domain": "in_domain", "query": "What is the maximum funding cap on an ORIC internal research seed grant?"}
+{"id": "L24", "domain": "in_domain", "query": "How much is the per-semester Student Activities Fund fee?"}
+{"id": "L25", "domain": "in_domain", "query": "When does an incomplete grade I automatically convert into an F grade?"}
+{"id": "L26", "domain": "in_domain", "query": "Can the Head of Department condone more than 20 percent absence for illness?"}
+{"id": "L27", "domain": "in_domain", "query": "What is the minimum graduate student attendance percentage required for exams?"}
+{"id": "L28", "domain": "in_domain", "query": "Is a car parking permit fee listed for students driving to campus?"}
+{"id": "L29", "domain": "uncovered", "topic": "alumni_and_degree_verification", "query": "How can employers submit an online degree verification request for a FAST alumnus?"}
+{"id": "L30", "domain": "uncovered", "topic": "alumni_and_degree_verification", "query": "What documents and fee are required to obtain a duplicate official transcript or convocation gown?"}
+{"id": "L31", "domain": "uncovered", "topic": "alumni_and_degree_verification", "query": "How do graduating students register for the annual convocation ceremony and alumni card?"}
+{"id": "L32", "domain": "uncovered", "topic": "campus_facilities_and_services", "query": "What are the daily opening hours and subsidized meal pricing at the campus cafeteria?"}
+{"id": "L33", "domain": "uncovered", "topic": "campus_facilities_and_services", "query": "Is there an on-campus medical clinic and first-aid ambulance service for students?"}
+{"id": "L34", "domain": "uncovered", "topic": "campus_facilities_and_services", "query": "How do students book indoor sports courts or reserve the campus auditorium for society events?"}
+{"id": "L35", "domain": "uncovered", "topic": "international_exchange_and_transfers", "query": "Does the university offer Erasmus or international semester exchange scholarships abroad?"}
+{"id": "L36", "domain": "uncovered", "topic": "international_exchange_and_transfers", "query": "What is the credit transfer policy for courses completed during an international exchange semester?"}
+{"id": "L37", "domain": "uncovered", "topic": "international_exchange_and_transfers", "query": "How do students apply for inter-campus transfer between Islamabad and Lahore campuses?"}
+{"id": "L38", "domain": "uncovered", "topic": "career_services_and_internships", "query": "Is a six-week summer industrial internship mandatory before degree completion?"}
+{"id": "L39", "domain": "uncovered", "topic": "career_services_and_internships", "query": "How do companies register booths for the annual campus job fair through the placement office?"}
+{"id": "L40", "domain": "uncovered", "topic": "career_services_and_internships", "query": "Does the Career Services Office conduct mock technical interviews and resume reviews?"}
+{"id": "L41", "domain": "uncovered", "topic": "alumni_and_degree_verification", "query": "What is the HEC attestation procedure for a provisional degree certificate after graduation?"}
+{"id": "L42", "domain": "uncovered", "topic": "campus_facilities_and_services", "query": "Are high-speed GPU compute nodes available for undergraduate thesis students via IT helpdesk?"}
