@@ -1,3 +1,51 @@
+# RAHBAR — Grounded RAG on Kubernetes (CS4032 Assignment 03: RAGOps)
+
+> **CS4032 Software Quality Engineering & Construction — Assignment 03 (RAGOps)**  
+> **Authors:** Jaweria Abdul Hameed (jaweriahameed06@gmail.com) • Mohsin Khan (mohsinkhan.devs@gmail.com)  
+> **Technical Report PDF:** [Report_CS4032_Assignment03.pdf](Report_CS4032_Assignment03.pdf) (8-page main body + 13-screenshot Appendix)  
+> **Checklist:** [SCD_Assignment03_RAGOps_Implementation_Checklist.md](SCD_Assignment03_RAGOps_Implementation_Checklist.md) / [PDF](SCD_Assignment03_RAGOps_Implementation_Checklist.pdf)  
+> **Kubernetes Guide:** [k8s/README.md](k8s/README.md)  
+> **Paper Foundation:** *RAGOps: Operating and Managing Retrieval-Augmented Generation Pipelines* (Xu et al., 2026)
+
+---
+
+## Assignment 03 (RAGOps) Implementation Highlights
+
+1. **Part A: Data Management & Verification (Paper §§4.2.1–4.2.4)**
+   - 4 Pre-chunking verification gates: Quality, Completeness, Recency, Uniqueness (SHA-256 + 0.94 cosine).
+   - Failing documents quarantined to /corpus/quarantine/ with structured reports; 0 polluted chunks in Chroma.
+   - Batch B verification caught 6 planted defective documents (04–09); superseded active June 2026 rules with Nov 2026 revision (10).
+   - Unchanged corpus re-run verified on Kubernetes: **embedded exactly 0 chunks** (chunks_embedded: 0).
+2. **Part B: 3-Level Offline Evaluation Suite (Paper §4.2.5 & Table 1)**
+   - Single command runner (eval/run_ragops_eval.py).
+   - **Level 1 (Module):** Cosine separation gap = 0.2891, throughput = 45.77ms/chunk, determinism = 0.00000000.
+   - **Level 2 (Component):** recall@3 = 0.5714, recall@5 = 0.7143, MRR = 0.4913, nDCG@5 = 0.5460; Typo noise test: Δ = 0.0000.
+   - **Level 3 (E2E):** Faithfulness = 0.8333, Abstention correctness = 1.0000 (6/6), Citation validity = 1.0000, p95 latency = 12.1s.
+   - **LLM Judge Calibration:** dolphin-mistral:latest achieved **90.0% agreement** against 10 human labels.
+   - **Stochasticity Analysis:** Fixed seed yielded 0.0000 variation across Level 1, Level 2, and Level 3 metrics.
+3. **Part C: Change Experiment & Automated Release Gate (Paper §4.1(d), §§4.2.5–4.2.6)**
+   - Candidate collection isolation (
+ahbar_corpus_candidate) and isolated deployment (pi-candidate:8000).
+   - Evaluated candidate prompt (strict_concise_v2): recall@5 preserved (+0.0000), faithfulness increased to 89.5%, p95 latency reduced by 63.3% to 4.4s → **GATE RESULT: PASS (Exit 0)**.
+   - Evaluated degraded candidate: recall drop = +0.3333 > 0.02 threshold → **GATE RESULT: FAIL (Exit 1)**.
+4. **Part D: Observability, Traceability & Safety Rails (Paper §§3.2.3, 5.1)**
+   - Every request emits 16-field JSONL trace to /traces/traces.jsonl with cryptographic SHA-256 prompt hash.
+   - scripts/trace_tool.py: Reconstructs exact context and verifies hash for any trace ID.
+   - scripts/summarize_traces.py: Aggregates top-1 similarity distribution, abstention rate, cache hit rate, and latency breakdown over 24h windows.
+   - Dual-rail prompt injection defense: Input Rail (I) + Retrieval Rail (R) caught and stripped/excluded Batch B's poisoned directives (11).
+5. **Part E: Drift & Query Coverage Checking (Paper §4.1(e), §4.2.7)**
+   - Live query coverage tool (eval/coverage_check.py): measured cosine similarity against golden benchmark.
+   - Pre-expansion baseline failed gate: **59.5% coverage (25/42)** → grouped uncovered queries into 4 topics.
+   - Expanded golden set by 6 questions (26 → 32) → coverage rose to **85.7% (36/42)** → **PASS (Exit 0)**.
+6. **Part F: Kubernetes Native Architecture & Zero-Downtime Rollout (Paper §§4.1(e–f), 5.1)**
+   - Runs natively on Minikube with Calico CNI in namespace 
+ahbar.
+   - Single-writer architecture (indexer-sa exclusive write access; pi-sa read-only).
+   - ConfigMap live-edit gate flip demonstrated: edited GATE_P95_LATENCY_MAX_MS: 500.0 → Job FAILED; restored to 45000.0 → Job PASSED without container rebuild.
+   - Zero-downtime rolling update (maxUnavailable: 0) and instant rollback demonstrated.
+
+---
+
 # RAHBAR — Grounded RAG on Kubernetes
 
 A question-answering service that answers **only from a real document
@@ -162,7 +210,8 @@ output, timings, a troubleshooting table and a 90-second architecture pitch).
 | `.\scripts\demo-up.ps1` | after a reboot: starts minikube if needed, waits for all pods, checks the index (also against an exact search) and the Ollama models, starts the UI/API port-forwards, pre-warms Ollama |
 | `.\scripts\demo-check.ps1` | smoke test, non-zero exit on failure (health, cited answer, abstention, 11 PLOs / clause 1.21, cache hit, HPA, 3 endpoints) |
 | `.\scripts\demo-down.ps1` | stops the port-forwards and runs `minikube stop` (never `delete`) |
-| `.\scriptsebuild-from-scratch.ps1` | clean clone -> working stack |
+| `.\scripts
+ebuild-from-scratch.ps1` | clean clone -> working stack |
 
 A recorded transcript of a full rehearsal (fallback if the live cluster fails) is in
 `docs/evidence/live/demo-transcript.md`.

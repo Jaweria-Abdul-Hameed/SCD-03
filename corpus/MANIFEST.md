@@ -40,5 +40,3 @@
 ## Excluded on purpose (property 6 — absent topic)
 
 - **Transport and Hostel Facilities (Prospectus 2026)** — <https://nu.edu.pk/Admissions/ProspectusUpload/Transport%20and%20Hostel%20Facilities.pdf> — Property 6 — deliberately absent topic (transport/hostel rules).
-
-> NOTE: all 15 hashes were computed from the files that were downloaded and indexed (2026-11-05..08). The three HTML pages are live web pages: their bytes change when the site is edited, so `scripts/fetch_corpus.py` warns (does not fail) when a re-fetched page no longer matches; the 12 PDFs are static.
