@@ -21,8 +21,12 @@ id_rsa*
 
 # --- Corpus PDFs (MANIFEST.md + fetch script are committed instead) ---
 corpus/raw/
-corpus/**/*.pdf
-corpus/*.pdf
+corpus/datalake/
+corpus/quarantine/
+corpus/archive/
+corpus/reports/
+corpus/raw/*.pdf
+corpus/raw/**/*.pdf
 
 # --- Python ---
 __pycache__/
