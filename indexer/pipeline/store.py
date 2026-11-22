@@ -321,6 +321,96 @@ def store_chunks(
     return len(ids)
 
 
+def delete_document_chunks(
+    source: str,
+    chunk_ids: list[str] | None = None,
+    client=None,
+) -> int:
+    """Delete all chunks for ``source`` by IDs and metadata filter (0 orphans)."""
+    if client is None:
+        client = get_chroma_client()
+    try:
+        collection = client.get_collection(COLLECTION_NAME)
+    except Exception:  # noqa: BLE001 — collection does not exist yet
+        return 0
+
+    deleted = 0
+    if chunk_ids:
+        try:
+            collection.delete(ids=chunk_ids)
+            deleted += len(chunk_ids)
+        except Exception as exc:  # noqa: BLE001
+            _log("warning", "delete_by_ids_failed", source=source, error=str(exc))
+
+    try:
+        existing = collection.get(where={"source": source}, include=[])
+        remaining_ids = existing.get("ids") or []
+        if remaining_ids:
+            collection.delete(where={"source": source})
+            deleted = max(deleted, len(remaining_ids))
+    except Exception as exc:  # noqa: BLE001
+        _log("warning", "delete_by_where_failed", source=source, error=str(exc))
+
+    _log("info", "document_chunks_deleted", source=source, deleted=deleted)
+    return deleted
+
+
+def set_document_superseded(
+    source: str,
+    superseded: bool,
+    doc_version: str | None = None,
+    client=None,
+) -> int:
+    """Flip ``superseded`` metadata on stored chunks for archiving or rollback."""
+    if client is None:
+        client = get_chroma_client()
+    try:
+        collection = client.get_collection(COLLECTION_NAME)
+    except Exception:  # noqa: BLE001
+        return 0
+
+    where: dict = {"source": source}
+    if doc_version is not None:
+        where = {"$and": [{"source": source}, {"doc_version": doc_version}]}
+
+    got = collection.get(where=where, include=["metadatas"])
+    ids = got.get("ids") or []
+    metas = got.get("metadatas") or []
+    if not ids:
+        return 0
+    updated_metas = []
+    for m in metas:
+        nm = dict(m or {})
+        nm["superseded"] = bool(superseded)
+        updated_metas.append(nm)
+    collection.update(ids=ids, metadatas=updated_metas)
+    _log(
+        "info",
+        "document_superseded_updated",
+        source=source,
+        doc_version=doc_version,
+        superseded=bool(superseded),
+        chunks=len(ids),
+    )
+    return len(ids)
+
+
+def chunk_counts_by_document(client=None) -> dict[str, int]:
+    """Return {source: chunk_count} across the vector store (orphan-check proof)."""
+    if client is None:
+        client = get_chroma_client()
+    try:
+        collection = client.get_collection(COLLECTION_NAME)
+    except Exception:  # noqa: BLE001
+        return {}
+    got = collection.get(include=["metadatas"])
+    counts: dict[str, int] = {}
+    for meta in got.get("metadatas") or []:
+        src = str((meta or {}).get("source") or "unknown")
+        counts[src] = counts.get(src, 0) + 1
+    return dict(sorted(counts.items()))
+
+
 def invalidate_semantic_cache(host: str | None = None, port: int | None = None) -> int:
     """Invalidate the Redis semantic cache (flush `rahbar:cache:*`).
 
