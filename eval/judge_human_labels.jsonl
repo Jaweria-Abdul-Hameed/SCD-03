@@ -1,0 +1,10 @@
+{"id": "G02", "human_faithful": true, "notes": "100% attendance is directly stated in retrieved Prospectus p.1 and Handbook p.9."}
+{"id": "G04", "human_faithful": true, "notes": "Rs. 12,000 is verbatim in Fee_Structure_page.html p.1."}
+{"id": "G05", "human_faithful": true, "notes": "Every grade point value matches Grading_page.html p.1."}
+{"id": "G06", "human_faithful": true, "notes": "All 5 refund timeline tiers match Fee_Structure_page.html p.1."}
+{"id": "G07", "human_faithful": true, "notes": "Verbatim from OCR'd Faculty_Entrepreneurship_Technical_Startups_Policy.pdf p.1."}
+{"id": "G08", "human_faithful": true, "notes": "Dates Aug 10-14 and Aug 17 match Academic_Calendar_page.html p.1."}
+{"id": "G16", "human_faithful": true, "notes": "Rs 30,000 admission fee and Rs 20,000 security deposit match Fee_Structure_page.html p.1."}
+{"id": "G18", "human_faithful": true, "notes": "Three-step Clause 4.1 procedure matches Academic_Rules_Handbook_2026.pdf."}
+{"id": "G19", "human_faithful": true, "notes": "3.0 SGPA requirement matches Student_Handbook_2026.pdf."}
+{"id": "G24", "human_faithful": false, "notes": "Conflates admission fee (non-refundable) with tuition fee ('tuition fee is non-refundable' contradicts the refund timeline table)."}

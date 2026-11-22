@@ -1,0 +1,362 @@
+{
+  "run_id": "693746b5-1807-4aa6-a0c5-75e7bcb79492",
+  "timestamp": "2026-11-22T16:29:17.423660+00:00",
+  "corpus_dir": "/corpus/batch_b",
+  "additive": true,
+  "embed_model": "nomic-embed-text",
+  "chunk_size": 512,
+  "chunk_overlap": 64,
+  "counts": {
+    "docs_scanned": 11,
+    "docs_passed": 5,
+    "docs_quarantined": 6,
+    "docs_skipped_unchanged": 0,
+    "docs_added": 5,
+    "docs_updated": 0,
+    "docs_superseded_archived": 1,
+    "docs_deleted": 0,
+    "chunks_embedded": 6,
+    "chunks_deleted": 0
+  },
+  "documents": [
+    {
+      "source": "b01_merit_scholarship_guidelines.md",
+      "file_path": "/corpus/batch_b/b01_merit_scholarship_guidelines.md",
+      "doc_id": "merit_scholarship_guidelines",
+      "version": "2026-09",
+      "content_hash": "3d50eecb92df136dc3614311a7d7f99b695c1ac7adb61ac182fcdb3aa953766e",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 945 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": true,
+          "reason": "ok: metadata complete (source=b01_merit_scholarship_guidelines.md, version=2026-09, pages=1) and text intact"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-09 for merit_scholarship_guidelines"
+        },
+        "uniqueness": {
+          "pass": true,
+          "reason": "ok: unique hash; max cross-doc cosine=0.8272 (< 0.94) vs Grading_page.html"
+        }
+      },
+      "overall_pass": true,
+      "superseded_previous": null,
+      "disposition": "indexed"
+    },
+    {
+      "source": "b02_research_grant_policy.md",
+      "file_path": "/corpus/batch_b/b02_research_grant_policy.md",
+      "doc_id": "oric_research_grant_policy",
+      "version": "2026-09",
+      "content_hash": "336fde84776b71ea97b9d73bc90d46d0cd7d28b45353bf3c85e5c9bb9d640993",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 765 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": true,
+          "reason": "ok: metadata complete (source=b02_research_grant_policy.md, version=2026-09, pages=1) and text intact"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-09 for oric_research_grant_policy"
+        },
+        "uniqueness": {
+          "pass": true,
+          "reason": "ok: unique hash; max cross-doc cosine=0.7052 (< 0.94) vs b01_merit_scholarship_guidelines.md"
+        }
+      },
+      "overall_pass": true,
+      "superseded_previous": null,
+      "disposition": "indexed"
+    },
+    {
+      "source": "b03_fyp_handbook_2026.md",
+      "file_path": "/corpus/batch_b/b03_fyp_handbook_2026.md",
+      "doc_id": "fyp_handbook",
+      "version": "2026-09",
+      "content_hash": "dfd7418145a4770b9bb5f46868a5103dad56481263dc75a972c6baf0656e36d6",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 920 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": true,
+          "reason": "ok: metadata complete (source=b03_fyp_handbook_2026.md, version=2026-09, pages=1) and text intact"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-09 for fyp_handbook"
+        },
+        "uniqueness": {
+          "pass": true,
+          "reason": "ok: unique hash; max cross-doc cosine=0.7661 (< 0.94) vs Grading_page.html"
+        }
+      },
+      "overall_pass": true,
+      "superseded_previous": null,
+      "disposition": "indexed"
+    },
+    {
+      "source": "b04_exact_dup_scholarship.md",
+      "file_path": "/corpus/batch_b/b04_exact_dup_scholarship.md",
+      "doc_id": "merit_scholarship_copy_a",
+      "version": "2026-09",
+      "content_hash": "3d50eecb92df136dc3614311a7d7f99b695c1ac7adb61ac182fcdb3aa953766e",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 945 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": true,
+          "reason": "ok: metadata complete (source=b04_exact_dup_scholarship.md, version=2026-09, pages=1) and text intact"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-09 for merit_scholarship_copy_a"
+        },
+        "uniqueness": {
+          "pass": false,
+          "reason": "exact_duplicate_hash: sha256=3d50eecb92df matches existing b01_merit_scholarship_guidelines.md"
+        }
+      },
+      "overall_pass": false,
+      "superseded_previous": null,
+      "disposition": "quarantined",
+      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b04_exact_dup_scholarship.md"
+    },
+    {
+      "source": "b05_exact_dup_research_grant.md",
+      "file_path": "/corpus/batch_b/b05_exact_dup_research_grant.md",
+      "doc_id": "oric_research_grant_copy_b",
+      "version": "2026-09",
+      "content_hash": "336fde84776b71ea97b9d73bc90d46d0cd7d28b45353bf3c85e5c9bb9d640993",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 765 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": true,
+          "reason": "ok: metadata complete (source=b05_exact_dup_research_grant.md, version=2026-09, pages=1) and text intact"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-09 for oric_research_grant_copy_b"
+        },
+        "uniqueness": {
+          "pass": false,
+          "reason": "exact_duplicate_hash: sha256=336fde84776b matches existing b02_research_grant_policy.md"
+        }
+      },
+      "overall_pass": false,
+      "superseded_previous": null,
+      "disposition": "quarantined",
+      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b05_exact_dup_research_grant.md"
+    },
+    {
+      "source": "b06_near_dup_scholarship.md",
+      "file_path": "/corpus/batch_b/b06_near_dup_scholarship.md",
+      "doc_id": "merit_scholarship_paraphrase",
+      "version": "2026-09",
+      "content_hash": "5f13c4eaa92886c67ae36910779ec35689ed47b5daaa85d7569c7b172d9dcd1f",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 886 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": true,
+          "reason": "ok: metadata complete (source=b06_near_dup_scholarship.md, version=2026-09, pages=1) and text intact"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-09 for merit_scholarship_paraphrase"
+        },
+        "uniqueness": {
+          "pass": false,
+          "reason": "near_duplicate_embedding: cosine=0.9713 >= 0.94 against b01_merit_scholarship_guidelines.md"
+        }
+      },
+      "overall_pass": false,
+      "superseded_previous": null,
+      "disposition": "quarantined",
+      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b06_near_dup_scholarship.md"
+    },
+    {
+      "source": "b07_corrupt_file.pdf",
+      "file_path": "/corpus/batch_b/b07_corrupt_file.pdf",
+      "doc_id": "b07_corrupt_file",
+      "version": "2026-06",
+      "content_hash": "",
+      "checks": {
+        "quality": {
+          "pass": false,
+          "reason": "empty_document: 0 pages extracted"
+        },
+        "completeness": {
+          "pass": false,
+          "reason": "truncated_or_page_mismatch: declared page_count=0 != extracted_pages=0"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-06 for b07_corrupt_file"
+        },
+        "uniqueness": {
+          "pass": false,
+          "reason": "skipped_due_to_quality_failure: empty_document: 0 pages extracted"
+        }
+      },
+      "overall_pass": false,
+      "superseded_previous": null,
+      "disposition": "quarantined",
+      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b07_corrupt_file.pdf"
+    },
+    {
+      "source": "b08_truncated_policy.md",
+      "file_path": "/corpus/batch_b/b08_truncated_policy.md",
+      "doc_id": "lab_safety_policy",
+      "version": "2026-09",
+      "content_hash": "675c6bf117cfad54cfcc1f2cfaa919abc31a67963e5d31341ac7a6ca65aac188",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 384 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": false,
+          "reason": "truncated_text_marker: found '[truncated]' in extracted text"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-09 for lab_safety_policy"
+        },
+        "uniqueness": {
+          "pass": true,
+          "reason": "ok: unique hash; max cross-doc cosine=0.6841 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
+        }
+      },
+      "overall_pass": false,
+      "superseded_previous": null,
+      "disposition": "quarantined",
+      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b08_truncated_policy.md"
+    },
+    {
+      "source": "b09_missing_metadata.md",
+      "file_path": "/corpus/batch_b/b09_missing_metadata.md",
+      "doc_id": "b09_missing_metadata",
+      "version": "2026-06",
+      "content_hash": "207c3751427b940d56186497722f58509296d72486de146b0013ee6d21e3f50e",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 250 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": false,
+          "reason": "missing_required_metadata: title, date_or_version"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-06 for b09_missing_metadata"
+        },
+        "uniqueness": {
+          "pass": true,
+          "reason": "ok: unique hash; max cross-doc cosine=0.7172 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
+        }
+      },
+      "overall_pass": false,
+      "superseded_previous": null,
+      "disposition": "quarantined",
+      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b09_missing_metadata.md"
+    },
+    {
+      "source": "b10_academic_rules_handbook_nov2026.md",
+      "file_path": "/corpus/batch_b/b10_academic_rules_handbook_nov2026.md",
+      "doc_id": "academic_rules_handbook",
+      "version": "2026-11",
+      "content_hash": "1e6052e4b88d9d7cb958e9cce1d3835a25e7b3895b9d85b94310867251d22032",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 1189 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": true,
+          "reason": "ok: metadata complete (source=b10_academic_rules_handbook_nov2026.md, version=2026-11, pages=1) and text intact"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "newer_version_detected: 2026-11 supersedes active 2026-06 (Academic_Rules_Handbook_2026.pdf); archiving old version"
+        },
+        "uniqueness": {
+          "pass": true,
+          "reason": "ok: unique hash; max cross-doc cosine=0.8736 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
+        }
+      },
+      "overall_pass": true,
+      "superseded_previous": {
+        "source": "Academic_Rules_Handbook_2026.pdf",
+        "version": "2026-06"
+      },
+      "disposition": "indexed_superseding"
+    },
+    {
+      "source": "b11_library_fine_addendum_injected.md",
+      "file_path": "/corpus/batch_b/b11_library_fine_addendum_injected.md",
+      "doc_id": "library_fine_addendum",
+      "version": "2026-10",
+      "content_hash": "d2be9347dae5073e6836f61b214cc5bf174724ccbde6913faef60d5fce109222",
+      "checks": {
+        "quality": {
+          "pass": true,
+          "reason": "ok: 807 chars across 1 page(s)"
+        },
+        "completeness": {
+          "pass": true,
+          "reason": "ok: metadata complete (source=b11_library_fine_addendum_injected.md, version=2026-10, pages=1) and text intact"
+        },
+        "recency": {
+          "pass": true,
+          "reason": "ok: initial active version 2026-10 for library_fine_addendum"
+        },
+        "uniqueness": {
+          "pass": true,
+          "reason": "ok: unique hash; max cross-doc cosine=0.6989 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
+        }
+      },
+      "overall_pass": true,
+      "superseded_previous": null,
+      "disposition": "indexed"
+    }
+  ],
+  "vector_store_chunks_by_document": {
+    "Academic_Calendar_page.html": 1,
+    "Academic_Rules_Handbook_2026.pdf": 39,
+    "Annual_Report_2019-20.pdf": 26,
+    "Annual_Report_2020-21.pdf": 26,
+    "Annual_Report_2021-22.pdf": 27,
+    "Annual_Report_2022-23.pdf": 31,
+    "Annual_Report_2023-24.pdf": 111,
+    "EE_PLOs_2024_onwards_11.pdf": 2,
+    "EE_PLOs_before_2024_12.pdf": 2,
+    "Faculty_Entrepreneurship_Technical_Startups_Policy.pdf": 7,
+    "Fee_Structure_page.html": 3,
+    "Grading_page.html": 3,
+    "Prospectus_2026_Academic_Rules_and_Regulations.pdf": 12,
+    "Student_Handbook_2026.pdf": 43,
+    "Undergraduate_Academic_Rules_Aug_2023.pdf": 147,
+    "b01_merit_scholarship_guidelines.md": 1,
+    "b02_research_grant_policy.md": 1,
+    "b03_fyp_handbook_2026.md": 1,
+    "b10_academic_rules_handbook_nov2026.md": 2,
+    "b11_library_fine_addendum_injected.md": 1
+  }
+}
