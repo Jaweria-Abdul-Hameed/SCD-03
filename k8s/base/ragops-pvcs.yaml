@@ -1,0 +1,32 @@
+# PersistentVolumeClaims for RAGOps traces (Part D1 / F4) and offline eval results (Part F2).
+# The corpus-data PVC (k8s/base/corpus-pvc.yaml) also stores datalake/, quarantine/,
+# archive/, and verification reports/ across pod restarts.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: traces-data
+  namespace: rahbar
+  labels:
+    app: api
+    app.kubernetes.io/part-of: rahbar
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 512Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: eval-results
+  namespace: rahbar
+  labels:
+    app: eval
+    app.kubernetes.io/part-of: rahbar
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 512Mi

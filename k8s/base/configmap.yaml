@@ -15,9 +15,12 @@ metadata:
     app.kubernetes.io/part-of: rahbar
 data:
   EMBED_MODEL: "nomic-embed-text"
+  EMBED_VERSION: "nomic-embed-text:v1.5"
   EMBED_DIMENSION: "768"
   CHUNK_SIZE: "512"
   CHUNK_OVERLAP: "64"
+  NEAR_DUP_THRESHOLD: "0.94"
+  DATA_LAKE_ROOT: "/corpus"
   TOP_K: "5"
   # Floor 0.64 (cosine, nomic-embed-text WITH task prefixes): measured top-1 scores on the
   # live index were 0.52-0.62 for 4 clearly off-topic questions and >= 0.664 for all 13
@@ -30,11 +33,16 @@ data:
   # "PLOs now" answer to "PLOs before 2024" (cosine 0.952).
   CACHE_THRESHOLD: "0.96"
   TEMPERATURE: "0.0"
+  LLM_SEED: "42"
+  PROMPT_TEMPLATE: "grounded_v1"
+  RETRIEVAL_RAIL_MODE: "redact"
+  TRACE_FILE: "/traces/traces.jsonl"
   LLM_PROVIDER: "ollama-host"
   LLM_MODEL: "llama3.2:3b"
   OLLAMA_HOST: "host.minikube.internal:11434"
   CHROMA_HOST: "chroma"
   CHROMA_PORT: "8000"
   CHROMA_COLLECTION: "rahbar_corpus"
+  COLLECTION_VERSION: "v1"
   REDIS_HOST: "redis"
   REDIS_PORT: "6379"

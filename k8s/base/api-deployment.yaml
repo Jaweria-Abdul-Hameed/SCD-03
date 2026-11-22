@@ -52,6 +52,8 @@ spec:
                 name: rahbar-secret
                 optional: true
           volumeMounts:
+            - name: traces
+              mountPath: /traces
             - name: tmp
               mountPath: /tmp
           resources:
@@ -93,5 +95,8 @@ spec:
             periodSeconds: 10
             failureThreshold: 3
       volumes:
+        - name: traces
+          persistentVolumeClaim:
+            claimName: traces-data
         - name: tmp
           emptyDir: {}

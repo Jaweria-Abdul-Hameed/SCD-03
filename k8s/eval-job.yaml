@@ -1,0 +1,84 @@
+# Part F2 Evaluation Job — runs Part B 3-level suite + Part C2 release gate.
+# Exact required command: kubectl apply -f k8s/eval-job.yaml
+# Writes timestamped result JSON to the eval-results PVC (/results) and exits
+# non-zero (failing the Job) whenever the ConfigMap release gate fails.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: eval-job
+  namespace: rahbar
+  labels:
+    app: eval
+    app.kubernetes.io/part-of: rahbar
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: eval
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: eval-sa
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: eval
+          image: ghcr.io/rahbar/eval:local
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args:
+            - >
+              BASELINE_ARG="";
+              if [ -n "$EVAL_BASELINE_FILE" ] && [ -f "$EVAL_BASELINE_FILE" ]; then
+                BASELINE_ARG="--baseline $EVAL_BASELINE_FILE";
+              fi;
+              python eval/run_ragops_eval.py
+              --api-base "$EVAL_TARGET_API"
+              --golden /app/eval/golden.jsonl
+              --pairs /app/eval/module_pairs.jsonl
+              --ollama-host "$OLLAMA_HOST"
+              --embed-model "$EMBED_MODEL"
+              --llm-model "$LLM_MODEL"
+              --provider-mode "$LLM_PROVIDER"
+              --label "$EVAL_LABEL"
+              --out-dir /results
+              --gate-config /app/eval/gate_thresholds.yaml
+              $BASELINE_ARG
+              --enforce-gate
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+            - configMapRef:
+                name: rahbar-gate-config
+          volumeMounts:
+            - name: results
+              mountPath: /results
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              cpu: 100m
+              memory: 192Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: results
+          persistentVolumeClaim:
+            claimName: eval-results
+        - name: tmp
+          emptyDir: {}

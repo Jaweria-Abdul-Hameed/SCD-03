@@ -44,6 +44,9 @@ spec:
               args:
                 - --corpus-dir
                 - /corpus/raw
+                - --data-root
+                - /corpus
+                - --print-summary
               envFrom:
                 - configMapRef:
                     name: rahbar-config

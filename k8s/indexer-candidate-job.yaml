@@ -1,0 +1,69 @@
+# Candidate collection indexer Job (Part C / F3) — single-writer indexer-sa
+# populating the isolated `rahbar_corpus_candidate` collection for api-candidate.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: indexer-candidate
+  namespace: rahbar
+  labels:
+    app: indexer
+    app.kubernetes.io/part-of: rahbar
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: indexer
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: indexer-sa
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: indexer
+          image: ghcr.io/rahbar/indexer:local
+          imagePullPolicy: IfNotPresent
+          args:
+            - --corpus-dir
+            - /corpus/raw
+            - --data-root
+            - /corpus/candidate_lake
+            - --print-summary
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+          env:
+            - name: CHROMA_COLLECTION
+              value: "rahbar_corpus_candidate"
+          volumeMounts:
+            - name: corpus
+              mountPath: /corpus
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              cpu: 250m
+              memory: 384Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: corpus
+          persistentVolumeClaim:
+            claimName: corpus-data
+        - name: tmp
+          emptyDir: {}

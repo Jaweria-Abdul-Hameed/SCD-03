@@ -1,0 +1,21 @@
+# Part C2 / F2 Release Gate Thresholds ConfigMap.
+# Editing any threshold here and re-applying changes the outcome of k8s/eval-job.yaml
+# WITHOUT rebuilding any Docker image.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rahbar-gate-config
+  namespace: rahbar
+  labels:
+    app: eval
+    app.kubernetes.io/part-of: rahbar
+data:
+  EVAL_TARGET_API: "http://api:8000"
+  EVAL_LABEL: "k8s-eval"
+  EVAL_BASELINE_FILE: "/results/baseline_k8s.json"
+  GATE_RECALL5_MAX_DROP_PP: "0.02"
+  GATE_FAITHFULNESS_MIN: "0.75"
+  GATE_P95_LATENCY_MAX_MS: "45000.0"
+  GATE_ABSTENTION_MIN_DELTA: "0.0"
+  GATE_ABSTENTION_MIN: "0.80"
+  GATE_CITATION_VALIDITY_MIN: "0.90"

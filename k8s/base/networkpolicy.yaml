@@ -93,6 +93,9 @@ spec:
         - podSelector:
             matchLabels:
               app: ui
+        - podSelector:
+            matchLabels:
+              app: eval
         - namespaceSelector:
             matchLabels:
               kubernetes.io/metadata.name: ingress-nginx
@@ -168,6 +171,9 @@ spec:
               app: api
         - podSelector:
             matchLabels:
+              app: api-candidate
+        - podSelector:
+            matchLabels:
               app: indexer
       ports:
         - port: 8000
@@ -203,6 +209,9 @@ spec:
         - podSelector:
             matchLabels:
               app: api
+        - podSelector:
+            matchLabels:
+              app: api-candidate
         - podSelector:
             matchLabels:
               app: indexer
@@ -253,6 +262,120 @@ spec:
     - to:
         - ipBlock:
             cidr: 192.168.49.1/32
+      ports:
+        - port: 11434
+          protocol: TCP
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+---
+# Candidate API (Part C3 / F3): same least-privilege egress as live API.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-api-candidate
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+spec:
+  podSelector:
+    matchLabels:
+      app: api-candidate
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: eval
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+      ports:
+        - port: 8000
+          protocol: TCP
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: chroma
+      ports:
+        - port: 8000
+          protocol: TCP
+    - to:
+        - podSelector:
+            matchLabels:
+              app: redis
+      ports:
+        - port: 6379
+          protocol: TCP
+    - to:
+        - ipBlock:
+            cidr: 192.168.49.1/32
+      ports:
+        - port: 11434
+          protocol: TCP
+    - to:
+        - ipBlock:
+            cidr: 192.168.65.254/32
+      ports:
+        - port: 11434
+          protocol: TCP
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+---
+# Evaluation Job (Part F2): egress to api / api-candidate, host Ollama, and DNS only.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-eval
+  namespace: rahbar
+  labels:
+    app.kubernetes.io/part-of: rahbar
+spec:
+  podSelector:
+    matchLabels:
+      app: eval
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: api
+      ports:
+        - port: 8000
+          protocol: TCP
+    - to:
+        - podSelector:
+            matchLabels:
+              app: api-candidate
+      ports:
+        - port: 8000
+          protocol: TCP
+    - to:
+        - ipBlock:
+            cidr: 192.168.49.1/32
+      ports:
+        - port: 11434
+          protocol: TCP
+    - to:
+        - ipBlock:
+            cidr: 192.168.65.254/32
       ports:
         - port: 11434
           protocol: TCP

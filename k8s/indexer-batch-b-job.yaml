@@ -1,0 +1,72 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: indexer-batch-b
+  namespace: rahbar
+  labels:
+    app: indexer
+    app.kubernetes.io/part-of: rahbar
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: indexer
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: indexer-sa
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: indexer
+          image: ghcr.io/rahbar/indexer:local
+          imagePullPolicy: IfNotPresent
+          args:
+            - --corpus-dir
+            - /corpus/batch_b
+            - --data-root
+            - /corpus
+            - --additive
+            - --report-out
+            - /results/verification_batch_b.json
+            - --print-summary
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+          volumeMounts:
+            - name: corpus
+              mountPath: /corpus
+            - name: results
+              mountPath: /results
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              cpu: 250m
+              memory: 384Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: corpus
+          persistentVolumeClaim:
+            claimName: corpus-data
+        - name: results
+          persistentVolumeClaim:
+            claimName: eval-results
+        - name: tmp
+          emptyDir: {}

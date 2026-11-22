@@ -27,7 +27,7 @@ patches:
         LLM_PROVIDER: "ollama-host"
         OLLAMA_HOST: "host.minikube.internal:11434"
         LLM_MODEL: "llama3.2:3b"
-        LLM_TIMEOUT_S: "120"
+        LLM_TIMEOUT_S: "240"
     target:
       kind: ConfigMap
       name: rahbar-config
