@@ -6,10 +6,7 @@ Uses Chrome headless to render pixel-perfect dark terminal windows to PNG.
 from __future__ import annotations
 
 import html
-import json
-import os
 import subprocess
-import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -43,7 +40,9 @@ def render_terminal_png(
                 l_out = l_out.replace("Complete", '<span class="pass">Complete</span>')
             if "FAIL" in l_out or "Error" in l_out or "quarantined" in l_out:
                 l_out = l_out.replace("FAIL", '<span class="fail">FAIL</span>')
-                l_out = l_out.replace("quarantined", '<span class="fail">quarantined</span>')
+                l_out = l_out.replace(
+                    "quarantined", '<span class="fail">quarantined</span>'
+                )
             if "===" in l_out or "---" in l_out:
                 l_out = f'<span class="divider">{l_out}</span>'
             lines.append(l_out)

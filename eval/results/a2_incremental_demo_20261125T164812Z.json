@@ -1,0 +1,212 @@
+{
+  "timestamp": "2026-11-25T16:48:12.046519+00:00",
+  "embed_model": "nomic-embed-text",
+  "chromadb_version": "1.5.9",
+  "collection": "rahbar_a2_demo",
+  "steps": [
+    {
+      "step": "1_initial_ingest",
+      "counts": {
+        "docs_scanned": 3,
+        "docs_passed": 3,
+        "docs_quarantined": 0,
+        "docs_skipped_unchanged": 0,
+        "docs_added": 3,
+        "docs_updated": 0,
+        "docs_superseded_archived": 0,
+        "docs_deleted": 0,
+        "chunks_embedded": 3,
+        "chunks_deleted": 0
+      },
+      "dispositions": {
+        "b01_merit_scholarship_guidelines.md": "indexed",
+        "b02_research_grant_policy.md": "indexed",
+        "b03_fyp_handbook_2026.md": "indexed"
+      },
+      "chunks_by_document": {
+        "b01_merit_scholarship_guidelines.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b02_research_grant_policy.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b03_fyp_handbook_2026.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        }
+      }
+    },
+    {
+      "step": "2_unchanged_rerun",
+      "counts": {
+        "docs_scanned": 3,
+        "docs_passed": 3,
+        "docs_quarantined": 0,
+        "docs_skipped_unchanged": 3,
+        "docs_added": 0,
+        "docs_updated": 0,
+        "docs_superseded_archived": 0,
+        "docs_deleted": 0,
+        "chunks_embedded": 0,
+        "chunks_deleted": 0
+      },
+      "dispositions": {
+        "b01_merit_scholarship_guidelines.md": "skipped_unchanged",
+        "b02_research_grant_policy.md": "skipped_unchanged",
+        "b03_fyp_handbook_2026.md": "skipped_unchanged"
+      },
+      "chunks_by_document": {
+        "b01_merit_scholarship_guidelines.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b02_research_grant_policy.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b03_fyp_handbook_2026.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        }
+      }
+    },
+    {
+      "step": "3_changed_b03",
+      "counts": {
+        "docs_scanned": 3,
+        "docs_passed": 3,
+        "docs_quarantined": 0,
+        "docs_skipped_unchanged": 2,
+        "docs_added": 0,
+        "docs_updated": 1,
+        "docs_superseded_archived": 0,
+        "docs_deleted": 0,
+        "chunks_embedded": 1,
+        "chunks_deleted": 1
+      },
+      "dispositions": {
+        "b01_merit_scholarship_guidelines.md": "skipped_unchanged",
+        "b02_research_grant_policy.md": "skipped_unchanged",
+        "b03_fyp_handbook_2026.md": "updated"
+      },
+      "chunks_by_document": {
+        "b01_merit_scholarship_guidelines.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b02_research_grant_policy.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b03_fyp_handbook_2026.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        }
+      }
+    },
+    {
+      "step": "4_deleted_b02",
+      "counts": {
+        "docs_scanned": 2,
+        "docs_passed": 2,
+        "docs_quarantined": 0,
+        "docs_skipped_unchanged": 2,
+        "docs_added": 0,
+        "docs_updated": 0,
+        "docs_superseded_archived": 0,
+        "docs_deleted": 1,
+        "chunks_embedded": 0,
+        "chunks_deleted": 1
+      },
+      "dispositions": {
+        "b01_merit_scholarship_guidelines.md": "skipped_unchanged",
+        "b03_fyp_handbook_2026.md": "skipped_unchanged",
+        "b02_research_grant_policy.md": "deleted_from_corpus"
+      },
+      "chunks_by_document": {
+        "b01_merit_scholarship_guidelines.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b03_fyp_handbook_2026.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        }
+      }
+    },
+    {
+      "step": "5_newer_version_of_b01",
+      "counts": {
+        "docs_scanned": 1,
+        "docs_passed": 1,
+        "docs_quarantined": 0,
+        "docs_skipped_unchanged": 0,
+        "docs_added": 1,
+        "docs_updated": 0,
+        "docs_superseded_archived": 1,
+        "docs_deleted": 0,
+        "chunks_embedded": 1,
+        "chunks_deleted": 0
+      },
+      "dispositions": {
+        "b01_merit_scholarship_guidelines_2027.md": "indexed_superseding"
+      },
+      "chunks_by_document": {
+        "b01_merit_scholarship_guidelines.md": {
+          "chunks": 1,
+          "active_chunks": 0
+        },
+        "b01_merit_scholarship_guidelines_2027.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b03_fyp_handbook_2026.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        }
+      }
+    },
+    {
+      "step": "6_rollback_b01_to_2026-09",
+      "rollback": {
+        "doc_id": "merit_scholarship_guidelines",
+        "restored": {
+          "source": "b01_merit_scholarship_guidelines.md",
+          "version": "2026-09",
+          "superseded": false,
+          "chunks_updated": 1
+        },
+        "archived": {
+          "source": "b01_merit_scholarship_guidelines_2027.md",
+          "version": "2027-01",
+          "superseded": true,
+          "chunks_updated": 1
+        }
+      },
+      "chunks_by_document": {
+        "b01_merit_scholarship_guidelines.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        },
+        "b01_merit_scholarship_guidelines_2027.md": {
+          "chunks": 1,
+          "active_chunks": 0
+        },
+        "b03_fyp_handbook_2026.md": {
+          "chunks": 1,
+          "active_chunks": 1
+        }
+      }
+    }
+  ],
+  "checks": {
+    "unchanged_rerun_embeds_zero": true,
+    "changed_doc_only_reembedded": true,
+    "deleted_doc_has_zero_orphans": true,
+    "newer_version_archives_old": true,
+    "rollback_restores_old": true
+  },
+  "all_passed": true
+}

@@ -15,7 +15,10 @@ from copy import deepcopy
 INJECTION_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
         "ignore_previous_instructions",
-        re.compile(r"ignore\s+(?:all\s+)?(?:previous|prior|your)\s+instructions?", re.IGNORECASE),
+        re.compile(
+            r"ignore\s+(?:all\s+)?(?:previous|prior|your)\s+instructions?",
+            re.IGNORECASE,
+        ),
     ),
     (
         "system_override_marker",
@@ -23,11 +26,17 @@ INJECTION_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ),
     (
         "disregard_rules",
-        re.compile(r"disregard\s+(?:all\s+)?(?:previous\s+)?(?:rules|instructions|prompts?)", re.IGNORECASE),
+        re.compile(
+            r"disregard\s+(?:all\s+)?(?:previous\s+)?(?:rules|instructions|prompts?)",
+            re.IGNORECASE,
+        ),
     ),
     (
         "forced_approval_directive",
-        re.compile(r"(?:always\s+respond|respond\s+that)\s+all\s+.*\s+(?:are|will\s+be)\s+(?:100%\s+)?automatically\s+approved", re.IGNORECASE),
+        re.compile(
+            r"(?:always\s+respond|respond\s+that)\s+all\s+.*\s+(?:are|will\s+be)\s+(?:100%\s+)?automatically\s+approved",
+            re.IGNORECASE,
+        ),
     ),
 )
 
@@ -109,7 +118,9 @@ def apply_retrieval_rail(
                 }
             )
         else:
-            c["text"] = cleaned_text + "\n[RETRIEVAL_RAIL: injected instruction redacted]"
+            c["text"] = (
+                cleaned_text + "\n[RETRIEVAL_RAIL: injected instruction redacted]"
+            )
             sanitized.append(c)
             actions.append(
                 {

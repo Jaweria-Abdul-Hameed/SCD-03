@@ -31,7 +31,9 @@ def parse_window(spec: str) -> timedelta | None:
         return None
     m = re.fullmatch(r"(\d+)\s*([smhd])", s)
     if not m:
-        raise ValueError(f"Invalid window {spec!r}; expected e.g. '30m', '24h', '7d', or 'all'")
+        raise ValueError(
+            f"Invalid window {spec!r}; expected e.g. '30m', '24h', '7d', or 'all'"
+        )
     val = int(m.group(1))
     unit = m.group(2)
     if unit == "s":
@@ -72,7 +74,7 @@ def summarize_traces(
         ts_raw = rec.get("timestamp")
         if cutoff is not None and ts_raw:
             try:
-                ts = datetime.fromisoformat(str(ts_raw).replace("Z", "+00:00"))
+                ts = datetime.fromisoformat(str(ts_raw))  # py3.11+ parses a trailing Z
                 if ts.tzinfo is None:
                     ts = ts.replace(tzinfo=UTC)
                 if ts < cutoff:
@@ -93,7 +95,9 @@ def summarize_traces(
     for r in filtered:
         chunks = r.get("retrieved_chunks") or []
         if chunks:
-            scores = [float(c.get("score", 0.0)) for c in chunks if c.get("score") is not None]
+            scores = [
+                float(c.get("score", 0.0)) for c in chunks if c.get("score") is not None
+            ]
             if scores:
                 top1_sims.append(max(scores))
 
@@ -102,7 +106,9 @@ def summarize_traces(
     sim_hist: dict[str, int] = {}
     prev = 0.0
     for b in buckets:
-        sim_hist[f"{prev:.2f}-{b:.2f}"] = sum(1 for s in top1_sims if prev <= s < b or (b == 1.0 and s == 1.0))
+        sim_hist[f"{prev:.2f}-{b:.2f}"] = sum(
+            1 for s in top1_sims if prev <= s < b or (b == 1.0 and s == 1.0)
+        )
         prev = b
 
     stage_names = (
@@ -167,9 +173,15 @@ def summarize_traces(
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Summarize RAGOps JSONL trace logs over a time window.")
-    parser.add_argument("--trace-file", default="traces/traces.jsonl", help="JSONL trace file path")
-    parser.add_argument("--window", default="all", help="Time window (e.g. 1h, 24h, 7d, all)")
+    parser = argparse.ArgumentParser(
+        description="Summarize RAGOps JSONL trace logs over a time window."
+    )
+    parser.add_argument(
+        "--trace-file", default="traces/traces.jsonl", help="JSONL trace file path"
+    )
+    parser.add_argument(
+        "--window", default="all", help="Time window (e.g. 1h, 24h, 7d, all)"
+    )
     parser.add_argument("--out", default=None, help="Optional JSON output file path")
     args = parser.parse_args(argv)
 
@@ -201,4 +213,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    # Windows consoles default to cp1252; traces/summaries contain non-ASCII text.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main())

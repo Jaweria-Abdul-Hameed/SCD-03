@@ -228,7 +228,7 @@
 <div class="header-card">
   <div class="title-group">
     <h1>RAHBAR RAGOps: Operating &amp; Managing Enterprise Retrieval Pipelines</h1>
-    <div class="subtitle">CS4032 Software Quality Engineering &bull; Assignment 03 Final Technical Report</div>
+    <div class="subtitle">CS4032 Software Construction and Development &bull; Assignment 03 Final Technical Report</div>
     <div class="meta-badges">
       <span class="badge badge-primary">FAST-NUCES Islamabad</span>
       <span class="badge">Kubernetes Native (Minikube / Calico)</span>
@@ -236,8 +236,8 @@
     </div>
   </div>
   <div class="authors-box">
-    <div><span class="author-name">Jaweria Abdul Hameed</span> &bull; jaweriahameed06@gmail.com</div>
-    <div><span class="author-name">Mohsin Khan</span> &bull; mohsinkhan.devs@gmail.com</div>
+    <div><span class="author-name">Jaweria Abdul Hameed</span> &bull; <strong>i243025</strong> &bull; jaweriahameed06@gmail.com</div>
+    <div><span class="author-name">Mohsin Khan</span> &bull; <strong>i243135</strong> &bull; mohsinkhan.devs@gmail.com</div>
     <div><strong>Repository:</strong> github.com/Jaweria-Abdul-Hameed/SCD-03</div>
     <div><strong>Cluster:</strong> Minikube v1.34 / Kubernetes v1.31.0</div>
   </div>
@@ -290,7 +290,7 @@
     </tr>
     <tr>
       <td><strong>2. Data Verification</strong></td>
-      <td>Verification of quality, completeness, recency, and uniqueness (Â§4.2.1â€“4.2.4).</td>
+      <td>Verification of quality, completeness, recency, and uniqueness (§4.2.1–4.2.4).</td>
       <td>Four automated pre-chunking gates: Quality (&ge; 50 chars), Completeness (metadata/truncation), Recency (edition sort), Uniqueness (SHA-256 + 0.94 cosine).</td>
       <td><code>indexer/pipeline/verify.py</code><br><code>indexer/pipeline/datalake.py</code></td>
       <td>Isolated before chunking; bad files quarantined to PVC.</td>
@@ -304,7 +304,7 @@
     </tr>
     <tr>
       <td><strong>4. Retrieval &amp; Guardrails</strong></td>
-      <td>Dense retrieval, relevance filtering, injection defense (Â§3.2.3).</td>
+      <td>Dense retrieval, relevance filtering, injection defense (§3.2.3).</td>
       <td>Chroma HNSW cosine search (top-k=5, floor=0.64). Dual rails: Input Rail flags injection queries; Retrieval Rail excludes/redacts poisoned chunks.</td>
       <td><code>api/app/retrieval/retriever.py</code><br><code>api/app/services/guardrails.py</code></td>
       <td>Retrieval Rail strips malicious text; keeps valid policy.</td>
@@ -318,14 +318,14 @@
     </tr>
     <tr>
       <td><strong>6. Observability &amp; Trace</strong></td>
-      <td>End-to-end request tracing, latency profiling, prompt reproducibility (Â§5.1).</td>
+      <td>End-to-end request tracing, latency profiling, prompt reproducibility (§5.1).</td>
       <td>Every query emits 16-field JSONL record to <code>/traces/traces.jsonl</code>. Computes SHA-256 prompt hash. Trace tool CLI verifies hash and rebuilds exact prompt context.</td>
       <td><code>api/app/services/tracing.py</code><br><code>scripts/trace_tool.py</code></td>
       <td>Native Prometheus metrics: stage latency, top-1 sim, rails.</td>
     </tr>
     <tr>
       <td><strong>7. Release Gate &amp; Eval</strong></td>
-      <td>Pre-deployment offline benchmarking, regression gating, rollback (Â§4.2.5).</td>
+      <td>Pre-deployment offline benchmarking, regression gating, rollback (§4.2.5).</td>
       <td>Three-level offline evaluation suite. K8s ConfigMap-driven release gate evaluates recall drop, faithfulness, latency, and abstention before rollout.</td>
       <td><code>eval/run_ragops_eval.py</code><br><code>eval/release_gate.py</code></td>
       <td>Thresholds edited via ConfigMap; zero-downtime rollback.</td>
@@ -393,7 +393,7 @@
   </tbody>
 </table>
 
-<h2><span class="sec-num">3</span> Part A: Data Management, Pre-Chunking Verification &amp; Data Lake (Paper Â§Â§4.2.1â€“4.2.4)</h2>
+<h2><span class="sec-num">3</span> Part A: Data Management, Pre-Chunking Verification &amp; Data Lake (Paper §§4.2.1–4.2.4)</h2>
 <p style="font-size: 7.4pt; margin-bottom: 3px;">
   In traditional RAG systems, corrupt or outdated documents are ingested into the vector store and only cause failures during retrieval or generation. RAHBAR enforces <strong>pre-chunking verification</strong>: every file must pass four independent gates before tokenization. Failing documents are immediately quarantined to <code>/corpus/quarantine/&lt;run_id&gt;/</code> with a structured report, guaranteeing zero polluted chunks enter ChromaDB.
 </p>
@@ -470,9 +470,9 @@
 <!-- ====================================================================== -->
 <!-- PAGE 3: PART B 3-LEVEL OFFLINE EVALUATION SUITE                        -->
 <!-- ====================================================================== -->
-<h2><span class="sec-num">4</span> Part B: 3-Level Offline Evaluation Suite (Paper Â§4.2.5 &amp; Table 1)</h2>
+<h2><span class="sec-num">4</span> Part B: 3-Level Offline Evaluation Suite (Paper §4.2.5 &amp; Table 1)</h2>
 <p style="font-size: 7.4pt; margin-bottom: 3px;">
-  Xu et al. (2026, Â§4.2.5) demonstrate that evaluating RAG solely on end-to-end answer accuracy conceals component regressions. RAHBAR implements a hierarchical 3-level offline evaluation suite executing via a single command (<code>eval/run_ragops_eval.py</code>).
+  Xu et al. (2026, §4.2.5) demonstrate that evaluating RAG solely on end-to-end answer accuracy conceals component regressions. RAHBAR implements a hierarchical 3-level offline evaluation suite executing via a single command (<code>eval/run_ragops_eval.py</code>).
 </p>
 
 <div class="table-caption">Table 5: 3-Level Evaluation Architecture, Metrics, and Baseline Cluster Results</div>
@@ -517,7 +517,7 @@
       <td>MRR &amp; nDCG@5</td>
       <td>Mean Reciprocal Rank (\(\frac{1}{\text{rank}}\)) and Normalized Discounted Cumulative Gain at 5.</td>
       <td><strong>MRR: 0.4913<br>nDCG@5: 0.5460</strong></td>
-      <td>Relevant chunks consistently appear in ranks 1â€“2, providing high signal density.</td>
+      <td>Relevant chunks consistently appear in ranks 1–2, providing high signal density.</td>
     </tr>
     <tr>
       <td>Typo Noise Resilience</td>
@@ -557,7 +557,7 @@
   <div>
     <h3>Stochasticity &amp; Run-to-Run Variance Analysis</h3>
     <p style="font-size: 7.2pt;">
-      Following Xu et al. (2026, Â§4.2.5), we evaluated run-to-run stochasticity across two back-to-back offline evaluation runs with fixed seed (<code>seed=42</code>, <code>temperature=0.0</code>).
+      Following Xu et al. (2026, §4.2.5), we evaluated run-to-run stochasticity across two back-to-back offline evaluation runs with fixed seed (<code>seed=42</code>, <code>temperature=0.0</code>).
     </p>
     <table style="margin-top: 1px;">
       <thead>
@@ -584,7 +584,7 @@
 <!-- ====================================================================== -->
 <!-- PAGE 4: PART C CHANGE EXPERIMENT & RELEASE GATE                        -->
 <!-- ====================================================================== -->
-<h2><span class="sec-num">5</span> Part C: Change Experiment &amp; Release Gate (Paper Â§4.1(d), Â§Â§4.2.5â€“4.2.6)</h2>
+<h2><span class="sec-num">5</span> Part C: Change Experiment &amp; Release Gate (Paper §4.1(d), §§4.2.5–4.2.6)</h2>
 <p style="font-size: 7.4pt; margin-bottom: 3px;">
   In enterprise RAGOps, changes to prompts, chunk sizes, or models must not be deployed directly to production. We engineered an isolated candidate evaluation pipeline: candidate collections and models run in isolation (<code>rahbar_corpus_candidate</code>, <code>api-candidate:8000</code>), evaluated against the production baseline via automated gate thresholds before release.
 </p>
@@ -628,18 +628,18 @@
       <td>0.3810 (Drop = <strong>+0.3333</strong>) <span class="badge badge-fail">FAIL</span></td>
     </tr>
     <tr>
-      <td><strong>Faithfulness Rate</strong></td>
+      <td><strong>Faithfulness Rate (lexical, all three runs)</strong></td>
       <td>&ge; 0.7500 (75.0%)</td>
-      <td>0.8333</td>
-      <td><strong>0.8947</strong> (+0.0614) <span class="badge badge-pass">PASS</span></td>
-      <td>1.0000 (+0.1667) <span class="badge badge-pass">PASS</span></td>
+      <td>1.0000</td>
+      <td><strong>0.8947</strong> (-0.1053) <span class="badge badge-pass">PASS</span></td>
+      <td>1.0000 (+0.0000, only 9 grounded) <span class="badge badge-pass">PASS</span></td>
     </tr>
     <tr>
       <td><strong>Latency p95 (ms)</strong></td>
       <td>&le; 45,000.0 ms</td>
-      <td>12,109.6 ms</td>
-      <td><strong>4,438.4 ms</strong> (-7,671.2 ms) <span class="badge badge-pass">PASS</span></td>
-      <td><strong>1,915.1 ms</strong> (-10,194.5 ms) <span class="badge badge-pass">PASS</span></td>
+      <td>5,881.0 ms</td>
+      <td><strong>4,438.4 ms</strong> (-1,442.6 ms) <span class="badge badge-pass">PASS</span></td>
+      <td><strong>1,915.1 ms</strong> (-3,965.9 ms) <span class="badge badge-pass">PASS</span></td>
     </tr>
     <tr>
       <td><strong>Abstention Correctness</strong></td>
@@ -668,7 +668,7 @@
 <div class="stat-card" style="border-left-color: #0284c7; margin-top: 4px;">
   <div class="stat-lbl">Quantitative Release Decision &amp; Justification</div>
   <p style="font-size: 7.4pt; margin: 1px 0 0 0;">
-    <strong>Release Decision: APPROVED FOR PRODUCTION PROMOTION.</strong> Candidate <code>strict_concise_v2</code> satisfies all 5 release gate criteria with zero regressions: (1) Retrieval recall@5 was perfectly preserved at 0.7143 (&Delta; = 0.0000); (2) Faithfulness increased from 83.3% to <strong>89.5%</strong> due to concise grounding constraints; (3) Tail latency (p95) decreased dramatically from 12,109.6 ms to <strong>4,438.4 ms (63.3% reduction)</strong> by eliminating verbose chain-of-thought tokens; (4) Abstention and citation correctness remained at 100.0%. In contrast, the degraded candidate degraded recall@5 by 33.3 percentage points, triggering an automated gate failure and aborting rollout.
+    <strong>Release Decision: APPROVED FOR PRODUCTION PROMOTION.</strong> Baseline column = <code>baseline_k8s.json</code>, the file the gate compares against, scored with the same lexical faithfulness method as both candidates. Candidate <code>strict_concise_v2</code> passes all 5 release gate criteria: (1) recall@5 unchanged at 0.7143 (&Delta; = 0.0000); (2) faithfulness fell from 1.0000 to <strong>0.8947</strong> (2 of 19 grounded answers, G01 and G10, failed the lexical support check), still above the 0.75 floor, so we release it and keep watching this metric; (3) p95 latency fell from 5,881.0 ms to <strong>4,438.4 ms (24.5% lower)</strong> because answers are shorter; (4) abstention and citation correctness stayed at 100.0%. In contrast, the degraded candidate degraded recall@5 by 33.3 percentage points, triggering an automated gate failure and aborting rollout.
   </p>
 </div>
 
@@ -677,7 +677,7 @@
 <!-- ====================================================================== -->
 <!-- PAGE 5: PART D OBSERVABILITY & TRACEABILITY                            -->
 <!-- ====================================================================== -->
-<h2><span class="sec-num">6</span> Part D: Observability, Traceability &amp; Safety Rails (Paper Â§Â§3.2.3, 5.1)</h2>
+<h2><span class="sec-num">6</span> Part D: Observability, Traceability &amp; Safety Rails (Paper §§3.2.3, 5.1)</h2>
 <p style="font-size: 7.4pt; margin-bottom: 3px;">
   Enterprise RAG systems require deterministic auditability. RAHBAR records an immutable 16-field JSONL record for every query, capturing the exact embedding model, collection version, retrieved chunks, SHA-256 prompt hash, and stage latencies.
 </p>
@@ -736,9 +736,9 @@
 <!-- ====================================================================== -->
 <!-- PAGE 6: PART E DRIFT & COVERAGE CHECKING                               -->
 <!-- ====================================================================== -->
-<h2><span class="sec-num">7</span> Part E: Drift &amp; Query Coverage Checking (Paper Â§4.1(e), Â§4.2.7)</h2>
+<h2><span class="sec-num">7</span> Part E: Drift &amp; Query Coverage Checking (Paper §4.1(e), §4.2.7)</h2>
 <p style="font-size: 7.4pt; margin-bottom: 3px;">
-  Xu et al. (2026, Â§4.2.7) identify <em>test coverage drift</em> as a primary cause of silent degradation: offline test sets fail to reflect evolving production query distributions. We implemented an automated query coverage checker comparing 42 live user queries (<code>eval/live_queries.jsonl</code>) against our golden benchmark (<code>eval/golden.jsonl</code>).
+  Xu et al. (2026, §4.2.7) identify <em>test coverage drift</em> as a primary cause of silent degradation: offline test sets fail to reflect evolving production query distributions. We implemented an automated query coverage checker comparing 42 live user queries (<code>eval/live_queries.jsonl</code>) against our golden benchmark (<code>eval/golden.jsonl</code>).
 </p>
 
 <div class="grid-2">
@@ -825,7 +825,7 @@
 
 <div class="grid-2" style="margin-top: 4px;">
   <div class="callout-success">
-    <strong>Post-Expansion Coverage (E4):</strong> Adding questions G27â€“G32 increased golden test size from 26 to 32 questions. Live query coverage rose from <strong>59.5% to 85.7% (36/42 covered)</strong>, satisfying the &ge; 85% requirement and exiting with code 0 (Screenshot E2).
+    <strong>Post-Expansion Coverage (E4):</strong> Adding questions G27–G32 increased golden test size from 26 to 32 questions. Live query coverage rose from <strong>59.5% to 85.7% (36/42 covered)</strong>, satisfying the &ge; 85% requirement and exiting with code 0 (Screenshot E2).
   </div>
   <div class="callout-warn">
     <strong>Data Drift Analysis Post-Batch B (E3):</strong> Ingesting Batch B introduced new active policies (e.g., Nov 2026 Academic Rules superseding June 2026). Re-running the evaluation suite shifted retrieval recall from 0.7143 to 0.6190 because test questions referenced superseded document metadata, proving the paper's assertion that corpus updates necessitate synchronized test set evolution.
@@ -837,7 +837,7 @@
 <!-- ====================================================================== -->
 <!-- PAGE 7: PART F KUBERNETES ARCHITECTURE                                -->
 <!-- ====================================================================== -->
-<h2><span class="sec-num">8</span> Part F: Kubernetes Architecture, GitOps &amp; Release Management (Paper Â§Â§4.1(eâ€“f), 5.1)</h2>
+<h2><span class="sec-num">8</span> Part F: Kubernetes Architecture, GitOps &amp; Release Management (Paper §§4.1(e–f), 5.1)</h2>
 <p style="font-size: 7.4pt; margin-bottom: 3px;">
   The entire RAHBAR pipeline runs natively on a local Minikube cluster (v1.34, Calico CNI). Running RAG systems as bare Docker containers exposes critical race conditions (e.g., multiple API replicas re-indexing concurrently on startup). We enforced strict cloud-native separation of concerns.
 </p>
@@ -857,7 +857,7 @@
     <tr>
       <td><code>deployment/api</code></td>
       <td>Deployment</td>
-      <td>3 replicas (HPA: 3â€“8)</td>
+      <td>3 replicas (HPA: 3–8)</td>
       <td><code>api-sa</code> (readOnlyRootFilesystem)</td>
       <td>Read-only query serving path. Mounts <code>traces-data</code> PVC. Zero write access to Chroma volume.</td>
     </tr>
@@ -938,28 +938,28 @@
 <!-- ====================================================================== -->
 <!-- PAGE 8: PART G SHORT ANSWER QUESTIONS                                 -->
 <!-- ====================================================================== -->
-<h2><span class="sec-num">9</span> Part G: Comprehensive Short Answer Synthesis (Questions aâ€“f)</h2>
+<h2><span class="sec-num">9</span> Part G: Comprehensive Short Answer Synthesis (Questions a–f)</h2>
 
 <div class="qa-block">
   <div class="qa-title">(a) Batch B Ingestion Defects Caught &amp; Value of Pre-Chunking Verification</div>
   <p style="font-size: 7.2pt; margin: 0; line-height: 1.25;">
-    <strong>Defects Caught:</strong> Our 4 pre-chunking gates caught 6 of 11 documents in Batch B: <code>b04</code> and <code>b05</code> were quarantined for exact duplicate SHA-256 hashes matching <code>b01</code> and <code>b02</code>; <code>b06</code> was quarantined as a near-duplicate because its dense embedding cosine similarity was 0.9713 (&ge; 0.94 threshold); <code>b07</code> was quarantined under Quality due to an empty extracted page stream (corrupted PDF header); <code>b08</code> was quarantined under Completeness for an abrupt cut marker (<code>[truncated]</code>); <code>b09</code> was quarantined for missing YAML title/date frontmatter; and <code>b10</code> triggered automatic archival of the June 2026 Academic Rules.<br>
-    <strong>Pre-Chunking vs. Post-Retrieval Verification:</strong> Verifying documents <em>before</em> chunking is critical. If corrupt or duplicated documents enter the vector database, they fragment HNSW index topologies, dilute cosine density, create index bloat (amplifying storage costs), and introduce conflicting chunks into top-k retrieval. Catching defects pre-chunking guarantees that every stored vector represents an active, verified, unique policy document.
+    <strong>Defects Caught:</strong> Our 4 pre-chunking gates caught 6 of 11 documents in Batch B: <code>b04</code> and <code>b05</code> were quarantined for exact duplicate SHA-256 hashes matching <code>b01</code> and <code>b02</code>; <code>b06</code> was quarantined as a near-duplicate because its dense embedding cosine similarity was 0.9713 (&ge; 0.94 threshold); <code>b07</code> was quarantined under Quality due to an empty extracted page stream (corrupted PDF header); <code>b08</code> was quarantined under Completeness for an abrupt cut marker (<code>[truncated]</code>); <code>b09</code> was quarantined for missing YAML title/date frontmatter; and <code>b10</code> triggered automatic archival of the June 2026 Academic Rules. <strong>Most effective check:</strong> Uniqueness (3 quarantines: <code>b04</code>, <code>b05</code>, <code>b06</code>); Completeness also failed 3 documents, but one of them (<code>b07</code>) had already failed Quality.<br>
+    <strong>Not caught:</strong> the injected instruction in <code>b11</code> passed all four checks, because none of them inspects content for instructions; it was indexed and only stopped at query time by the retrieval rail (5 traces show <code>excluded_poisoned_chunk</code>). <strong>What would catch it:</strong> running the same injection-pattern scan as the retrieval rail inside verification, as a fifth check that quarantines the document before chunking.
   </p>
 </div>
 
 <div class="qa-block">
-  <div class="qa-title">(b) Metric Divergence Scenarios &amp; Root Cause Diagnostics</div>
+  <div class="qa-title">(b) Module-Level Metric Fine, Component / End-to-End Metric Not (from our runs)</div>
   <p style="font-size: 7.2pt; margin: 0; line-height: 1.25;">
-    <strong>Scenario 1: High Recall@5 but Low Faithfulness.</strong> Occurs when the retriever successfully locates the correct document chunk, but the chunk contains dense, legalistic, or tabular text that exceeds the LLM's comprehension capacity, or the prompt template allows unconstrained reasoning, leading the LLM to hallucinate external knowledge instead of extracting the text verbatim. <em>Fix:</em> Enforce strict JSON output schemas, XML context tags, and temperature step-down.<br>
-    <strong>Scenario 2: Low Recall@5 but High Faithfulness.</strong> Occurs when retrieval fails to return the ground-truth chunk (returning weakly related context with similarity below floor), but the generator correctly detects the absence of evidence and cleanly abstains (<code>answered_from_context: false</code>). In this case, faithfulness on grounded answers is high (or vacuous), but end-to-end task utility is poor. <em>Fix:</em> Tune chunk overlap and implement query rewriting.
+    <strong>Module fine, component not:</strong> in the baseline run (<code>eval_baseline-final_20261122T161035Z.json</code>) the embedding model looks healthy: paraphrase/unrelated cosine gap 0.2891 and determinism max difference 0.0. Yet recall@3 is only 0.5714: 9 of 21 questions with a ground-truth page (G01, G02, G03, G09, G11, G12, G18, G25, G26) miss it in the top 3, and 6 miss it in the top 5. Two of those (G25, G26) are Batch B questions asked before Batch B was ingested, so the right document was not in the index at all. The others are page-level misses: the right handbook is retrieved but from the adjacent page (G02: p.9 for p.10; G11: pp.18 and 20 for p.19), or the Prospectus that restates the same rule ranks first. Good embeddings do not guarantee that the chunk with the answer ranks first.<br>
+    <strong>Component fine, end-to-end not:</strong> the passing candidate <code>strict_concise_v2</code> has exactly the baseline's retrieval (recall@5 0.7143, MRR 0.4913), but its lexical faithfulness drops from 1.0000 to 0.8947 (G01 and G10 fail the support check), because the shorter answers paraphrase more.
   </p>
 </div>
 
 <div class="qa-block">
   <div class="qa-title">(c) Archiving Superseded Documents vs. Outright Deletion</div>
   <p style="font-size: 7.2pt; margin: 0; line-height: 1.25;">
-    Outright deletion of superseded documents (such as older academic prospectuses or grading rules) is dangerous in enterprise university RAG systems for three reasons: (1) <strong>Historical Cohort Governance:</strong> Students graduate under the academic rules active during their catalog enrollment year; a 2023 enrolled student is governed by the 2023 prospectus, not the 2026 revision; (2) <strong>Auditability &amp; Traceability:</strong> Past trace records (e.g., trace <code>bcb5f6cf</code>) reference exact chunk IDs and document hashes. Deleting chunks breaks historical trace reproducibility, violating paper Â§5.1; (3) <strong>Explicit Historical Queries:</strong> When users ask <em>"What were the admission criteria in 2023?"</em>, the retriever filters on <code>include_old_versions: true</code>. Archiving on PVC while setting <code>superseded: true</code> in vector metadata cleanly segregates modern from legacy rules without losing history.
+    Outright deletion of superseded documents (such as older academic prospectuses or grading rules) is dangerous in enterprise university RAG systems for three reasons: (1) <strong>Historical Cohort Governance:</strong> Students graduate under the academic rules active during their catalog enrollment year; a 2023 enrolled student is governed by the 2023 prospectus, not the 2026 revision; (2) <strong>Auditability &amp; Traceability:</strong> Past trace records (e.g., trace <code>bcb5f6cf</code>) reference exact chunk IDs and document hashes. Deleting chunks breaks historical trace reproducibility, violating paper §5.1; (3) <strong>Explicit Historical Queries:</strong> When users ask <em>"What were the admission criteria in 2023?"</em>, the retriever filters on <code>include_old_versions: true</code>. Archiving on PVC while setting <code>superseded: true</code> in vector metadata cleanly segregates modern from legacy rules without losing history.
   </p>
 </div>
 
@@ -975,7 +975,7 @@
 <div class="qa-block">
   <div class="qa-title">(e) Hardest Ideas from Xu et al. (2026) to Implement Locally &amp; Engineering Compromises</div>
   <p style="font-size: 7.2pt; margin: 0; line-height: 1.25;">
-    <strong>Hardest Concept:</strong> Real-time feedback loop integration between live observability traces (Â§5.1) and continuous online evaluation (Â§4.2.7) on consumer hardware.<br>
+    <strong>Hardest Concept:</strong> Real-time feedback loop integration between live observability traces (§5.1) and continuous online evaluation (§4.2.7) on consumer hardware.<br>
     <strong>Architectural Challenges:</strong> In a production hyperscale cluster, live queries are asynchronously sampled, masked for PII, evaluated by dedicated judge fleets, and continuously piped into online dashboards. Running multiple concurrent 7B LLM instances (generation model, judge model, embedding model) alongside ChromaDB and Redis inside a local Minikube VM created memory contention and latency spikes.<br>
     <strong>Engineering Compromises:</strong> (1) We routed LLM inferences to host GPU Ollama via <code>host.minikube.internal:11434</code> with serialized queueing; (2) Implemented scheduled batch evaluation via Kubernetes Jobs (<code>eval-job</code>) rather than continuous per-request LLM judging; (3) Capped test suite evaluation at 32 curated golden queries for release gating.
   </p>
@@ -985,7 +985,7 @@
   <div class="qa-title">(f) Kubernetes Object Mapping: Why Cloud-Native Abstractions Fit RAGOps</div>
   <p style="font-size: 7.2pt; margin: 0; line-height: 1.25;">
     Deploying RAG pipelines using bare Docker containers (or Compose) fails in production because containers lack lifecycle guarantees, health probing, and access segregation. Kubernetes objects map naturally to RAGOps stages:
-    (1) <strong>Jobs for Ingestion:</strong> Indexing is idempotent and finite; running it as a Job prevents multiple API replicas from racing on startup; (2) <strong>StatefulSets for Vector Storage:</strong> ChromaDB requires sticky network identity and stable persistent volume attachments (<code>data-chroma-0</code>) to prevent HNSW index corruption; (3) <strong>Deployments with HPA for Query Serving:</strong> The API is stateless and CPU-bound; Deployments enable zero-downtime rolling updates (<code>maxUnavailable: 0</code>) and horizontal autoscaling; (4) <strong>ConfigMaps for Gates:</strong> Decouples evaluation thresholds from container images, enabling instant gate updates without redeployment.
+    (1) <strong>Jobs for Ingestion:</strong> Indexing is idempotent and finite; running it as a Job prevents multiple API replicas from racing on startup; (2) <strong>StatefulSets for Vector Storage:</strong> ChromaDB requires sticky network identity and stable persistent volume attachments (<code>data-chroma-0</code>) to prevent HNSW index corruption; (3) <strong>Deployments with HPA for Query Serving:</strong> The API is stateless and CPU-bound; Deployments enable zero-downtime rolling updates (<code>maxUnavailable: 0</code>) and horizontal autoscaling; (4) <strong>ConfigMaps for Gates:</strong> Decouples evaluation thresholds from container images, enabling instant gate updates without redeployment; (5) <strong>Single writer:</strong> only the indexer <code>Job</code> and the <code>reindex</code> CronJob (ServiceAccount <code>indexer-sa</code>, <code>concurrencyPolicy: Forbid</code>, so two runs never overlap) run the code that writes to Chroma; the <code>api</code> Deployment's code only reads it (the NetworkPolicy lets both reach Chroma, so this is enforced by which workload runs the writer, not by the network); (6) <strong>PVCs:</strong> <code>corpus-data</code> keeps the data lake, quarantine and archived versions, <code>traces-data</code> the trace log, and <code>eval-results</code> the result files across pod restarts.
   </p>
 </div>
 
@@ -996,14 +996,14 @@
 <!-- ====================================================================== -->
 <h2><span class="sec-num">Appendix</span> Screenshot Evidence: 13 Labelled Operational Proofs</h2>
 <p style="font-size: 7.6pt; margin-bottom: 6px;">
-  Every screenshot below captures authentic terminal output executed on the local Minikube Kubernetes cluster in namespace <code>rahbar</code>, validating all requirements for Parts A through F.
+  Each screenshot below is a terminal capture of the command and its output, taken on our own Minikube cluster (namespace <code>rahbar</code>) for Parts A through F.
 </p>
 
 <!-- A1 -->
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_A1_batch_b_verification.png" class="screenshot-img" alt="Screenshot A1">
   <div class="screenshot-caption">
-    <strong>Screenshot A1 â€” Batch B Pre-Chunking Verification Report:</strong> Terminal output of <code>kubectl logs job/indexer-batch-b -n rahbar</code>. Proves execution of the 4 pre-chunking gates on 11 Batch B documents: 5 passed (clean <code>b01</code>â€“<code>b03</code>, superseding <code>b10</code>, injection test <code>b11</code>) and 6 quarantined (exact duplicate hashes <code>b04</code>, <code>b05</code>; near-duplicate embedding cosine 0.9713 <code>b06</code>; corrupt PDF <code>b07</code>; truncated text <code>b08</code>; missing metadata <code>b09</code>).
+    <strong>Screenshot A1 — Batch B Pre-Chunking Verification Report:</strong> Terminal output of <code>kubectl logs job/indexer-batch-b -n rahbar</code>. Proves execution of the 4 pre-chunking gates on 11 Batch B documents: 5 passed (clean <code>b01</code>–<code>b03</code>, superseding <code>b10</code>, injection test <code>b11</code>) and 6 quarantined (exact duplicate hashes <code>b04</code>, <code>b05</code>; near-duplicate embedding cosine 0.9713 <code>b06</code>; corrupt PDF <code>b07</code>; truncated text <code>b08</code>; missing metadata <code>b09</code>).
   </div>
 </div>
 
@@ -1011,7 +1011,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_A2_unchanged_reindex_zero_chunks.png" class="screenshot-img" alt="Screenshot A2">
   <div class="screenshot-caption">
-    <strong>Screenshot A2 â€” Second Ingestion Run on Unchanged Corpus (0 Chunks Embedded):</strong> Output of <code>kubectl logs job/reindex-unchanged-1 -n rahbar</code>. Proves that scanning 15 unchanged documents resulted in 15 skipped files and exactly <strong>0 chunks embedded</strong> (<code>chunks_embedded: 0</code>, <code>total_in_store: 480</code>).
+    <strong>Screenshot A2 — Second Ingestion Run on Unchanged Corpus (0 Chunks Embedded):</strong> Output of <code>kubectl logs job/reindex-unchanged-1 -n rahbar</code>. Proves that scanning 15 unchanged documents resulted in 15 skipped files and exactly <strong>0 chunks embedded</strong> (<code>chunks_embedded: 0</code>, <code>total_in_store: 480</code>).
   </div>
 </div>
 
@@ -1019,7 +1019,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_B1_three_level_eval_summary.png" class="screenshot-img" alt="Screenshot B1">
   <div class="screenshot-caption">
-    <strong>Screenshot B1 â€” 3-Level Offline Evaluation Suite Summary:</strong> Output of <code>eval/run_ragops_eval.py</code> showing Level 1 Module (Cosine Gap = 0.2891, Determinism = 0.0), Level 2 Component (recall@5 = 0.7143, typo noise delta = 0.0), and Level 3 E2E (Faithfulness = 0.8333, Abstention = 1.0, Citations = 1.0, Judge agreement = 0.90).
+    <strong>Screenshot B1 — 3-Level Offline Evaluation Suite Summary:</strong> Output of <code>eval/run_ragops_eval.py</code> showing Level 1 Module (Cosine Gap = 0.2891, Determinism = 0.0), Level 2 Component (recall@5 = 0.7143, typo noise delta = 0.0), and Level 3 E2E (Faithfulness = 0.8333, Abstention = 1.0, Citations = 1.0, Judge agreement = 0.90).
   </div>
 </div>
 
@@ -1027,7 +1027,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_C1_release_gate_failing.png" class="screenshot-img" alt="Screenshot C1">
   <div class="screenshot-caption">
-    <strong>Screenshot C1 â€” Automated Release Gate Failing (Degraded Candidate):</strong> Output of <code>eval/release_gate.py</code> evaluating <code>candidate_fail.json</code>. Gate fails on <code>recall@5_max_drop_vs_baseline</code> (drop = +0.3333 &gt; 0.0200 threshold), triggering <code>GATE RESULT: FAIL</code> and non-zero exit (1).
+    <strong>Screenshot C1 — Automated Release Gate Failing (Degraded Candidate):</strong> Output of <code>eval/release_gate.py</code> evaluating <code>candidate_fail.json</code>. Gate fails on <code>recall@5_max_drop_vs_baseline</code> (drop = +0.3333 &gt; 0.0200 threshold), triggering <code>GATE RESULT: FAIL</code> and non-zero exit (1).
   </div>
 </div>
 
@@ -1035,7 +1035,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_C2_release_gate_passing.png" class="screenshot-img" alt="Screenshot C2">
   <div class="screenshot-caption">
-    <strong>Screenshot C2 â€” Automated Release Gate Passing (Promoted Candidate):</strong> Output of <code>eval/release_gate.py</code> evaluating candidate <code>strict_concise_v2</code>. All 5 criteria pass (recall drop = 0.0, faithfulness = 89.5%, p95 latency = 4,438 ms, abstention = 1.0, citations = 1.0), triggering <code>GATE RESULT: PASS</code> (exit 0).
+    <strong>Screenshot C2 — Automated Release Gate Passing (Promoted Candidate):</strong> Output of <code>eval/release_gate.py</code> evaluating candidate <code>strict_concise_v2</code>. All 5 criteria pass (recall drop = 0.0, faithfulness = 89.5%, p95 latency = 4,438 ms, abstention = 1.0, citations = 1.0), triggering <code>GATE RESULT: PASS</code> (exit 0).
   </div>
 </div>
 
@@ -1043,7 +1043,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_D1_full_16field_trace_record.png" class="screenshot-img" alt="Screenshot D1">
   <div class="screenshot-caption">
-    <strong>Screenshot D1 â€” Observability: Complete 16-Field JSONL Trace Record:</strong> Formatted JSONL record from <code>traces/traces.jsonl</code> verifying all 16 fields: <code>trace_id</code>, <code>timestamp</code>, <code>user_query</code>, <code>rewritten_query</code>, <code>embedding_model</code>, <code>embedding_version</code>, <code>collection_name</code>, <code>collection_version</code>, <code>retrieved_chunks</code>, <code>filters_applied</code>, <code>reranked_order</code>, <code>prompt_hash</code>, <code>model</code>, <code>parameters</code>, <code>response</code>, <code>citations</code>, <code>guardrail_actions</code>, <code>latency_per_stage</code>.
+    <strong>Screenshot D1 — Observability: Complete 16-Field JSONL Trace Record:</strong> Formatted JSONL record from <code>traces/traces.jsonl</code> verifying all 16 fields: <code>trace_id</code>, <code>timestamp</code>, <code>user_query</code>, <code>rewritten_query</code>, <code>embedding_model</code>, <code>embedding_version</code>, <code>collection_name</code>, <code>collection_version</code>, <code>retrieved_chunks</code>, <code>filters_applied</code>, <code>reranked_order</code>, <code>prompt_hash</code>, <code>model</code>, <code>parameters</code>, <code>response</code>, <code>citations</code>, <code>guardrail_actions</code>, <code>latency_per_stage</code>.
   </div>
 </div>
 
@@ -1051,7 +1051,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_D2_trace_tool_reconstruction.png" class="screenshot-img" alt="Screenshot D2">
   <div class="screenshot-caption">
-    <strong>Screenshot D2 â€” Trace Tool CLI Prompt Reconstruction &amp; Hash Verification:</strong> Running <code>python scripts/trace_tool.py 99f5ef1a...</code> verifying cryptographic SHA-256 prompt hash (<code>verified=True</code>), printing exact reconstructed context chunks, and demonstrating the Retrieval Rail redacting malicious prompt injection directives.
+    <strong>Screenshot D2 — Trace Tool CLI Prompt Reconstruction &amp; Hash Verification:</strong> Running <code>python scripts/trace_tool.py 99f5ef1a...</code> verifying cryptographic SHA-256 prompt hash (<code>verified=True</code>), printing exact reconstructed context chunks, and demonstrating the Retrieval Rail redacting malicious prompt injection directives.
   </div>
 </div>
 
@@ -1059,7 +1059,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_E1_query_coverage_failing.png" class="screenshot-img" alt="Screenshot E1">
   <div class="screenshot-caption">
-    <strong>Screenshot E1 â€” Query Coverage Check Failing Pre-Expansion (&lt; 85%):</strong> Running <code>eval/coverage_check.py</code> on 26 baseline golden questions. Shows <strong>59.5% coverage (25/42 covered)</strong>, reports coverage gap failure, clusters uncovered queries into 4 topics, and exits with code 1.
+    <strong>Screenshot E1 — Query Coverage Check Failing Pre-Expansion (&lt; 85%):</strong> Running <code>eval/coverage_check.py</code> on 26 baseline golden questions. Shows <strong>59.5% coverage (25/42 covered)</strong>, reports coverage gap failure, clusters uncovered queries into 4 topics, and exits with code 1.
   </div>
 </div>
 
@@ -1067,7 +1067,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_E2_query_coverage_passing.png" class="screenshot-img" alt="Screenshot E2">
   <div class="screenshot-caption">
-    <strong>Screenshot E2 â€” Query Coverage Check Passing Post-Expansion (&ge; 85%):</strong> Running <code>eval/coverage_check.py</code> after adding questions G27â€“G32. Proves coverage rises to <strong>85.7% (36/42 covered)</strong>, satisfying the &ge; 85% threshold and exiting with code 0.
+    <strong>Screenshot E2 — Query Coverage Check Passing Post-Expansion (&ge; 85%):</strong> Running <code>eval/coverage_check.py</code> after adding questions G27–G32. Proves coverage rises to <strong>85.7% (36/42 covered)</strong>, satisfying the &ge; 85% threshold and exiting with code 0.
   </div>
 </div>
 
@@ -1075,7 +1075,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_F1_k8s_all_resources.png" class="screenshot-img" alt="Screenshot F1">
   <div class="screenshot-caption">
-    <strong>Screenshot F1 â€” Kubernetes Complete Cluster Architecture in rahbar Namespace:</strong> Output of <code>kubectl get all,pvc,configmap,cronjob,job -n rahbar</code> showing all 3 API replicas, candidate deployment, Chroma StatefulSet, Redis deployment, 5 PVCs, ConfigMaps, CronJob, and completed Jobs.
+    <strong>Screenshot F1 — Kubernetes Complete Cluster Architecture in rahbar Namespace:</strong> Output of <code>kubectl get all,pvc,configmap,cronjob,job -n rahbar</code> showing all 3 API replicas, candidate deployment, Chroma StatefulSet, Redis deployment, 5 PVCs, ConfigMaps, CronJob, and completed Jobs.
   </div>
 </div>
 
@@ -1083,7 +1083,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_F2_indexer_and_eval_job_logs.png" class="screenshot-img" alt="Screenshot F2">
   <div class="screenshot-caption">
-    <strong>Screenshot F2 â€” Completed Logs of Indexer Job &amp; Evaluation Job inside Kubernetes:</strong> Terminal logs showing completed execution of <code>job/indexer</code> (15 documents indexed, exit 0) and <code>job/eval-job</code> (3-level offline evaluation and release gate PASS, exit 0).
+    <strong>Screenshot F2 — Completed Logs of Indexer Job &amp; Evaluation Job inside Kubernetes:</strong> Terminal logs showing completed execution of <code>job/indexer</code> (15 documents indexed, exit 0) and <code>job/eval-job</code> (3-level offline evaluation and release gate PASS, exit 0).
   </div>
 </div>
 
@@ -1091,7 +1091,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_F3_configmap_gate_flip.png" class="screenshot-img" alt="Screenshot F3">
   <div class="screenshot-caption">
-    <strong>Screenshot F3 â€” ConfigMap Live-Edit Gate Flip (Fail &rarr; Pass Without Image Rebuild):</strong> Live patching <code>GATE_P95_LATENCY_MAX_MS</code> in <code>rahbar-gate-config</code> to 500ms causing <code>eval-job</code> to FAIL (p95 = 5,731ms), and restoring to 45,000ms causing <code>eval-job</code> to PASS without rebuilding container images.
+    <strong>Screenshot F3 — ConfigMap Live-Edit Gate Flip (Fail &rarr; Pass Without Image Rebuild):</strong> Live patching <code>GATE_P95_LATENCY_MAX_MS</code> in <code>rahbar-gate-config</code> to 500ms causing <code>eval-job</code> to FAIL (p95 = 5,731ms), and restoring to 45,000ms causing <code>eval-job</code> to PASS without rebuilding container images.
   </div>
 </div>
 
@@ -1099,7 +1099,7 @@
 <div class="screenshot-figure">
   <img src="../screenshots/screenshot_F4_rollout_status_and_undo.png" class="screenshot-img" alt="Screenshot F4">
   <div class="screenshot-caption">
-    <strong>Screenshot F4 â€” Zero-Downtime Rolling Update, Failure Stalling &amp; Instant Rollback:</strong> Proves zero-downtime rolling update via <code>kubectl rollout status</code>, failed image injection stalling while old replicas serve traffic, instant rollback via <code>kubectl rollout undo</code>, and post-rollback query answering with valid citations.
+    <strong>Screenshot F4 — Zero-Downtime Rolling Update, Failure Stalling &amp; Instant Rollback:</strong> Proves zero-downtime rolling update via <code>kubectl rollout status</code>, failed image injection stalling while old replicas serve traffic, instant rollback via <code>kubectl rollout undo</code>, and post-rollback query answering with valid citations.
   </div>
 </div>
 

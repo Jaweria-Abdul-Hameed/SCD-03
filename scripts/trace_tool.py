@@ -58,7 +58,7 @@ def reconstruct_context_blocks(rec: dict[str, Any]) -> str:
             f'<context id="{idx}" source="{ch.get("document_id", "")}" '
             f'section="{ch.get("section", "")}" page="{ch.get("page", 0)}" '
             f'version="{ch.get("document_version", "")}" score="{ch.get("score", 0.0)}">'
-            f'{ch.get("text", "")}</context>'
+            f"{ch.get('text', '')}</context>"
         )
     return "\n".join(lines)
 
@@ -89,7 +89,9 @@ def format_trace_inspection(rec: dict[str, Any]) -> str:
         reconstruct_context_blocks(rec),
         "-" * 80,
         "EXACT PROMPT SENT TO LLM:",
-        prompt if prompt else "<No LLM prompt generated (cache hit or early floor abstention)>",
+        prompt
+        if prompt
+        else "<No LLM prompt generated (cache hit or early floor abstention)>",
         "-" * 80,
         "RESPONSE & CITATIONS:",
         json.dumps(
@@ -103,7 +105,9 @@ def format_trace_inspection(rec: dict[str, Any]) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Inspect a RAGOps trace_id and print exact context + prompt.")
+    parser = argparse.ArgumentParser(
+        description="Inspect a RAGOps trace_id and print exact context + prompt."
+    )
     parser.add_argument("trace_id", help="Trace ID (or unique prefix) to inspect")
     parser.add_argument(
         "--trace-file",
@@ -115,11 +119,17 @@ def main(argv: list[str] | None = None) -> int:
     records = load_traces(args.trace_file)
     rec = find_trace(records, args.trace_id)
     if rec is None:
-        print(f"ERROR: trace_id {args.trace_id!r} not found in {args.trace_file}", file=sys.stderr)
+        print(
+            f"ERROR: trace_id {args.trace_id!r} not found in {args.trace_file}",
+            file=sys.stderr,
+        )
         return 1
     print(format_trace_inspection(rec))
     return 0
 
 
 if __name__ == "__main__":
+    # Windows consoles default to cp1252; traces/summaries contain non-ASCII text.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main())

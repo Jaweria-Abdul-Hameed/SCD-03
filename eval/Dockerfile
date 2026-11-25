@@ -5,8 +5,9 @@ FROM python:3.12-slim
 RUN useradd -m -u 10001 rahbar
 WORKDIR /app
 
-COPY api/requirements.txt ./api-requirements.txt
-RUN pip install --no-cache-dir pydantic>=2.9 pydantic-settings>=2.6 requests>=2.32 pyyaml>=6.0 numpy>=1.26
+# Quoted: unquoted `pkg>=x` is parsed by /bin/sh as an output redirect, which
+# silently drops every version pin and leaves junk files named "=2.9" etc.
+RUN pip install --no-cache-dir "pydantic>=2.9" "pydantic-settings>=2.6" "requests>=2.32" "pyyaml>=6.0" "numpy>=1.26"
 
 COPY eval/ ./eval/
 

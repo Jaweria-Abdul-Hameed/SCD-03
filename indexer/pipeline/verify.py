@@ -17,8 +17,9 @@ import hashlib
 import json
 import math
 import re
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from . import embed as embed_mod
 
@@ -215,9 +216,7 @@ def check_quality(
     total_chars = len(stripped)
     replacement_chars = stripped.count("\ufffd")
     non_printable = sum(
-        1
-        for ch in stripped
-        if ord(ch) < 32 and ch not in ("\n", "\r", "\t")
+        1 for ch in stripped if ord(ch) < 32 and ch not in ("\n", "\r", "\t")
     )
     weird_ratio = (replacement_chars + non_printable) / max(1, total_chars)
     if weird_ratio > 0.02 or replacement_chars >= 5:
@@ -264,6 +263,8 @@ def check_completeness(pages: list[dict], meta: dict[str, Any]) -> dict[str, Any
 
     declared_pages = meta.get("page_count")
     try:
+        if declared_pages is None:
+            raise TypeError("page_count is None")
         declared_int = int(declared_pages)
     except (TypeError, ValueError):
         return {
@@ -335,7 +336,10 @@ def check_recency(
     existing = active_by_doc_id.get(doc_id)
     if not existing:
         return (
-            {"pass": True, "reason": f"ok: initial active version {version} for {doc_id}"},
+            {
+                "pass": True,
+                "reason": f"ok: initial active version {version} for {doc_id}",
+            },
             None,
         )
 
@@ -463,10 +467,14 @@ def verify_document(
     }
 
     q_res = check_quality(pages, extraction_error=extraction_error)
-    c_res = check_completeness(pages, meta) if not extraction_error else {
-        "pass": False,
-        "reason": f"skipped_due_to_extraction_error: {extraction_error}",
-    }
+    c_res = (
+        check_completeness(pages, meta)
+        if not extraction_error
+        else {
+            "pass": False,
+            "reason": f"skipped_due_to_extraction_error: {extraction_error}",
+        }
+    )
     r_res, superseded_target = check_recency(
         source=source,
         doc_id=doc_id,

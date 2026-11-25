@@ -6,8 +6,6 @@ import json
 import sys
 from pathlib import Path
 
-import pytest
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from eval import coverage_check as cov_mod
@@ -23,7 +21,9 @@ def test_golden_jsonl_meets_part_b_quotas():
     hard = [q for q in golden if q.get("category") == "hard"]
     human = [q for q in golden if q.get("origin") == "human"]
     synth_reviewed = [
-        q for q in golden if q.get("origin") == "synthetic" and q.get("reviewed_by_human") is True
+        q
+        for q in golden
+        if q.get("origin") == "synthetic" and q.get("reviewed_by_human") is True
     ]
 
     assert len(answerable) >= 15
@@ -117,7 +117,9 @@ def test_run_ragops_eval_end_to_end_stub(monkeypatch, tmp_path: Path):
     g_path = tmp_path / "g.jsonl"
     g_path.write_text("\n".join(json.dumps(x) for x in golden) + "\n", encoding="utf-8")
 
-    def fake_chat(api_base: str, question: str, follow_up: bool = True, timeout: int = 180):
+    def fake_chat(
+        api_base: str, question: str, follow_up: bool = True, timeout: int = 180
+    ):
         return {
             "trace_id": "t-1",
             "latency_ms": 120.0,
@@ -166,3 +168,54 @@ def test_run_ragops_eval_end_to_end_stub(monkeypatch, tmp_path: Path):
     assert r1["level1_module"]["paraphrase_pairs"] == 16
     assert r1["level2_component"]["recall@5"] > 0
     assert r1["level3_e2e"]["citation_validity"] == 1.0
+
+
+def test_cache_probe_counts_repeat_hits(monkeypatch, tmp_path: Path):
+    """D3: the scored pass bypasses the cache; the probe must see the repeat call hit it."""
+    golden = [
+        q
+        for q in eval_mod.load_jsonl(Path("eval/golden.jsonl"))
+        if not q["must_abstain"]
+    ][:3]
+    g_path = tmp_path / "g.jsonl"
+    g_path.write_text("\n".join(json.dumps(x) for x in golden) + "\n", encoding="utf-8")
+    cache: set[str] = set()
+
+    def fake_chat(
+        api_base: str, question: str, follow_up: bool = True, timeout: int = 180
+    ):
+        hit = (not follow_up) and question in cache
+        if not follow_up:
+            cache.add(question)
+        return {
+            "trace_id": "t",
+            "latency_ms": 5.0 if hit else 900.0,
+            "cache_hit": hit,
+            "answer": {"answer": "ok", "citations": [], "answered_from_context": True},
+            "retrieved_chunks": [],
+        }
+
+    monkeypatch.setattr(eval_mod, "_call_chat", fake_chat)
+    res = eval_mod.evaluate_once(
+        api_base="http://fake",
+        golden_path=g_path,
+        pairs_path=Path("eval/module_pairs.jsonl"),
+        ollama_host="unused",
+        embed_model="nomic-embed-text",
+        llm_model="llama3.2:3b",
+        provider_mode="stub",
+        use_llm_judge=False,
+        judge_labels_path=None,
+        seed=42,
+        run_noise_test=False,
+        cache_probe_n=2,
+    )
+    probe = res["level3_e2e"]["cache_probe"]
+    assert probe["questions"] == 2
+    assert probe["first_call_hits"] == 0
+    assert probe["repeat_call_hits"] == 2
+    assert probe["repeat_hit_rate"] == 1.0
+    assert probe["overall_hit_rate"] == 0.5
+    assert probe["hit_latency_p50_ms"] == 5.0
+    # the scored Level 3 latency is untouched by the probe
+    assert res["level3_e2e"]["latency_p50_ms"] == 900.0

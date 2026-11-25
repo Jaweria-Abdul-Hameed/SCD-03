@@ -62,7 +62,7 @@ def build_augmented_prompt(
         return (
             f"Answer the question briefly using general knowledge if needed.\n"
             f"Context:\n{ctx}\n\nQuestion: {question}\n"
-            'Return JSON with keys: reasoning, answer, citations, answered_from_context, confidence.'
+            "Return JSON with keys: reasoning, answer, citations, answered_from_context, confidence."
         )
     if tmpl == "strict_concise_v2":
         lines = [

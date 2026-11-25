@@ -1,9 +1,14 @@
 import subprocess
 from pathlib import Path
+
 import markdown
 
-md_text = Path("SCD_Assignment03_RAGOps_Implementation_Checklist.md").read_text(encoding="utf-8")
-formatted = md_text.replace("- [x]", '<span class="chk chk-done">&#x2611;</span>').replace("- [ ]", '<span class="chk">&#x2610;</span>')
+md_text = Path("SCD_Assignment03_RAGOps_Implementation_Checklist.md").read_text(
+    encoding="utf-8"
+)
+formatted = md_text.replace(
+    "- [x]", '<span class="chk chk-done">&#x2611;</span>'
+).replace("- [ ]", '<span class="chk">&#x2610;</span>')
 body_html = markdown.markdown(formatted, extensions=["tables", "fenced_code"])
 
 html = f"""<!DOCTYPE html>
@@ -36,7 +41,9 @@ tmp_html = Path("checklist_tmp.html")
 tmp_html.write_text(html, encoding="utf-8")
 
 abs_html = tmp_html.resolve().as_uri()
-abs_pdf = str(Path("SCD_Assignment03_RAGOps_Implementation_Checklist.pdf").resolve()).replace("\\", "/")
+abs_pdf = str(
+    Path("SCD_Assignment03_RAGOps_Implementation_Checklist.pdf").resolve()
+).replace("\\", "/")
 
 cmd = [
     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
@@ -44,7 +51,7 @@ cmd = [
     "--disable-gpu",
     "--no-pdf-header-footer",
     f"--print-to-pdf={abs_pdf}",
-    abs_html
+    abs_html,
 ]
 subprocess.run(cmd, check=True)
 tmp_html.unlink()

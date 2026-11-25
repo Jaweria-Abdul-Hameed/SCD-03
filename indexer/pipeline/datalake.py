@@ -50,7 +50,9 @@ class DataLakeStore:
         if self.registry_path.is_file():
             try:
                 loaded = json.loads(self.registry_path.read_text(encoding="utf-8"))
-                if isinstance(loaded, dict) and isinstance(loaded.get("documents"), list):
+                if isinstance(loaded, dict) and isinstance(
+                    loaded.get("documents"), list
+                ):
                     self._data = loaded
                     return self._data
             except json.JSONDecodeError:
@@ -140,7 +142,9 @@ class DataLakeStore:
             shutil.copy2(src_path, dest)
 
         now = datetime.now(UTC).isoformat()
-        existing = self.find_record(doc_id=doc_id, version=version, source=src_path.name)
+        existing = self.find_record(
+            doc_id=doc_id, version=version, source=src_path.name
+        )
         record = {
             "doc_id": doc_id,
             "source": str(meta.get("source") or src_path.name),
@@ -167,7 +171,9 @@ class DataLakeStore:
         self.documents.append(record)
         return record
 
-    def archive_version(self, doc_id: str, version: str, superseded_by: str) -> dict[str, Any] | None:
+    def archive_version(
+        self, doc_id: str, version: str, superseded_by: str
+    ) -> dict[str, Any] | None:
         rec = self.find_record(doc_id=doc_id, version=version)
         if rec is None:
             return None
@@ -184,7 +190,9 @@ class DataLakeStore:
         rec["archived_at"] = datetime.now(UTC).isoformat()
         return rec
 
-    def restore_version(self, doc_id: str, target_version: str) -> tuple[dict[str, Any], dict[str, Any] | None]:
+    def restore_version(
+        self, doc_id: str, target_version: str
+    ) -> tuple[dict[str, Any], dict[str, Any] | None]:
         """Restore an archived version as active and archive the current active version."""
         target = self.find_record(doc_id=doc_id, version=target_version)
         if target is None:

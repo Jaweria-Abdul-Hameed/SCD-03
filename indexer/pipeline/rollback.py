@@ -74,7 +74,9 @@ def main(argv: list[str] | None = None) -> int:
         description="Restore an archived superseded document version (Part A2 rollback)."
     )
     parser.add_argument("--doc-id", required=True, help="Logical document ID")
-    parser.add_argument("--to-version", required=True, help="Archived version to restore")
+    parser.add_argument(
+        "--to-version", required=True, help="Archived version to restore"
+    )
     parser.add_argument(
         "--data-root",
         default=None,

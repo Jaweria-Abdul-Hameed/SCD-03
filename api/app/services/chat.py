@@ -75,7 +75,9 @@ def _compact_retrieved(chunks: list[dict]) -> list[dict]:
 
 def handle_chat(request: ChatRequest, request_id: str) -> ChatResponse:
     started = time.monotonic()
-    trace_id = request_id if request_id and request_id != "unknown" else str(uuid.uuid4())
+    trace_id = (
+        request_id if request_id and request_id != "unknown" else str(uuid.uuid4())
+    )
     queries_total.inc()
 
     chunks: list[dict] = []
@@ -132,7 +134,9 @@ def handle_chat(request: ChatRequest, request_id: str) -> ChatResponse:
                 build_trace_record(
                     trace_id=trace_id,
                     user_query=request.question,
-                    rewritten_query=rewritten if rewritten != request.question else None,
+                    rewritten_query=rewritten
+                    if rewritten != request.question
+                    else None,
                     retrieved_chunks=[],
                     filters_applied=filters_applied,
                     reranked_order=[],
@@ -169,7 +173,11 @@ def handle_chat(request: ChatRequest, request_id: str) -> ChatResponse:
     t_rk0 = time.monotonic()
     chunks = sorted(chunks, key=lambda c: float(c.get("similarity", 0.0)), reverse=True)
     reranked_order = [
-        {"rank": idx + 1, "chunk_id": c.get("id", ""), "score": round(float(c.get("similarity", 0.0)), 6)}
+        {
+            "rank": idx + 1,
+            "chunk_id": c.get("id", ""),
+            "score": round(float(c.get("similarity", 0.0)), 6),
+        }
         for idx, c in enumerate(chunks)
     ]
     stage_ms["rerank_ms"] = _observe_stage("rerank", time.monotonic() - t_rk0)
@@ -189,10 +197,15 @@ def handle_chat(request: ChatRequest, request_id: str) -> ChatResponse:
             injection_attempts_flagged_total.labels(rail="retrieval").inc()
     rrail_s = time.monotonic() - t_rrail0
     stage_ms["guardrail_ms"] += rrail_s * 1000.0
-    stage_latency_seconds.labels(stage="guardrail").observe(stage_ms["guardrail_ms"] / 1000.0)
+    stage_latency_seconds.labels(stage="guardrail").observe(
+        stage_ms["guardrail_ms"] / 1000.0
+    )
 
     # Abstention: nothing retrieved clears the relevance floor (§3.4)
-    if not sanitized_chunks or max_similarity(sanitized_chunks) < settings.RELEVANCE_FLOOR:
+    if (
+        not sanitized_chunks
+        or max_similarity(sanitized_chunks) < settings.RELEVANCE_FLOOR
+    ):
         guardrail_actions.append(
             {
                 "rail": "relevance_floor",
@@ -294,14 +307,22 @@ def handle_chat(request: ChatRequest, request_id: str) -> ChatResponse:
             }
         )
         logger.warning(
-            json.dumps({"request_id": request_id, "trace_id": trace_id, "event": "generation_fallback"})
+            json.dumps(
+                {
+                    "request_id": request_id,
+                    "trace_id": trace_id,
+                    "event": "generation_fallback",
+                }
+            )
         )
     else:
         guardrail_actions.append(
             {
                 "rail": "output",
                 "triggered": not answer.answered_from_context,
-                "action": "abstain" if not answer.answered_from_context else "grounded_pass",
+                "action": "abstain"
+                if not answer.answered_from_context
+                else "grounded_pass",
                 "citations_kept": len(answer.citations),
                 "reason": answer.reasoning[:180],
             }

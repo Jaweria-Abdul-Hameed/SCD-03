@@ -144,26 +144,41 @@ def print_gate_report(report: dict[str, Any]) -> None:
     print("\n=== RELEASE GATE EVALUATION ===")
     for chk in report["checks"]:
         mark = "PASS" if chk["pass"] else "FAIL"
-        print(f"  [{mark}] {chk['rule']:36s} | actual={chk['actual']} | threshold={chk['threshold']}")
+        print(
+            f"  [{mark}] {chk['rule']:36s} | actual={chk['actual']} | threshold={chk['threshold']}"
+        )
     print(f"GATE RESULT: {status}")
     print("=" * 78)
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Apply Part C2 release gate thresholds.")
+    parser = argparse.ArgumentParser(
+        description="Apply Part C2 release gate thresholds."
+    )
     parser.add_argument("--candidate", required=True, help="Candidate eval result JSON")
     parser.add_argument("--baseline", default=None, help="Baseline eval result JSON")
-    parser.add_argument("--config", default="eval/gate_thresholds.yaml", help="Thresholds YAML")
+    parser.add_argument(
+        "--config", default="eval/gate_thresholds.yaml", help="Thresholds YAML"
+    )
     args = parser.parse_args(argv)
 
     candidate = json.loads(Path(args.candidate).read_text(encoding="utf-8"))
-    baseline = json.loads(Path(args.baseline).read_text(encoding="utf-8")) if args.baseline else None
+    baseline = (
+        json.loads(Path(args.baseline).read_text(encoding="utf-8"))
+        if args.baseline
+        else None
+    )
     thresholds = load_thresholds(Path(args.config))
 
-    report = evaluate_gate(candidate=candidate, baseline=baseline, thresholds=thresholds)
+    report = evaluate_gate(
+        candidate=candidate, baseline=baseline, thresholds=thresholds
+    )
     print_gate_report(report)
     return 0 if report["passed"] else 1
 
 
 if __name__ == "__main__":
+    # Windows consoles default to cp1252; traces/summaries contain non-ASCII text.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main())

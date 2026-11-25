@@ -62,12 +62,16 @@ class _CapturingProvider:
         )
 
 
-def test_d1_d2_d4_trace_fields_retrieval_rail_and_trace_tool(tmp_path: Path, monkeypatch):
+def test_d1_d2_d4_trace_fields_retrieval_rail_and_trace_tool(
+    tmp_path: Path, monkeypatch
+):
     trace_file = tmp_path / "traces.jsonl"
     monkeypatch.setattr(settings, "TRACE_FILE", str(trace_file))
     provider = _CapturingProvider()
     monkeypatch.setattr(chat_service, "get_provider", lambda: provider)
-    monkeypatch.setattr(chat_service, "retrieve", lambda *a, **k: [dict(POISONED_CHUNK)])
+    monkeypatch.setattr(
+        chat_service, "retrieve", lambda *a, **k: [dict(POISONED_CHUNK)]
+    )
     monkeypatch.setattr(chat_service, "cache_get", lambda *a, **k: None)
     monkeypatch.setattr(chat_service, "cache_set", lambda *a, **k: True)
 
@@ -138,7 +142,9 @@ def test_d4_retrieval_rail_exclude_mode():
         "metadata": {"source": "poison.md", "section": "1", "page": 1},
         "similarity": 0.9,
     }
-    sanitized, actions = guardrails_mod.apply_retrieval_rail([only_poison], mode="exclude")
+    sanitized, actions = guardrails_mod.apply_retrieval_rail(
+        [only_poison], mode="exclude"
+    )
     assert sanitized == []
     assert actions[0]["triggered"] is True
     assert actions[0]["action"] == "excluded_poisoned_chunk"

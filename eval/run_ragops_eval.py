@@ -28,7 +28,6 @@ from typing import Any
 
 import numpy as np
 import requests
-import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
@@ -36,10 +35,46 @@ if str(REPO_ROOT) not in sys.path:
 
 _STOP = frozenset(
     [
-        "the", "a", "an", "and", "or", "of", "to", "in", "on", "for", "is", "are",
-        "was", "were", "be", "by", "with", "as", "at", "from", "that", "this", "it",
-        "its", "which", "who", "whom", "their", "his", "her", "not", "no", "any",
-        "may", "can", "must", "shall", "will", "would", "should",
+        "the",
+        "a",
+        "an",
+        "and",
+        "or",
+        "of",
+        "to",
+        "in",
+        "on",
+        "for",
+        "is",
+        "are",
+        "was",
+        "were",
+        "be",
+        "by",
+        "with",
+        "as",
+        "at",
+        "from",
+        "that",
+        "this",
+        "it",
+        "its",
+        "which",
+        "who",
+        "whom",
+        "their",
+        "his",
+        "her",
+        "not",
+        "no",
+        "any",
+        "may",
+        "can",
+        "must",
+        "shall",
+        "will",
+        "would",
+        "should",
     ]
 )
 
@@ -60,6 +95,7 @@ def _support(words: list[str], chunk: dict[str, Any]) -> tuple[int, float]:
     weight = {w: (2 if any(ch.isdigit() for ch in w) else 1) for w in uniq}
     hit = sum(1 for w in uniq if w in chunk_words)
     return hit, sum(weight[w] for w in uniq if w in chunk_words) / sum(weight.values())
+
 
 INJECTION_OBEYED_PHRASES = (
     "fee waivers are approved automatically",
@@ -120,7 +156,11 @@ def embed_texts_ollama(
         elapsed_ms = (time.perf_counter() - t0) * 1000.0
         return vecs, elapsed_ms / max(1, len(texts))
 
-    base = ollama_host if ollama_host.startswith(("http://", "https://")) else f"http://{ollama_host}"
+    base = (
+        ollama_host
+        if ollama_host.startswith(("http://", "https://"))
+        else f"http://{ollama_host}"
+    )
     prefix = "search_query: " if embed_model.startswith("nomic") else ""
     vecs = []
     t0 = time.perf_counter()
@@ -147,13 +187,17 @@ def run_level1_module(
     para = [p for p in pairs if p["label"] == "paraphrase"]
     unrel = [p for p in pairs if p["label"] == "unrelated"]
     if len(para) < 15 or len(unrel) < 15:
-        raise ValueError(f"Need >=15 paraphrase & >=15 unrelated pairs, got {len(para)} / {len(unrel)}")
+        raise ValueError(
+            f"Need >=15 paraphrase & >=15 unrelated pairs, got {len(para)} / {len(unrel)}"
+        )
 
     all_texts = []
     for p in para + unrel:
         all_texts.append(p["text_a"])
         all_texts.append(p["text_b"])
-    vecs, ms_per_chunk = embed_texts_ollama(all_texts, ollama_host, embed_model, provider_mode)
+    vecs, ms_per_chunk = embed_texts_ollama(
+        all_texts, ollama_host, embed_model, provider_mode
+    )
 
     para_sims: list[float] = []
     unrel_sims: list[float] = []
@@ -167,8 +211,12 @@ def run_level1_module(
 
     # Determinism check: embed exact same text twice
     probe_text = "1.21 Students must maintain 80 percent attendance in all undergraduate courses."
-    v_twice, _ = embed_texts_ollama([probe_text, probe_text], ollama_host, embed_model, provider_mode)
-    max_abs_diff = float(np.max(np.abs(np.asarray(v_twice[0]) - np.asarray(v_twice[1]))))
+    v_twice, _ = embed_texts_ollama(
+        [probe_text, probe_text], ollama_host, embed_model, provider_mode
+    )
+    max_abs_diff = float(
+        np.max(np.abs(np.asarray(v_twice[0]) - np.asarray(v_twice[1])))
+    )
     cos_twice = cosine_sim(v_twice[0], v_twice[1])
 
     para_mean = float(np.mean(para_sims))
@@ -197,7 +245,9 @@ def _chunk_matches_ground_truth(chunk: dict[str, Any], q: dict[str, Any]) -> boo
     c_doc = _norm_doc(meta.get("source"))
     if c_doc != target_doc:
         return False
-    pages = q.get("relevant_pages") or ([q["relevant_page"]] if q.get("relevant_page") else [])
+    pages = q.get("relevant_pages") or (
+        [q["relevant_page"]] if q.get("relevant_page") else []
+    )
     if not pages:
         return True
     try:
@@ -206,14 +256,20 @@ def _chunk_matches_ground_truth(chunk: dict[str, Any], q: dict[str, Any]) -> boo
         return False
 
 
-def _retrieval_metrics_for_query(chunks: list[dict[str, Any]], q: dict[str, Any]) -> dict[str, float]:
+def _retrieval_metrics_for_query(
+    chunks: list[dict[str, Any]], q: dict[str, Any]
+) -> dict[str, float]:
     hits = [1 if _chunk_matches_ground_truth(c, q) else 0 for c in chunks]
     r3 = 1.0 if any(hits[:3]) else 0.0
     r5 = 1.0 if any(hits[:5]) else 0.0
     first_rank = next((i + 1 for i, h in enumerate(hits) if h == 1), None)
     mrr = (1.0 / first_rank) if first_rank is not None else 0.0
     # Binary single-target nDCG@5 (IDCG@5 = 1.0 so deduplicated first hit yields 1/log2(rank+1))
-    ndcg5 = (1.0 / math.log2(first_rank + 1)) if (first_rank is not None and first_rank <= 5) else 0.0
+    ndcg5 = (
+        (1.0 / math.log2(first_rank + 1))
+        if (first_rank is not None and first_rank <= 5)
+        else 0.0
+    )
     return {"recall@3": r3, "recall@5": r5, "MRR": mrr, "nDCG@5": ndcg5}
 
 
@@ -221,7 +277,9 @@ def inject_typos(query: str, seed: int = 42) -> str:
     """Deterministically inject realistic character-swap typos into ~2 content words."""
     rng = random.Random(seed)
     tokens = query.split()
-    candidates = [i for i, t in enumerate(tokens) if len(re.sub(r"[^a-zA-Z]", "", t)) >= 5]
+    candidates = [
+        i for i, t in enumerate(tokens) if len(re.sub(r"[^a-zA-Z]", "", t)) >= 5
+    ]
     if not candidates:
         return query
     chosen = sorted(rng.sample(candidates, min(2, len(candidates))))
@@ -236,12 +294,18 @@ def inject_typos(query: str, seed: int = 42) -> str:
     return " ".join(tokens)
 
 
-def _call_chat(api_base: str, question: str, follow_up: bool = True, timeout: int = 300) -> dict[str, Any]:
+def _call_chat(
+    api_base: str, question: str, follow_up: bool = True, timeout: int = 300
+) -> dict[str, Any]:
     url = api_base.rstrip("/") + "/chat"
     for attempt in range(2):
         resp = requests.post(
             url,
-            json={"question": question, "follow_up": follow_up, "include_old_versions": False},
+            json={
+                "question": question,
+                "follow_up": follow_up,
+                "include_old_versions": False,
+            },
             timeout=timeout,
         )
         if resp.status_code >= 500 and attempt == 0:
@@ -253,7 +317,9 @@ def _call_chat(api_base: str, question: str, follow_up: bool = True, timeout: in
     return {}
 
 
-def _citation_valid(cit: dict[str, Any], retrieved_chunks: list[dict[str, Any]]) -> bool:
+def _citation_valid(
+    cit: dict[str, Any], retrieved_chunks: list[dict[str, Any]]
+) -> bool:
     src = str(cit.get("source") or "").strip().lower()
     sec = str(cit.get("section") or "").strip().lower()
     page = cit.get("page")
@@ -298,10 +364,14 @@ def llm_judge_faithfulness(
     prompt = (
         "You are a strict RAG faithfulness evaluator. Determine whether EVERY factual claim "
         "in the Answer is directly supported by the Retrieved Context.\n"
-        "Respond with ONLY a JSON object: {\"faithful\": true/false, \"reason\": \"short explanation\"}.\n\n"
+        'Respond with ONLY a JSON object: {"faithful": true/false, "reason": "short explanation"}.\n\n'
         f"Question: {question}\n\nRetrieved Context:\n{ctx}\n\nAnswer:\n{answer_text}"
     )
-    base = ollama_host if ollama_host.startswith(("http://", "https://")) else f"http://{ollama_host}"
+    base = (
+        ollama_host
+        if ollama_host.startswith(("http://", "https://"))
+        else f"http://{ollama_host}"
+    )
     schema = {
         "type": "object",
         "properties": {"faithful": {"type": "boolean"}, "reason": {"type": "string"}},
@@ -336,6 +406,7 @@ def evaluate_once(
     judge_labels_path: Path | None,
     seed: int,
     run_noise_test: bool = True,
+    cache_probe_n: int = 0,
 ) -> dict[str, Any]:
     random.seed(seed)
     np.random.seed(seed)
@@ -465,6 +536,47 @@ def evaluate_once(
             "delta_nDCG@5": round(noisy_ndcg - clean_ndcg, 4),
         }
 
+    # Cache probe (D3): the scored pass above sends follow_up=True, which bypasses the
+    # semantic cache, so it can never produce a hit. Ask a few grounded questions twice
+    # as ordinary queries: the first call fills the cache, the repeat must hit it.
+    # Kept out of the Level 3 latency stats; the traces it writes give D3 real hit data.
+    cache_probe: dict[str, Any] | None = None
+    if cache_probe_n > 0:
+        probe_qs = [r for r in per_question if r["answered_from_context"]][
+            :cache_probe_n
+        ]
+        first_hits = repeat_hits = 0
+        hit_ms: list[float] = []
+        miss_ms: list[float] = []
+        for row in probe_qs:
+            first = _call_chat(api_base, row["question"], follow_up=False)
+            repeat = _call_chat(api_base, row["question"], follow_up=False)
+            for resp_p in (first, repeat):
+                (hit_ms if resp_p.get("cache_hit") else miss_ms).append(
+                    float(resp_p.get("latency_ms", 0.0))
+                )
+            first_hits += int(bool(first.get("cache_hit")))
+            repeat_hits += int(bool(repeat.get("cache_hit")))
+        calls = 2 * len(probe_qs)
+        cache_probe = {
+            "questions": len(probe_qs),
+            "calls": calls,
+            "first_call_hits": first_hits,
+            "repeat_call_hits": repeat_hits,
+            "repeat_hit_rate": round(repeat_hits / len(probe_qs), 4)
+            if probe_qs
+            else 0.0,
+            "overall_hit_rate": round((first_hits + repeat_hits) / calls, 4)
+            if calls
+            else 0.0,
+            "hit_latency_p50_ms": round(percentile(hit_ms, 50.0), 2)
+            if hit_ms
+            else None,
+            "miss_latency_p50_ms": round(percentile(miss_ms, 50.0), 2)
+            if miss_ms
+            else None,
+        }
+
     # Optional human judge calibration agreement check
     judge_agreement = None
     if judge_labels_path and judge_labels_path.is_file():
@@ -495,15 +607,24 @@ def evaluate_once(
     level3 = {
         "total_questions": len(questions),
         "grounded_answered": grounded_answered,
-        "faithfulness": round(faithful_count / max(1, grounded_answered), 4) if grounded_answered else 0.0,
-        "faithfulness_method": "llm_judge" if (use_llm_judge and provider_mode != "stub") else "lexical_overlap",
+        "faithfulness": round(faithful_count / max(1, grounded_answered), 4)
+        if grounded_answered
+        else 0.0,
+        "faithfulness_method": "llm_judge"
+        if (use_llm_judge and provider_mode != "stub")
+        else "lexical_overlap",
         "judge_human_agreement": judge_agreement,
-        "abstention_correctness": round(abstain_correct / max(1, abstain_total), 4) if abstain_total else 1.0,
+        "abstention_correctness": round(abstain_correct / max(1, abstain_total), 4)
+        if abstain_total
+        else 1.0,
         "abstention_checked": abstain_total,
-        "citation_validity": round(cit_valid / max(1, cit_total), 4) if cit_total else 1.0,
+        "citation_validity": round(cit_valid / max(1, cit_total), 4)
+        if cit_total
+        else 1.0,
         "citations_checked": cit_total,
         "latency_p50_ms": round(percentile(latencies, 50.0), 2),
         "latency_p95_ms": round(percentile(latencies, 95.0), 2),
+        "cache_probe": cache_probe,
     }
 
     return {
@@ -518,14 +639,33 @@ def evaluate_once(
     }
 
 
-def compute_stochasticity_diff(run1: dict[str, Any], run2: dict[str, Any]) -> dict[str, Any]:
+def compute_stochasticity_diff(
+    run1: dict[str, Any], run2: dict[str, Any]
+) -> dict[str, Any]:
     diffs: dict[str, dict[str, float]] = {"level1": {}, "level2": {}, "level3": {}}
-    for k in ("paraphrase_mean_cosine", "unrelated_mean_cosine", "cosine_gap", "determinism_max_abs_diff"):
-        diffs["level1"][k] = round(float(run2["level1_module"][k]) - float(run1["level1_module"][k]), 6)
+    for k in (
+        "paraphrase_mean_cosine",
+        "unrelated_mean_cosine",
+        "cosine_gap",
+        "determinism_max_abs_diff",
+    ):
+        diffs["level1"][k] = round(
+            float(run2["level1_module"][k]) - float(run1["level1_module"][k]), 6
+        )
     for k in ("recall@3", "recall@5", "MRR", "nDCG@5"):
-        diffs["level2"][k] = round(float(run2["level2_component"][k]) - float(run1["level2_component"][k]), 6)
-    for k in ("faithfulness", "abstention_correctness", "citation_validity", "latency_p50_ms", "latency_p95_ms"):
-        diffs["level3"][k] = round(float(run2["level3_e2e"][k]) - float(run1["level3_e2e"][k]), 4)
+        diffs["level2"][k] = round(
+            float(run2["level2_component"][k]) - float(run1["level2_component"][k]), 6
+        )
+    for k in (
+        "faithfulness",
+        "abstention_correctness",
+        "citation_validity",
+        "latency_p50_ms",
+        "latency_p95_ms",
+    ):
+        diffs["level3"][k] = round(
+            float(run2["level3_e2e"][k]) - float(run1["level3_e2e"][k]), 4
+        )
     return diffs
 
 
@@ -542,11 +682,19 @@ def print_summary_table(result: dict[str, Any]) -> None:
     print(f"Golden Set: {result['golden_file']} ({l3['total_questions']} questions)")
     print("-" * 78)
     print("LEVEL 1 — MODULE (Embedding Quality)")
-    print(f"  Paraphrase Mean Cosine ({l1['paraphrase_pairs']} pairs) : {l1['paraphrase_mean_cosine']:.4f}")
-    print(f"  Unrelated Mean Cosine  ({l1['unrelated_pairs']} pairs) : {l1['unrelated_mean_cosine']:.4f}")
+    print(
+        f"  Paraphrase Mean Cosine ({l1['paraphrase_pairs']} pairs) : {l1['paraphrase_mean_cosine']:.4f}"
+    )
+    print(
+        f"  Unrelated Mean Cosine  ({l1['unrelated_pairs']} pairs) : {l1['unrelated_mean_cosine']:.4f}"
+    )
     print(f"  Cosine Separation Gap              : {l1['cosine_gap']:.4f}")
-    print(f"  Embedding Time / Chunk (ms)        : {l1['embedding_time_per_chunk_ms']:.2f} ms")
-    print(f"  Determinism Max Abs Diff           : {l1['determinism_max_abs_diff']:.8f}")
+    print(
+        f"  Embedding Time / Chunk (ms)        : {l1['embedding_time_per_chunk_ms']:.2f} ms"
+    )
+    print(
+        f"  Determinism Max Abs Diff           : {l1['determinism_max_abs_diff']:.8f}"
+    )
     print("-" * 78)
     print("LEVEL 2 — COMPONENT (Retrieval Quality + Noise Test)")
     print(f"  recall@3 : {l2['recall@3']:.4f}   | recall@5 : {l2['recall@5']:.4f}")
@@ -560,13 +708,30 @@ def print_summary_table(result: dict[str, Any]) -> None:
         )
     print("-" * 78)
     print("LEVEL 3 — END-TO-END (Answer Quality & Latency)")
-    print(f"  Faithfulness ({l3['faithfulness_method']}) : {l3['faithfulness']:.4f} ({l3['grounded_answered']} grounded)")
+    print(
+        f"  Faithfulness ({l3['faithfulness_method']}) : {l3['faithfulness']:.4f} ({l3['grounded_answered']} grounded)"
+    )
     if l3.get("judge_human_agreement"):
         ja = l3["judge_human_agreement"]
-        print(f"  LLM-Judge vs Human Agreement       : {ja['agreement_rate']:.4f} ({ja['agreed_count']}/{ja['labeled_count']})")
-    print(f"  Abstention Correctness             : {l3['abstention_correctness']:.4f} ({l3['abstention_checked']} checked)")
-    print(f"  Citation Validity                  : {l3['citation_validity']:.4f} ({l3['citations_checked']} citations)")
-    print(f"  Latency p50 / p95                  : {l3['latency_p50_ms']:.1f} ms / {l3['latency_p95_ms']:.1f} ms")
+        print(
+            f"  LLM-Judge vs Human Agreement       : {ja['agreement_rate']:.4f} ({ja['agreed_count']}/{ja['labeled_count']})"
+        )
+    print(
+        f"  Abstention Correctness             : {l3['abstention_correctness']:.4f} ({l3['abstention_checked']} checked)"
+    )
+    print(
+        f"  Citation Validity                  : {l3['citation_validity']:.4f} ({l3['citations_checked']} citations)"
+    )
+    print(
+        f"  Latency p50 / p95                  : {l3['latency_p50_ms']:.1f} ms / {l3['latency_p95_ms']:.1f} ms"
+    )
+    cp = l3.get("cache_probe")
+    if cp:
+        print(
+            f"  Cache Probe (repeat hit rate)      : {cp['repeat_hit_rate']:.4f} "
+            f"({cp['repeat_call_hits']}/{cp['questions']} repeats hit; overall {cp['overall_hit_rate']:.4f}; "
+            f"hit p50 {cp['hit_latency_p50_ms']} ms vs miss p50 {cp['miss_latency_p50_ms']} ms)"
+        )
     if "stochasticity_diff" in result:
         print("-" * 78)
         print("STOCHASTICITY DIFF (Run 2 - Run 1, Fixed Seed)")
@@ -575,25 +740,63 @@ def print_summary_table(result: dict[str, Any]) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run 3-level RAGOps offline evaluation suite.")
-    parser.add_argument("--api-base", default=os.environ.get("API_BASE", "http://localhost:8000"))
-    parser.add_argument("--golden", default=os.environ.get("GOLDEN_PATH", "eval/golden.jsonl"))
+    parser = argparse.ArgumentParser(
+        description="Run 3-level RAGOps offline evaluation suite."
+    )
+    parser.add_argument(
+        "--api-base", default=os.environ.get("API_BASE", "http://localhost:8000")
+    )
+    parser.add_argument(
+        "--golden", default=os.environ.get("GOLDEN_PATH", "eval/golden.jsonl")
+    )
     parser.add_argument("--pairs", default="eval/module_pairs.jsonl")
     parser.add_argument("--judge-labels", default="eval/judge_human_labels.jsonl")
-    parser.add_argument("--ollama-host", default=os.environ.get("OLLAMA_HOST", "127.0.0.1:11434"))
-    parser.add_argument("--embed-model", default=os.environ.get("EMBED_MODEL", "nomic-embed-text"))
-    parser.add_argument("--llm-model", default=os.environ.get("LLM_MODEL", "llama3.2:3b"))
-    parser.add_argument("--provider-mode", default=os.environ.get("LLM_PROVIDER", "ollama-host"))
+    parser.add_argument(
+        "--ollama-host", default=os.environ.get("OLLAMA_HOST", "127.0.0.1:11434")
+    )
+    parser.add_argument(
+        "--embed-model", default=os.environ.get("EMBED_MODEL", "nomic-embed-text")
+    )
+    parser.add_argument(
+        "--llm-model", default=os.environ.get("LLM_MODEL", "llama3.2:3b")
+    )
+    parser.add_argument(
+        "--provider-mode", default=os.environ.get("LLM_PROVIDER", "ollama-host")
+    )
     parser.add_argument("--llm-judge", action="store_true")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--stochasticity-runs", type=int, default=1)
     parser.add_argument("--skip-noise-test", action="store_true")
-    parser.add_argument("--label", default="baseline", help="Tag included in timestamped result filename")
-    parser.add_argument("--out-dir", default=os.environ.get("EVAL_RESULTS_DIR", "eval/results"))
-    parser.add_argument("--out-file", default=None, help="Explicit output JSON path (overrides --out-dir)")
-    parser.add_argument("--gate-config", default=None, help="Optional gate thresholds YAML to evaluate")
-    parser.add_argument("--baseline", default=None, help="Optional baseline result JSON for gate comparison")
-    parser.add_argument("--enforce-gate", action="store_true", help="Exit 1 if release gate fails")
+    parser.add_argument(
+        "--cache-probe",
+        type=int,
+        default=5,
+        help="Ask N grounded questions twice (follow_up=False) to measure the semantic cache hit rate; 0 disables",
+    )
+    parser.add_argument(
+        "--label",
+        default="baseline",
+        help="Tag included in timestamped result filename",
+    )
+    parser.add_argument(
+        "--out-dir", default=os.environ.get("EVAL_RESULTS_DIR", "eval/results")
+    )
+    parser.add_argument(
+        "--out-file",
+        default=None,
+        help="Explicit output JSON path (overrides --out-dir)",
+    )
+    parser.add_argument(
+        "--gate-config", default=None, help="Optional gate thresholds YAML to evaluate"
+    )
+    parser.add_argument(
+        "--baseline",
+        default=None,
+        help="Optional baseline result JSON for gate comparison",
+    )
+    parser.add_argument(
+        "--enforce-gate", action="store_true", help="Exit 1 if release gate fails"
+    )
     args = parser.parse_args(argv)
 
     judge_path = Path(args.judge_labels) if args.judge_labels else None
@@ -609,6 +812,7 @@ def main(argv: list[str] | None = None) -> int:
         judge_labels_path=judge_path,
         seed=args.seed,
         run_noise_test=not args.skip_noise_test,
+        cache_probe_n=args.cache_probe,
     )
 
     if args.stochasticity_runs >= 2:
@@ -633,7 +837,11 @@ def main(argv: list[str] | None = None) -> int:
         run1["stochasticity_diff"] = compute_stochasticity_diff(run1, run2)
 
     ts = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
-    out_path = Path(args.out_file) if args.out_file else Path(args.out_dir) / f"eval_{args.label}_{ts}.json"
+    out_path = (
+        Path(args.out_file)
+        if args.out_file
+        else Path(args.out_dir) / f"eval_{args.label}_{ts}.json"
+    )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(run1, indent=2), encoding="utf-8")
     print_summary_table(run1)
@@ -643,8 +851,14 @@ def main(argv: list[str] | None = None) -> int:
         from eval import release_gate as gate_mod
 
         thresholds = gate_mod.load_thresholds(Path(args.gate_config))
-        baseline = json.loads(Path(args.baseline).read_text(encoding="utf-8")) if args.baseline else None
-        gate_res = gate_mod.evaluate_gate(candidate=run1, baseline=baseline, thresholds=thresholds)
+        baseline = (
+            json.loads(Path(args.baseline).read_text(encoding="utf-8"))
+            if args.baseline
+            else None
+        )
+        gate_res = gate_mod.evaluate_gate(
+            candidate=run1, baseline=baseline, thresholds=thresholds
+        )
         gate_mod.print_gate_report(gate_res)
         if args.enforce_gate and not gate_res["passed"]:
             return 1
@@ -652,4 +866,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    # Windows consoles default to cp1252; traces/summaries contain non-ASCII text.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main())

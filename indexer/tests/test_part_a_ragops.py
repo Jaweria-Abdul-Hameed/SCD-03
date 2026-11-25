@@ -7,14 +7,10 @@ import math
 import sys
 from pathlib import Path
 
-import pytest
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from pipeline import __main__ as main_mod
-from pipeline import datalake as dl_mod
 from pipeline import rollback as rollback_mod
-from pipeline import verify as verify_mod
 
 
 class _InMemoryCollection:
@@ -47,7 +43,7 @@ class _InMemoryCollection:
 
     def get(self, where=None, include=None):
         matched = []
-        for cid, row in self.rows.items():
+        for row in self.rows.values():
             if where is None:
                 matched.append(row)
             elif "$and" in where:
@@ -107,7 +103,9 @@ def _deterministic_embed(texts: list[str]) -> list[list[float]]:
     return out
 
 
-def _write_doc(path: Path, source: str, title: str, version: str, doc_id: str, body: str) -> None:
+def _write_doc(
+    path: Path, source: str, title: str, version: str, doc_id: str, body: str
+) -> None:
     content = (
         f"---\n"
         f"source: {source}\n"
@@ -385,11 +383,21 @@ def test_batch_b_committed_corpus_verification_and_quarantine(tmp_path: Path):
     )
     by_src = {d["source"]: d for d in report["documents"]}
     assert report["counts"]["docs_scanned"] == 11
-    assert by_src["b04_exact_dup_scholarship.md"]["checks"]["uniqueness"]["pass"] is False
-    assert by_src["b05_exact_dup_research_grant.md"]["checks"]["uniqueness"]["pass"] is False
-    assert by_src["b06_near_dup_scholarship.md"]["checks"]["uniqueness"]["pass"] is False
+    assert (
+        by_src["b04_exact_dup_scholarship.md"]["checks"]["uniqueness"]["pass"] is False
+    )
+    assert (
+        by_src["b05_exact_dup_research_grant.md"]["checks"]["uniqueness"]["pass"]
+        is False
+    )
+    assert (
+        by_src["b06_near_dup_scholarship.md"]["checks"]["uniqueness"]["pass"] is False
+    )
     assert by_src["b07_corrupt_file.pdf"]["checks"]["quality"]["pass"] is False
     assert by_src["b08_truncated_policy.md"]["checks"]["completeness"]["pass"] is False
     assert by_src["b09_missing_metadata.md"]["checks"]["completeness"]["pass"] is False
-    assert by_src["b10_academic_rules_handbook_nov2026.md"]["disposition"] == "indexed_superseding"
+    assert (
+        by_src["b10_academic_rules_handbook_nov2026.md"]["disposition"]
+        == "indexed_superseding"
+    )
     assert by_src["b11_library_fine_addendum_injected.md"]["disposition"] == "indexed"

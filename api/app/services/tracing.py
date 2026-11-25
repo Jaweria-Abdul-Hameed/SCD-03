@@ -82,7 +82,9 @@ def build_trace_record(
         "response": response_dict,
         "citations": citations,
         "guardrail_actions": guardrail_actions,
-        "latency_per_stage": {k: round(float(v), 3) for k, v in latency_per_stage.items()},
+        "latency_per_stage": {
+            k: round(float(v), 3) for k, v in latency_per_stage.items()
+        },
         "cache_hit": bool(cache_hit),
     }
 

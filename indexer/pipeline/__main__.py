@@ -289,7 +289,9 @@ def run_ingestion(
         )
         source = str(meta.get("source") or doc_path.name)
         seen_sources.add(source)
-        doc_id = str(meta.get("doc_id") or verify_mod.derive_doc_id(doc_path.name, meta))
+        doc_id = str(
+            meta.get("doc_id") or verify_mod.derive_doc_id(doc_path.name, meta)
+        )
         doc_version = str(meta.get("version") or meta.get("date") or hinted_ver)
         superseded_flag = bool(force_superseded or (derived[1] if derived else False))
 
@@ -317,10 +319,22 @@ def run_ingestion(
                     "version": doc_version,
                     "content_hash": cur_hash,
                     "checks": {
-                        "quality": {"pass": True, "reason": "ok: matches archived verified copy"},
-                        "completeness": {"pass": True, "reason": "ok: matches archived verified copy"},
-                        "recency": {"pass": True, "reason": f"ok: previously archived as superseded ({doc_version})"},
-                        "uniqueness": {"pass": True, "reason": "ok: unchanged archived copy"},
+                        "quality": {
+                            "pass": True,
+                            "reason": "ok: matches archived verified copy",
+                        },
+                        "completeness": {
+                            "pass": True,
+                            "reason": "ok: matches archived verified copy",
+                        },
+                        "recency": {
+                            "pass": True,
+                            "reason": f"ok: previously archived as superseded ({doc_version})",
+                        },
+                        "uniqueness": {
+                            "pass": True,
+                            "reason": "ok: unchanged archived copy",
+                        },
                     },
                     "overall_pass": True,
                     "disposition": "skipped_archived_unchanged",
@@ -389,7 +403,9 @@ def run_ingestion(
         if superseded_target is not None:
             old_source = superseded_target["source"]
             old_ver = superseded_target["version"]
-            lake.archive_version(doc_id=doc_id, version=old_ver, superseded_by=doc_version)
+            lake.archive_version(
+                doc_id=doc_id, version=old_ver, superseded_by=doc_version
+            )
             store_mod.set_document_superseded(
                 source=old_source,
                 superseded=True,
@@ -400,7 +416,7 @@ def run_ingestion(
 
         # Handle changed existing document (same source, changed content/config)
         is_update = existing_active is not None
-        if is_update:
+        if existing_active is not None:
             deleted_old = store_mod.delete_document_chunks(
                 source=source,
                 chunk_ids=existing_active.get("chunk_ids"),
@@ -482,13 +498,10 @@ def run_ingestion(
 
     lake.save()
 
-    if (
-        not skip_cache_invalidation
-        and (
-            counts["chunks_embedded"] > 0
-            or counts["chunks_deleted"] > 0
-            or counts["docs_superseded_archived"] > 0
-        )
+    if not skip_cache_invalidation and (
+        counts["chunks_embedded"] > 0
+        or counts["chunks_deleted"] > 0
+        or counts["docs_superseded_archived"] > 0
     ):
         store_mod.invalidate_semantic_cache()
 
@@ -547,7 +560,9 @@ def _print_summary(report: dict[str, Any]) -> None:
             print(f"[{disp}] {src} (chunks_deleted={entry.get('chunks_deleted', 0)})")
             continue
         status = "PASS" if entry["overall_pass"] else "FAIL"
-        print(f"[{status} -> {disp}] {src} (doc_id={entry['doc_id']}, ver={entry['version']})")
+        print(
+            f"[{status} -> {disp}] {src} (doc_id={entry['doc_id']}, ver={entry['version']})"
+        )
         for cname in ("quality", "completeness", "recency", "uniqueness"):
             chk = entry["checks"][cname]
             mark = "PASS" if chk["pass"] else "FAIL"
@@ -588,7 +603,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--near-dup-threshold",
         type=float,
-        default=float(os.environ.get("NEAR_DUP_THRESHOLD", str(verify_mod.DEFAULT_NEAR_DUP_THRESHOLD))),
+        default=float(
+            os.environ.get(
+                "NEAR_DUP_THRESHOLD", str(verify_mod.DEFAULT_NEAR_DUP_THRESHOLD)
+            )
+        ),
     )
     parser.add_argument(
         "--superseded",

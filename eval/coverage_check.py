@@ -22,18 +22,31 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from eval.run_ragops_eval import cosine_sim, embed_texts_ollama, load_jsonl  # noqa: E402
+from eval.run_ragops_eval import cosine_sim, embed_texts_ollama, load_jsonl
 
 
 def infer_topic(query: str, explicit_topic: str | None = None) -> str:
     if explicit_topic and explicit_topic.strip():
         return explicit_topic.strip()
     low = query.lower()
-    if any(k in low for k in ("alumni", "transcript", "degree verification", "convocation")):
+    if any(
+        k in low for k in ("alumni", "transcript", "degree verification", "convocation")
+    ):
         return "alumni_and_degree_verification"
-    if any(k in low for k in ("cafeteria", "gym", "sports", "parking", "medical", "clinic")):
+    if any(
+        k in low for k in ("cafeteria", "gym", "sports", "parking", "medical", "clinic")
+    ):
         return "campus_facilities_and_services"
-    if any(k in low for k in ("exchange", "erasmus", "international", "study abroad", "transfer credit")):
+    if any(
+        k in low
+        for k in (
+            "exchange",
+            "erasmus",
+            "international",
+            "study abroad",
+            "transfer credit",
+        )
+    ):
         return "international_exchange_and_transfers"
     if any(k in low for k in ("internship", "career", "job fair", "placement")):
         return "career_services_and_internships"
@@ -53,8 +66,12 @@ def compute_coverage(
     live_texts = [q["query"] for q in live_queries]
     gold_texts = [g["question"] for g in golden_questions]
 
-    live_vecs, _ = embed_texts_ollama(live_texts, ollama_host, embed_model, provider_mode)
-    gold_vecs, _ = embed_texts_ollama(gold_texts, ollama_host, embed_model, provider_mode)
+    live_vecs, _ = embed_texts_ollama(
+        live_texts, ollama_host, embed_model, provider_mode
+    )
+    gold_vecs, _ = embed_texts_ollama(
+        gold_texts, ollama_host, embed_model, provider_mode
+    )
 
     rows: list[dict[str, Any]] = []
     uncovered: list[dict[str, Any]] = []
@@ -133,12 +150,20 @@ def print_coverage_report(report: dict[str, Any]) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Check live query coverage against golden.jsonl.")
+    parser = argparse.ArgumentParser(
+        description="Check live query coverage against golden.jsonl."
+    )
     parser.add_argument("--live-queries", default="eval/live_queries.jsonl")
     parser.add_argument("--golden", default="eval/golden.jsonl")
-    parser.add_argument("--ollama-host", default=os.environ.get("OLLAMA_HOST", "127.0.0.1:11434"))
-    parser.add_argument("--embed-model", default=os.environ.get("EMBED_MODEL", "nomic-embed-text"))
-    parser.add_argument("--provider-mode", default=os.environ.get("LLM_PROVIDER", "ollama-host"))
+    parser.add_argument(
+        "--ollama-host", default=os.environ.get("OLLAMA_HOST", "127.0.0.1:11434")
+    )
+    parser.add_argument(
+        "--embed-model", default=os.environ.get("EMBED_MODEL", "nomic-embed-text")
+    )
+    parser.add_argument(
+        "--provider-mode", default=os.environ.get("LLM_PROVIDER", "ollama-host")
+    )
     parser.add_argument("--sim-threshold", type=float, default=0.70)
     parser.add_argument("--coverage-threshold", type=float, default=0.85)
     parser.add_argument("--out", default=None)
@@ -165,4 +190,7 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    # Windows consoles default to cp1252; traces/summaries contain non-ASCII text.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main())
