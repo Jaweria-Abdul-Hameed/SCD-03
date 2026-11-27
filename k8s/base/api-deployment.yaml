@@ -51,6 +51,17 @@ spec:
             - secretRef:
                 name: rahbar-secret
                 optional: true
+          # Pinned directly in the Pod template so changes create a new ReplicaSet
+          # revision and `kubectl rollout undo` restores the prior versions/prompt.
+          env:
+            - name: CHROMA_COLLECTION
+              value: "rahbar_corpus"
+            - name: COLLECTION_VERSION
+              value: "v1"
+            - name: EMBED_VERSION
+              value: "nomic-embed-text:v1.5"
+            - name: PROMPT_TEMPLATE
+              value: "grounded_v1"
           volumeMounts:
             - name: traces
               mountPath: /traces

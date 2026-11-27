@@ -51,6 +51,8 @@ spec:
               --label "$EVAL_LABEL"
               --out-dir /results
               --gate-config /app/eval/gate_thresholds.yaml
+              --llm-judge
+              --judge-model "$EVAL_JUDGE_MODEL"
               $BASELINE_ARG
               --enforce-gate
           envFrom:

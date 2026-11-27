@@ -13,6 +13,8 @@ data:
   EVAL_TARGET_API: "http://api:8000"
   EVAL_LABEL: "k8s-eval"
   EVAL_BASELINE_FILE: "/results/baseline_k8s.json"
+  # Calibrated 7B judge model (Ollama resolves unqualified "dolphin-mistral" to its default tag).
+  EVAL_JUDGE_MODEL: "dolphin-mistral"
   GATE_RECALL5_MAX_DROP_PP: "0.02"
   GATE_RECALL5_MIN: "0.70"
   # 0.75 agrees with eval/gate_thresholds.yaml and Part G report (absorbs 3B judge/lexical variance)

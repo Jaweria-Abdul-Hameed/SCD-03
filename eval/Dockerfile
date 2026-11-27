@@ -5,8 +5,7 @@ FROM python:3.12-slim
 RUN useradd -m -u 10001 rahbar
 WORKDIR /app
 
-COPY api/requirements.txt ./api-requirements.txt
-RUN pip install --no-cache-dir pydantic>=2.9 pydantic-settings>=2.6 requests>=2.32 pyyaml>=6.0 numpy>=1.26
+RUN pip install --no-cache-dir "pydantic>=2.9" "pydantic-settings>=2.6" "requests>=2.32" "pyyaml>=6.0" "numpy>=1.26"
 
 COPY eval/ ./eval/
 
