@@ -98,7 +98,7 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ### Part B: Offline testing at three levels
 
-- [ ] **[CLUSTER]** Re-run the full Part B suite in-cluster with the final 32-question `eval/golden.jsonl`, `--llm-judge --judge-model dolphin-mistral:latest --stochasticity-runs 2`, and commit the timestamped result. Every committed Part B/C result file uses the old 26-question set (`total_questions: 26`), so the committed golden file and results disagree.
+- [x] **[CLUSTER]** Re-run the full Part B suite in-cluster with the final 32-question `eval/golden.jsonl`, `--llm-judge --judge-model dolphin-mistral:latest --stochasticity-runs 2`, and commit the timestamped result. Every committed Part B/C result file uses the old 26-question set (`total_questions: 26`), so the committed golden file and results disagree.
 
 ### Part C: Change experiment and release gate
 
