@@ -102,7 +102,7 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ### Part C: Change experiment and release gate
 
-- [ ] **[CLUSTER]** Re-run baseline and both candidates in the same environment (in-cluster eval Job), with the same golden set and the same faithfulness method. Commit a C1 comparison file `eval/results/c1_baseline_vs_candidates.json` covering all three levels. The report currently compares a local LLM-judge baseline (`eval_baseline-final`, port-forward `127.0.0.1:18000`, p95 12.1 s) against in-cluster lexical candidates.
+- [x] **[CLUSTER]** Re-run baseline and both candidates in the same environment (in-cluster eval Job), with the same golden set and the same faithfulness method. Commit a C1 comparison file `eval/results/c1_baseline_vs_candidates.json` covering all three levels. The report currently compares a local LLM-judge baseline (`eval_baseline-final`, port-forward `127.0.0.1:18000`, p95 12.1 s) against in-cluster lexical candidates.
 
 ### Part D: Observability and traceability
 

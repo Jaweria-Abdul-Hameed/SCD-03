@@ -1,0 +1,903 @@
+{
+  "schema_version": "1.0",
+  "task": "C1 Like-for-Like Comparison: Baseline vs Passing Candidate vs Failing Candidate",
+  "generated_at": "2026-11-27T20:56:27.790710+00:00",
+  "environment_parity": {
+    "execution_environment": "in-cluster Kubernetes Jobs (eval-job / eval-job-candidate in namespace rahbar)",
+    "golden_file": "/app/eval/golden.jsonl",
+    "total_questions": 32,
+    "queries_evaluated_retrieval": 21,
+    "abstention_checked": 11,
+    "injection_checked": 1,
+    "seed": 42,
+    "faithfulness_method": "llm_judge",
+    "judge_model": "dolphin-mistral",
+    "llm_model": "llama3.2:3b",
+    "embed_model": "nomic-embed-text",
+    "embed_version": "nomic-embed-text:v1.5",
+    "relevance_floor": 0.64,
+    "temperature": 0.0
+  },
+  "sources": {
+    "baseline": {
+      "canonical_alias": "eval/results/baseline_k8s.json",
+      "timestamped_file": "eval/results/eval_baseline_20261127T204204Z.json",
+      "summary_markdown": "eval/results/eval_baseline_20261127T204204Z.md",
+      "gate_file": "eval/results/gate_baseline_20261127T204204Z.json",
+      "timestamp": "2026-11-27T20:42:04.466513+00:00"
+    },
+    "candidate_pass": {
+      "canonical_alias": "eval/results/candidate_pass.json",
+      "timestamped_file": "eval/results/eval_candidate-pass_20261127T205104Z.json",
+      "summary_markdown": "eval/results/eval_candidate-pass_20261127T205104Z.md",
+      "gate_file": "eval/results/gate_candidate-pass_20261127T205104Z.json",
+      "timestamp": "2026-11-27T20:51:04.408732+00:00"
+    },
+    "candidate_fail": {
+      "canonical_alias": "eval/results/candidate_fail.json",
+      "timestamped_file": "eval/results/eval_candidate-fail_20261127T205435Z.json",
+      "summary_markdown": "eval/results/eval_candidate-fail_20261127T205435Z.md",
+      "gate_file": "eval/results/gate_candidate-fail_20261127T205435Z.json",
+      "timestamp": "2026-11-27T20:54:35.940347+00:00"
+    }
+  },
+  "variants": {
+    "baseline": {
+      "label": "baseline",
+      "api_base": "http://api:8000",
+      "timestamp": "2026-11-27T20:42:04.466513+00:00",
+      "config": {
+        "chroma_collection": "rahbar_corpus",
+        "collection_version": "v1",
+        "prompt_template": "grounded_v1",
+        "top_k": 5,
+        "relevance_floor": 0.64,
+        "temperature": 0.0,
+        "llm_model": "llama3.2:3b",
+        "embed_model": "nomic-embed-text",
+        "judge_model": "dolphin-mistral"
+      },
+      "level1_module": {
+        "paraphrase_pairs": 16,
+        "unrelated_pairs": 16,
+        "paraphrase_mean_cosine": 0.7721,
+        "unrelated_mean_cosine": 0.483,
+        "cosine_gap": 0.2891,
+        "embedding_time_per_chunk_ms": 84.63,
+        "timing_chunk_size_tokens": 512,
+        "timing_chunks_sampled": 5,
+        "timing_chunk_source": "fixtures",
+        "determinism_max_abs_diff": 0.0,
+        "determinism_cosine": 1.0
+      },
+      "level2_component": {
+        "queries_evaluated": 21,
+        "recall@3": 0.5714,
+        "recall@5": 0.7143,
+        "MRR": 0.4913,
+        "nDCG@5": 0.546,
+        "noise_test": {
+          "noise_type": "query_typos",
+          "queries_tested": 21,
+          "noisy_recall@3": 0.6667,
+          "noisy_recall@5": 0.7143,
+          "noisy_MRR": 0.581,
+          "noisy_nDCG@5": 0.6137,
+          "delta_recall@3": 0.0952,
+          "delta_recall@5": 0.0,
+          "delta_MRR": 0.0897,
+          "delta_nDCG@5": 0.0676
+        }
+      },
+      "level3_e2e": {
+        "total_questions": 32,
+        "grounded_answered": 18,
+        "faithfulness": 0.8889,
+        "faithfulness_method": "llm_judge",
+        "judge_model": "dolphin-mistral",
+        "faithfulness_vs_human_agreement": {
+          "method": "llm_judge",
+          "judge_model": "dolphin-mistral",
+          "labeled_count": 10,
+          "agreed_count": 10,
+          "agreement_rate": 1.0
+        },
+        "abstention_correctness": 1.0,
+        "abstention_checked": 11,
+        "injection_resistance": 1.0,
+        "injection_checked": 1,
+        "citation_validity": 1.0,
+        "citations_checked": 18,
+        "latency_p50_ms": 4616.17,
+        "latency_p95_ms": 9700.48
+      },
+      "release_gate": {
+        "passed": true,
+        "baseline_file": null,
+        "thresholds": {
+          "recall5_max_drop_pp": 0.02,
+          "recall5_min": 0.7,
+          "faithfulness_min": 0.75,
+          "p95_latency_max_ms": 45000.0,
+          "abstention_correctness_min_delta": 0.0,
+          "abstention_correctness_min": 0.8,
+          "citation_validity_min": 0.9
+        },
+        "checks": [
+          {
+            "rule": "recall@5_min",
+            "actual": "0.7143",
+            "threshold": ">= 0.7000",
+            "pass": true
+          },
+          {
+            "rule": "faithfulness_min",
+            "actual": "0.8889",
+            "threshold": ">= 0.7500",
+            "pass": true
+          },
+          {
+            "rule": "p95_latency_max_ms",
+            "actual": "9700.48 ms",
+            "threshold": "<= 45000.00 ms",
+            "pass": true
+          },
+          {
+            "rule": "abstention_correctness_min",
+            "actual": "1.0000",
+            "threshold": ">= 0.8000",
+            "pass": true
+          },
+          {
+            "rule": "citation_validity_min",
+            "actual": "1.0000",
+            "threshold": ">= 0.9000",
+            "pass": true
+          },
+          {
+            "rule": "injection_resistance_min",
+            "actual": "1.0000",
+            "threshold": ">= 1.0000",
+            "pass": true
+          }
+        ]
+      }
+    },
+    "candidate_pass": {
+      "label": "candidate",
+      "api_base": "http://api-candidate:8000",
+      "timestamp": "2026-11-27T20:51:04.408732+00:00",
+      "config": {
+        "chroma_collection": "rahbar_corpus_candidate",
+        "collection_version": "candidate-v2",
+        "prompt_template": "strict_concise_v2",
+        "top_k": 5,
+        "relevance_floor": 0.64,
+        "temperature": 0.0,
+        "llm_model": "llama3.2:3b",
+        "embed_model": "nomic-embed-text",
+        "judge_model": "dolphin-mistral"
+      },
+      "level1_module": {
+        "paraphrase_pairs": 16,
+        "unrelated_pairs": 16,
+        "paraphrase_mean_cosine": 0.7721,
+        "unrelated_mean_cosine": 0.483,
+        "cosine_gap": 0.2891,
+        "embedding_time_per_chunk_ms": 64.32,
+        "timing_chunk_size_tokens": 512,
+        "timing_chunks_sampled": 5,
+        "timing_chunk_source": "fixtures",
+        "determinism_max_abs_diff": 0.0,
+        "determinism_cosine": 1.0
+      },
+      "level2_component": {
+        "queries_evaluated": 21,
+        "recall@3": 0.5714,
+        "recall@5": 0.7143,
+        "MRR": 0.4913,
+        "nDCG@5": 0.546,
+        "noise_test": {
+          "noise_type": "query_typos",
+          "queries_tested": 21,
+          "noisy_recall@3": 0.6667,
+          "noisy_recall@5": 0.7143,
+          "noisy_MRR": 0.581,
+          "noisy_nDCG@5": 0.6137,
+          "delta_recall@3": 0.0952,
+          "delta_recall@5": 0.0,
+          "delta_MRR": 0.0897,
+          "delta_nDCG@5": 0.0676
+        }
+      },
+      "level3_e2e": {
+        "total_questions": 32,
+        "grounded_answered": 15,
+        "faithfulness": 0.8,
+        "faithfulness_method": "llm_judge",
+        "judge_model": "dolphin-mistral",
+        "faithfulness_vs_human_agreement": {
+          "method": "llm_judge",
+          "judge_model": "dolphin-mistral",
+          "labeled_count": 8,
+          "agreed_count": 7,
+          "agreement_rate": 0.875
+        },
+        "abstention_correctness": 1.0,
+        "abstention_checked": 11,
+        "injection_resistance": 1.0,
+        "injection_checked": 1,
+        "citation_validity": 1.0,
+        "citations_checked": 18,
+        "latency_p50_ms": 2735.12,
+        "latency_p95_ms": 6907.25
+      },
+      "release_gate": {
+        "passed": true,
+        "baseline_file": "/results/baseline_k8s.json",
+        "thresholds": {
+          "recall5_max_drop_pp": 0.02,
+          "recall5_min": 0.7,
+          "faithfulness_min": 0.75,
+          "p95_latency_max_ms": 45000.0,
+          "abstention_correctness_min_delta": 0.0,
+          "abstention_correctness_min": 0.8,
+          "citation_validity_min": 0.9
+        },
+        "checks": [
+          {
+            "rule": "recall@5_max_drop_vs_baseline",
+            "actual": "0.7143 (baseline=0.7143, drop=+0.0000)",
+            "threshold": "drop <= 0.0200",
+            "pass": true
+          },
+          {
+            "rule": "faithfulness_min",
+            "actual": "0.8000",
+            "threshold": ">= 0.7500",
+            "pass": true
+          },
+          {
+            "rule": "p95_latency_max_ms",
+            "actual": "6907.25 ms",
+            "threshold": "<= 45000.00 ms",
+            "pass": true
+          },
+          {
+            "rule": "abstention_correctness_vs_baseline",
+            "actual": "1.0000 (baseline=1.0000, delta=+0.0000)",
+            "threshold": "delta >= +0.0000",
+            "pass": true
+          },
+          {
+            "rule": "citation_validity_min",
+            "actual": "1.0000",
+            "threshold": ">= 0.9000",
+            "pass": true
+          },
+          {
+            "rule": "injection_resistance_min",
+            "actual": "1.0000",
+            "threshold": ">= 1.0000",
+            "pass": true
+          }
+        ]
+      }
+    },
+    "candidate_fail": {
+      "label": "candidate",
+      "api_base": "http://api-candidate:8000",
+      "timestamp": "2026-11-27T20:54:35.940347+00:00",
+      "config": {
+        "chroma_collection": "rahbar_corpus_candidate",
+        "collection_version": "candidate-fail-v0",
+        "prompt_template": "bad_unconstrained_v0",
+        "top_k": 1,
+        "relevance_floor": 0.64,
+        "temperature": 0.0,
+        "llm_model": "llama3.2:3b",
+        "embed_model": "nomic-embed-text",
+        "judge_model": "dolphin-mistral"
+      },
+      "level1_module": {
+        "paraphrase_pairs": 16,
+        "unrelated_pairs": 16,
+        "paraphrase_mean_cosine": 0.7721,
+        "unrelated_mean_cosine": 0.483,
+        "cosine_gap": 0.2891,
+        "embedding_time_per_chunk_ms": 73.91,
+        "timing_chunk_size_tokens": 512,
+        "timing_chunks_sampled": 5,
+        "timing_chunk_source": "fixtures",
+        "determinism_max_abs_diff": 0.0,
+        "determinism_cosine": 1.0
+      },
+      "level2_component": {
+        "queries_evaluated": 21,
+        "recall@3": 0.381,
+        "recall@5": 0.381,
+        "MRR": 0.381,
+        "nDCG@5": 0.381,
+        "noise_test": {
+          "noise_type": "query_typos",
+          "queries_tested": 21,
+          "noisy_recall@3": 0.5238,
+          "noisy_recall@5": 0.5238,
+          "noisy_MRR": 0.5238,
+          "noisy_nDCG@5": 0.5238,
+          "delta_recall@3": 0.1429,
+          "delta_recall@5": 0.1429,
+          "delta_MRR": 0.1429,
+          "delta_nDCG@5": 0.1429
+        }
+      },
+      "level3_e2e": {
+        "total_questions": 32,
+        "grounded_answered": 7,
+        "faithfulness": 0.7143,
+        "faithfulness_method": "llm_judge",
+        "judge_model": "dolphin-mistral",
+        "faithfulness_vs_human_agreement": {
+          "method": "llm_judge",
+          "judge_model": "dolphin-mistral",
+          "labeled_count": 3,
+          "agreed_count": 3,
+          "agreement_rate": 1.0
+        },
+        "abstention_correctness": 1.0,
+        "abstention_checked": 11,
+        "injection_resistance": 1.0,
+        "injection_checked": 1,
+        "citation_validity": 1.0,
+        "citations_checked": 7,
+        "latency_p50_ms": 1561.34,
+        "latency_p95_ms": 6951.88
+      },
+      "release_gate": {
+        "passed": false,
+        "baseline_file": "/results/baseline_k8s.json",
+        "thresholds": {
+          "recall5_max_drop_pp": 0.02,
+          "recall5_min": 0.7,
+          "faithfulness_min": 0.75,
+          "p95_latency_max_ms": 45000.0,
+          "abstention_correctness_min_delta": 0.0,
+          "abstention_correctness_min": 0.8,
+          "citation_validity_min": 0.9
+        },
+        "checks": [
+          {
+            "rule": "recall@5_max_drop_vs_baseline",
+            "actual": "0.3810 (baseline=0.7143, drop=+0.3333)",
+            "threshold": "drop <= 0.0200",
+            "pass": false
+          },
+          {
+            "rule": "faithfulness_min",
+            "actual": "0.7143",
+            "threshold": ">= 0.7500",
+            "pass": false
+          },
+          {
+            "rule": "p95_latency_max_ms",
+            "actual": "6951.88 ms",
+            "threshold": "<= 45000.00 ms",
+            "pass": true
+          },
+          {
+            "rule": "abstention_correctness_vs_baseline",
+            "actual": "1.0000 (baseline=1.0000, delta=+0.0000)",
+            "threshold": "delta >= +0.0000",
+            "pass": true
+          },
+          {
+            "rule": "citation_validity_min",
+            "actual": "1.0000",
+            "threshold": ">= 0.9000",
+            "pass": true
+          },
+          {
+            "rule": "injection_resistance_min",
+            "actual": "1.0000",
+            "threshold": ">= 1.0000",
+            "pass": true
+          }
+        ]
+      }
+    }
+  },
+  "deltas_vs_baseline": {
+    "candidate_pass_vs_baseline": {
+      "level1_module": {
+        "paraphrase_mean_cosine": 0.0,
+        "unrelated_mean_cosine": 0.0,
+        "cosine_gap": 0.0,
+        "embedding_time_per_chunk_ms": -20.31,
+        "determinism_max_abs_diff": 0.0,
+        "determinism_cosine": 0.0
+      },
+      "level2_component": {
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "MRR": 0.0,
+        "nDCG@5": 0.0,
+        "noise_test": {
+          "noisy_recall@3": 0.0,
+          "noisy_recall@5": 0.0,
+          "noisy_MRR": 0.0,
+          "noisy_nDCG@5": 0.0,
+          "delta_recall@3": 0.0,
+          "delta_recall@5": 0.0,
+          "delta_MRR": 0.0,
+          "delta_nDCG@5": 0.0
+        }
+      },
+      "level3_e2e": {
+        "grounded_answered": -3,
+        "faithfulness": -0.0889,
+        "faithfulness_vs_human_agreement_rate": -0.125,
+        "abstention_correctness": 0.0,
+        "injection_resistance": 0.0,
+        "citation_validity": 0.0,
+        "citations_checked": 0,
+        "latency_p50_ms": -1881.05,
+        "latency_p50_pct": -40.75,
+        "latency_p95_ms": -2793.23,
+        "latency_p95_pct": -28.79
+      }
+    },
+    "candidate_fail_vs_baseline": {
+      "level1_module": {
+        "paraphrase_mean_cosine": 0.0,
+        "unrelated_mean_cosine": 0.0,
+        "cosine_gap": 0.0,
+        "embedding_time_per_chunk_ms": -10.72,
+        "determinism_max_abs_diff": 0.0,
+        "determinism_cosine": 0.0
+      },
+      "level2_component": {
+        "recall@3": -0.1904,
+        "recall@5": -0.3333,
+        "MRR": -0.1103,
+        "nDCG@5": -0.165,
+        "noise_test": {
+          "noisy_recall@3": -0.1429,
+          "noisy_recall@5": -0.1905,
+          "noisy_MRR": -0.0572,
+          "noisy_nDCG@5": -0.0899,
+          "delta_recall@3": 0.0477,
+          "delta_recall@5": 0.1429,
+          "delta_MRR": 0.0532,
+          "delta_nDCG@5": 0.0753
+        }
+      },
+      "level3_e2e": {
+        "grounded_answered": -11,
+        "faithfulness": -0.1746,
+        "faithfulness_vs_human_agreement_rate": 0.0,
+        "abstention_correctness": 0.0,
+        "injection_resistance": 0.0,
+        "citation_validity": 0.0,
+        "citations_checked": -11,
+        "latency_p50_ms": -3054.83,
+        "latency_p50_pct": -66.18,
+        "latency_p95_ms": -2748.6,
+        "latency_p95_pct": -28.33
+      }
+    }
+  },
+  "per_question_differences": {
+    "candidate_pass_vs_baseline": {
+      "retrieval_changed_count": 0,
+      "retrieval_changes": [],
+      "answered_from_context_changed_count": 3,
+      "answered_from_context_changes": [
+        {
+          "id": "G12",
+          "category": "answerable",
+          "type": "exact-term",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G16",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G24",
+          "category": "hard",
+          "type": "paraphrased-multi-chunk",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": false,
+          "candidate_faithful": null
+        }
+      ],
+      "faithfulness_changed_count": 5,
+      "faithfulness_changes": [
+        {
+          "id": "G02",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": true,
+          "baseline_faithful": true,
+          "candidate_faithful": false,
+          "baseline_judge_reason": "The attendance requirement is clearly stated in the Retrieved Context as 80% for Undergraduate degree programs and 75% for Graduate and Post Graduate degree programs.",
+          "candidate_judge_reason": "The university's attendance requirement for a course is not explicitly stated in the provided context."
+        },
+        {
+          "id": "G03",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": true,
+          "baseline_faithful": true,
+          "candidate_faithful": false,
+          "baseline_judge_reason": "The key rules are directly supported by the Retrieved Context.",
+          "candidate_judge_reason": "The answer does not directly support the key rules of the university's Generative AI policy for students as mentioned in the Retrieved Context."
+        },
+        {
+          "id": "G12",
+          "category": "answerable",
+          "type": "exact-term",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The minimum CGPA required to avoid academic warning is clearly stated in the text: 'Minimum CGPA required to avoid academic warning: BS/BBA programs 2.00 MS/MBA programs 2.50 PhD programs 3.00'.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G16",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The one-time admission fee is mentioned as Rs 30,000 on page 1 of the Fee Structure. The refundable security deposit is also mentioned as Rs 20,000 on the same page.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G24",
+          "category": "hard",
+          "type": "paraphrased-multi-chunk",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": false,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The Answer does not directly support the Retrieved Context.",
+          "candidate_judge_reason": ""
+        }
+      ]
+    },
+    "candidate_fail_vs_baseline": {
+      "retrieval_changed_count": 7,
+      "retrieval_changes": [
+        {
+          "id": "G01",
+          "baseline_recall@3": 0.0,
+          "candidate_recall@3": 0.0,
+          "baseline_recall@5": 1.0,
+          "candidate_recall@5": 0.0,
+          "baseline_MRR": 0.25,
+          "candidate_MRR": 0.0
+        },
+        {
+          "id": "G03",
+          "baseline_recall@3": 0.0,
+          "candidate_recall@3": 0.0,
+          "baseline_recall@5": 1.0,
+          "candidate_recall@5": 0.0,
+          "baseline_MRR": 0.2,
+          "candidate_MRR": 0.0
+        },
+        {
+          "id": "G04",
+          "baseline_recall@3": 1.0,
+          "candidate_recall@3": 0.0,
+          "baseline_recall@5": 1.0,
+          "candidate_recall@5": 0.0,
+          "baseline_MRR": 0.5,
+          "candidate_MRR": 0.0
+        },
+        {
+          "id": "G12",
+          "baseline_recall@3": 0.0,
+          "candidate_recall@3": 0.0,
+          "baseline_recall@5": 1.0,
+          "candidate_recall@5": 0.0,
+          "baseline_MRR": 0.2,
+          "candidate_MRR": 0.0
+        },
+        {
+          "id": "G15",
+          "baseline_recall@3": 1.0,
+          "candidate_recall@3": 0.0,
+          "baseline_recall@5": 1.0,
+          "candidate_recall@5": 0.0,
+          "baseline_MRR": 0.3333,
+          "candidate_MRR": 0.0
+        },
+        {
+          "id": "G17",
+          "baseline_recall@3": 1.0,
+          "candidate_recall@3": 0.0,
+          "baseline_recall@5": 1.0,
+          "candidate_recall@5": 0.0,
+          "baseline_MRR": 0.3333,
+          "candidate_MRR": 0.0
+        },
+        {
+          "id": "G24",
+          "baseline_recall@3": 1.0,
+          "candidate_recall@3": 0.0,
+          "baseline_recall@5": 1.0,
+          "candidate_recall@5": 0.0,
+          "baseline_MRR": 0.5,
+          "candidate_MRR": 0.0
+        }
+      ],
+      "answered_from_context_changed_count": 11,
+      "answered_from_context_changes": [
+        {
+          "id": "G03",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G04",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G05",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G07",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G08",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G10",
+          "category": "answerable",
+          "type": "version-sensitive",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G11",
+          "category": "answerable",
+          "type": "exact-term",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G12",
+          "category": "answerable",
+          "type": "exact-term",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G18",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G19",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null
+        },
+        {
+          "id": "G24",
+          "category": "hard",
+          "type": "paraphrased-multi-chunk",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": false,
+          "candidate_faithful": null
+        }
+      ],
+      "faithfulness_changed_count": 12,
+      "faithfulness_changes": [
+        {
+          "id": "G03",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The key rules are directly supported by the Retrieved Context.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G04",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The tuition fee per credit hour is directly supported by the Retrieved Context in the Fee Structure section.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G05",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The provided context directly supports the factual claim about how grade points are assigned in the university's grading scale.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G07",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The answer directly supports the information provided in the Retrieved Context.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G08",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The information provided in the Answer matches the details given in the Retrieved Context.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G10",
+          "category": "answerable",
+          "type": "version-sensitive",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The question asks for the number of program learning outcomes (PLOs) in the Electrical Engineering program. The Retrieved Context provides a list of PLOs for the Electrical Engineering program, which directly answers the question.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G11",
+          "category": "answerable",
+          "type": "exact-term",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "Clause 4.4 states that a student under academic warning or probation must register for all such courses, in which the grade was F, provided these courses are being offered.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G12",
+          "category": "answerable",
+          "type": "exact-term",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The minimum CGPA required to avoid academic warning is clearly stated in the text: 'Minimum CGPA required to avoid academic warning: BS/BBA programs 2.00 MS/MBA programs 2.50 PhD programs 3.00'.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G18",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The recommended three-step course registration procedure in Clause 4.1 is clearly stated as 'Clear all previous fees and dues before registration, register online, pay semester fees by the due date'.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G19",
+          "category": "answerable",
+          "type": "ordinary",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": true,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The minimum semester GPA required for continuation of a merit scholarship is mentioned in the Student Handbook on page 19 as 'Continuation of merit scholarship is subject to maintaining semester GPA of 3.0 or higher'.",
+          "candidate_judge_reason": ""
+        },
+        {
+          "id": "G23",
+          "category": "hard",
+          "type": "paraphrased-multi-chunk",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": true,
+          "baseline_faithful": true,
+          "candidate_faithful": false,
+          "baseline_judge_reason": "The context mentions that a student must give a written undertaking if they repeat a course whose post-requisite course(s) s/he has passed and fail the retake, their grades in all post-requisite courses will be changed to F grade.",
+          "candidate_judge_reason": "The Answer does not directly address the question about paperwork needed and what happens if they fail the retake."
+        },
+        {
+          "id": "G24",
+          "category": "hard",
+          "type": "paraphrased-multi-chunk",
+          "baseline_answered_from_context": true,
+          "candidate_answered_from_context": false,
+          "baseline_faithful": false,
+          "candidate_faithful": null,
+          "baseline_judge_reason": "The Answer does not directly support the Retrieved Context.",
+          "candidate_judge_reason": ""
+        }
+      ]
+    }
+  },
+  "release_decision": {
+    "candidate_pass": {
+      "passed": true,
+      "failed_rules": [],
+      "decision": "PROMOTE (all 6 gate checks passed vs /results/baseline_k8s.json; eligible for k8s/patches/promote-candidate.yaml)"
+    },
+    "candidate_fail": {
+      "passed": false,
+      "failed_rules": [
+        "recall@5_max_drop_vs_baseline",
+        "faithfulness_min"
+      ],
+      "decision": "BLOCK (eval-job-candidate exited non-zero; failed recall@5_max_drop_vs_baseline and faithfulness_min)"
+    }
+  }
+}
