@@ -14,6 +14,8 @@ data:
   EVAL_LABEL: "k8s-eval"
   EVAL_BASELINE_FILE: "/results/baseline_k8s.json"
   GATE_RECALL5_MAX_DROP_PP: "0.02"
+  GATE_RECALL5_MIN: "0.70"
+  # 0.75 agrees with eval/gate_thresholds.yaml and Part G report (absorbs 3B judge/lexical variance)
   GATE_FAITHFULNESS_MIN: "0.75"
   GATE_P95_LATENCY_MAX_MS: "45000.0"
   GATE_ABSTENTION_MIN_DELTA: "0.0"

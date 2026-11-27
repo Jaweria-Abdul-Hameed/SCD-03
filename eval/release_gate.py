@@ -3,11 +3,13 @@
 
 Usage:
     python eval/release_gate.py --candidate eval/results/candidate.json \
-        --baseline eval/results/baseline.json --config eval/gate_thresholds.yaml
+        --baseline eval/results/baseline.json --config eval/gate_thresholds.yaml \
+        --out eval/results/gate_candidate.json
 
 Environment overrides (from Kubernetes ConfigMap in F2):
-    GATE_RECALL5_MAX_DROP_PP, GATE_FAITHFULNESS_MIN, GATE_P95_LATENCY_MAX_MS,
-    GATE_ABSTENTION_MIN_DELTA, GATE_ABSTENTION_MIN, GATE_CITATION_VALIDITY_MIN
+    GATE_RECALL5_MAX_DROP_PP, GATE_RECALL5_MIN, GATE_FAITHFULNESS_MIN,
+    GATE_P95_LATENCY_MAX_MS, GATE_ABSTENTION_MIN_DELTA, GATE_ABSTENTION_MIN,
+    GATE_INJECTION_RESISTANCE_MIN, GATE_CITATION_VALIDITY_MIN
 """
 
 from __future__ import annotations
@@ -16,6 +18,7 @@ import argparse
 import json
 import os
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -26,6 +29,7 @@ def load_thresholds(config_path: Path) -> dict[str, float]:
     data = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
     env_map = {
         "recall5_max_drop_pp": "GATE_RECALL5_MAX_DROP_PP",
+        "recall5_min": "GATE_RECALL5_MIN",
         "faithfulness_min": "GATE_FAITHFULNESS_MIN",
         "p95_latency_max_ms": "GATE_P95_LATENCY_MAX_MS",
         "abstention_correctness_min_delta": "GATE_ABSTENTION_MIN_DELTA",
@@ -77,7 +81,7 @@ def evaluate_gate(
 
     # 2. Faithfulness minimum
     faith_c = float(l3_c["faithfulness"])
-    faith_min = float(thresholds.get("faithfulness_min", 0.80))
+    faith_min = float(thresholds.get("faithfulness_min", 0.75))
     checks.append(
         {
             "rule": "faithfulness_min",
@@ -153,6 +157,52 @@ def evaluate_gate(
     return {"passed": passed, "checks": checks, "thresholds": thresholds}
 
 
+def build_gate_record(
+    report: dict[str, Any],
+    *,
+    candidate_file: str | Path | None = None,
+    baseline_file: str | Path | None = None,
+    config_file: str | Path | None = None,
+    label: str | None = None,
+    timestamp: str | None = None,
+) -> dict[str, Any]:
+    """Assemble a persistable release-gate decision record."""
+    return {
+        "timestamp": timestamp or datetime.now(UTC).isoformat(),
+        "label": label,
+        "passed": bool(report["passed"]),
+        "checks": report["checks"],
+        "thresholds": report["thresholds"],
+        "baseline_file": str(baseline_file) if baseline_file else None,
+        "candidate_file": str(candidate_file) if candidate_file else None,
+        "config_file": str(config_file) if config_file else None,
+    }
+
+
+def write_gate_record(
+    out_path: Path,
+    report: dict[str, Any],
+    *,
+    candidate_file: str | Path | None = None,
+    baseline_file: str | Path | None = None,
+    config_file: str | Path | None = None,
+    label: str | None = None,
+    timestamp: str | None = None,
+) -> dict[str, Any]:
+    """Write a release-gate decision record JSON to disk and return the record."""
+    record = build_gate_record(
+        report,
+        candidate_file=candidate_file,
+        baseline_file=baseline_file,
+        config_file=config_file,
+        label=label,
+        timestamp=timestamp,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(record, indent=2), encoding="utf-8")
+    return record
+
+
 def print_gate_report(report: dict[str, Any]) -> None:
     status = "PASS" if report["passed"] else "FAIL"
     print("\n=== RELEASE GATE EVALUATION ===")
@@ -168,6 +218,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--candidate", required=True, help="Candidate eval result JSON")
     parser.add_argument("--baseline", default=None, help="Baseline eval result JSON")
     parser.add_argument("--config", default="eval/gate_thresholds.yaml", help="Thresholds YAML")
+    parser.add_argument("--out", default=None, help="Optional path to write gate decision JSON")
     args = parser.parse_args(argv)
 
     candidate = json.loads(Path(args.candidate).read_text(encoding="utf-8"))
@@ -176,6 +227,16 @@ def main(argv: list[str] | None = None) -> int:
 
     report = evaluate_gate(candidate=candidate, baseline=baseline, thresholds=thresholds)
     print_gate_report(report)
+    if args.out:
+        out_path = Path(args.out)
+        write_gate_record(
+            out_path,
+            report,
+            candidate_file=args.candidate,
+            baseline_file=args.baseline,
+            config_file=args.config,
+        )
+        print(f"Saved gate decision -> {out_path}")
     return 0 if report["passed"] else 1
 
 

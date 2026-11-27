@@ -943,6 +943,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out-file", default=None, help="Explicit output JSON path (overrides --out-dir)")
     parser.add_argument("--gate-config", default=None, help="Optional gate thresholds YAML to evaluate")
     parser.add_argument("--baseline", default=None, help="Optional baseline result JSON for gate comparison")
+    parser.add_argument(
+        "--gate-out",
+        default=None,
+        help="Optional path to write gate decision JSON (defaults to <out-dir>/gate_<label>_<ts>.json when --gate-config is set)",
+    )
     parser.add_argument("--enforce-gate", action="store_true", help="Exit 1 if release gate fails")
     args = parser.parse_args(argv)
 
@@ -1000,13 +1005,25 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Saved evaluation result -> {out_path}")
     print(f"Saved summary table     -> {md_path}")
 
-    if args.gate_config:
+    if args.gate_config or args.gate_out:
         from eval import release_gate as gate_mod
 
-        thresholds = gate_mod.load_thresholds(Path(args.gate_config))
+        gate_cfg = Path(args.gate_config or "eval/gate_thresholds.yaml")
+        thresholds = gate_mod.load_thresholds(gate_cfg)
         baseline = json.loads(Path(args.baseline).read_text(encoding="utf-8")) if args.baseline else None
         gate_res = gate_mod.evaluate_gate(candidate=run1, baseline=baseline, thresholds=thresholds)
         gate_mod.print_gate_report(gate_res)
+        gate_out_path = Path(args.gate_out) if args.gate_out else out_path.parent / f"gate_{args.label}_{ts}.json"
+        gate_mod.write_gate_record(
+            gate_out_path,
+            gate_res,
+            candidate_file=out_path,
+            baseline_file=args.baseline,
+            config_file=gate_cfg,
+            label=args.label,
+            timestamp=run1["timestamp"],
+        )
+        print(f"Saved gate decision     -> {gate_out_path}")
         if args.enforce_gate and not gate_res["passed"]:
             return 1
     return 0

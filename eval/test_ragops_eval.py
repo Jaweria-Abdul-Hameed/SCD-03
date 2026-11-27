@@ -462,3 +462,141 @@ def test_main_stochasticity_noise_summary_table_and_cli(monkeypatch, tmp_path: P
         assert k in diff["level2"]
     for k in ("grounded_answered", "citations_checked", "injection_resistance"):
         assert k in diff["level3"]
+
+
+def test_gate_thresholds_agree_and_recall5_min_env_override(monkeypatch):
+    """ConfigMap and YAML agree on faithfulness_min and recall5_min, and GATE_RECALL5_MIN overrides."""
+    import yaml
+
+    yaml_cfg = yaml.safe_load(Path("eval/gate_thresholds.yaml").read_text(encoding="utf-8"))
+    cm_cfg = yaml.safe_load(Path("k8s/gate-configmap.yaml").read_text(encoding="utf-8"))["data"]
+
+    assert float(yaml_cfg["faithfulness_min"]) == float(cm_cfg["GATE_FAITHFULNESS_MIN"]) == 0.75
+    assert float(yaml_cfg["recall5_min"]) == float(cm_cfg["GATE_RECALL5_MIN"]) == 0.70
+
+    monkeypatch.setenv("GATE_RECALL5_MIN", "0.80")
+    thresholds = gate_mod.load_thresholds(Path("eval/gate_thresholds.yaml"))
+    assert thresholds["recall5_min"] == 0.80
+
+    cand = {
+        "level2_component": {"recall@5": 0.7143},
+        "level3_e2e": {
+            "faithfulness": 0.85,
+            "abstention_correctness": 1.0,
+            "citation_validity": 1.0,
+            "latency_p95_ms": 5000.0,
+        },
+    }
+    res = gate_mod.evaluate_gate(cand, baseline=None, thresholds=thresholds)
+    assert res["passed"] is False
+    r5_chk = next(c for c in res["checks"] if c["rule"] == "recall@5_min")
+    assert r5_chk["pass"] is False
+    assert ">= 0.8000" in r5_chk["threshold"]
+
+
+def test_release_gate_out_persists_decision_and_env_overrides(monkeypatch, tmp_path: Path):
+    """release_gate.py --out writes passed, checks, applied thresholds, and baseline_file."""
+    monkeypatch.setenv("GATE_FAITHFULNESS_MIN", "0.78")
+    out_pass = tmp_path / "gate_pass.json"
+    rc_pass = gate_mod.main(
+        [
+            "--candidate", "eval/results/candidate_pass.json",
+            "--baseline", "eval/results/baseline_k8s.json",
+            "--config", "eval/gate_thresholds.yaml",
+            "--out", str(out_pass),
+        ]
+    )
+    assert rc_pass == 0
+    rec_pass = json.loads(out_pass.read_text(encoding="utf-8"))
+    assert rec_pass["passed"] is True
+    assert rec_pass["baseline_file"] == "eval/results/baseline_k8s.json"
+    assert rec_pass["thresholds"]["faithfulness_min"] == 0.78
+    assert isinstance(rec_pass["checks"], list) and all(c["pass"] for c in rec_pass["checks"])
+
+    out_fail = tmp_path / "gate_fail.json"
+    rc_fail = gate_mod.main(
+        [
+            "--candidate", "eval/results/candidate_fail.json",
+            "--baseline", "eval/results/baseline_k8s.json",
+            "--config", "eval/gate_thresholds.yaml",
+            "--out", str(out_fail),
+        ]
+    )
+    assert rc_fail == 1
+    rec_fail = json.loads(out_fail.read_text(encoding="utf-8"))
+    assert rec_fail["passed"] is False
+    assert any(not c["pass"] for c in rec_fail["checks"])
+
+
+def test_run_ragops_eval_persists_gate_out(monkeypatch, tmp_path: Path):
+    """run_ragops_eval.py persists gate decision to --gate-out and defaults to gate_<label>_<ts>.json."""
+    golden = eval_mod.load_jsonl(Path("eval/golden.jsonl"))[:2]
+    g_path = tmp_path / "g.jsonl"
+    g_path.write_text("\n".join(json.dumps(x) for x in golden) + "\n", encoding="utf-8")
+
+    def fake_chat(api_base: str, question: str, follow_up: bool = True, timeout: int = 180):
+        return {
+            "trace_id": "t-gate",
+            "latency_ms": 90.0,
+            "answer": {
+                "answer": "Students must maintain 80 percent attendance.",
+                "citations": [{"source": "Academic_Rules_Handbook_2026.pdf", "section": "1.21", "page": 10}],
+                "answered_from_context": True,
+            },
+            "retrieved_chunks": [
+                {
+                    "id": "c1",
+                    "text": "Students must maintain 80 percent attendance in all courses.",
+                    "metadata": {"source": "Academic_Rules_Handbook_2026.pdf", "section": "1.21", "page": 10},
+                    "similarity": 0.91,
+                }
+            ],
+            "guardrail_actions": [],
+        }
+
+    monkeypatch.setattr(eval_mod, "_call_chat", fake_chat)
+
+    gate_out = tmp_path / "custom_gate.json"
+    rc = eval_mod.main(
+        [
+            "--api-base", "http://fake",
+            "--golden", str(g_path),
+            "--pairs", "eval/module_pairs.jsonl",
+            "--judge-labels", "",
+            "--provider-mode", "stub",
+            "--skip-noise-test",
+            "--out-dir", str(tmp_path / "results"),
+            "--label", "cand-test",
+            "--gate-config", "eval/gate_thresholds.yaml",
+            "--baseline", "eval/results/baseline_k8s.json",
+            "--gate-out", str(gate_out),
+        ]
+    )
+    assert rc == 0
+    assert gate_out.is_file()
+    gate_payload = json.loads(gate_out.read_text(encoding="utf-8"))
+    assert gate_payload["label"] == "cand-test"
+    assert gate_payload["baseline_file"] == "eval/results/baseline_k8s.json"
+    assert "thresholds" in gate_payload and "checks" in gate_payload
+
+    # Default path when --gate-out is omitted: <out-dir>/gate_<label>_<ts>.json
+    auto_dir = tmp_path / "auto_results"
+    rc_auto = eval_mod.main(
+        [
+            "--api-base", "http://fake",
+            "--golden", str(g_path),
+            "--pairs", "eval/module_pairs.jsonl",
+            "--judge-labels", "",
+            "--provider-mode", "stub",
+            "--skip-noise-test",
+            "--out-dir", str(auto_dir),
+            "--label", "auto-lbl",
+            "--gate-config", "eval/gate_thresholds.yaml",
+        ]
+    )
+    assert rc_auto == 0
+    gate_files = list(auto_dir.glob("gate_auto-lbl_*.json"))
+    assert len(gate_files) == 1
+    auto_payload = json.loads(gate_files[0].read_text(encoding="utf-8"))
+    assert auto_payload["baseline_file"] is None
+    assert any(c["rule"] == "recall@5_min" for c in auto_payload["checks"])

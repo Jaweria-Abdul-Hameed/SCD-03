@@ -1,0 +1,21 @@
+# Part C2 / F3 Failing Candidate ConfigMap (deliberately degraded experiment).
+# Apply over rahbar-candidate-config before running k8s/eval-job.yaml against
+# http://api-candidate:8000 to reproduce eval/results/candidate_fail.json:
+#   kubectl apply -f k8s/candidate-fail-config.yaml
+#   kubectl rollout restart deployment/api-candidate -n rahbar
+# Restore the passing candidate config afterwards with:
+#   kubectl apply -f k8s/candidate-deployment.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rahbar-candidate-config
+  namespace: rahbar
+  labels:
+    app: api-candidate
+    app.kubernetes.io/part-of: rahbar
+data:
+  CHROMA_COLLECTION: "rahbar_corpus_candidate"
+  COLLECTION_VERSION: "candidate-fail-v0"
+  PROMPT_TEMPLATE: "bad_unconstrained_v0"
+  TOP_K: "1"
+  TRACE_FILE: "/traces/candidate_traces.jsonl"
