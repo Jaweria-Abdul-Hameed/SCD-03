@@ -478,6 +478,221 @@
       "batch_b_target_document_ingested": 2
     }
   },
+  "stale_golden_labels": {
+    "finding_id": "E3-STALE-GOLDEN-BATCH-B",
+    "summary": {
+      "superseded_document": "Academic_Rules_Handbook_2026.pdf",
+      "superseded_doc_id": "academic_rules_handbook",
+      "superseded_version": "2026-06",
+      "superseding_document": "b10_academic_rules_handbook_nov2026.md",
+      "superseding_version": "2026-11",
+      "affected_golden_count": 8,
+      "affected_question_ids": [
+        "G01",
+        "G02",
+        "G09",
+        "G11",
+        "G12",
+        "G17",
+        "G18",
+        "G23"
+      ],
+      "covered_by_b10_ids": [
+        "G01",
+        "G02",
+        "G09",
+        "G11",
+        "G12",
+        "G23"
+      ],
+      "omitted_by_b10_covered_by_active_fallback_ids": [
+        "G17"
+      ],
+      "omitted_by_b10_coverage_loss_ids": [
+        "G18"
+      ],
+      "ground_truth_policy": "Preserve Batch A ground truth in relevant_document / relevant_pages in eval/golden.jsonl and add optional relevant_document_after_batch_b, relevant_pages_after_batch_b, and batch_b_drift_note annotations on all 8 affected questions.",
+      "reported_post_batch_b_metrics_with_stale_labels": {
+        "queries_evaluated": 21,
+        "recall@3": 0.619,
+        "recall@5": 0.619,
+        "MRR": 0.5476,
+        "nDCG@5": 0.5663
+      },
+      "rescored_post_batch_b_metrics_with_after_batch_b_labels_21q": {
+        "queries_evaluated": 21,
+        "recall@3": 0.9048,
+        "recall@5": 0.9524,
+        "MRR": 0.8214,
+        "nDCG@5": 0.855,
+        "note": "Re-scores eval_post-batch-b_20261122T163228Z.json retrieved_chunks_summary using relevant_document_after_batch_b for G01, G02, G09, G11, G12, G17, G23 and keeping G18 as 0.0 (coverage loss)."
+      },
+      "rescored_post_batch_b_metrics_excluding_coverage_loss_20q": {
+        "queries_evaluated": 20,
+        "recall@3": 0.95,
+        "recall@5": 1.0,
+        "MRR": 0.8625,
+        "nDCG@5": 0.8977,
+        "note": "Re-scores eval_post-batch-b_20261122T163228Z.json excluding G18 whose relevant_document_after_batch_b is null because b10 omits Clause 4.1."
+      },
+      "finding_explanation": "Batch B ingested b10_academic_rules_handbook_nov2026.md (doc_id=academic_rules_handbook, version=2026-11), which superseded and archived all 39 chunks of Academic_Rules_Handbook_2026.pdf (version=2026-06, superseded=True). Because default evaluation queries use include_old_versions=False, every question whose Batch A relevant_document is Academic_Rules_Handbook_2026.pdf (8 of 21 retrieval-evaluated questions) scored 0.0 across recall@3, recall@5, MRR, and nDCG@5 in eval_post-batch-b_20261122T163228Z.json, causing reported recall@5 to drop from 0.7143 to 0.6190 (-0.0953). Inspecting b10_academic_rules_handbook_nov2026.md shows it covers Clauses 1.21, 4.4, 5.4/1.25, 5.8, and 5.10 (6 questions: G01, G02, G09, G11, G12, G23), all of which retrieved b10 in top-5 (5 at rank 1-2, G12 at rank 4), while omitting Clauses 5.7 (G17, still answered at rank 1 by active Grading_page.html p. 1) and 4.1 (G18, genuine content coverage loss causing E2E abstention)."
+    },
+    "affected_questions": [
+      {
+        "id": "G01",
+        "relevant_section": "Clauses 4.4, 5.8, 5.10",
+        "relevant_document": "Academic_Rules_Handbook_2026.pdf",
+        "relevant_pages": [
+          19,
+          25
+        ],
+        "relevant_document_after_batch_b": "b10_academic_rules_handbook_nov2026.md",
+        "relevant_pages_after_batch_b": [
+          1
+        ],
+        "b10_coverage_status": "covered_by_b10",
+        "baseline_recall_at_5": 1.0,
+        "post_batch_b_recall_at_5_stale_label": 0.0,
+        "post_batch_b_recall_at_5_after_label": 1.0,
+        "post_batch_b_replacement_rank": 1,
+        "post_batch_b_cited_source": "b10_academic_rules_handbook_nov2026.md (p. 1)",
+        "cause": "Academic_Rules_Handbook_2026.pdf was superseded and archived by b10_academic_rules_handbook_nov2026.md. b10 covers Clauses 4.4, 5.8, and 5.10 on p. 1 and retrieved at rank 1 (score 0.76874), so the 1.0 -> 0.0 hit@5 drop is purely stale Batch A ground truth."
+      },
+      {
+        "id": "G02",
+        "relevant_section": "Clause 1.21",
+        "relevant_document": "Academic_Rules_Handbook_2026.pdf",
+        "relevant_pages": [
+          10
+        ],
+        "relevant_document_after_batch_b": "b10_academic_rules_handbook_nov2026.md",
+        "relevant_pages_after_batch_b": [
+          1
+        ],
+        "b10_coverage_status": "covered_by_b10",
+        "baseline_recall_at_5": 0.0,
+        "post_batch_b_recall_at_5_stale_label": 0.0,
+        "post_batch_b_recall_at_5_after_label": 1.0,
+        "post_batch_b_replacement_rank": 1,
+        "post_batch_b_cited_source": "b10_academic_rules_handbook_nov2026.md (p. 1)",
+        "cause": "b10_academic_rules_handbook_nov2026.md (p. 1, Clause 1.21) superseded Academic_Rules_Handbook_2026.pdf (p. 10), ranked 1st (score 0.822631) and 3rd, and became the cited source."
+      },
+      {
+        "id": "G09",
+        "relevant_section": "Clause 1.21",
+        "relevant_document": "Academic_Rules_Handbook_2026.pdf",
+        "relevant_pages": [
+          10
+        ],
+        "relevant_document_after_batch_b": "b10_academic_rules_handbook_nov2026.md",
+        "relevant_pages_after_batch_b": [
+          1
+        ],
+        "b10_coverage_status": "covered_by_b10",
+        "baseline_recall_at_5": 0.0,
+        "post_batch_b_recall_at_5_stale_label": 0.0,
+        "post_batch_b_recall_at_5_after_label": 1.0,
+        "post_batch_b_replacement_rank": 1,
+        "post_batch_b_cited_source": "b10_academic_rules_handbook_nov2026.md (p. 1)",
+        "cause": "Version-sensitive attendance query retrieved superseding b10_academic_rules_handbook_nov2026.md (p. 1, Clause 1.21 Nov 2026 Revision) at ranks 1 (score 0.742455) and 2 and cited it, while Batch A label remained pinned to archived Academic_Rules_Handbook_2026.pdf."
+      },
+      {
+        "id": "G11",
+        "relevant_section": "Clause 4.4",
+        "relevant_document": "Academic_Rules_Handbook_2026.pdf",
+        "relevant_pages": [
+          19,
+          25
+        ],
+        "relevant_document_after_batch_b": "b10_academic_rules_handbook_nov2026.md",
+        "relevant_pages_after_batch_b": [
+          1
+        ],
+        "b10_coverage_status": "covered_by_b10",
+        "baseline_recall_at_5": 0.0,
+        "post_batch_b_recall_at_5_stale_label": 0.0,
+        "post_batch_b_recall_at_5_after_label": 1.0,
+        "post_batch_b_replacement_rank": 1,
+        "post_batch_b_cited_source": "b10_academic_rules_handbook_nov2026.md (p. 1)",
+        "cause": "b10_academic_rules_handbook_nov2026.md (p. 1, Clause 4.4) superseded Academic_Rules_Handbook_2026.pdf (pp. 19, 25), moved directly to rank 1 (score 0.731819), and became the cited source."
+      },
+      {
+        "id": "G12",
+        "relevant_section": "Clause 5.4",
+        "relevant_document": "Academic_Rules_Handbook_2026.pdf",
+        "relevant_pages": [
+          24,
+          25
+        ],
+        "relevant_document_after_batch_b": "b10_academic_rules_handbook_nov2026.md",
+        "relevant_pages_after_batch_b": [
+          1
+        ],
+        "b10_coverage_status": "covered_by_b10",
+        "baseline_recall_at_5": 1.0,
+        "post_batch_b_recall_at_5_stale_label": 0.0,
+        "post_batch_b_recall_at_5_after_label": 1.0,
+        "post_batch_b_replacement_rank": 4,
+        "post_batch_b_cited_source": "b10_academic_rules_handbook_nov2026.md (p. 1)",
+        "cause": "b10_academic_rules_handbook_nov2026.md (p. 1, referencing Clauses 5.4 and 1.25 for CGPA 2.00) superseded Academic_Rules_Handbook_2026.pdf, entered at rank 4 (score 0.744262), and was cited, so the 1.0 -> 0.0 hit@5 drop is stale ground truth."
+      },
+      {
+        "id": "G17",
+        "relevant_section": "Clause 5.7",
+        "relevant_document": "Academic_Rules_Handbook_2026.pdf",
+        "relevant_pages": [
+          25
+        ],
+        "relevant_document_after_batch_b": "Grading_page.html",
+        "relevant_pages_after_batch_b": [
+          1
+        ],
+        "b10_coverage_status": "omitted_by_b10_covered_by_active_fallback",
+        "baseline_recall_at_5": 1.0,
+        "post_batch_b_recall_at_5_stale_label": 0.0,
+        "post_batch_b_recall_at_5_after_label": 1.0,
+        "post_batch_b_replacement_rank": 1,
+        "post_batch_b_cited_source": "Grading_page.html (p. 1)",
+        "cause": "Academic_Rules_Handbook_2026.pdf (p. 25, Clause 5.7) was archived as superseded when b10 replaced doc_id=academic_rules_handbook, causing hit@5 to drop 1.0 -> 0.0 under the Batch A label. Condensed b10 (rank 3, score 0.697239) omits Clause 5.7, but active Grading_page.html (p. 1, Warning/Probation) remains at rank 1 (score 0.756358) and continues to answer and be cited accurately."
+      },
+      {
+        "id": "G18",
+        "relevant_section": "Clause 4.1",
+        "relevant_document": "Academic_Rules_Handbook_2026.pdf",
+        "relevant_pages": [
+          19
+        ],
+        "relevant_document_after_batch_b": null,
+        "relevant_pages_after_batch_b": [],
+        "b10_coverage_status": "omitted_by_b10_coverage_loss",
+        "baseline_recall_at_5": 0.0,
+        "post_batch_b_recall_at_5_stale_label": 0.0,
+        "post_batch_b_recall_at_5_after_label": null,
+        "post_batch_b_replacement_rank": null,
+        "post_batch_b_cited_source": null,
+        "cause": "Academic_Rules_Handbook_2026.pdf (Clause 4.1) was archived when b10 replaced doc_id=academic_rules_handbook, and condensed b10 (rank 2, score 0.654589) omits Clause 4.1 entirely, resulting in real active content coverage loss and E2E abstention."
+      },
+      {
+        "id": "G23",
+        "relevant_section": "Clause 5.10",
+        "relevant_document": "Academic_Rules_Handbook_2026.pdf",
+        "relevant_pages": [
+          25
+        ],
+        "relevant_document_after_batch_b": "b10_academic_rules_handbook_nov2026.md",
+        "relevant_pages_after_batch_b": [
+          1
+        ],
+        "b10_coverage_status": "covered_by_b10",
+        "baseline_recall_at_5": 1.0,
+        "post_batch_b_recall_at_5_stale_label": 0.0,
+        "post_batch_b_recall_at_5_after_label": 1.0,
+        "post_batch_b_replacement_rank": 2,
+        "post_batch_b_cited_source": "Student_Handbook_2026.pdf (p. 45)",
+        "cause": "b10_academic_rules_handbook_nov2026.md (p. 1, explicitly referencing Clause 5.10) superseded Academic_Rules_Handbook_2026.pdf (p. 25, baseline rank 1) and retrieved at rank 2 (score 0.714674), so the 1.0 -> 0.0 hit@5 drop is stale ground truth."
+      }
+    ]
+  },
   "changed_questions": [
     {
       "id": "G01",

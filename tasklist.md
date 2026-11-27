@@ -84,9 +84,9 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ### Part E: Drift and coverage checking
 
-- [ ] Handle golden labels made stale by Batch B by keeping Batch A ground truth in `relevant_document`, adding optional `relevant_document_after_batch_b` annotations where `b10` supersedes `Academic_Rules_Handbook_2026.pdf`, and documenting the stale labels as an explicit E3 drift finding. Re-run the suite after updating and commit the result.
-- [ ] Commit the pre-expansion golden snapshot `eval/golden_pre_expansion.jsonl` (G01–G26). Re-run `eval/coverage_check.py --golden eval/golden_pre_expansion.jsonl --out eval/results/coverage_pre_expansion.json` so the "before" result can be reproduced. The current `eval/golden.jsonl` already holds 32 questions.
-- [ ] Derive and commit a justification for the 0.70 similarity threshold: the distribution of `max_similarity` for `domain: in_domain` vs `domain: uncovered` queries in `eval/live_queries.jsonl`, saved as `eval/results/coverage_threshold_analysis.json`. The report states τ = 0.70 with no justification.
+- [x] Handle golden labels made stale by Batch B by keeping Batch A ground truth in `relevant_document`, adding optional `relevant_document_after_batch_b` annotations where `b10` supersedes `Academic_Rules_Handbook_2026.pdf`, and documenting the stale labels as an explicit E3 drift finding. Re-run the suite after updating and commit the result.
+- [x] Commit the pre-expansion golden snapshot `eval/golden_pre_expansion.jsonl` (G01–G26). Re-run `eval/coverage_check.py --golden eval/golden_pre_expansion.jsonl --out eval/results/coverage_pre_expansion.json` so the "before" result can be reproduced. The current `eval/golden.jsonl` already holds 32 questions.
+- [x] Derive and commit a justification for the 0.70 similarity threshold: the distribution of `max_similarity` for `domain: in_domain` vs `domain: uncovered` queries in `eval/live_queries.jsonl`, saved as `eval/results/coverage_threshold_analysis.json`. The report states τ = 0.70 with no justification.
 
 ### Part A: Data management — verify and update
 
