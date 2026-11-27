@@ -106,8 +106,8 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ### Part D: Observability and traceability
 
-- [ ] **[CLUSTER]** Generate live-style trace traffic that goes through the semantic cache: repeated non-follow-up queries, since the eval runner sends `follow_up=True`, which skips the cache. Every one of the 487 committed traces has `cache_hit: false`, and `traces/metrics_summary_24h.json` reports `cache_hit_rate: 0.0`. Commit the new traces and re-run `scripts/summarize_traces.py`.
-- [ ] **[CLUSTER]** Re-generate `traces/metrics_summary_24h.json` after the final runs, and also commit a human-readable copy, e.g. `traces/metrics_summary_24h.txt`, of the D3 output: top-1 similarity distribution, abstention rate, cache hit rate, p95 per stage, injection attempts flagged.
+- [x] **[CLUSTER]** Generate live-style trace traffic that goes through the semantic cache: repeated non-follow-up queries, since the eval runner sends `follow_up=True`, which skips the cache. Every one of the 487 committed traces has `cache_hit: false`, and `traces/metrics_summary_24h.json` reports `cache_hit_rate: 0.0`. Commit the new traces and re-run `scripts/summarize_traces.py`.
+- [x] **[CLUSTER]** Re-generate `traces/metrics_summary_24h.json` after the final runs, and also commit a human-readable copy, e.g. `traces/metrics_summary_24h.txt`, of the D3 output: top-1 similarity distribution, abstention rate, cache hit rate, p95 per stage, injection attempts flagged.
 
 ### Part F: Kubernetes
 
