@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from pipeline import __main__ as main_mod
 from pipeline import datalake as dl_mod
+from pipeline import extract as extract_mod
 from pipeline import rollback as rollback_mod
 from pipeline import verify as verify_mod
 
@@ -389,7 +390,93 @@ def test_batch_b_committed_corpus_verification_and_quarantine(tmp_path: Path):
     assert by_src["b05_exact_dup_research_grant.md"]["checks"]["uniqueness"]["pass"] is False
     assert by_src["b06_near_dup_scholarship.md"]["checks"]["uniqueness"]["pass"] is False
     assert by_src["b07_corrupt_file.pdf"]["checks"]["quality"]["pass"] is False
+    assert by_src["b07_corrupt_file.pdf"]["checks"]["completeness"]["pass"] is False
+    assert "0 != 0" not in by_src["b07_corrupt_file.pdf"]["checks"]["completeness"]["reason"]
     assert by_src["b08_truncated_policy.md"]["checks"]["completeness"]["pass"] is False
     assert by_src["b09_missing_metadata.md"]["checks"]["completeness"]["pass"] is False
     assert by_src["b10_academic_rules_handbook_nov2026.md"]["disposition"] == "indexed_superseding"
     assert by_src["b11_library_fine_addendum_injected.md"]["disposition"] == "indexed"
+
+
+def test_a1_unreadable_zero_page_completeness_reason(tmp_path: Path, monkeypatch):
+    """Unreadable / 0-page files must not report `declared page_count=0 != extracted_pages=0`."""
+    corrupt_path = tmp_path / "b07_corrupt_file.pdf"
+    corrupt_path.write_bytes(b"%PDF-1.7\n%%CORRUPT_TRUNCATED_STREAM_BYTES_DO_NOT_PARSE\n")
+
+    # 1. Direct verify_document path (0 pages returned with no exception, e.g. PyMuPDF)
+    meta, pages = verify_mod.extract_document_metadata(corrupt_path, [])
+    assert "page_count" not in meta
+    entry, doc_embedding, superseded_target = verify_mod.verify_document(
+        path=corrupt_path,
+        pages=pages,
+        meta=meta,
+        active_records=[],
+        embed_fn=_deterministic_embed,
+    )
+    assert doc_embedding is None
+    assert superseded_target is None
+    assert entry["overall_pass"] is False
+    assert entry["checks"]["quality"]["pass"] is False
+    assert entry["checks"]["completeness"]["pass"] is False
+    assert (
+        entry["checks"]["completeness"]["reason"]
+        == "missing_required_metadata: page_count unavailable (extraction failed)"
+    )
+
+    # 2. Explicit page_count=0 with 0 extracted pages still avoids bogus `0 != 0`
+    direct_zero = verify_mod.check_completeness(
+        [],
+        {"source": "b07_corrupt_file.pdf", "title": "b07_corrupt_file", "version": "2026-06", "page_count": 0},
+    )
+    assert direct_zero["pass"] is False
+    assert (
+        direct_zero["reason"]
+        == "missing_required_metadata: page_count unavailable (extraction failed)"
+    )
+
+    # 3. Positive declared page_count vs 0 extracted pages still reports mismatch
+    declared_mismatch = verify_mod.check_completeness(
+        [],
+        {"source": "x.pdf", "title": "X", "version": "2026-06", "page_count": 3},
+    )
+    assert declared_mismatch == {
+        "pass": False,
+        "reason": "truncated_or_page_mismatch: declared page_count=3 != extracted_pages=0",
+    }
+
+    # 4. Non-empty pages with declared page_count=0 reports invalid_page_count
+    invalid_zero = verify_mod.check_completeness(
+        [{"page": 1, "text": "Valid policy text for testing completeness checks."}],
+        {"source": "x.pdf", "title": "X", "version": "2026-06", "page_count": 0},
+    )
+    assert invalid_zero == {
+        "pass": False,
+        "reason": "invalid_page_count: declared page_count=0 must be >= 1",
+    }
+
+    # 5. End-to-end run_ingestion simulating 0-page PDF extraction
+    corpus_dir = tmp_path / "corpus"
+    corpus_dir.mkdir()
+    (corpus_dir / "b07_corrupt_file.pdf").write_bytes(
+        b"%PDF-1.7\n%%CORRUPT_TRUNCATED_STREAM_BYTES_DO_NOT_PARSE\n"
+    )
+    monkeypatch.setattr(extract_mod, "extract_document", lambda _p: [])
+
+    report = main_mod.run_ingestion(
+        corpus_dir=corpus_dir,
+        manifest=None,
+        chunk_size=512,
+        chunk_overlap=64,
+        data_root=tmp_path / "lake",
+        client=_InMemoryChromaClient(),
+        embed_fn=_deterministic_embed,
+        skip_cache_invalidation=True,
+    )
+    assert report["counts"]["docs_quarantined"] == 1
+    assert report["counts"]["docs_passed"] == 0
+    doc_entry = report["documents"][0]
+    assert doc_entry["disposition"] == "quarantined"
+    assert (
+        doc_entry["checks"]["completeness"]["reason"]
+        == "missing_required_metadata: page_count unavailable (extraction failed)"
+    )
