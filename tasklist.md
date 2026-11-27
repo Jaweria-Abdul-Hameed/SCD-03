@@ -124,7 +124,7 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ### Part D: Observability and traceability
 
-- [ ] Choose a genuinely **wrong** answer for D5 from the re-run Part B results, i.e. a retrieval miss or an unfaithful answer, not the correct hostel abstention (trace `bcb5f6cf`). Commit that single trace line to `traces/d5_root_cause_trace.jsonl` and the `scripts/trace_tool.py <trace_id>` output to `traces/d5_trace_tool_output.txt`.
+- [x] Choose a genuinely **wrong** answer for D5 from the re-run Part B results, i.e. a retrieval miss or an unfaithful answer, not the correct hostel abstention (trace `bcb5f6cf`). Commit that single trace line to `traces/d5_root_cause_trace.jsonl` and the `scripts/trace_tool.py <trace_id>` output to `traces/d5_trace_tool_output.txt`.
 
 ### Part F: Kubernetes
 
