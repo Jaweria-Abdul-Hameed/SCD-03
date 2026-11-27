@@ -128,7 +128,7 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ### Part F: Kubernetes
 
-- [ ] Set requests/limits for `eval-job.yaml`, `indexer-batch-b-job.yaml`, `indexer-candidate-job.yaml`, `candidate-deployment.yaml`, `api-deployment.yaml` and `chroma-statefulset.yaml` from the new F5 measurements (e.g. request ≈ p50 usage, limit ≈ max × 1.5), and leave a short comment in each manifest pointing to the measurement file.
+- [x] Set requests/limits for `eval-job.yaml`, `indexer-batch-b-job.yaml`, `indexer-candidate-job.yaml`, `candidate-deployment.yaml`, `api-deployment.yaml` and `chroma-statefulset.yaml` from the new F5 measurements (e.g. request ≈ p50 usage, limit ≈ max × 1.5), and leave a short comment in each manifest pointing to the measurement file.
 
 ### Part G: Report
 

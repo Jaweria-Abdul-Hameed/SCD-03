@@ -67,13 +67,17 @@ spec:
               mountPath: /traces
             - name: tmp
               mountPath: /tmp
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt (api under eval load,
+          # N=90: CPU p50=3.0m max=4m, Mem p50=78.0Mi max=79Mi). Memory request=80Mi (~p50),
+          # limit=128Mi (>= 79*1.5=118.5Mi); CPU request=25m keeps HPA (70% target) at 12-16%
+          # under steady load without false scale-out, and 100m limit avoids startup throttling.
           resources:
             requests:
+              cpu: 25m
+              memory: 80Mi
+            limits:
               cpu: 100m
               memory: 128Mi
-            limits:
-              cpu: 500m
-              memory: 256Mi
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
