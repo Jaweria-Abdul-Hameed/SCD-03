@@ -1,0 +1,75 @@
+# Rollback Job (Part A2 / F2) — single-writer indexer-sa restores an archived
+# superseded document version in Chroma and the Data Lake without writing from a laptop.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: indexer-rollback
+  namespace: rahbar
+  labels:
+    app: indexer
+    app.kubernetes.io/part-of: rahbar
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: indexer
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: indexer-sa
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: indexer
+          image: ghcr.io/rahbar/indexer:local
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-m", "pipeline.rollback"]
+          args:
+            - --doc-id
+            - academic_rules_handbook
+            - --to-version
+            - "2026-06"
+            - --data-root
+            - /corpus
+            - --out
+            - /results/rollback_academic_rules_handbook.json
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+          volumeMounts:
+            - name: corpus
+              mountPath: /corpus
+            - name: results
+              mountPath: /results
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              cpu: 250m
+              memory: 384Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: corpus
+          persistentVolumeClaim:
+            claimName: corpus-data
+        - name: results
+          persistentVolumeClaim:
+            claimName: eval-results
+        - name: tmp
+          emptyDir: {}

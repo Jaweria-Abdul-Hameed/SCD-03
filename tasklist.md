@@ -13,8 +13,8 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 ### Part A: Data management — verify and update
 
 - [x] Fix the completeness-check reason in `indexer/pipeline/verify.py` for unreadable files: `b07_corrupt_file.pdf` currently reports `truncated_or_page_mismatch: declared page_count=0 != extracted_pages=0` (0 equals 0). Emit a correct reason such as `missing_required_metadata: page_count unavailable (extraction failed)` and add a unit test in `indexer/tests/test_part_a_ragops.py`.
-- [ ] Extend the `vector_store_chunks_by_document` block that `indexer/pipeline/__main__.py` / `store.py` writes into each verification report so every document shows `{active, superseded, total}` chunk counts by `doc_id`/`source`. Today `Academic_Rules_Handbook_2026.pdf: 39` appears after Batch B with no proof that those chunks are `superseded=True` and excluded from retrieval.
-- [ ] Create `k8s/rollback-job.yaml`: a Job running `python -m pipeline.rollback --doc-id academic_rules_handbook --to-version 2026-06` under `serviceAccountName: indexer-sa`, label `app: indexer`, mounting `corpus-data` and `eval-results`, and writing its JSON result to `/results/rollback_academic_rules_handbook.json`. Rollback writes to Chroma, so running it from a laptop would break the "only the ingestion Job writes" rule.
+- [x] Extend the `vector_store_chunks_by_document` block that `indexer/pipeline/__main__.py` / `store.py` writes into each verification report so every document shows `{active, superseded, total}` chunk counts by `doc_id`/`source`. Today `Academic_Rules_Handbook_2026.pdf: 39` appears after Batch B with no proof that those chunks are `superseded=True` and excluded from retrieval.
+- [x] Create `k8s/rollback-job.yaml`: a Job running `python -m pipeline.rollback --doc-id academic_rules_handbook --to-version 2026-06` under `serviceAccountName: indexer-sa`, label `app: indexer`, mounting `corpus-data` and `eval-results`, and writing its JSON result to `/results/rollback_academic_rules_handbook.json`. Rollback writes to Chroma, so running it from a laptop would break the "only the ingestion Job writes" rule.
 
 ### Part B: Offline testing at three levels
 

@@ -51,6 +51,7 @@ import hashlib
 import json
 import os
 import sys
+from typing import Any
 
 # --- Shared constants (must match the ConfigMap / api) -------------------
 COLLECTION_NAME = os.environ.get("CHROMA_COLLECTION", "rahbar_corpus")
@@ -395,8 +396,11 @@ def set_document_superseded(
     return len(ids)
 
 
-def chunk_counts_by_document(client=None) -> dict[str, int]:
-    """Return {source: chunk_count} across the vector store (orphan-check proof)."""
+def chunk_counts_by_document(
+    client=None,
+    doc_id_by_source: dict[str, str] | None = None,
+) -> dict[str, dict[str, Any]]:
+    """Return {source: {doc_id?, active, superseded, total}} across the vector store."""
     if client is None:
         client = get_chroma_client()
     try:
@@ -404,10 +408,27 @@ def chunk_counts_by_document(client=None) -> dict[str, int]:
     except Exception:  # noqa: BLE001
         return {}
     got = collection.get(include=["metadatas"])
-    counts: dict[str, int] = {}
+    counts: dict[str, dict[str, Any]] = {}
     for meta in got.get("metadatas") or []:
-        src = str((meta or {}).get("source") or "unknown")
-        counts[src] = counts.get(src, 0) + 1
+        meta_dict = meta or {}
+        src = str(meta_dict.get("source") or "unknown")
+        entry = counts.get(src)
+        if entry is None:
+            doc_id = meta_dict.get("doc_id") or (
+                doc_id_by_source.get(src) if doc_id_by_source else None
+            )
+            entry = {}
+            if doc_id:
+                entry["doc_id"] = str(doc_id)
+            entry["active"] = 0
+            entry["superseded"] = 0
+            entry["total"] = 0
+            counts[src] = entry
+        if bool(meta_dict.get("superseded", False)):
+            entry["superseded"] += 1
+        else:
+            entry["active"] += 1
+        entry["total"] += 1
     return dict(sorted(counts.items()))
 
 

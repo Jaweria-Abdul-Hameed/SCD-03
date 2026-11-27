@@ -134,9 +134,10 @@ def index_document(
     client=None,
     embed_fn=None,
     pages_override: list[dict] | None = None,
+    source_override: str | None = None,
 ) -> dict:
     """Run one verified document through clean -> chunk -> embed -> store."""
-    source = pdf_path.name
+    source = source_override or pdf_path.name
     pages = (
         pages_override
         if pages_override is not None
@@ -417,6 +418,7 @@ def run_ingestion(
             client=client,
             embed_fn=embed,
             pages_override=pages,
+            source_override=source,
         )
         per_doc_stats.append(stats)
         counts["chunks_embedded"] += stats["chunks"]
@@ -492,7 +494,24 @@ def run_ingestion(
     ):
         store_mod.invalidate_semantic_cache()
 
-    chunk_counts = store_mod.chunk_counts_by_document(client=client)
+    doc_id_by_source: dict[str, str] = {}
+    for rec in lake.documents:
+        if rec.get("source") and rec.get("doc_id"):
+            doc_id_by_source[str(rec["source"])] = str(rec["doc_id"])
+    for entry in verification_entries:
+        if entry.get("source") and entry.get("doc_id"):
+            doc_id_by_source.setdefault(str(entry["source"]), str(entry["doc_id"]))
+
+    chunk_counts = store_mod.chunk_counts_by_document(
+        client=client, doc_id_by_source=doc_id_by_source
+    )
+    for src, stats in chunk_counts.items():
+        if "doc_id" not in stats:
+            chunk_counts[src] = {
+                "doc_id": doc_id_by_source.get(src) or verify_mod.derive_doc_id(src),
+                **stats,
+            }
+
     report = {
         "run_id": RUN_ID,
         "timestamp": datetime.now(UTC).isoformat(),
@@ -510,6 +529,10 @@ def run_ingestion(
         report_out.parent.mkdir(parents=True, exist_ok=True)
         report_out.write_text(json.dumps(report, indent=2), encoding="utf-8")
 
+    total_vector_chunks = sum(v["total"] for v in chunk_counts.values())
+    active_vector_chunks = sum(v["active"] for v in chunk_counts.values())
+    superseded_vector_chunks = sum(v["superseded"] for v in chunk_counts.values())
+
     _log(
         "info",
         "index_done",
@@ -517,7 +540,9 @@ def run_ingestion(
         report_path=str(ts_path),
         latest_report_path=str(latest_path),
         chunks_embedded=counts["chunks_embedded"],
-        total_vector_chunks=sum(chunk_counts.values()),
+        total_vector_chunks=total_vector_chunks,
+        active_vector_chunks=active_vector_chunks,
+        superseded_vector_chunks=superseded_vector_chunks,
     )
     report["exit_code"] = 0
     report["report_path"] = str(ts_path)
@@ -526,6 +551,10 @@ def run_ingestion(
 
 def _print_summary(report: dict[str, Any]) -> None:
     c = report["counts"]
+    by_doc = report["vector_store_chunks_by_document"]
+    total_in_store = sum(v["total"] for v in by_doc.values())
+    active_in_store = sum(v["active"] for v in by_doc.values())
+    superseded_in_store = sum(v["superseded"] for v in by_doc.values())
     print("\n=== VERIFICATION & INCREMENTAL INGESTION REPORT ===")
     print(f"Run ID      : {report['run_id']}")
     print(f"Corpus Dir  : {report['corpus_dir']} (additive={report['additive']})")
@@ -537,7 +566,7 @@ def _print_summary(report: dict[str, Any]) -> None:
     )
     print(
         f"Chunks      : embedded={c['chunks_embedded']} deleted={c['chunks_deleted']} "
-        f"total_in_store={sum(report['vector_store_chunks_by_document'].values())}"
+        f"total_in_store={total_in_store} (active={active_in_store}, superseded={superseded_in_store})"
     )
     print("-" * 88)
     for entry in report["documents"]:

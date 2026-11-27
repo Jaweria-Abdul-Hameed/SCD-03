@@ -81,6 +81,11 @@ def main(argv: list[str] | None = None) -> int:
         help="Data lake root directory (defaults to DATA_LAKE_ROOT env or 'corpus')",
     )
     parser.add_argument("--skip-cache-invalidation", action="store_true")
+    parser.add_argument(
+        "--out",
+        default=None,
+        help="Optional path to write the rollback JSON result",
+    )
     args = parser.parse_args(argv)
 
     result = rollback_document(
@@ -89,7 +94,12 @@ def main(argv: list[str] | None = None) -> int:
         data_root=args.data_root,
         skip_cache_invalidation=args.skip_cache_invalidation,
     )
-    print(json.dumps(result, indent=2))
+    payload = json.dumps(result, indent=2)
+    if args.out:
+        out_path = Path(args.out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(payload + "\n", encoding="utf-8")
+    print(payload)
     return 0
 
 
