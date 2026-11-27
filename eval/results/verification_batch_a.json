@@ -1,6 +1,6 @@
 {
-  "run_id": "25bc1c2f-71d6-43b4-afed-6800fbf9afa2",
-  "timestamp": "2026-11-22T15:16:48.205326+00:00",
+  "run_id": "030c575b-5379-4422-a1d1-6dccec4a3c4d",
+  "timestamp": "2026-11-27T19:54:26.460926+00:00",
   "corpus_dir": "/corpus/raw",
   "additive": false,
   "embed_model": "nomic-embed-text",
@@ -202,7 +202,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.8078 (< 0.94) vs Student_Handbook_2026.pdf"
+          "reason": "ok: unique hash; max cross-doc cosine=0.8080 (< 0.94) vs Student_Handbook_2026.pdf"
         }
       },
       "overall_pass": true,
@@ -286,7 +286,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.8934 (< 0.94) vs Student_Handbook_2026.pdf"
+          "reason": "ok: unique hash; max cross-doc cosine=0.8936 (< 0.94) vs Student_Handbook_2026.pdf"
         }
       },
       "overall_pass": true,
@@ -314,7 +314,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.7495 (< 0.94) vs Academic_Rules_Handbook_2026.pdf"
+          "reason": "ok: unique hash; max cross-doc cosine=0.7497 (< 0.94) vs Academic_Rules_Handbook_2026.pdf"
         }
       },
       "overall_pass": true,
@@ -342,7 +342,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.7244 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
+          "reason": "ok: unique hash; max cross-doc cosine=0.7245 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
         }
       },
       "overall_pass": true,
@@ -370,7 +370,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.7887 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
+          "reason": "ok: unique hash; max cross-doc cosine=0.7888 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
         }
       },
       "overall_pass": true,
@@ -398,7 +398,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.7887 (< 0.94) vs Grading_page.html"
+          "reason": "ok: unique hash; max cross-doc cosine=0.7888 (< 0.94) vs Grading_page.html"
         }
       },
       "overall_pass": true,
@@ -426,7 +426,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.8934 (< 0.94) vs Academic_Rules_Handbook_2026.pdf"
+          "reason": "ok: unique hash; max cross-doc cosine=0.8936 (< 0.94) vs Academic_Rules_Handbook_2026.pdf"
         }
       },
       "overall_pass": true,
@@ -435,20 +435,95 @@
     }
   ],
   "vector_store_chunks_by_document": {
-    "Academic_Calendar_page.html": 1,
-    "Academic_Rules_Handbook_2026.pdf": 39,
-    "Annual_Report_2019-20.pdf": 26,
-    "Annual_Report_2020-21.pdf": 26,
-    "Annual_Report_2021-22.pdf": 27,
-    "Annual_Report_2022-23.pdf": 31,
-    "Annual_Report_2023-24.pdf": 111,
-    "EE_PLOs_2024_onwards_11.pdf": 2,
-    "EE_PLOs_before_2024_12.pdf": 2,
-    "Faculty_Entrepreneurship_Technical_Startups_Policy.pdf": 7,
-    "Fee_Structure_page.html": 3,
-    "Grading_page.html": 3,
-    "Prospectus_2026_Academic_Rules_and_Regulations.pdf": 12,
-    "Student_Handbook_2026.pdf": 43,
-    "Undergraduate_Academic_Rules_Aug_2023.pdf": 147
+    "Academic_Calendar_page.html": {
+      "doc_id": "academic_calendar_page",
+      "active": 1,
+      "superseded": 0,
+      "total": 1
+    },
+    "Academic_Rules_Handbook_2026.pdf": {
+      "doc_id": "academic_rules_handbook",
+      "active": 39,
+      "superseded": 0,
+      "total": 39
+    },
+    "Annual_Report_2019-20.pdf": {
+      "doc_id": "annual_report",
+      "active": 0,
+      "superseded": 26,
+      "total": 26
+    },
+    "Annual_Report_2020-21.pdf": {
+      "doc_id": "annual_report",
+      "active": 0,
+      "superseded": 26,
+      "total": 26
+    },
+    "Annual_Report_2021-22.pdf": {
+      "doc_id": "annual_report",
+      "active": 0,
+      "superseded": 27,
+      "total": 27
+    },
+    "Annual_Report_2022-23.pdf": {
+      "doc_id": "annual_report",
+      "active": 0,
+      "superseded": 31,
+      "total": 31
+    },
+    "Annual_Report_2023-24.pdf": {
+      "doc_id": "annual_report",
+      "active": 111,
+      "superseded": 0,
+      "total": 111
+    },
+    "EE_PLOs_2024_onwards_11.pdf": {
+      "doc_id": "ee_plos",
+      "active": 2,
+      "superseded": 0,
+      "total": 2
+    },
+    "EE_PLOs_before_2024_12.pdf": {
+      "doc_id": "ee_plos",
+      "active": 0,
+      "superseded": 2,
+      "total": 2
+    },
+    "Faculty_Entrepreneurship_Technical_Startups_Policy.pdf": {
+      "doc_id": "faculty_entrepreneurship_technical_startups_policy",
+      "active": 7,
+      "superseded": 0,
+      "total": 7
+    },
+    "Fee_Structure_page.html": {
+      "doc_id": "fee_structure_page",
+      "active": 3,
+      "superseded": 0,
+      "total": 3
+    },
+    "Grading_page.html": {
+      "doc_id": "grading_page",
+      "active": 3,
+      "superseded": 0,
+      "total": 3
+    },
+    "Prospectus_2026_Academic_Rules_and_Regulations.pdf": {
+      "doc_id": "prospectus_2026_academic_rules_and_regulations",
+      "active": 12,
+      "superseded": 0,
+      "total": 12
+    },
+    "Student_Handbook_2026.pdf": {
+      "doc_id": "student_handbook",
+      "active": 43,
+      "superseded": 0,
+      "total": 43
+    },
+    "Undergraduate_Academic_Rules_Aug_2023.pdf": {
+      "doc_id": "academic_rules_handbook",
+      "active": 0,
+      "superseded": 147,
+      "total": 147
+    }
   }
 }

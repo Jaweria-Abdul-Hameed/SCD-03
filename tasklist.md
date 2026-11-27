@@ -90,11 +90,11 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ### Part A: Data management — verify and update
 
-- [ ] **[CLUSTER]** Commit the first-ingest Batch A verification report (the run where `chunks_embedded > 0`) as `eval/results/verification_batch_a_initial.json`. The committed `verification_batch_a.json` is the unchanged re-run (`docs_skipped_unchanged: 15`), so no committed file shows A1 checks on a first ingest.
-- [ ] **[CLUSTER]** Re-run `k8s/indexer-batch-b-job.yaml` on the unchanged Batch B folder and commit the report as `eval/results/verification_batch_b_rerun.json`, showing `chunks_embedded: 0`. The assignment says "Run both batches through A1 and A2", and there is no A2 evidence for Batch B.
-- [ ] **[CLUSTER]** A2 changed-document demo: edit one document in `/corpus/raw` on the PVC, re-run the indexer Job, and commit `eval/results/a2_changed_document.json` with `docs_updated: 1`, the `chunks_deleted`/`chunks_embedded` counts for that document only, and unchanged chunk counts for every other document (before/after by doc id).
-- [ ] **[CLUSTER]** A2 deleted-document demo: remove one document from `/corpus/raw`, run the non-additive indexer Job, and commit `eval/results/a2_deleted_document.json` showing `docs_deleted: 1` and a chunk count of `0` for that doc id in Chroma (no orphans).
-- [ ] **[CLUSTER]** A2 rollback demo: apply `k8s/rollback-job.yaml`, commit its result JSON, and commit two traces of the same version-sensitive question (before and after rollback) to `traces/a2_rollback_traces.jsonl`, showing `document_version` move from `2026-11` back to `2026-06`.
+- [x] **[CLUSTER]** Commit the first-ingest Batch A verification report (the run where `chunks_embedded > 0`) as `eval/results/verification_batch_a_initial.json`. The committed `verification_batch_a.json` is the unchanged re-run (`docs_skipped_unchanged: 15`), so no committed file shows A1 checks on a first ingest.
+- [x] **[CLUSTER]** Re-run `k8s/indexer-batch-b-job.yaml` on the unchanged Batch B folder and commit the report as `eval/results/verification_batch_b_rerun.json`, showing `chunks_embedded: 0`. The assignment says "Run both batches through A1 and A2", and there is no A2 evidence for Batch B.
+- [x] **[CLUSTER]** A2 changed-document demo: edit one document in `/corpus/raw` on the PVC, re-run the indexer Job, and commit `eval/results/a2_changed_document.json` with `docs_updated: 1`, the `chunks_deleted`/`chunks_embedded` counts for that document only, and unchanged chunk counts for every other document (before/after by doc id).
+- [x] **[CLUSTER]** A2 deleted-document demo: remove one document from `/corpus/raw`, run the non-additive indexer Job, and commit `eval/results/a2_deleted_document.json` showing `docs_deleted: 1` and a chunk count of `0` for that doc id in Chroma (no orphans).
+- [x] **[CLUSTER]** A2 rollback demo: apply `k8s/rollback-job.yaml`, commit its result JSON, and commit two traces of the same version-sensitive question (before and after rollback) to `traces/a2_rollback_traces.jsonl`, showing `document_version` move from `2026-11` back to `2026-06`.
 
 ### Part B: Offline testing at three levels
 

@@ -1,0 +1,15 @@
+{
+  "doc_id": "academic_rules_handbook",
+  "restored": {
+    "source": "Academic_Rules_Handbook_2026.pdf",
+    "version": "2026-06",
+    "superseded": false,
+    "chunks_updated": 39
+  },
+  "archived": {
+    "source": "b10_academic_rules_handbook_nov2026.md",
+    "version": "2026-11",
+    "superseded": true,
+    "chunks_updated": 2
+  }
+}
