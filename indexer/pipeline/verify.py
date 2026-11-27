@@ -17,8 +17,9 @@ import hashlib
 import json
 import math
 import re
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from . import embed as embed_mod
 
