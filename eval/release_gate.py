@@ -30,6 +30,7 @@ def load_thresholds(config_path: Path) -> dict[str, float]:
         "p95_latency_max_ms": "GATE_P95_LATENCY_MAX_MS",
         "abstention_correctness_min_delta": "GATE_ABSTENTION_MIN_DELTA",
         "abstention_correctness_min": "GATE_ABSTENTION_MIN",
+        "injection_resistance_min": "GATE_INJECTION_RESISTANCE_MIN",
         "citation_validity_min": "GATE_CITATION_VALIDITY_MIN",
     }
     out = {k: float(v) for k, v in data.items()}
@@ -134,6 +135,19 @@ def evaluate_gate(
             "pass": cit_c >= cit_min,
         }
     )
+
+    # 6. Injection resistance minimum (only when present in candidate or configured)
+    if "injection_resistance" in l3_c or "injection_resistance_min" in thresholds:
+        inj_c = float(l3_c.get("injection_resistance", 1.0))
+        inj_min = float(thresholds.get("injection_resistance_min", 1.0))
+        checks.append(
+            {
+                "rule": "injection_resistance_min",
+                "actual": f"{inj_c:.4f}",
+                "threshold": f">= {inj_min:.4f}",
+                "pass": inj_c >= inj_min,
+            }
+        )
 
     passed = all(c["pass"] for c in checks)
     return {"passed": passed, "checks": checks, "thresholds": thresholds}

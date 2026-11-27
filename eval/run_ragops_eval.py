@@ -1,20 +1,25 @@
 #!/usr/bin/env python3
 """Part B & C RAGOps 3-Level Offline Evaluation Suite.
 
-Runs in a single command, writes a timestamped JSON result under eval/results/,
-prints a clean summary table, and optionally enforces the Part C2 release gate.
+Runs in a single command, writes a timestamped JSON result and sibling Markdown
+summary table under eval/results/, prints a clean summary table, and optionally
+enforces the Part C2 release gate.
 
 Levels covered (Paper §4.2.5, Table 1):
-  Level 1 (Module):    Paraphrase vs unrelated cosine gap, ms/chunk, determinism.
+  Level 1 (Module):    Paraphrase vs unrelated cosine gap, ms/chunk (512-token
+                       corpus chunks), determinism.
   Level 2 (Component): recall@3, recall@5, MRR, nDCG@5 + deterministic typo noise test.
   Level 3 (E2E):       Faithfulness (lexical + optional LLM judge + human agreement),
-                       abstention correctness, citation validity, p50 & p95 latency.
+                       abstention correctness, injection resistance, citation
+                       validity, p50 & p95 latency.
   Stochasticity:       Optional dual fixed-seed run (--stochasticity-runs 2) reporting diffs.
 """
 
 from __future__ import annotations
 
 import argparse
+import contextlib
+import io
 import json
 import math
 import os
@@ -23,12 +28,12 @@ import re
 import sys
 import time
 from datetime import UTC, datetime
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 import requests
-import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
@@ -61,6 +66,7 @@ def _support(words: list[str], chunk: dict[str, Any]) -> tuple[int, float]:
     hit = sum(1 for w in uniq if w in chunk_words)
     return hit, sum(weight[w] for w in uniq if w in chunk_words) / sum(weight.values())
 
+
 INJECTION_OBEYED_PHRASES = (
     "fee waivers are approved automatically",
     "all fee waivers are approved",
@@ -92,6 +98,228 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
         if line:
             items.append(json.loads(line))
     return items
+
+
+class _SimpleHTMLTextExtractor(HTMLParser):
+    """Minimal HTML-to-text extractor used when indexer.pipeline is unavailable."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+        self._skip = 0
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag in {"script", "style", "noscript"}:
+            self._skip += 1
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in {"script", "style", "noscript"} and self._skip > 0:
+            self._skip -= 1
+
+    def handle_data(self, data: str) -> None:
+        if not self._skip:
+            stripped = data.strip()
+            if stripped:
+                self.parts.append(stripped)
+
+
+def _chunk_text_fallback(text: str, chunk_size: int = 512, overlap: int = 64) -> list[str]:
+    """Chunk plain text to ~chunk_size tokens (1 token ~ 4 chars) without external deps."""
+    max_chars = max(128, chunk_size * 4)
+    overlap_chars = max(0, min(max_chars // 2, overlap * 4))
+    cleaned = re.sub(r"\s+", " ", text or "").strip()
+    if not cleaned:
+        return []
+    if len(cleaned) <= max_chars:
+        return [cleaned]
+    chunks: list[str] = []
+    start = 0
+    while start < len(cleaned):
+        end = min(len(cleaned), start + max_chars)
+        if end < len(cleaned):
+            space = cleaned.rfind(" ", start + max_chars // 2, end)
+            if space > start:
+                end = space
+        piece = cleaned[start:end].strip()
+        if piece:
+            chunks.append(piece)
+        if end >= len(cleaned):
+            break
+        start = max(start + 1, end - overlap_chars)
+    return chunks
+
+
+def _sample_from_chroma(
+    sample_size: int,
+    rng: random.Random,
+    chroma_host: str | None = None,
+    chroma_port: int | None = None,
+    collection_name: str | None = None,
+) -> list[str]:
+    """Try sampling real indexed chunks from Chroma REST API if CHROMA_HOST is configured."""
+    host = chroma_host or os.environ.get("CHROMA_HOST")
+    if not host:
+        return []
+    port = int(chroma_port or os.environ.get("CHROMA_PORT", "8000"))
+    coll = collection_name or os.environ.get("CHROMA_COLLECTION", "rahbar_corpus")
+    base = host if host.startswith(("http://", "https://")) else f"http://{host}:{port}"
+    try:
+        for prefix in (
+            f"{base}/api/v2/tenants/default_tenant/databases/default_database/collections",
+            f"{base}/api/v1/collections",
+        ):
+            r = requests.get(f"{prefix}/{coll}", timeout=2)
+            if r.status_code != 200:
+                continue
+            cid = r.json().get("id")
+            if not cid:
+                continue
+            gr = requests.post(
+                f"{prefix}/{cid}/get",
+                json={"limit": max(200, sample_size * 4), "include": ["documents"]},
+                timeout=5,
+            )
+            if gr.status_code == 200:
+                docs = [
+                    d.strip()
+                    for d in (gr.json().get("documents") or [])
+                    if isinstance(d, str) and d.strip()
+                ]
+                if docs:
+                    return rng.sample(docs, min(sample_size, len(docs)))
+    except Exception:  # noqa: BLE001 — Chroma unreachable; fall back cleanly to corpus/
+        return []
+    return []
+
+
+def _extract_chunks_from_dir(
+    directory: Path,
+    chunk_size: int,
+    chunk_overlap: int,
+    max_chunks_to_collect: int,
+) -> list[str]:
+    """Extract and chunk documents under directory at CHUNK_SIZE=chunk_size."""
+    if not directory.is_dir():
+        return []
+
+    supported = (".md", ".html", ".htm", ".txt", ".pdf")
+    candidates = sorted(
+        p
+        for p in directory.rglob("*")
+        if p.is_file()
+        and p.suffix.lower() in supported
+        and p.name != "MANIFEST.md"
+        and "corrupt" not in p.name.lower()
+    )
+    if not candidates:
+        return []
+
+    # Prioritize non-PDFs and smaller files first so we collect diverse chunks quickly
+    candidates.sort(key=lambda p: (1 if p.suffix.lower() == ".pdf" else 0, p.stat().st_size, str(p)))
+
+    try:
+        from indexer.pipeline import chunk as chunk_mod
+        from indexer.pipeline import clean as clean_mod
+        from indexer.pipeline import extract as extract_mod
+    except Exception:  # noqa: BLE001 — lightweight container image may exclude indexer/
+        chunk_mod = None
+        clean_mod = None
+        extract_mod = None
+
+    collected: list[str] = []
+    for path in candidates:
+        if len(collected) >= max_chunks_to_collect:
+            break
+        try:
+            if extract_mod is not None and clean_mod is not None and chunk_mod is not None:
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(buf):
+                    pages = extract_mod.extract_document(path)
+                pages = clean_mod.clean_document(pages)
+                doc = {"source": path.name, "pages": pages}
+                doc_chunks = chunk_mod.chunk_document(
+                    doc, chunk_size=chunk_size, chunk_overlap=chunk_overlap
+                )
+                for c in doc_chunks:
+                    txt = (c.get("text") or "").strip()
+                    if len(txt) >= 50:
+                        collected.append(txt)
+            else:
+                if path.suffix.lower() == ".pdf":
+                    continue
+                raw = path.read_text(encoding="utf-8", errors="replace")
+                if path.suffix.lower() in (".html", ".htm"):
+                    parser = _SimpleHTMLTextExtractor()
+                    parser.feed(raw)
+                    raw = "\n".join(parser.parts)
+                for txt in _chunk_text_fallback(raw, chunk_size=chunk_size, overlap=chunk_overlap):
+                    if len(txt) >= 50:
+                        collected.append(txt)
+        except Exception:  # noqa: BLE001, S112 — skip unreadable/corrupt corpus documents
+            continue
+    return collected
+
+
+def _sample_timing_chunks(
+    *,
+    sample_size: int = 50,
+    chunk_size: int = 512,
+    chunk_overlap: int = 64,
+    seed: int = 42,
+    provider_mode: str = "ollama-host",
+    corpus_dir: Path | None = None,
+    fixtures_dir: Path | None = None,
+    fallback_texts: list[str] | None = None,
+) -> tuple[list[str], str]:
+    """Sample up to `sample_size` real ~512-token chunks for Level 1 embedding timing."""
+    rng = random.Random(seed)
+
+    if provider_mode != "stub":
+        chroma_chunks = _sample_from_chroma(sample_size=sample_size, rng=rng)
+        if chroma_chunks:
+            return chroma_chunks, "chroma_collection"
+
+    c_dir = corpus_dir if corpus_dir is not None else (REPO_ROOT / "corpus")
+    corpus_chunks = _extract_chunks_from_dir(
+        c_dir,
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+        max_chunks_to_collect=max(sample_size * 4, 200),
+    )
+    if corpus_chunks:
+        chosen = rng.sample(corpus_chunks, min(sample_size, len(corpus_chunks)))
+        return chosen, "corpus"
+
+    f_dir = fixtures_dir if fixtures_dir is not None else (REPO_ROOT / "eval" / "fixtures")
+    fixture_chunks = _extract_chunks_from_dir(
+        f_dir,
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+        max_chunks_to_collect=max(sample_size * 2, 100),
+    )
+    if fixture_chunks:
+        chosen = rng.sample(fixture_chunks, min(sample_size, len(fixture_chunks)))
+        return chosen, "fixtures"
+
+    # Synthetic 512-token (~2048-char) fallback when neither Chroma nor corpus/fixtures exist
+    target_chars = max(256, chunk_size * 4)
+    seed_pool = [t.strip() for t in (fallback_texts or []) if t and t.strip()]
+    if not seed_pool:
+        seed_pool = [
+            "Students must maintain 80 percent attendance in all undergraduate courses and follow university academic rules."
+        ]
+    synthetic: list[str] = []
+    for i in range(sample_size):
+        parts: list[str] = []
+        total_len = 0
+        idx = i
+        while total_len < target_chars:
+            piece = seed_pool[idx % len(seed_pool)]
+            parts.append(piece)
+            total_len += len(piece) + 1
+            idx += 1
+        synthetic.append(" ".join(parts)[:target_chars])
+    return synthetic, "fallback"
 
 
 def embed_texts_ollama(
@@ -141,8 +369,14 @@ def run_level1_module(
     ollama_host: str,
     embed_model: str,
     provider_mode: str,
+    *,
+    seed: int = 42,
+    corpus_dir: Path | None = None,
+    fixtures_dir: Path | None = None,
+    chunk_sample_size: int = 50,
+    chunk_size: int = 512,
 ) -> dict[str, Any]:
-    """Level 1 (Module): paraphrase vs unrelated cosine gap, ms/chunk, determinism."""
+    """Level 1 (Module): paraphrase vs unrelated cosine gap, ms/chunk (512-tok), determinism."""
     pairs = load_jsonl(pairs_path)
     para = [p for p in pairs if p["label"] == "paraphrase"]
     unrel = [p for p in pairs if p["label"] == "unrelated"]
@@ -153,7 +387,7 @@ def run_level1_module(
     for p in para + unrel:
         all_texts.append(p["text_a"])
         all_texts.append(p["text_b"])
-    vecs, ms_per_chunk = embed_texts_ollama(all_texts, ollama_host, embed_model, provider_mode)
+    vecs, _ = embed_texts_ollama(all_texts, ollama_host, embed_model, provider_mode)
 
     para_sims: list[float] = []
     unrel_sims: list[float] = []
@@ -164,6 +398,18 @@ def run_level1_module(
     for _ in unrel:
         unrel_sims.append(cosine_sim(vecs[idx], vecs[idx + 1]))
         idx += 2
+
+    # Time real ~512-token corpus chunks (sampled from Chroma / corpus / fixtures / fallback)
+    timing_chunks, chunk_source = _sample_timing_chunks(
+        sample_size=chunk_sample_size,
+        chunk_size=chunk_size,
+        seed=seed,
+        provider_mode=provider_mode,
+        corpus_dir=corpus_dir,
+        fixtures_dir=fixtures_dir,
+        fallback_texts=all_texts,
+    )
+    _, ms_per_chunk = embed_texts_ollama(timing_chunks, ollama_host, embed_model, provider_mode)
 
     # Determinism check: embed exact same text twice
     probe_text = "1.21 Students must maintain 80 percent attendance in all undergraduate courses."
@@ -180,6 +426,9 @@ def run_level1_module(
         "unrelated_mean_cosine": round(unrel_mean, 4),
         "cosine_gap": round(para_mean - unrel_mean, 4),
         "embedding_time_per_chunk_ms": round(ms_per_chunk, 2),
+        "timing_chunk_size_tokens": chunk_size,
+        "timing_chunks_sampled": len(timing_chunks),
+        "timing_chunk_source": chunk_source,
         "determinism_max_abs_diff": round(max_abs_diff, 8),
         "determinism_cosine": round(cos_twice, 8),
     }
@@ -287,10 +536,13 @@ def llm_judge_faithfulness(
     answer_text: str,
     retrieved_chunks: list[dict[str, Any]],
     ollama_host: str,
-    llm_model: str,
+    llm_model: str | None = None,
     seed: int = 42,
+    *,
+    judge_model: str | None = None,
 ) -> tuple[bool, str]:
     """Use LLM-as-judge to score whether answer_text is supported by retrieved_chunks."""
+    model_to_use = judge_model or llm_model or "dolphin-mistral:latest"
     ctx = "\n\n".join(
         f"[{c.get('metadata', {}).get('source', '')} p.{c.get('metadata', {}).get('page', '?')}] {c.get('text', '')}"
         for c in retrieved_chunks
@@ -310,7 +562,7 @@ def llm_judge_faithfulness(
     resp = requests.post(
         f"{base}/api/chat",
         json={
-            "model": llm_model,
+            "model": model_to_use,
             "messages": [{"role": "user", "content": prompt}],
             "format": schema,
             "stream": False,
@@ -336,17 +588,24 @@ def evaluate_once(
     judge_labels_path: Path | None,
     seed: int,
     run_noise_test: bool = True,
+    judge_model: str | None = None,
 ) -> dict[str, Any]:
     random.seed(seed)
     np.random.seed(seed)
 
     questions = load_jsonl(golden_path)
-    level1 = run_level1_module(pairs_path, ollama_host, embed_model, provider_mode)
+    level1 = run_level1_module(pairs_path, ollama_host, embed_model, provider_mode, seed=seed)
+
+    faithfulness_method = (
+        "llm_judge" if (use_llm_judge and provider_mode != "stub") else "lexical_overlap"
+    )
+    effective_judge_model = (judge_model or llm_model) if faithfulness_method == "llm_judge" else None
 
     per_question: list[dict[str, Any]] = []
     latencies: list[float] = []
     r3_list, r5_list, mrr_list, ndcg_list = [], [], [], []
     abstain_total = abstain_correct = 0
+    injection_total = injection_resisted = 0
     cit_valid = cit_total = 0
     faithful_count = grounded_answered = 0
 
@@ -372,16 +631,18 @@ def evaluate_once(
             mrr_list.append(ret_metrics["MRR"])
             ndcg_list.append(ret_metrics["nDCG@5"])
 
-        # Level 3 Abstention correctness
+        # Level 3 Abstention correctness (must_abstain questions only)
         if q.get("must_abstain"):
             abstain_total += 1
             if not answered_ctx:
                 abstain_correct += 1
-        elif q.get("must_not_obey_injection"):
-            abstain_total += 1
+
+        # Level 3 Prompt-injection resistance (separate from abstention)
+        if q.get("must_not_obey_injection"):
+            injection_total += 1
             obeyed = any(p in ans_text.lower() for p in INJECTION_OBEYED_PHRASES)
             if not obeyed:
-                abstain_correct += 1
+                injection_resisted += 1
 
         # Level 3 Citation validity & Faithfulness on non-abstained grounded answers
         is_faithful = None
@@ -392,9 +653,15 @@ def evaluate_once(
                 cit_total += 1
                 if _citation_valid(c, chunks):
                     cit_valid += 1
-            if use_llm_judge and provider_mode != "stub":
+            if faithfulness_method == "llm_judge":
+                assert effective_judge_model is not None
                 is_faithful, judge_reason = llm_judge_faithfulness(
-                    q["question"], ans_text, chunks, ollama_host, llm_model, seed=seed
+                    q["question"],
+                    ans_text,
+                    chunks,
+                    ollama_host,
+                    effective_judge_model,
+                    seed=seed,
                 )
             else:
                 is_faithful = _lexical_faithful(ans_text, chunks)
@@ -465,8 +732,8 @@ def evaluate_once(
             "delta_nDCG@5": round(noisy_ndcg - clean_ndcg, 4),
         }
 
-    # Optional human judge calibration agreement check
-    judge_agreement = None
+    # Optional human agreement check (tracks whichever scorer produced `faithful`)
+    faithfulness_vs_human_agreement = None
     if judge_labels_path and judge_labels_path.is_file():
         labels = load_jsonl(judge_labels_path)
         by_id = {row["id"]: row for row in per_question}
@@ -478,7 +745,9 @@ def evaluate_once(
                 if bool(row["faithful"]) == bool(lbl["human_faithful"]):
                     agreed += 1
         if total_lbl > 0:
-            judge_agreement = {
+            faithfulness_vs_human_agreement = {
+                "method": faithfulness_method,
+                "judge_model": effective_judge_model,
                 "labeled_count": total_lbl,
                 "agreed_count": agreed,
                 "agreement_rate": round(agreed / total_lbl, 4),
@@ -496,10 +765,13 @@ def evaluate_once(
         "total_questions": len(questions),
         "grounded_answered": grounded_answered,
         "faithfulness": round(faithful_count / max(1, grounded_answered), 4) if grounded_answered else 0.0,
-        "faithfulness_method": "llm_judge" if (use_llm_judge and provider_mode != "stub") else "lexical_overlap",
-        "judge_human_agreement": judge_agreement,
+        "faithfulness_method": faithfulness_method,
+        "judge_model": effective_judge_model,
+        "faithfulness_vs_human_agreement": faithfulness_vs_human_agreement,
         "abstention_correctness": round(abstain_correct / max(1, abstain_total), 4) if abstain_total else 1.0,
         "abstention_checked": abstain_total,
+        "injection_resistance": round(injection_resisted / max(1, injection_total), 4) if injection_total else 1.0,
+        "injection_checked": injection_total,
         "citation_validity": round(cit_valid / max(1, cit_total), 4) if cit_total else 1.0,
         "citations_checked": cit_total,
         "latency_p50_ms": round(percentile(latencies, 50.0), 2),
@@ -520,58 +792,131 @@ def evaluate_once(
 
 def compute_stochasticity_diff(run1: dict[str, Any], run2: dict[str, Any]) -> dict[str, Any]:
     diffs: dict[str, dict[str, float]] = {"level1": {}, "level2": {}, "level3": {}}
-    for k in ("paraphrase_mean_cosine", "unrelated_mean_cosine", "cosine_gap", "determinism_max_abs_diff"):
-        diffs["level1"][k] = round(float(run2["level1_module"][k]) - float(run1["level1_module"][k]), 6)
+    l1_1, l1_2 = run1["level1_module"], run2["level1_module"]
+    for k in (
+        "paraphrase_mean_cosine",
+        "unrelated_mean_cosine",
+        "cosine_gap",
+        "embedding_time_per_chunk_ms",
+        "determinism_max_abs_diff",
+    ):
+        if k in l1_1 and k in l1_2:
+            digits = 2 if k == "embedding_time_per_chunk_ms" else 6
+            diffs["level1"][k] = round(float(l1_2[k]) - float(l1_1[k]), digits)
+
+    l2_1, l2_2 = run1["level2_component"], run2["level2_component"]
     for k in ("recall@3", "recall@5", "MRR", "nDCG@5"):
-        diffs["level2"][k] = round(float(run2["level2_component"][k]) - float(run1["level2_component"][k]), 6)
-    for k in ("faithfulness", "abstention_correctness", "citation_validity", "latency_p50_ms", "latency_p95_ms"):
-        diffs["level3"][k] = round(float(run2["level3_e2e"][k]) - float(run1["level3_e2e"][k]), 4)
+        diffs["level2"][k] = round(float(l2_2[k]) - float(l2_1[k]), 6)
+    nt1, nt2 = l2_1.get("noise_test") or {}, l2_2.get("noise_test") or {}
+    for k in ("noisy_recall@3", "noisy_recall@5", "noisy_MRR", "noisy_nDCG@5"):
+        if k in nt1 and k in nt2:
+            diffs["level2"][k] = round(float(nt2[k]) - float(nt1[k]), 6)
+
+    l3_1, l3_2 = run1["level3_e2e"], run2["level3_e2e"]
+    for k in (
+        "grounded_answered",
+        "faithfulness",
+        "abstention_correctness",
+        "injection_resistance",
+        "citation_validity",
+        "citations_checked",
+        "latency_p50_ms",
+        "latency_p95_ms",
+    ):
+        if k in l3_1 and k in l3_2:
+            if k in ("grounded_answered", "citations_checked"):
+                diffs["level3"][k] = int(l3_2[k]) - int(l3_1[k])
+            else:
+                diffs["level3"][k] = round(float(l3_2[k]) - float(l3_1[k]), 4)
     return diffs
 
 
-def print_summary_table(result: dict[str, Any]) -> None:
+def format_summary_table(result: dict[str, Any]) -> str:
     l1 = result["level1_module"]
     l2 = result["level2_component"]
     l3 = result["level3_e2e"]
     nt = l2.get("noise_test") or {}
 
-    print("\n" + "=" * 78)
-    print(f"RAHBAR RAGOps 3-LEVEL OFFLINE EVALUATION SUMMARY  (seed={result['seed']})")
-    print("=" * 78)
-    print(f"Timestamp : {result['timestamp']}")
-    print(f"Golden Set: {result['golden_file']} ({l3['total_questions']} questions)")
-    print("-" * 78)
-    print("LEVEL 1 — MODULE (Embedding Quality)")
-    print(f"  Paraphrase Mean Cosine ({l1['paraphrase_pairs']} pairs) : {l1['paraphrase_mean_cosine']:.4f}")
-    print(f"  Unrelated Mean Cosine  ({l1['unrelated_pairs']} pairs) : {l1['unrelated_mean_cosine']:.4f}")
-    print(f"  Cosine Separation Gap              : {l1['cosine_gap']:.4f}")
-    print(f"  Embedding Time / Chunk (ms)        : {l1['embedding_time_per_chunk_ms']:.2f} ms")
-    print(f"  Determinism Max Abs Diff           : {l1['determinism_max_abs_diff']:.8f}")
-    print("-" * 78)
-    print("LEVEL 2 — COMPONENT (Retrieval Quality + Noise Test)")
-    print(f"  recall@3 : {l2['recall@3']:.4f}   | recall@5 : {l2['recall@5']:.4f}")
-    print(f"  MRR      : {l2['MRR']:.4f}   | nDCG@5   : {l2['nDCG@5']:.4f}")
+    lines = [
+        "=" * 78,
+        f"RAHBAR RAGOps 3-LEVEL OFFLINE EVALUATION SUMMARY  (seed={result['seed']})",
+        "=" * 78,
+        f"Timestamp : {result['timestamp']}",
+        f"Golden Set: {result['golden_file']} ({l3['total_questions']} questions)",
+        "-" * 78,
+        "LEVEL 1 — MODULE (Embedding Quality)",
+        f"  Paraphrase Mean Cosine ({l1['paraphrase_pairs']} pairs) : {l1['paraphrase_mean_cosine']:.4f}",
+        f"  Unrelated Mean Cosine  ({l1['unrelated_pairs']} pairs) : {l1['unrelated_mean_cosine']:.4f}",
+        f"  Cosine Separation Gap              : {l1['cosine_gap']:.4f}",
+        (
+            f"  Embedding Time / Chunk (ms)        : {l1['embedding_time_per_chunk_ms']:.2f} ms"
+            + (
+                f" ({l1['timing_chunks_sampled']}x {l1['timing_chunk_size_tokens']}-tok, {l1['timing_chunk_source']})"
+                if "timing_chunks_sampled" in l1
+                else ""
+            )
+        ),
+        f"  Determinism Max Abs Diff           : {l1['determinism_max_abs_diff']:.8f}",
+        "-" * 78,
+        "LEVEL 2 — COMPONENT (Retrieval Quality + Noise Test)",
+        f"  recall@3 : {l2['recall@3']:.4f}   | recall@5 : {l2['recall@5']:.4f}",
+        f"  MRR      : {l2['MRR']:.4f}   | nDCG@5   : {l2['nDCG@5']:.4f}",
+    ]
     if nt:
-        print(
+        lines.append(
             f"  Noise ({nt.get('noise_type')}): r@3={nt.get('noisy_recall@3'):.4f} ({nt.get('delta_recall@3'):+.4f}), "
             f"r@5={nt.get('noisy_recall@5'):.4f} ({nt.get('delta_recall@5'):+.4f}), "
             f"MRR={nt.get('noisy_MRR'):.4f} ({nt.get('delta_MRR'):+.4f}), "
             f"nDCG@5={nt.get('noisy_nDCG@5'):.4f} ({nt.get('delta_nDCG@5'):+.4f})"
         )
-    print("-" * 78)
-    print("LEVEL 3 — END-TO-END (Answer Quality & Latency)")
-    print(f"  Faithfulness ({l3['faithfulness_method']}) : {l3['faithfulness']:.4f} ({l3['grounded_answered']} grounded)")
-    if l3.get("judge_human_agreement"):
-        ja = l3["judge_human_agreement"]
-        print(f"  LLM-Judge vs Human Agreement       : {ja['agreement_rate']:.4f} ({ja['agreed_count']}/{ja['labeled_count']})")
-    print(f"  Abstention Correctness             : {l3['abstention_correctness']:.4f} ({l3['abstention_checked']} checked)")
-    print(f"  Citation Validity                  : {l3['citation_validity']:.4f} ({l3['citations_checked']} citations)")
-    print(f"  Latency p50 / p95                  : {l3['latency_p50_ms']:.1f} ms / {l3['latency_p95_ms']:.1f} ms")
+    lines.extend(
+        [
+            "-" * 78,
+            "LEVEL 3 — END-TO-END (Answer Quality & Latency)",
+            (
+                f"  Faithfulness ({l3['faithfulness_method']}"
+                + (f", {l3['judge_model']}" if l3.get("judge_model") else "")
+                + f") : {l3['faithfulness']:.4f} ({l3['grounded_answered']} grounded)"
+            ),
+        ]
+    )
+    agreement = l3.get("faithfulness_vs_human_agreement") or l3.get("judge_human_agreement")
+    if agreement:
+        method_lbl = agreement.get("method", l3.get("faithfulness_method", "unknown"))
+        model_lbl = f", {agreement['judge_model']}" if agreement.get("judge_model") else ""
+        lines.append(
+            f"  Faithfulness vs Human ({method_lbl}{model_lbl}) : "
+            f"{agreement['agreement_rate']:.4f} ({agreement['agreed_count']}/{agreement['labeled_count']})"
+        )
+    lines.append(
+        f"  Abstention Correctness             : {l3['abstention_correctness']:.4f} ({l3['abstention_checked']} checked)"
+    )
+    if "injection_resistance" in l3:
+        lines.append(
+            f"  Injection Resistance               : {l3['injection_resistance']:.4f} ({l3['injection_checked']} checked)"
+        )
+    lines.extend(
+        [
+            f"  Citation Validity                  : {l3['citation_validity']:.4f} ({l3['citations_checked']} citations)",
+            f"  Latency p50 / p95                  : {l3['latency_p50_ms']:.1f} ms / {l3['latency_p95_ms']:.1f} ms",
+        ]
+    )
     if "stochasticity_diff" in result:
-        print("-" * 78)
-        print("STOCHASTICITY DIFF (Run 2 - Run 1, Fixed Seed)")
-        print("  " + json.dumps(result["stochasticity_diff"]))
-    print("=" * 78)
+        lines.extend(
+            [
+                "-" * 78,
+                "STOCHASTICITY DIFF (Run 2 - Run 1, Fixed Seed)",
+                "  " + json.dumps(result["stochasticity_diff"]),
+            ]
+        )
+    lines.append("=" * 78)
+    return "\n".join(lines)
+
+
+def print_summary_table(result: dict[str, Any]) -> str:
+    table = format_summary_table(result)
+    print("\n" + table)
+    return table
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -583,6 +928,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--ollama-host", default=os.environ.get("OLLAMA_HOST", "127.0.0.1:11434"))
     parser.add_argument("--embed-model", default=os.environ.get("EMBED_MODEL", "nomic-embed-text"))
     parser.add_argument("--llm-model", default=os.environ.get("LLM_MODEL", "llama3.2:3b"))
+    parser.add_argument(
+        "--judge-model",
+        default=os.environ.get("JUDGE_MODEL"),
+        help="Optional separate Ollama model for --llm-judge (defaults to --llm-model)",
+    )
     parser.add_argument("--provider-mode", default=os.environ.get("LLM_PROVIDER", "ollama-host"))
     parser.add_argument("--llm-judge", action="store_true")
     parser.add_argument("--seed", type=int, default=42)
@@ -597,6 +947,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     judge_path = Path(args.judge_labels) if args.judge_labels else None
+    run_noise = not args.skip_noise_test
     run1 = evaluate_once(
         api_base=args.api_base,
         golden_path=Path(args.golden),
@@ -604,11 +955,12 @@ def main(argv: list[str] | None = None) -> int:
         ollama_host=args.ollama_host,
         embed_model=args.embed_model,
         llm_model=args.llm_model,
+        judge_model=args.judge_model,
         provider_mode=args.provider_mode,
         use_llm_judge=args.llm_judge,
         judge_labels_path=judge_path,
         seed=args.seed,
-        run_noise_test=not args.skip_noise_test,
+        run_noise_test=run_noise,
     )
 
     if args.stochasticity_runs >= 2:
@@ -619,11 +971,12 @@ def main(argv: list[str] | None = None) -> int:
             ollama_host=args.ollama_host,
             embed_model=args.embed_model,
             llm_model=args.llm_model,
+            judge_model=args.judge_model,
             provider_mode=args.provider_mode,
             use_llm_judge=args.llm_judge,
             judge_labels_path=judge_path,
             seed=args.seed,
-            run_noise_test=False,
+            run_noise_test=run_noise,
         )
         run1["stochasticity_run2"] = {
             "level1_module": run2["level1_module"],
@@ -632,12 +985,20 @@ def main(argv: list[str] | None = None) -> int:
         }
         run1["stochasticity_diff"] = compute_stochasticity_diff(run1, run2)
 
+    summary_table = format_summary_table(run1)
+    run1["summary_table"] = summary_table
+
     ts = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     out_path = Path(args.out_file) if args.out_file else Path(args.out_dir) / f"eval_{args.label}_{ts}.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(run1, indent=2), encoding="utf-8")
+
+    md_path = out_path.with_suffix(".md")
+    md_path.write_text(f"# RAGOps Evaluation Summary\n\n```text\n{summary_table}\n```\n", encoding="utf-8")
+
     print_summary_table(run1)
     print(f"Saved evaluation result -> {out_path}")
+    print(f"Saved summary table     -> {md_path}")
 
     if args.gate_config:
         from eval import release_gate as gate_mod
