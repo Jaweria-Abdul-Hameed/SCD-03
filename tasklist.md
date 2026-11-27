@@ -39,7 +39,7 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ### Part E: Drift and coverage checking
 
-- [ ] Commit an E3 drift diff, `eval/results/e3_drift_batch_b_diff.json`, comparing `baseline_k8s.json` with `eval_post-batch-b_20261122T163228Z.json` across all three levels. List every golden question whose retrieval hit or answer changed, with the cause, e.g. ground truth still pointing at the now-superseded `Academic_Rules_Handbook_2026.pdf`.
+- [x] Commit an E3 drift diff, `eval/results/e3_drift_batch_b_diff.json`, comparing `baseline_k8s.json` with `eval_post-batch-b_20261122T163228Z.json` across all three levels. List every golden question whose retrieval hit or answer changed, with the cause, e.g. ground truth still pointing at the now-superseded `Academic_Rules_Handbook_2026.pdf`.
 
 ### Part F: Kubernetes
 
