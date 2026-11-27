@@ -1,0 +1,91 @@
+$ kubectl set env deployment/api -n rahbar COLLECTION_VERSION=candidate-fail-v0 PROMPT_TEMPLATE=bad_unconstrained_v0 TOP_K=1
+deployment.apps/api env updated
+
+$ kubectl rollout status deployment/api -n rahbar --timeout=180s
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+deployment "api" successfully rolled out
+
+$ kubectl rollout history deployment/api -n rahbar
+deployment.apps/api 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+
+=== Bad-release trace summary (from /traces/traces.jsonl) ===
+{"trace_id": "51d20011-6652-42bf-8ace-8cf6cc6e9a50", "collection_name": "rahbar_corpus", "collection_version": "candidate-fail-v0", "embedding_version": "nomic-embed-text:v1.5", "prompt_template": "bad_unconstrained_v0", "top_k": 1, "retrieved_count": 1, "answered_from_context": true}
+
+$ kubectl rollout undo deployment/api -n rahbar
+deployment.apps/api rolled back
+Warning: resource deployments/api was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+
+$ kubectl rollout status deployment/api -n rahbar --timeout=180s
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+deployment "api" successfully rolled out
+
+$ kubectl rollout history deployment/api -n rahbar
+deployment.apps/api 
+REVISION  CHANGE-CAUSE
+2         <none>
+3         <none>
+
+$ kubectl exec deploy/api -n rahbar -- env
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=api-58579c958c-42d2g
+LANG=C.UTF-8
+GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305
+PYTHON_VERSION=3.12.14
+PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a
+LLM_MODEL=llama3.2:3b
+LLM_SEED=42
+DATA_LAKE_ROOT=/corpus
+COLLECTION_VERSION=v1
+LLM_PROVIDER=ollama-host
+CACHE_THRESHOLD=0.96
+TEMPERATURE=0.0
+LLM_TIMEOUT_S=240
+PROMPT_TEMPLATE=grounded_v1
+REDIS_PORT=6379
+CHROMA_HOST=chroma
+EMBED_VERSION=nomic-embed-text:v1.5
+NEAR_DUP_THRESHOLD=0.94
+REDIS_HOST=redis
+TRACE_FILE=/traces/traces.jsonl
+CHROMA_COLLECTION=rahbar_corpus
+CHROMA_PORT=8000
+RELEVANCE_FLOOR=0.64
+EMBED_DIMENSION=768
+EMBED_MODEL=nomic-embed-text
+OLLAMA_HOST=host.minikube.internal:11434
+CHUNK_SIZE=512
+RETRIEVAL_RAIL_MODE=redact
+CHUNK_OVERLAP=64
+TOP_K=5
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+HOME=/home/rahbar
+
+=== Post-undo trace summary (from /traces/traces.jsonl) ===
+{"trace_id": "6b2ff69b-4551-4283-895c-8211e07175c5", "collection_name": "rahbar_corpus", "collection_version": "v1", "embedding_version": "nomic-embed-text:v1.5", "prompt_template": "grounded_v1", "top_k": 5, "retrieved_count": 5, "answered_from_context": true}
+

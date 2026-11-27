@@ -184,6 +184,15 @@ To test a degraded candidate that fails the release gate (Job exits `1`), apply 
 # Query the live service via port-forward
 kubectl port-forward svc/api 8000:8000 -n rahbar
 
+# Inspect live RAGOps Prometheus metrics (in a second terminal while port-forward is active)
+# PowerShell note: use curl.exe instead of curl (curl is an Invoke-WebRequest alias in PowerShell)
+curl localhost:8000/metrics
+
+# Inspect live structured JSONL traces emitted to API pod stdout
+kubectl logs deploy/api -n rahbar --tail=3
+# (Filter across all API replicas for ragops_trace records)
+kubectl logs deploy/api -n rahbar --all-pods=true --tail=50 | grep '"record_type": "ragops_trace"' | tail -n 3
+
 # Inspect traces emitted to PVC
 kubectl exec pvc-helper -n rahbar -- tail -n 5 /traces/traces.jsonl
 
