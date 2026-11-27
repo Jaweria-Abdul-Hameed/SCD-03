@@ -8,7 +8,7 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ## Phase 1 — Claude can do these alone (no cluster, no manual action)
 
-> Code, manifest, data-file and documentation fixes. The single-writer task in Part F ("Enforce or document single-writer access honestly") needs one quick decision from you: implement Chroma auth, or document how single-writer access really works.
+> Code, manifest, data-file and documentation fixes. Decision applied: for the single-writer task in Part F ("Enforce or document single-writer access honestly"), document the real mechanism in `k8s/README.md` rather than implementing Chroma auth.
 
 ### Part A: Data management — verify and update
 
@@ -78,13 +78,13 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 
 ---
 
-## Phase 2 — Cluster runs (MANUAL STOP: start the cluster first)
+## Phase 2 — Cluster runs (autonomous; cluster + Ollama pre-started)
 
-> Before the first task here: start minikube (`--cni=calico`), start Ollama with `llama3.2:3b`, `nomic-embed-text` and `dolphin-mistral:latest` pulled, then build and deploy the images using the fixed Phase 1 instructions. Claude can run the commands; you approve them and wait for the long eval runs. The first Part E task is your decision on stale golden labels, and it must be made before the Part B re-run. The first Part A task rebuilds the Chroma collection from scratch, so confirm before it runs. Restore the edited and the deleted document from the Part A demos before the Part B re-run.
+> Minikube (`--cni=calico`) and host Ollama (`llama3.2:3b`, `nomic-embed-text`, `dolphin-mistral:latest`) are started locally; build and deploy/update the images using the fixed Phase 1 instructions. Rebuilding the Chroma collection and running the A2 changed/deleted demos on the PVC are pre-approved — restore the edited and deleted Batch A documents before the Part B re-run.
 
 ### Part E: Drift and coverage checking
 
-- [ ] Decide how to handle golden labels made stale by Batch B: either add version-aware ground truth such as `relevant_document_after_batch_b`, or document the stale labels as a finding. Re-run the suite after the decision and commit the result.
+- [ ] Handle golden labels made stale by Batch B by keeping Batch A ground truth in `relevant_document`, adding optional `relevant_document_after_batch_b` annotations where `b10` supersedes `Academic_Rules_Handbook_2026.pdf`, and documenting the stale labels as an explicit E3 drift finding. Re-run the suite after updating and commit the result.
 - [ ] Commit the pre-expansion golden snapshot `eval/golden_pre_expansion.jsonl` (G01–G26). Re-run `eval/coverage_check.py --golden eval/golden_pre_expansion.jsonl --out eval/results/coverage_pre_expansion.json` so the "before" result can be reproduced. The current `eval/golden.jsonl` already holds 32 questions.
 - [ ] Derive and commit a justification for the 0.70 similarity threshold: the distribution of `max_similarity` for `domain: in_domain` vs `domain: uncovered` queries in `eval/live_queries.jsonl`, saved as `eval/results/coverage_threshold_analysis.json`. The report states τ = 0.70 with no justification.
 
@@ -142,21 +142,22 @@ Tasks tagged **[CLUSTER]** need the minikube cluster running.
 - [ ] Fix Part E. Add the 0.70 threshold justification from `coverage_threshold_analysis.json`. List all 17 pre-expansion uncovered queries grouped by topic, including the 3 `other_uncovered` in-domain queries (L03, L25, L26) that the report omits. List the 6 still-uncovered queries after expansion. Correct the Table 8 "Max Sim After" values to those in `coverage_post_expansion.json` (G27 0.8667, G28 0.8877, G29 0.7664, G30 0.7910, G31 0.8913, G32 0.8900; the report shows 0.7812/0.7645/0.7489/0.7512/0.7924/0.7601).
 - [ ] Expand E3 in the report from one sentence to the drift-diff table: per-metric before/after, which questions flipped, and why.
 - [ ] Add an F5 table with measured CPU/memory (p50/max) and the chosen request/limit for API, Chroma, indexer Job, and eval Job, citing the measurement file.
+- [ ] Add both members' **roll numbers** to the first page of `report/report.html`: `Jaweria Abdul Hameed` (`i243025`) and `Mohsin Khan` (`i243135`) (confirmed from `RAHBAR-Assignment02-i243135-i243025.pdf`).
+- [ ] Turn the contribution prose on Page 1 of `report/report.html` into a contribution table (member × parts/files based on git commit history and `docs/AI-USAGE.md`), and rewrite the AI statement (2–3 lines) so it truthfully describes how AI was used, including code/test remediation, report drafting, and any generated artifacts.
 - [ ] Do a final cross-check of every number in `report/report.html` against the committed files in `eval/results/` and `traces/`, fix any mismatch, regenerate `report/Report_CS4032_Assignment03.pdf` (and the root copy), and confirm the main body is ≤ 8 pages.
 
 ---
 
 ## Phase 4 — Your tasks (manual only)
 
-> Only the group members can do these. Take the screenshots last so they show the final runs, then commit.
+> Only the group members can do these. Take the screenshots last so they show the final runs, then commit and push.
 
 ### Part G: Report
 
-- [ ] Add both members' **roll numbers** to the first page of `report/report.html`. Only names and e-mails are listed; the Assignment 02 file name suggests `i243135` and `i243025`, so confirm which roll number belongs to which member.
-- [ ] Turn the contribution prose into a contribution table (member × parts/files), and rewrite the AI statement (2–3 lines) so it truthfully describes how AI was used, including report drafting and any generated artifacts.
+- [ ] Visually review Page 1 of `report/report.html` to confirm both members' roll numbers (`Jaweria Abdul Hameed — i243025`, `Mohsin Khan — i243135`), the contribution table, and the 2–3 line AI statement before final submission.
 
 ### Submission: Repository, README & Screenshots
 
 - [ ] Replace all 13 PNGs in `screenshots/` with **real terminal captures** from your own cluster runs (command plus full output, uncropped). They are currently rendered by `scripts/generate_screenshots.py` from hardcoded strings, and several values contradict the committed results. A1 shows `added=4 … embedded=4 total_in_store=484`, while `verification_batch_b.json` has `docs_added: 5, chunks_embedded: 6`. B1 shows all noise deltas `+0.0000`, while the result file has `+0.0952 / +0.0897 / +0.0676`. C1 prints lines `release_gate.py` never outputs ("Exited with status code 1 (Deployment blocked)"). This breaks the rule "Screenshots must come from your own cluster and your own runs."
-- [ ] Capture the required F screenshot of `kubectl rollout status` and `kubectl rollout undo` **followed by a trace showing the previous collection and embedding version**; the current F4 image does not show these trace fields. Once real captures exist, stop using `scripts/generate_screenshots.py`.
-- [ ] Resolve the uncommitted working-tree state (9 deleted PDFs/HTML/checklists, untracked `assignment_03.md` and `ragops_operating_and_managing_retrieval_augmented_generation_pipelines.md`). Decide what belongs in the submission, then commit all new results, traces, evidence and manifests so the repository matches the report.
+- [ ] Capture the required F screenshot of `kubectl rollout status` and `kubectl rollout undo` **followed by a trace showing the previous collection and embedding version**; the current F4 image does not show these trace fields. Once real captures exist, stop using `scripts/generate_screenshots.py`, and regenerate `report/Report_CS4032_Assignment03.pdf` (and the root copy) if the appendix captures changed.
+- [ ] Resolve the uncommitted working-tree state (9 deleted PDFs/HTML/checklists, untracked `assignment_03.md` and `ragops_operating_and_managing_retrieval_augmented_generation_pipelines.md`). Decide what belongs in the submission, commit the real screenshots and final cleanup, and run `git push` to GitHub.
