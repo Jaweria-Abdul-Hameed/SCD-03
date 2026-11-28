@@ -68,13 +68,15 @@ spec:
               mountPath: /results
             - name: tmp
               mountPath: /tmp
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt (eval-job, N=26:
+          # CPU p50=1.0m max=21m, Mem p50=30.0Mi max=31Mi; requests ~ p50 floor, limits >= max*1.5).
           resources:
             requests:
-              cpu: 100m
-              memory: 192Mi
+              cpu: 10m
+              memory: 32Mi
             limits:
-              cpu: 500m
-              memory: 512Mi
+              cpu: 50m
+              memory: 64Mi
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true

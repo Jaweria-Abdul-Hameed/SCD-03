@@ -17,11 +17,12 @@ spec:
           env:
             - name: PROMPT_TEMPLATE
               value: "strict_concise_v2"
-          # Mirrors k8s/base/api-deployment.yaml so manifest resource checks stay satisfied.
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt; mirrors
+          # k8s/base/api-deployment.yaml so manifest resource checks stay satisfied.
           resources:
             requests:
+              cpu: 25m
+              memory: 80Mi
+            limits:
               cpu: 100m
               memory: 128Mi
-            limits:
-              cpu: 500m
-              memory: 256Mi
