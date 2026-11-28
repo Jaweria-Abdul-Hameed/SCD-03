@@ -48,13 +48,16 @@ spec:
               mountPath: /corpus
             - name: tmp
               mountPath: /tmp
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt (indexer-candidate,
+          # N=8: CPU p50=760.5m max=998m, Mem p50=176.5Mi max=198Mi; request ~ p50,
+          # limit ~ max*1.5 with OCR memory headroom and unthrottled 1500m CPU ceiling).
           resources:
             requests:
-              cpu: 250m
-              memory: 384Mi
+              cpu: 750m
+              memory: 192Mi
             limits:
-              cpu: 1000m
-              memory: 1Gi
+              cpu: 1500m
+              memory: 384Mi
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true

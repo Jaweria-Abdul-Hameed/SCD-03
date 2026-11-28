@@ -1,0 +1,384 @@
+# Terminal 1: kubectl port-forward svc/api 8000:8000 -n rahbar
+# Terminal 2: curl.exe -s http://localhost:8000/metrics
+
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 3383.0
+python_gc_objects_collected_total{generation="1"} 917.0
+python_gc_objects_collected_total{generation="2"} 31.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 264.0
+python_gc_collections_total{generation="1"} 24.0
+python_gc_collections_total{generation="2"} 2.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="12",patchlevel="14",version="3.12.14"} 1.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 1.338966016e+09
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 1.12672768e+08
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.79581382202e+09
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 2.03
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 18.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 1.048576e+06
+# HELP http_requests_total Total HTTP requests
+# TYPE http_requests_total counter
+http_requests_total{method="GET",path="/healthz",status="200"} 7.0
+http_requests_total{method="GET",path="/readyz",status="200"} 18.0
+http_requests_total{method="POST",path="/chat",status="200"} 8.0
+http_requests_total{method="GET",path="/metrics",status="200"} 1.0
+# HELP http_requests_created Total HTTP requests
+# TYPE http_requests_created gauge
+http_requests_created{method="GET",path="/healthz",status="200"} 1.7958138262084754e+09
+http_requests_created{method="GET",path="/readyz",status="200"} 1.795813826227249e+09
+http_requests_created{method="POST",path="/chat",status="200"} 1.7958138396758406e+09
+http_requests_created{method="GET",path="/metrics",status="200"} 1.795813895789666e+09
+# HELP request_latency_seconds Total request latency (s)
+# TYPE request_latency_seconds histogram
+request_latency_seconds_bucket{le="0.005",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="0.01",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="0.025",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="0.05",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="0.075",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="0.1",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="0.25",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="0.5",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="0.75",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="1.0",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="2.5",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="5.0",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="7.5",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="10.0",path="/healthz"} 7.0
+request_latency_seconds_bucket{le="+Inf",path="/healthz"} 7.0
+request_latency_seconds_count{path="/healthz"} 7.0
+request_latency_seconds_sum{path="/healthz"} 0.008633608000309323
+request_latency_seconds_bucket{le="0.005",path="/readyz"} 0.0
+request_latency_seconds_bucket{le="0.01",path="/readyz"} 8.0
+request_latency_seconds_bucket{le="0.025",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="0.05",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="0.075",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="0.1",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="0.25",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="0.5",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="0.75",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="1.0",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="2.5",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="5.0",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="7.5",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="10.0",path="/readyz"} 18.0
+request_latency_seconds_bucket{le="+Inf",path="/readyz"} 18.0
+request_latency_seconds_count{path="/readyz"} 18.0
+request_latency_seconds_sum{path="/readyz"} 0.17831208699863055
+request_latency_seconds_bucket{le="0.005",path="/chat"} 0.0
+request_latency_seconds_bucket{le="0.01",path="/chat"} 0.0
+request_latency_seconds_bucket{le="0.025",path="/chat"} 0.0
+request_latency_seconds_bucket{le="0.05",path="/chat"} 0.0
+request_latency_seconds_bucket{le="0.075",path="/chat"} 3.0
+request_latency_seconds_bucket{le="0.1",path="/chat"} 3.0
+request_latency_seconds_bucket{le="0.25",path="/chat"} 4.0
+request_latency_seconds_bucket{le="0.5",path="/chat"} 4.0
+request_latency_seconds_bucket{le="0.75",path="/chat"} 4.0
+request_latency_seconds_bucket{le="1.0",path="/chat"} 4.0
+request_latency_seconds_bucket{le="2.5",path="/chat"} 7.0
+request_latency_seconds_bucket{le="5.0",path="/chat"} 8.0
+request_latency_seconds_bucket{le="7.5",path="/chat"} 8.0
+request_latency_seconds_bucket{le="10.0",path="/chat"} 8.0
+request_latency_seconds_bucket{le="+Inf",path="/chat"} 8.0
+request_latency_seconds_count{path="/chat"} 8.0
+request_latency_seconds_sum{path="/chat"} 8.211956688997816
+request_latency_seconds_bucket{le="0.005",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="0.01",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="0.025",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="0.05",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="0.075",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="0.1",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="0.25",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="0.5",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="0.75",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="1.0",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="2.5",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="5.0",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="7.5",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="10.0",path="/metrics"} 1.0
+request_latency_seconds_bucket{le="+Inf",path="/metrics"} 1.0
+request_latency_seconds_count{path="/metrics"} 1.0
+request_latency_seconds_sum{path="/metrics"} 0.00307216999863158
+# HELP request_latency_seconds_created Total request latency (s)
+# TYPE request_latency_seconds_created gauge
+request_latency_seconds_created{path="/healthz"} 1.795813826208511e+09
+request_latency_seconds_created{path="/readyz"} 1.7958138262272782e+09
+request_latency_seconds_created{path="/chat"} 1.7958138396758525e+09
+request_latency_seconds_created{path="/metrics"} 1.7958138957896817e+09
+# HELP retrieval_latency_seconds Retrieval latency (s)
+# TYPE retrieval_latency_seconds histogram
+retrieval_latency_seconds_bucket{le="0.005"} 0.0
+retrieval_latency_seconds_bucket{le="0.01"} 0.0
+retrieval_latency_seconds_bucket{le="0.025"} 4.0
+retrieval_latency_seconds_bucket{le="0.05"} 6.0
+retrieval_latency_seconds_bucket{le="0.075"} 10.0
+retrieval_latency_seconds_bucket{le="0.1"} 11.0
+retrieval_latency_seconds_bucket{le="0.25"} 12.0
+retrieval_latency_seconds_bucket{le="0.5"} 12.0
+retrieval_latency_seconds_bucket{le="0.75"} 12.0
+retrieval_latency_seconds_bucket{le="1.0"} 12.0
+retrieval_latency_seconds_bucket{le="2.5"} 12.0
+retrieval_latency_seconds_bucket{le="5.0"} 12.0
+retrieval_latency_seconds_bucket{le="7.5"} 12.0
+retrieval_latency_seconds_bucket{le="10.0"} 12.0
+retrieval_latency_seconds_bucket{le="+Inf"} 12.0
+retrieval_latency_seconds_count 12.0
+retrieval_latency_seconds_sum 0.6100263709995488
+# HELP retrieval_latency_seconds_created Retrieval latency (s)
+# TYPE retrieval_latency_seconds_created gauge
+retrieval_latency_seconds_created 1.7958138232963235e+09
+# HELP generation_latency_seconds Generation latency (s)
+# TYPE generation_latency_seconds histogram
+generation_latency_seconds_bucket{le="0.005"} 0.0
+generation_latency_seconds_bucket{le="0.01"} 0.0
+generation_latency_seconds_bucket{le="0.025"} 0.0
+generation_latency_seconds_bucket{le="0.05"} 0.0
+generation_latency_seconds_bucket{le="0.075"} 0.0
+generation_latency_seconds_bucket{le="0.1"} 0.0
+generation_latency_seconds_bucket{le="0.25"} 0.0
+generation_latency_seconds_bucket{le="0.5"} 0.0
+generation_latency_seconds_bucket{le="0.75"} 0.0
+generation_latency_seconds_bucket{le="1.0"} 1.0
+generation_latency_seconds_bucket{le="2.5"} 3.0
+generation_latency_seconds_bucket{le="5.0"} 4.0
+generation_latency_seconds_bucket{le="7.5"} 4.0
+generation_latency_seconds_bucket{le="10.0"} 4.0
+generation_latency_seconds_bucket{le="+Inf"} 4.0
+generation_latency_seconds_count 4.0
+generation_latency_seconds_sum 7.553513310998824
+# HELP generation_latency_seconds_created Generation latency (s)
+# TYPE generation_latency_seconds_created gauge
+generation_latency_seconds_created 1.795813823296362e+09
+# HELP stage_latency_seconds Per-stage pipeline latency (s)
+# TYPE stage_latency_seconds histogram
+stage_latency_seconds_bucket{le="0.005",stage="embed"} 0.0
+stage_latency_seconds_bucket{le="0.01",stage="embed"} 0.0
+stage_latency_seconds_bucket{le="0.025",stage="embed"} 0.0
+stage_latency_seconds_bucket{le="0.05",stage="embed"} 2.0
+stage_latency_seconds_bucket{le="0.1",stage="embed"} 7.0
+stage_latency_seconds_bucket{le="0.25",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="0.5",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="1.0",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="2.5",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="5.0",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="15.0",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="30.0",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="60.0",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="120.0",stage="embed"} 8.0
+stage_latency_seconds_bucket{le="+Inf",stage="embed"} 8.0
+stage_latency_seconds_count{stage="embed"} 8.0
+stage_latency_seconds_sum{stage="embed"} 0.545427020999341
+stage_latency_seconds_bucket{le="0.005",stage="retrieve"} 0.0
+stage_latency_seconds_bucket{le="0.01",stage="retrieve"} 0.0
+stage_latency_seconds_bucket{le="0.025",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="0.05",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="0.1",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="0.25",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="0.5",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="1.0",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="2.5",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="5.0",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="15.0",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="30.0",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="60.0",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="120.0",stage="retrieve"} 4.0
+stage_latency_seconds_bucket{le="+Inf",stage="retrieve"} 4.0
+stage_latency_seconds_count{stage="retrieve"} 4.0
+stage_latency_seconds_sum{stage="retrieve"} 0.06459935000020778
+stage_latency_seconds_bucket{le="0.005",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="0.01",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="0.025",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="0.05",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="0.1",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="0.25",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="0.5",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="1.0",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="2.5",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="5.0",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="15.0",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="30.0",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="60.0",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="120.0",stage="rerank"} 4.0
+stage_latency_seconds_bucket{le="+Inf",stage="rerank"} 4.0
+stage_latency_seconds_count{stage="rerank"} 4.0
+stage_latency_seconds_sum{stage="rerank"} 4.8769999921205454e-05
+stage_latency_seconds_bucket{le="0.005",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="0.01",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="0.025",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="0.05",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="0.1",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="0.25",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="0.5",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="1.0",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="2.5",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="5.0",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="15.0",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="30.0",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="60.0",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="120.0",stage="guardrail"} 4.0
+stage_latency_seconds_bucket{le="+Inf",stage="guardrail"} 4.0
+stage_latency_seconds_count{stage="guardrail"} 4.0
+stage_latency_seconds_sum{stage="guardrail"} 0.0022609530005865963
+stage_latency_seconds_bucket{le="0.005",stage="generate"} 0.0
+stage_latency_seconds_bucket{le="0.01",stage="generate"} 0.0
+stage_latency_seconds_bucket{le="0.025",stage="generate"} 0.0
+stage_latency_seconds_bucket{le="0.05",stage="generate"} 0.0
+stage_latency_seconds_bucket{le="0.1",stage="generate"} 0.0
+stage_latency_seconds_bucket{le="0.25",stage="generate"} 0.0
+stage_latency_seconds_bucket{le="0.5",stage="generate"} 0.0
+stage_latency_seconds_bucket{le="1.0",stage="generate"} 1.0
+stage_latency_seconds_bucket{le="2.5",stage="generate"} 3.0
+stage_latency_seconds_bucket{le="5.0",stage="generate"} 4.0
+stage_latency_seconds_bucket{le="15.0",stage="generate"} 4.0
+stage_latency_seconds_bucket{le="30.0",stage="generate"} 4.0
+stage_latency_seconds_bucket{le="60.0",stage="generate"} 4.0
+stage_latency_seconds_bucket{le="120.0",stage="generate"} 4.0
+stage_latency_seconds_bucket{le="+Inf",stage="generate"} 4.0
+stage_latency_seconds_count{stage="generate"} 4.0
+stage_latency_seconds_sum{stage="generate"} 7.553513310998824
+stage_latency_seconds_bucket{le="0.005",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="0.01",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="0.025",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="0.05",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="0.1",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="0.25",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="0.5",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="1.0",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="2.5",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="5.0",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="15.0",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="30.0",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="60.0",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="120.0",stage="validate"} 4.0
+stage_latency_seconds_bucket{le="+Inf",stage="validate"} 4.0
+stage_latency_seconds_count{stage="validate"} 4.0
+stage_latency_seconds_sum{stage="validate"} 0.0012188199998490745
+stage_latency_seconds_bucket{le="0.005",stage="total"} 0.0
+stage_latency_seconds_bucket{le="0.01",stage="total"} 0.0
+stage_latency_seconds_bucket{le="0.025",stage="total"} 0.0
+stage_latency_seconds_bucket{le="0.05",stage="total"} 0.0
+stage_latency_seconds_bucket{le="0.1",stage="total"} 3.0
+stage_latency_seconds_bucket{le="0.25",stage="total"} 4.0
+stage_latency_seconds_bucket{le="0.5",stage="total"} 4.0
+stage_latency_seconds_bucket{le="1.0",stage="total"} 4.0
+stage_latency_seconds_bucket{le="2.5",stage="total"} 7.0
+stage_latency_seconds_bucket{le="5.0",stage="total"} 8.0
+stage_latency_seconds_bucket{le="15.0",stage="total"} 8.0
+stage_latency_seconds_bucket{le="30.0",stage="total"} 8.0
+stage_latency_seconds_bucket{le="60.0",stage="total"} 8.0
+stage_latency_seconds_bucket{le="120.0",stage="total"} 8.0
+stage_latency_seconds_bucket{le="+Inf",stage="total"} 8.0
+stage_latency_seconds_count{stage="total"} 8.0
+stage_latency_seconds_sum{stage="total"} 8.198033937000218
+stage_latency_seconds_bucket{le="0.005",stage="cache"} 4.0
+stage_latency_seconds_bucket{le="0.01",stage="cache"} 4.0
+stage_latency_seconds_bucket{le="0.025",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="0.05",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="0.1",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="0.25",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="0.5",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="1.0",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="2.5",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="5.0",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="15.0",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="30.0",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="60.0",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="120.0",stage="cache"} 6.0
+stage_latency_seconds_bucket{le="+Inf",stage="cache"} 6.0
+stage_latency_seconds_count{stage="cache"} 6.0
+stage_latency_seconds_sum{stage="cache"} 0.025348478999148938
+# HELP stage_latency_seconds_created Per-stage pipeline latency (s)
+# TYPE stage_latency_seconds_created gauge
+stage_latency_seconds_created{stage="embed"} 1.7958138365863547e+09
+stage_latency_seconds_created{stage="retrieve"} 1.795813836606543e+09
+stage_latency_seconds_created{stage="rerank"} 1.7958138366066148e+09
+stage_latency_seconds_created{stage="guardrail"} 1.7958138366074672e+09
+stage_latency_seconds_created{stage="generate"} 1.7958138396741722e+09
+stage_latency_seconds_created{stage="validate"} 1.795813839674824e+09
+stage_latency_seconds_created{stage="total"} 1.7958138396748478e+09
+stage_latency_seconds_created{stage="cache"} 1.795813894256283e+09
+# HELP top1_retrieval_similarity Top-1 retrieved chunk cosine similarity distribution
+# TYPE top1_retrieval_similarity histogram
+top1_retrieval_similarity_bucket{le="0.2"} 0.0
+top1_retrieval_similarity_bucket{le="0.3"} 0.0
+top1_retrieval_similarity_bucket{le="0.4"} 0.0
+top1_retrieval_similarity_bucket{le="0.5"} 0.0
+top1_retrieval_similarity_bucket{le="0.6"} 0.0
+top1_retrieval_similarity_bucket{le="0.64"} 0.0
+top1_retrieval_similarity_bucket{le="0.7"} 2.0
+top1_retrieval_similarity_bucket{le="0.75"} 3.0
+top1_retrieval_similarity_bucket{le="0.8"} 3.0
+top1_retrieval_similarity_bucket{le="0.85"} 4.0
+top1_retrieval_similarity_bucket{le="0.9"} 4.0
+top1_retrieval_similarity_bucket{le="0.95"} 4.0
+top1_retrieval_similarity_bucket{le="1.0"} 4.0
+top1_retrieval_similarity_bucket{le="+Inf"} 4.0
+top1_retrieval_similarity_count 4.0
+top1_retrieval_similarity_sum 2.8730026483535767
+# HELP top1_retrieval_similarity_created Top-1 retrieved chunk cosine similarity distribution
+# TYPE top1_retrieval_similarity_created gauge
+top1_retrieval_similarity_created 1.7958138232963967e+09
+# HELP queries_total Total /chat queries processed
+# TYPE queries_total counter
+queries_total 8.0
+# HELP queries_created Total /chat queries processed
+# TYPE queries_created gauge
+queries_created 1.795813823296486e+09
+# HELP cache_hits_total Semantic cache hits
+# TYPE cache_hits_total counter
+cache_hits_total 4.0
+# HELP cache_hits_created Semantic cache hits
+# TYPE cache_hits_created gauge
+cache_hits_created 1.7958138232964938e+09
+# HELP cache_misses_total Semantic cache misses
+# TYPE cache_misses_total counter
+cache_misses_total 2.0
+# HELP cache_misses_created Semantic cache misses
+# TYPE cache_misses_created gauge
+cache_misses_created 1.7958138232965e+09
+# HELP abstentions_total Honest abstentions (answered_from_context=false)
+# TYPE abstentions_total counter
+abstentions_total 2.0
+# HELP abstentions_created Honest abstentions (answered_from_context=false)
+# TYPE abstentions_created gauge
+abstentions_created 1.7958138232965043e+09
+# HELP fallbacks_total Canned fallbacks after validation failure
+# TYPE fallbacks_total counter
+fallbacks_total 0.0
+# HELP fallbacks_created Canned fallbacks after validation failure
+# TYPE fallbacks_created gauge
+fallbacks_created 1.795813823296532e+09
+# HELP injection_attempts_flagged_total Prompt injection attempts flagged by input or retrieval guardrails
+# TYPE injection_attempts_flagged_total counter
+# HELP tokens_in_total Approximate input tokens (whitespace estimate)
+# TYPE tokens_in_total counter
+tokens_in_total 7098.0
+# HELP tokens_in_created Approximate input tokens (whitespace estimate)
+# TYPE tokens_in_created gauge
+tokens_in_created 1.795813823296548e+09
+# HELP tokens_out_total Approximate output tokens (whitespace estimate)
+# TYPE tokens_out_total counter
+tokens_out_total 33.0
+# HELP tokens_out_created Approximate output tokens (whitespace estimate)
+# TYPE tokens_out_created gauge
+tokens_out_created 1.795813823296558e+09

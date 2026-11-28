@@ -1,0 +1,28 @@
+# Manifest-committed promotion of the gate-passing candidate (Part C3 / F3).
+# Replaces imperative `kubectl set env` so Git remains in sync with the cluster
+# and `kubectl rollout undo deployment/api -n rahbar` restores `grounded_v1`.
+# Apply with:
+#   kubectl patch deployment/api -n rahbar --patch-file k8s/patches/promote-candidate.yaml
+#   kubectl rollout status deployment/api -n rahbar
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: rahbar
+spec:
+  template:
+    spec:
+      containers:
+        - name: api
+          env:
+            - name: PROMPT_TEMPLATE
+              value: "strict_concise_v2"
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt; mirrors
+          # k8s/base/api-deployment.yaml so manifest resource checks stay satisfied.
+          resources:
+            requests:
+              cpu: 25m
+              memory: 80Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi

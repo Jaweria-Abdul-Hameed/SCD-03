@@ -81,13 +81,17 @@ spec:
               mountPath: /chroma/chroma
             - name: tmp
               mountPath: /tmp
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt (chroma-0 eval N=30:
+          # CPU p50=7.0m max=17m, Mem p50=158.5Mi max=159Mi; 480-chunk index N=12: CPU p50=10.0m
+          # max=17m, Mem p50=150.0Mi max=158Mi). Requests ~ p50 (15m/160Mi), memory limit 256Mi
+          # (>= 159*1.5=238.5Mi), CPU limit 100m for HNSW/Python startup headroom.
           resources:
             requests:
-              cpu: 50m
-              memory: 256Mi
+              cpu: 15m
+              memory: 160Mi
             limits:
-              cpu: 500m
-              memory: 512Mi
+              cpu: 100m
+              memory: 256Mi
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true

@@ -1,6 +1,6 @@
 {
-  "run_id": "693746b5-1807-4aa6-a0c5-75e7bcb79492",
-  "timestamp": "2026-11-22T16:29:17.423660+00:00",
+  "run_id": "69b8258e-ac39-46ab-9c1c-742ccfacd8a6",
+  "timestamp": "2026-11-27T20:05:06.895111+00:00",
   "corpus_dir": "/corpus/batch_b",
   "additive": true,
   "embed_model": "nomic-embed-text",
@@ -40,7 +40,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.8272 (< 0.94) vs Grading_page.html"
+          "reason": "ok: unique hash; max cross-doc cosine=0.8273 (< 0.94) vs Grading_page.html"
         }
       },
       "overall_pass": true,
@@ -68,7 +68,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.7052 (< 0.94) vs b01_merit_scholarship_guidelines.md"
+          "reason": "ok: unique hash; max cross-doc cosine=0.7050 (< 0.94) vs b01_merit_scholarship_guidelines.md"
         }
       },
       "overall_pass": true,
@@ -96,7 +96,7 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.7661 (< 0.94) vs Grading_page.html"
+          "reason": "ok: unique hash; max cross-doc cosine=0.7663 (< 0.94) vs Grading_page.html"
         }
       },
       "overall_pass": true,
@@ -130,7 +130,7 @@
       "overall_pass": false,
       "superseded_previous": null,
       "disposition": "quarantined",
-      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b04_exact_dup_scholarship.md"
+      "quarantine_path": "/corpus/quarantine/69b8258e-ac39-46ab-9c1c-742ccfacd8a6/b04_exact_dup_scholarship.md"
     },
     {
       "source": "b05_exact_dup_research_grant.md",
@@ -159,7 +159,7 @@
       "overall_pass": false,
       "superseded_previous": null,
       "disposition": "quarantined",
-      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b05_exact_dup_research_grant.md"
+      "quarantine_path": "/corpus/quarantine/69b8258e-ac39-46ab-9c1c-742ccfacd8a6/b05_exact_dup_research_grant.md"
     },
     {
       "source": "b06_near_dup_scholarship.md",
@@ -188,7 +188,7 @@
       "overall_pass": false,
       "superseded_previous": null,
       "disposition": "quarantined",
-      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b06_near_dup_scholarship.md"
+      "quarantine_path": "/corpus/quarantine/69b8258e-ac39-46ab-9c1c-742ccfacd8a6/b06_near_dup_scholarship.md"
     },
     {
       "source": "b07_corrupt_file.pdf",
@@ -203,7 +203,7 @@
         },
         "completeness": {
           "pass": false,
-          "reason": "truncated_or_page_mismatch: declared page_count=0 != extracted_pages=0"
+          "reason": "missing_required_metadata: page_count unavailable (extraction failed)"
         },
         "recency": {
           "pass": true,
@@ -217,7 +217,7 @@
       "overall_pass": false,
       "superseded_previous": null,
       "disposition": "quarantined",
-      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b07_corrupt_file.pdf"
+      "quarantine_path": "/corpus/quarantine/69b8258e-ac39-46ab-9c1c-742ccfacd8a6/b07_corrupt_file.pdf"
     },
     {
       "source": "b08_truncated_policy.md",
@@ -246,7 +246,7 @@
       "overall_pass": false,
       "superseded_previous": null,
       "disposition": "quarantined",
-      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b08_truncated_policy.md"
+      "quarantine_path": "/corpus/quarantine/69b8258e-ac39-46ab-9c1c-742ccfacd8a6/b08_truncated_policy.md"
     },
     {
       "source": "b09_missing_metadata.md",
@@ -269,13 +269,13 @@
         },
         "uniqueness": {
           "pass": true,
-          "reason": "ok: unique hash; max cross-doc cosine=0.7172 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
+          "reason": "ok: unique hash; max cross-doc cosine=0.7173 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf"
         }
       },
       "overall_pass": false,
       "superseded_previous": null,
       "disposition": "quarantined",
-      "quarantine_path": "/corpus/quarantine/693746b5-1807-4aa6-a0c5-75e7bcb79492/b09_missing_metadata.md"
+      "quarantine_path": "/corpus/quarantine/69b8258e-ac39-46ab-9c1c-742ccfacd8a6/b09_missing_metadata.md"
     },
     {
       "source": "b10_academic_rules_handbook_nov2026.md",
@@ -338,25 +338,125 @@
     }
   ],
   "vector_store_chunks_by_document": {
-    "Academic_Calendar_page.html": 1,
-    "Academic_Rules_Handbook_2026.pdf": 39,
-    "Annual_Report_2019-20.pdf": 26,
-    "Annual_Report_2020-21.pdf": 26,
-    "Annual_Report_2021-22.pdf": 27,
-    "Annual_Report_2022-23.pdf": 31,
-    "Annual_Report_2023-24.pdf": 111,
-    "EE_PLOs_2024_onwards_11.pdf": 2,
-    "EE_PLOs_before_2024_12.pdf": 2,
-    "Faculty_Entrepreneurship_Technical_Startups_Policy.pdf": 7,
-    "Fee_Structure_page.html": 3,
-    "Grading_page.html": 3,
-    "Prospectus_2026_Academic_Rules_and_Regulations.pdf": 12,
-    "Student_Handbook_2026.pdf": 43,
-    "Undergraduate_Academic_Rules_Aug_2023.pdf": 147,
-    "b01_merit_scholarship_guidelines.md": 1,
-    "b02_research_grant_policy.md": 1,
-    "b03_fyp_handbook_2026.md": 1,
-    "b10_academic_rules_handbook_nov2026.md": 2,
-    "b11_library_fine_addendum_injected.md": 1
+    "Academic_Calendar_page.html": {
+      "doc_id": "academic_calendar_page",
+      "active": 1,
+      "superseded": 0,
+      "total": 1
+    },
+    "Academic_Rules_Handbook_2026.pdf": {
+      "doc_id": "academic_rules_handbook",
+      "active": 0,
+      "superseded": 39,
+      "total": 39
+    },
+    "Annual_Report_2019-20.pdf": {
+      "doc_id": "annual_report",
+      "active": 0,
+      "superseded": 26,
+      "total": 26
+    },
+    "Annual_Report_2020-21.pdf": {
+      "doc_id": "annual_report",
+      "active": 0,
+      "superseded": 26,
+      "total": 26
+    },
+    "Annual_Report_2021-22.pdf": {
+      "doc_id": "annual_report",
+      "active": 0,
+      "superseded": 27,
+      "total": 27
+    },
+    "Annual_Report_2022-23.pdf": {
+      "doc_id": "annual_report",
+      "active": 0,
+      "superseded": 31,
+      "total": 31
+    },
+    "Annual_Report_2023-24.pdf": {
+      "doc_id": "annual_report",
+      "active": 111,
+      "superseded": 0,
+      "total": 111
+    },
+    "EE_PLOs_2024_onwards_11.pdf": {
+      "doc_id": "ee_plos",
+      "active": 2,
+      "superseded": 0,
+      "total": 2
+    },
+    "EE_PLOs_before_2024_12.pdf": {
+      "doc_id": "ee_plos",
+      "active": 0,
+      "superseded": 2,
+      "total": 2
+    },
+    "Faculty_Entrepreneurship_Technical_Startups_Policy.pdf": {
+      "doc_id": "faculty_entrepreneurship_technical_startups_policy",
+      "active": 7,
+      "superseded": 0,
+      "total": 7
+    },
+    "Fee_Structure_page.html": {
+      "doc_id": "fee_structure_page",
+      "active": 3,
+      "superseded": 0,
+      "total": 3
+    },
+    "Grading_page.html": {
+      "doc_id": "grading_page",
+      "active": 3,
+      "superseded": 0,
+      "total": 3
+    },
+    "Prospectus_2026_Academic_Rules_and_Regulations.pdf": {
+      "doc_id": "prospectus_2026_academic_rules_and_regulations",
+      "active": 12,
+      "superseded": 0,
+      "total": 12
+    },
+    "Student_Handbook_2026.pdf": {
+      "doc_id": "student_handbook",
+      "active": 43,
+      "superseded": 0,
+      "total": 43
+    },
+    "Undergraduate_Academic_Rules_Aug_2023.pdf": {
+      "doc_id": "academic_rules_handbook",
+      "active": 0,
+      "superseded": 147,
+      "total": 147
+    },
+    "b01_merit_scholarship_guidelines.md": {
+      "doc_id": "merit_scholarship_guidelines",
+      "active": 1,
+      "superseded": 0,
+      "total": 1
+    },
+    "b02_research_grant_policy.md": {
+      "doc_id": "oric_research_grant_policy",
+      "active": 1,
+      "superseded": 0,
+      "total": 1
+    },
+    "b03_fyp_handbook_2026.md": {
+      "doc_id": "fyp_handbook",
+      "active": 1,
+      "superseded": 0,
+      "total": 1
+    },
+    "b10_academic_rules_handbook_nov2026.md": {
+      "doc_id": "academic_rules_handbook",
+      "active": 2,
+      "superseded": 0,
+      "total": 2
+    },
+    "b11_library_fine_addendum_injected.md": {
+      "doc_id": "library_fine_addendum",
+      "active": 1,
+      "superseded": 0,
+      "total": 1
+    }
   }
 }

@@ -17,8 +17,9 @@ import hashlib
 import json
 import math
 import re
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from . import embed as embed_mod
 
@@ -174,7 +175,8 @@ def extract_document_metadata(
             meta.setdefault("version", version_hint[0])
         elif "version" not in meta and "date" not in meta:
             meta["version"] = default_version
-        meta.setdefault("page_count", len(pages))
+        if pages:
+            meta.setdefault("page_count", len(pages))
 
     meta.setdefault("doc_id", derive_doc_id(path.name, meta))
     return meta, pages
@@ -249,7 +251,10 @@ def check_completeness(pages: list[dict], meta: dict[str, Any]) -> dict[str, Any
     for field in REQUIRED_METADATA:
         val = meta.get(field)
         if val is None or (isinstance(val, str) and not val.strip()):
-            missing.append(field)
+            if field == "page_count" and not pages:
+                missing.append("page_count unavailable (extraction failed)")
+            else:
+                missing.append(field)
     has_date_or_ver = bool(
         str(meta.get("date") or "").strip() or str(meta.get("version") or "").strip()
     )
@@ -270,7 +275,17 @@ def check_completeness(pages: list[dict], meta: dict[str, Any]) -> dict[str, Any
             "pass": False,
             "reason": f"invalid_page_count: {declared_pages!r} is not an integer",
         }
-    if declared_int < 1 or declared_int != len(pages):
+    if declared_int < 1:
+        if not pages:
+            return {
+                "pass": False,
+                "reason": "missing_required_metadata: page_count unavailable (extraction failed)",
+            }
+        return {
+            "pass": False,
+            "reason": f"invalid_page_count: declared page_count={declared_int} must be >= 1",
+        }
+    if declared_int != len(pages):
         return {
             "pass": False,
             "reason": (

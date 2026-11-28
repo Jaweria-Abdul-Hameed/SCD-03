@@ -48,13 +48,17 @@ spec:
               mountPath: /results
             - name: tmp
               mountPath: /tmp
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt: indexer-batch-b
+          # finished in 7.1s (0 samples, <15s scrape window), so sized from the same image's
+          # indexer-candidate profile (N=8: CPU p50=760.5m max=998m, Mem p50=176.5Mi max=198Mi;
+          # limit ~ max*1.5 with OCR memory headroom).
           resources:
             requests:
-              cpu: 250m
-              memory: 384Mi
+              cpu: 750m
+              memory: 192Mi
             limits:
-              cpu: 1000m
-              memory: 1Gi
+              cpu: 1500m
+              memory: 384Mi
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true

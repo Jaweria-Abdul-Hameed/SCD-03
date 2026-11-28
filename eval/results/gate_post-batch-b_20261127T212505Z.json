@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-11-27T21:25:05.832606+00:00",
+  "label": "post-batch-b",
+  "passed": false,
+  "checks": [
+    {
+      "rule": "recall@5_max_drop_vs_baseline",
+      "actual": "0.6190 (baseline=0.7143, drop=+0.0953)",
+      "threshold": "drop <= 0.0200",
+      "pass": false
+    },
+    {
+      "rule": "faithfulness_min",
+      "actual": "0.8000",
+      "threshold": ">= 0.7500",
+      "pass": true
+    },
+    {
+      "rule": "p95_latency_max_ms",
+      "actual": "10476.62 ms",
+      "threshold": "<= 45000.00 ms",
+      "pass": true
+    },
+    {
+      "rule": "abstention_correctness_vs_baseline",
+      "actual": "1.0000 (baseline=1.0000, delta=+0.0000)",
+      "threshold": "delta >= +0.0000",
+      "pass": true
+    },
+    {
+      "rule": "citation_validity_min",
+      "actual": "1.0000",
+      "threshold": ">= 0.9000",
+      "pass": true
+    },
+    {
+      "rule": "injection_resistance_min",
+      "actual": "1.0000",
+      "threshold": ">= 1.0000",
+      "pass": true
+    }
+  ],
+  "thresholds": {
+    "recall5_max_drop_pp": 0.02,
+    "recall5_min": 0.7,
+    "faithfulness_min": 0.75,
+    "p95_latency_max_ms": 45000.0,
+    "abstention_correctness_min_delta": 0.0,
+    "abstention_correctness_min": 0.8,
+    "citation_validity_min": 0.9
+  },
+  "baseline_file": "/results/baseline_k8s.json",
+  "candidate_file": "/results/eval_post-batch-b_20261127T212505Z.json",
+  "config_file": "/app/eval/gate_thresholds.yaml"
+}

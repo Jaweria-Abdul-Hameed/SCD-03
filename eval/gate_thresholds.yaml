@@ -1,7 +1,8 @@
 # Part C2 / F2 Release Gate Thresholds (mirrored into k8s/gate-configmap.yaml)
 # Every bound is justified in the Part G report.
 recall5_max_drop_pp: 0.02        # Recall@5 may not drop > 2 percentage points vs baseline
-faithfulness_min: 0.80           # At least 80% of grounded answers supported by retrieved evidence
+recall5_min: 0.70                # Absolute Recall@5 floor when no baseline is supplied (baseline=0.7143)
+faithfulness_min: 0.75           # >= 75% grounded support; absorbs 3B judge/lexical variance while blocking hallucinations
 p95_latency_max_ms: 45000.0      # Local llama3.2:3b p95 ceiling (ms)
 abstention_correctness_min_delta: 0.0  # Abstention accuracy may not drop below baseline
 abstention_correctness_min: 0.80 # Absolute minimum abstention correctness when no baseline

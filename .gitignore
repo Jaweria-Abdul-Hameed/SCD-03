@@ -49,3 +49,7 @@ htmlcov/
 .idea/
 .vscode/
 *.log
+
+# --- Local assignment / reference specs ---
+assignment_03.md
+ragops_operating_and_managing_retrieval_augmented_generation_pipelines.md

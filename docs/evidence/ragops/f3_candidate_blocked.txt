@@ -1,0 +1,127 @@
+﻿=== $ kubectl get job eval-job-candidate -n rahbar -o wide ===
+NAME                 STATUS   COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES                      SELECTOR
+eval-job-candidate   Failed   0/1           17m        17m   eval         ghcr.io/rahbar/eval:local   batch.kubernetes.io/controller-uid=cb8db477-49cc-4d9f-bf6d-b986800239dc
+
+=== $ kubectl get pods -n rahbar -l job-name=eval-job-candidate -o wide ===
+NAME                       READY   STATUS   RESTARTS   AGE   IP               NODE       NOMINATED NODE   READINESS GATES
+eval-job-candidate-9w9zz   0/1     Error    0          17m   10.244.120.101   minikube   <none>           <none>
+
+=== $ kubectl describe job eval-job-candidate -n rahbar ===
+Name:                     eval-job-candidate
+Namespace:                rahbar
+Selector:                 batch.kubernetes.io/controller-uid=cb8db477-49cc-4d9f-bf6d-b986800239dc
+Labels:                   app=eval
+                          app.kubernetes.io/part-of=rahbar
+Annotations:              <none>
+Parallelism:              1
+Completions:              1
+Completion Mode:          NonIndexed
+Suspend:                  false
+Backoff Limit:            0
+Start Time:               Sat, 28 Nov 2026 01:51:40 +0500
+Active Deadline Seconds:  1800s
+Pods Statuses:            0 Active (0 Ready) / 0 Succeeded / 1 Failed
+Pod Template:
+  Labels:           app=eval
+                    app.kubernetes.io/part-of=rahbar
+                    batch.kubernetes.io/controller-uid=cb8db477-49cc-4d9f-bf6d-b986800239dc
+                    batch.kubernetes.io/job-name=eval-job-candidate
+                    controller-uid=cb8db477-49cc-4d9f-bf6d-b986800239dc
+                    job-name=eval-job-candidate
+  Service Account:  eval-sa
+  Containers:
+   eval:
+    Image:      ghcr.io/rahbar/eval:local
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      /bin/sh
+      -c
+    Args:
+      BASELINE_ARG=""; if [ -n "$EVAL_BASELINE_FILE" ] && [ -f "$EVAL_BASELINE_FILE" ]; then
+        BASELINE_ARG="--baseline $EVAL_BASELINE_FILE";
+      fi; python eval/run_ragops_eval.py --api-base "$EVAL_TARGET_API" --golden /app/eval/golden.jsonl --pairs /app/eval/module_pairs.jsonl --ollama-host "$OLLAMA_HOST" --embed-model "$EMBED_MODEL" --llm-model "$LLM_MODEL" --provider-mode "$LLM_PROVIDER" --label "$EVAL_LABEL" --out-dir /results --gate-config /app/eval/gate_thresholds.yaml --llm-judge --judge-model "$EVAL_JUDGE_MODEL" $BASELINE_ARG --enforce-gate
+      
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:     100m
+      memory:  192Mi
+    Environment Variables from:
+      rahbar-config       ConfigMap  Optional: false
+      rahbar-gate-config  ConfigMap  Optional: false
+    Environment:
+      EVAL_TARGET_API:  http://api-candidate:8000
+      EVAL_LABEL:       candidate
+    Mounts:
+      /results from results (rw)
+      /tmp from tmp (rw)
+  Volumes:
+   results:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  eval-results
+    ReadOnly:   false
+   tmp:
+    Type:          EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:        
+    SizeLimit:     <unset>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Events:
+  Type     Reason                Age   From            Message
+  ----     ------                ----  ----            -------
+  Normal   SuccessfulCreate      17m   job-controller  Created pod: eval-job-candidate-9w9zz
+  Warning  BackoffLimitExceeded  14m   job-controller  Job has reached the specified backoff limit
+
+=== $ kubectl logs job/eval-job-candidate -n rahbar --tail=40 ===
+
+==============================================================================
+RAHBAR RAGOps 3-LEVEL OFFLINE EVALUATION SUMMARY  (seed=42)
+==============================================================================
+Timestamp : 2026-11-27T20:54:35.940347+00:00
+Golden Set: /app/eval/golden.jsonl (32 questions)
+------------------------------------------------------------------------------
+LEVEL 1 — MODULE (Embedding Quality)
+  Paraphrase Mean Cosine (16 pairs) : 0.7721
+  Unrelated Mean Cosine  (16 pairs) : 0.4830
+  Cosine Separation Gap              : 0.2891
+  Embedding Time / Chunk (ms)        : 73.91 ms (5x 512-tok, fixtures)
+  Determinism Max Abs Diff           : 0.00000000
+------------------------------------------------------------------------------
+LEVEL 2 — COMPONENT (Retrieval Quality + Noise Test)
+  recall@3 : 0.3810   | recall@5 : 0.3810
+  MRR      : 0.3810   | nDCG@5   : 0.3810
+  Noise (query_typos): r@3=0.5238 (+0.1429), r@5=0.5238 (+0.1429), MRR=0.5238 (+0.1429), nDCG@5=0.5238 (+0.1429)
+------------------------------------------------------------------------------
+LEVEL 3 — END-TO-END (Answer Quality & Latency)
+  Faithfulness (llm_judge, dolphin-mistral) : 0.7143 (7 grounded)
+  Faithfulness vs Human (llm_judge, dolphin-mistral) : 1.0000 (3/3)
+  Abstention Correctness             : 1.0000 (11 checked)
+  Injection Resistance               : 1.0000 (1 checked)
+  Citation Validity                  : 1.0000 (7 citations)
+  Latency p50 / p95                  : 1561.3 ms / 6951.9 ms
+==============================================================================
+Saved evaluation result -> /results/eval_candidate_20261127T205435Z.json
+Saved summary table     -> /results/eval_candidate_20261127T205435Z.md
+
+=== RELEASE GATE EVALUATION ===
+  [FAIL] recall@5_max_drop_vs_baseline        | actual=0.3810 (baseline=0.7143, drop=+0.3333) | threshold=drop <= 0.0200
+  [FAIL] faithfulness_min                     | actual=0.7143 | threshold=>= 0.7500
+  [PASS] p95_latency_max_ms                   | actual=6951.88 ms | threshold=<= 45000.00 ms
+  [PASS] abstention_correctness_vs_baseline   | actual=1.0000 (baseline=1.0000, delta=+0.0000) | threshold=delta >= +0.0000
+  [PASS] citation_validity_min                | actual=1.0000 | threshold=>= 0.9000
+  [PASS] injection_resistance_min             | actual=1.0000 | threshold=>= 1.0000
+GATE RESULT: FAIL
+==============================================================================
+Saved gate decision     -> /results/gate_candidate_20261127T205435Z.json
+
+=== $ kubectl rollout history deployment/api -n rahbar ===
+deployment.apps/api 
+REVISION  CHANGE-CAUSE
+1         <none>
+
+
+=== $ kubectl get deployment api -n rahbar -o wide ===
+NAME   READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                     SELECTOR
+api    3/3     3            3           80m   api          ghcr.io/rahbar/api:local   app=api

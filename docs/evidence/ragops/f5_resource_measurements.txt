@@ -1,0 +1,836 @@
+================================================================================
+RAHBAR F5 CLUSTER RESOURCE MEASUREMENTS (kubectl top pods -n rahbar --containers)
+Generated (UTC): 2026-11-27T21:25:18.979786+00:00
+================================================================================
+
+SUMMARY BY PHASE / WORKLOAD / CONTAINER
+Phase              Workload           Container      N  CPU min/p50/max (m)    Mem min/p50/max (Mi)  
+------------------------------------------------------------------------------------------------------
+eval-job           api                api           90  2 / 3.0 / 4            77 / 78.0 / 79        
+eval-job           api-candidate      api           30  2 / 2.0 / 3            77 / 77.0 / 78        
+eval-job           chroma             chroma        30  5 / 7.0 / 17           158 / 158.5 / 159     
+eval-job           eval-job           eval          26  1 / 1.0 / 21           30 / 30.0 / 31        
+eval-job           pvc-helper         pvc-helper    30  0 / 0.0 / 0            42 / 42.0 / 42        
+eval-job           redis              redis         30  4 / 4.0 / 5            3 / 4.0 / 4           
+eval-job           ui                 ui            60  1 / 1.0 / 1            2 / 2.0 / 2           
+indexer-batch-b    api                api           27  3 / 3.0 / 3            77 / 78.0 / 79        
+indexer-batch-b    api-candidate      api            9  3 / 3.0 / 3            77 / 77.0 / 77        
+indexer-batch-b    chroma             chroma         9  6 / 6.0 / 6            148 / 148.0 / 148     
+indexer-batch-b    pvc-helper         pvc-helper     9  1 / 1.0 / 1            42 / 42.0 / 42        
+indexer-batch-b    redis              redis          9  5 / 5.0 / 5            4 / 4.0 / 4           
+indexer-batch-b    ui                 ui            18  1 / 1.0 / 1            2 / 2.0 / 2           
+indexer-candidate  api                api           36  2 / 3.0 / 3            77 / 77.0 / 79        
+indexer-candidate  api-candidate      api           12  3 / 3.0 / 3            77 / 77.5 / 78        
+indexer-candidate  chroma             chroma        12  6 / 10.0 / 17          148 / 150.0 / 158     
+indexer-candidate  indexer-candidate  indexer        8  523 / 760.5 / 998      155 / 176.5 / 198     
+indexer-candidate  pvc-helper         pvc-helper    12  0 / 0.5 / 2            42 / 42.0 / 42        
+indexer-candidate  redis              redis         12  5 / 5.0 / 5            3 / 4.0 / 4           
+indexer-candidate  ui                 ui            24  1 / 1.0 / 1            2 / 2.0 / 2           
+
+ACTIVE-LOAD KEY WORKLOAD TOTALS (for Phase 3 resource request/limit sizing)
+------------------------------------------------------------------------------------------------------
+eval-job (under eval load)           | samples=26  | CPU p50=   1.0m max=    21m | Mem p50=  30.0Mi max=    31Mi
+api replicas (under eval load)       | samples=90  | CPU p50=   3.0m max=     4m | Mem p50=  78.0Mi max=    79Mi
+api-candidate (idle during eval)     | samples=30  | CPU p50=   2.0m max=     3m | Mem p50=  77.0Mi max=    78Mi
+chroma-0 (under eval load)           | samples=30  | CPU p50=   7.0m max=    17m | Mem p50= 158.5Mi max=   159Mi
+chroma-0 (under 480-chunk index)     | samples=12  | CPU p50=  10.0m max=    17m | Mem p50= 150.0Mi max=   158Mi
+indexer-batch-b (during Batch B)     | samples=0 (pod completed faster than metrics-server 15s scrape window)
+indexer-candidate (480-chunk embed)  | samples=8   | CPU p50= 760.5m max=   998m | Mem p50= 176.5Mi max=   198Mi
+redis (under eval load)              | samples=30  | CPU p50=   4.0m max=     5m | Mem p50=   4.0Mi max=     4Mi
+ui replicas (under eval load)        | samples=60  | CPU p50=   1.0m max=     1m | Mem p50=   2.0Mi max=     2Mi
+
+================================================================================
+JOB EXECUTION & LOG SUMMARIES
+================================================================================
+
+--- Phase A: job/indexer-batch-b (status=Complete, duration=7.1s) ---
+NAME              STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES                         SELECTOR
+indexer-batch-b   Complete   1/1           6s         19s   indexer      ghcr.io/rahbar/indexer:local   batch.kubernetes.io/controller-uid=6972c019-f7f4-4ba0-9332-cff896908585
+
+quality      : PASS | ok: 920 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=b03_fyp_handbook_2026.md, version=2026-09, pages=1) and text intact
+    recency      : PASS | ok: initial active version 2026-09 for fyp_handbook
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.7663 (< 0.94) vs Grading_page.html
+[FAIL -> quarantined] b04_exact_dup_scholarship.md (doc_id=merit_scholarship_copy_a, ver=2026-09)
+    quality      : PASS | ok: 945 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=b04_exact_dup_scholarship.md, version=2026-09, pages=1) and text intact
+    recency      : PASS | ok: initial active version 2026-09 for merit_scholarship_copy_a
+    uniqueness   : FAIL | exact_duplicate_hash: sha256=3d50eecb92df matches existing b01_merit_scholarship_guidelines.md
+[FAIL -> quarantined] b05_exact_dup_research_grant.md (doc_id=oric_research_grant_copy_b, ver=2026-09)
+    quality      : PASS | ok: 765 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=b05_exact_dup_research_grant.md, version=2026-09, pages=1) and text intact
+    recency      : PASS | ok: initial active version 2026-09 for oric_research_grant_copy_b
+    uniqueness   : FAIL | exact_duplicate_hash: sha256=336fde84776b matches existing b02_research_grant_policy.md
+[FAIL -> quarantined] b06_near_dup_scholarship.md (doc_id=merit_scholarship_paraphrase, ver=2026-09)
+    quality      : PASS | ok: 886 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=b06_near_dup_scholarship.md, version=2026-09, pages=1) and text intact
+    recency      : PASS | ok: initial active version 2026-09 for merit_scholarship_paraphrase
+    uniqueness   : FAIL | near_duplicate_embedding: cosine=0.9713 >= 0.94 against b01_merit_scholarship_guidelines.md
+[FAIL -> quarantined] b07_corrupt_file.pdf (doc_id=b07_corrupt_file, ver=2026-06)
+    quality      : FAIL | empty_document: 0 pages extracted
+    completeness : FAIL | missing_required_metadata: page_count unavailable (extraction failed)
+    recency      : PASS | ok: initial active version 2026-06 for b07_corrupt_file
+    uniqueness   : FAIL | skipped_due_to_quality_failure: empty_document: 0 pages extracted
+[FAIL -> quarantined] b08_truncated_policy.md (doc_id=lab_safety_policy, ver=2026-09)
+    quality      : PASS | ok: 384 chars across 1 page(s)
+    completeness : FAIL | truncated_text_marker: found '[truncated]' in extracted text
+    recency      : PASS | ok: initial active version 2026-09 for lab_safety_policy
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.6841 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf
+[FAIL -> quarantined] b09_missing_metadata.md (doc_id=b09_missing_metadata, ver=2026-06)
+    quality      : PASS | ok: 250 chars across 1 page(s)
+    completeness : FAIL | missing_required_metadata: title, date_or_version
+    recency      : PASS | ok: initial active version 2026-06 for b09_missing_metadata
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.7173 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf
+[PASS -> indexed_superseding] b10_academic_rules_handbook_nov2026.md (doc_id=academic_rules_handbook, ver=2026-11)
+    quality      : PASS | ok: 1189 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=b10_academic_rules_handbook_nov2026.md, version=2026-11, pages=1) and text intact
+    recency      : PASS | newer_version_detected: 2026-11 supersedes active 2026-06 (Academic_Rules_Handbook_2026.pdf); archiving old version
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.8736 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf
+[PASS -> indexed] b11_library_fine_addendum_injected.md (doc_id=library_fine_addendum, ver=2026-10)
+    quality      : PASS | ok: 807 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=b11_library_fine_addendum_injected.md, version=2026-10, pages=1) and text intact
+    recency      : PASS | ok: initial active version 2026-10 for library_fine_addendum
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.6989 (< 0.94) vs Prospectus_2026_Academic_Rules_and_Regulations.pdf
+========================================================================================
+--- Phase B: job/indexer-candidate (status=Complete, duration=167.8s) ---
+NAME                STATUS     COMPLETIONS   DURATION   AGE     CONTAINERS   IMAGES                         SELECTOR
+indexer-candidate   Complete   1/1           2m33s      2m48s   indexer      ghcr.io/rahbar/indexer:local   batch.kubernetes.io/controller-uid=6c1bc569-1720-429a-a669-d98cf65e978b
+
+quality      : PASS | ok: 203709 chars across 85 page(s)
+    completeness : PASS | ok: metadata complete (source=Annual_Report_2023-24.pdf, version=2023-24, pages=85) and text intact
+    recency      : PASS | newer_version_detected: 2023-24 supersedes active 2022-23 (Annual_Report_2022-23.pdf); archiving old version
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.8188 (< 0.94) vs Undergraduate_Academic_Rules_Aug_2023.pdf
+[PASS -> indexed_superseding] EE_PLOs_2024_onwards_11.pdf (doc_id=ee_plos, ver=2024+)
+    quality      : PASS | ok: 2905 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=EE_PLOs_2024_onwards_11.pdf, version=2024+, pages=1) and text intact
+    recency      : PASS | newer_version_detected: 2024+ supersedes active pre-2024 (EE_PLOs_before_2024_12.pdf); archiving old version
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.6047 (< 0.94) vs Undergraduate_Academic_Rules_Aug_2023.pdf
+[PASS -> indexed] Academic_Calendar_page.html (doc_id=academic_calendar_page, ver=2026-06)
+    quality      : PASS | ok: 1940 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=Academic_Calendar_page.html, version=2026-06, pages=1) and text intact
+    recency      : PASS | ok: initial active version 2026-06 for academic_calendar_page
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.6961 (< 0.94) vs Undergraduate_Academic_Rules_Aug_2023.pdf
+[PASS -> indexed_superseding] Academic_Rules_Handbook_2026.pdf (doc_id=academic_rules_handbook, ver=2026-06)
+    quality      : PASS | ok: 65770 chars across 58 page(s)
+    completeness : PASS | ok: metadata complete (source=Academic_Rules_Handbook_2026.pdf, version=2026-06, pages=58) and text intact
+    recency      : PASS | newer_version_detected: 2026-06 supersedes active 2023-08 (Undergraduate_Academic_Rules_Aug_2023.pdf); archiving old version
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.7762 (< 0.94) vs Annual_Report_2023-24.pdf
+[PASS -> indexed] Faculty_Entrepreneurship_Technical_Startups_Policy.pdf (doc_id=faculty_entrepreneurship_technical_startups_policy, ver=2026-06)
+    quality      : PASS | ok: 11916 chars across 8 page(s)
+    completeness : PASS | ok: metadata complete (source=Faculty_Entrepreneurship_Technical_Startups_Policy.pdf, version=2026-06, pages=8) and text intact
+    recency      : PASS | ok: initial active version 2026-06 for faculty_entrepreneurship_technical_startups_policy
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.7497 (< 0.94) vs Academic_Rules_Handbook_2026.pdf
+[PASS -> indexed] Fee_Structure_page.html (doc_id=fee_structure_page, ver=2026-06)
+    quality      : PASS | ok: 3674 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=Fee_Structure_page.html, version=2026-06, pages=1) and text intact
+    recency      : PASS | ok: initial active version 2026-06 for fee_structure_page
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.6811 (< 0.94) vs Academic_Calendar_page.html
+[PASS -> indexed] Grading_page.html (doc_id=grading_page, ver=2026-06)
+    quality      : PASS | ok: 4790 chars across 1 page(s)
+    completeness : PASS | ok: metadata complete (source=Grading_page.html, version=2026-06, pages=1) and text intact
+    recency      : PASS | ok: initial active version 2026-06 for grading_page
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.7709 (< 0.94) vs Academic_Calendar_page.html
+[PASS -> indexed] Prospectus_2026_Academic_Rules_and_Regulations.pdf (doc_id=prospectus_2026_academic_rules_and_regulations, ver=2026-06)
+    quality      : PASS | ok: 22046 chars across 5 page(s)
+    completeness : PASS | ok: metadata complete (source=Prospectus_2026_Academic_Rules_and_Regulations.pdf, version=2026-06, pages=5) and text intact
+    recency      : PASS | ok: initial active version 2026-06 for prospectus_2026_academic_rules_and_regulations
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.7888 (< 0.94) vs Grading_page.html
+[PASS -> indexed] Student_Handbook_2026.pdf (doc_id=student_handbook, ver=2026-06)
+    quality      : PASS | ok: 76334 chars across 64 page(s)
+    completeness : PASS | ok: metadata complete (source=Student_Handbook_2026.pdf, version=2026-06, pages=64) and text intact
+    recency      : PASS | ok: initial active version 2026-06 for student_handbook
+    uniqueness   : PASS | ok: unique hash; max cross-doc cosine=0.8936 (< 0.94) vs Academic_Rules_Handbook_2026.pdf
+========================================================================================
+--- Phase C: job/eval-job [post-batch-b] (status=Failed, duration=441.3s) ---
+NAME       STATUS   COMPLETIONS   DURATION   AGE     CONTAINERS   IMAGES                      SELECTOR
+eval-job   Failed   0/1           7m21s      7m21s   eval         ghcr.io/rahbar/eval:local   batch.kubernetes.io/controller-uid=ad6475cb-fdbc-4d4e-a229-1bba23b8e8b0
+
+==============================================================================
+RAHBAR RAGOps 3-LEVEL OFFLINE EVALUATION SUMMARY  (seed=42)
+==============================================================================
+Timestamp : 2026-11-27T21:25:05.832606+00:00
+Golden Set: /app/eval/golden.jsonl (32 questions)
+------------------------------------------------------------------------------
+LEVEL 1 — MODULE (Embedding Quality)
+  Paraphrase Mean Cosine (16 pairs) : 0.7721
+  Unrelated Mean Cosine  (16 pairs) : 0.4830
+  Cosine Separation Gap              : 0.2891
+  Embedding Time / Chunk (ms)        : 60.25 ms (5x 512-tok, fixtures)
+  Determinism Max Abs Diff           : 0.00000000
+------------------------------------------------------------------------------
+LEVEL 2 — COMPONENT (Retrieval Quality + Noise Test)
+  recall@3 : 0.6190   | recall@5 : 0.6190
+  MRR      : 0.5476   | nDCG@5   : 0.5663
+  Noise (query_typos): r@3=0.6190 (+0.0000), r@5=0.6190 (+0.0000), MRR=0.5952 (+0.0476), nDCG@5=0.6015 (+0.0351)
+------------------------------------------------------------------------------
+LEVEL 3 — END-TO-END (Answer Quality & Latency)
+  Faithfulness (llm_judge, dolphin-mistral) : 0.8000 (20 grounded)
+  Faithfulness vs Human (llm_judge, dolphin-mistral) : 0.8889 (8/9)
+  Abstention Correctness             : 1.0000 (11 checked)
+  Injection Resistance               : 1.0000 (1 checked)
+  Citation Validity                  : 1.0000 (20 citations)
+  Latency p50 / p95                  : 5505.0 ms / 10476.6 ms
+==============================================================================
+Saved evaluation result -> /results/eval_post-batch-b_20261127T212505Z.json
+Saved summary table     -> /results/eval_post-batch-b_20261127T212505Z.md
+
+=== RELEASE GATE EVALUATION ===
+  [FAIL] recall@5_max_drop_vs_baseline        | actual=0.6190 (baseline=0.7143, drop=+0.0953) | threshold=drop <= 0.0200
+  [PASS] faithfulness_min                     | actual=0.8000 | threshold=>= 0.7500
+  [PASS] p95_latency_max_ms                   | actual=10476.62 ms | threshold=<= 45000.00 ms
+  [PASS] abstention_correctness_vs_baseline   | actual=1.0000 (baseline=1.0000, delta=+0.0000) | threshold=delta >= +0.0000
+  [PASS] citation_validity_min                | actual=1.0000 | threshold=>= 0.9000
+  [PASS] injection_resistance_min             | actual=1.0000 | threshold=>= 1.0000
+GATE RESULT: FAIL
+==============================================================================
+Saved gate decision     -> /results/gate_post-batch-b_20261127T212505Z.json
+
+================================================================================
+RAW TIMESTAMPED SNAPSHOTS (kubectl top pods -n rahbar --containers)
+================================================================================
+
+# [2026-11-27T21:14:49.882855+00:00 | +0.2s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:14:52.123210+00:00 | +2.4s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:14:54.349589+00:00 | +4.6s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:14:56.604554+00:00 | +6.9s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:14:58.870201+00:00 | +9.1s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:15:01.083985+00:00 | +11.4s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:15:03.337524+00:00 | +13.6s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:15:05.589105+00:00 | +15.9s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:15:07.873769+00:00 | +18.1s | indexer-batch-b]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:15:08.984041+00:00 | +0.2s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:15:24.227315+00:00 | +15.4s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       6m           148Mi           
+pvc-helper                       pvc-helper   1m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:15:39.476979+00:00 | +30.7s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       13m          150Mi           
+indexer-candidate-cltfz          indexer      523m         198Mi           
+pvc-helper                       pvc-helper   2m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:15:54.699008+00:00 | +45.9s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       13m          150Mi           
+indexer-candidate-cltfz          indexer      523m         198Mi           
+pvc-helper                       pvc-helper   2m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:16:09.890996+00:00 | +61.1s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       13m          150Mi           
+indexer-candidate-cltfz          indexer      523m         198Mi           
+pvc-helper                       pvc-helper   2m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:16:25.089362+00:00 | +76.3s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       13m          150Mi           
+indexer-candidate-cltfz          indexer      523m         198Mi           
+pvc-helper                       pvc-helper   2m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:16:40.324664+00:00 | +91.5s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       7m           150Mi           
+indexer-candidate-cltfz          indexer      998m         155Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:16:55.563322+00:00 | +106.7s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       7m           150Mi           
+indexer-candidate-cltfz          indexer      998m         155Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:17:10.818723+00:00 | +122.0s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       7m           150Mi           
+indexer-candidate-cltfz          indexer      998m         155Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:17:25.998524+00:00 | +137.2s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       7m           150Mi           
+indexer-candidate-cltfz          indexer      998m         155Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:17:41.162211+00:00 | +152.3s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       17m          158Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:17:56.328280+00:00 | +167.5s | indexer-candidate]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       17m          158Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:17:57.246308+00:00 | +0.1s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       17m          158Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:18:12.493147+00:00 | +15.4s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       17m          158Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:18:27.692506+00:00 | +30.6s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           77Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       17m          158Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:18:42.919379+00:00 | +45.8s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       8m           158Mi           
+eval-job-cjptm                   eval         21m          30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:18:58.185317+00:00 | +61.1s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       8m           158Mi           
+eval-job-cjptm                   eval         21m          30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:19:13.428442+00:00 | +76.3s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       8m           158Mi           
+eval-job-cjptm                   eval         21m          30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:19:28.679717+00:00 | +91.6s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           77Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       8m           158Mi           
+eval-job-cjptm                   eval         21m          30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:19:43.883384+00:00 | +106.8s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       5m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:19:59.084408+00:00 | +122.0s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       5m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:20:14.270563+00:00 | +137.2s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       5m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:20:29.492302+00:00 | +152.4s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       5m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:20:44.682916+00:00 | +167.6s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       6m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:20:59.883065+00:00 | +182.8s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       6m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:21:15.060857+00:00 | +198.0s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           78Mi            
+chroma-0                         chroma       6m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:21:30.260106+00:00 | +213.2s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       6m           159Mi           
+eval-job-cjptm                   eval         1m           31Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:21:45.436278+00:00 | +228.3s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       6m           159Mi           
+eval-job-cjptm                   eval         1m           31Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:22:00.611899+00:00 | +243.5s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       6m           159Mi           
+eval-job-cjptm                   eval         1m           31Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:22:15.843562+00:00 | +258.7s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       6m           159Mi           
+eval-job-cjptm                   eval         1m           31Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:22:31.067421+00:00 | +274.0s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       7m           158Mi           
+eval-job-cjptm                   eval         1m           31Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:22:46.227469+00:00 | +289.1s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       7m           158Mi           
+eval-job-cjptm                   eval         1m           31Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:23:01.387969+00:00 | +304.3s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       7m           158Mi           
+eval-job-cjptm                   eval         1m           31Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:23:16.592380+00:00 | +319.5s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           78Mi            
+api-58579c958c-ms4kd             api          3m           78Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          3m           77Mi            
+chroma-0                         chroma       7m           158Mi           
+eval-job-cjptm                   eval         1m           31Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        4m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:23:31.751186+00:00 | +334.6s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          4m           79Mi            
+api-58579c958c-sqqz7             api          3m           79Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       7m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:23:46.945896+00:00 | +349.8s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          4m           79Mi            
+api-58579c958c-sqqz7             api          3m           79Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       7m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:24:02.200356+00:00 | +365.1s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          4m           79Mi            
+api-58579c958c-sqqz7             api          3m           79Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       7m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:24:17.396378+00:00 | +380.3s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          2m           78Mi            
+api-58579c958c-ms4kd             api          4m           79Mi            
+api-58579c958c-sqqz7             api          3m           79Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       7m           159Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           3Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:24:32.573329+00:00 | +395.5s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           79Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       7m           158Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:24:47.742585+00:00 | +410.6s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           79Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       7m           158Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:25:02.941517+00:00 | +425.8s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           79Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       7m           158Mi           
+eval-job-cjptm                   eval         1m           30Mi            
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             
+
+# [2026-11-27T21:25:18.176401+00:00 | +441.1s | eval-job]
+POD                              NAME         CPU(cores)   MEMORY(bytes)   
+api-58579c958c-42d2g             api          3m           79Mi            
+api-58579c958c-ms4kd             api          3m           79Mi            
+api-58579c958c-sqqz7             api          3m           78Mi            
+api-candidate-68684bcd6f-5sj4g   api          2m           77Mi            
+chroma-0                         chroma       7m           158Mi           
+pvc-helper                       pvc-helper   0m           42Mi            
+redis-59b78d9bf9-n6hqq           redis        5m           4Mi             
+ui-7c88b5c749-5zkv7              ui           1m           2Mi             
+ui-7c88b5c749-ncjjd              ui           1m           2Mi             

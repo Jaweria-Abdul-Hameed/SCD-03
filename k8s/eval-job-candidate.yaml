@@ -1,0 +1,91 @@
+# Part C3 / F3 Candidate Evaluation Job — targets http://api-candidate:8000 with EVAL_LABEL=candidate
+# via container env overrides (without hand-editing rahbar-gate-config).
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: eval-job-candidate
+  namespace: rahbar
+  labels:
+    app: eval
+    app.kubernetes.io/part-of: rahbar
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: eval
+        app.kubernetes.io/part-of: rahbar
+    spec:
+      serviceAccountName: eval-sa
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: eval
+          image: ghcr.io/rahbar/eval:local
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args:
+            - >
+              BASELINE_ARG="";
+              if [ -n "$EVAL_BASELINE_FILE" ] && [ -f "$EVAL_BASELINE_FILE" ]; then
+                BASELINE_ARG="--baseline $EVAL_BASELINE_FILE";
+              fi;
+              python eval/run_ragops_eval.py
+              --api-base "$EVAL_TARGET_API"
+              --golden /app/eval/golden.jsonl
+              --pairs /app/eval/module_pairs.jsonl
+              --ollama-host "$OLLAMA_HOST"
+              --embed-model "$EMBED_MODEL"
+              --llm-model "$LLM_MODEL"
+              --provider-mode "$LLM_PROVIDER"
+              --label "$EVAL_LABEL"
+              --out-dir /results
+              --gate-config /app/eval/gate_thresholds.yaml
+              --llm-judge
+              --judge-model "$EVAL_JUDGE_MODEL"
+              $BASELINE_ARG
+              --enforce-gate
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+            - configMapRef:
+                name: rahbar-gate-config
+          env:
+            - name: EVAL_TARGET_API
+              value: "http://api-candidate:8000"
+            - name: EVAL_LABEL
+              value: "candidate"
+          volumeMounts:
+            - name: results
+              mountPath: /results
+            - name: tmp
+              mountPath: /tmp
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt (eval-job, N=26:
+          # CPU p50=1.0m max=21m, Mem p50=30.0Mi max=31Mi; requests ~ p50 floor, limits >= max*1.5).
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: results
+          persistentVolumeClaim:
+            claimName: eval-results
+        - name: tmp
+          emptyDir: {}

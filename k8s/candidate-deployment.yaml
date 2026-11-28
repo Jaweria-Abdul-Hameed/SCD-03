@@ -78,13 +78,17 @@ spec:
               mountPath: /traces
             - name: tmp
               mountPath: /tmp
+          # Sized from docs/evidence/ragops/f5_resource_measurements.txt (api-candidate idle
+          # N=30: CPU p50=2.0m max=3m, Mem p50=77.0Mi max=78Mi; active api N=90: CPU p50=3.0m
+          # max=4m, Mem p50=78.0Mi max=79Mi). Matches api-deployment.yaml parity with 25m/100m
+          # CPU startup headroom and 128Mi (>= max*1.5) memory limit.
           resources:
             requests:
+              cpu: 25m
+              memory: 80Mi
+            limits:
               cpu: 100m
               memory: 128Mi
-            limits:
-              cpu: 500m
-              memory: 256Mi
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true

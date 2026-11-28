@@ -1,0 +1,851 @@
+{
+  "schema_version": "1.0",
+  "timestamp": "2026-11-27T19:31:43.399820+00:00",
+  "task": "E2/E4 Cosine Similarity Threshold (tau = 0.70) Calibration & Justification",
+  "methodology": {
+    "embed_model": "nomic-embed-text",
+    "ollama_host": "127.0.0.1:11434",
+    "provider_mode": "ollama-host",
+    "query_prefix": "search_query: ",
+    "similarity_metric": "cosine_similarity",
+    "live_queries_file": "eval/live_queries.jsonl",
+    "total_live_queries": 42,
+    "in_domain_count": 28,
+    "uncovered_count": 14,
+    "pre_expansion_golden_file": "eval/golden_pre_expansion.jsonl",
+    "pre_expansion_golden_count": 26,
+    "post_expansion_golden_file": "eval/golden.jsonl",
+    "post_expansion_golden_count": 32,
+    "note_on_calibration_split": "Pre-expansion (G01-G26) provides the true binary ground-truth split for calibrating tau: L01-L28 (domain=in_domain) belong to covered corpus topics while L29-L42 (domain=uncovered) represent out-of-golden topic gaps before G27-G32 were added. Post-expansion (G01-G32) adds G27-G32 specifically targeting those uncovered topic clusters, shifting 11/14 L29-L42 queries above 0.70."
+  },
+  "pre_expansion": {
+    "golden_questions_count": 26,
+    "distributions": {
+      "in_domain": {
+        "count": 28,
+        "min": 0.6002,
+        "p10": 0.7006,
+        "p25": 0.7723,
+        "median": 0.8055,
+        "mean": 0.8062,
+        "p75": 0.8469,
+        "p90": 0.9029,
+        "max": 0.9583,
+        "std": 0.0793
+      },
+      "uncovered": {
+        "count": 14,
+        "min": 0.537,
+        "p10": 0.5737,
+        "p25": 0.5994,
+        "median": 0.6293,
+        "mean": 0.6255,
+        "p75": 0.6415,
+        "p90": 0.6812,
+        "max": 0.6985,
+        "std": 0.0428
+      },
+      "separation": {
+        "mean_gap": 0.1807,
+        "median_gap": 0.1762,
+        "p25_in_domain_minus_p75_uncovered": 0.1308,
+        "lowest_covered_in_domain_above_070": {
+          "id": "L05",
+          "max_similarity": 0.7054
+        },
+        "highest_uncovered": {
+          "id": "L37",
+          "max_similarity": 0.6985
+        },
+        "clean_decision_window": [
+          0.6985,
+          0.7054
+        ]
+      }
+    },
+    "threshold_sweep": [
+      {
+        "tau": 0.55,
+        "TP_in_domain_covered": 28,
+        "FN_in_domain_missed": 0,
+        "FP_uncovered_false_covered": 13,
+        "TN_uncovered_flagged": 1,
+        "accuracy": 0.6905,
+        "precision": 0.6829,
+        "recall": 1.0,
+        "f1": 0.8116,
+        "false_uncovered_rate": 0.0,
+        "false_covered_rate": 0.9286,
+        "overall_coverage_share": 0.9762
+      },
+      {
+        "tau": 0.6,
+        "TP_in_domain_covered": 28,
+        "FN_in_domain_missed": 0,
+        "FP_uncovered_false_covered": 10,
+        "TN_uncovered_flagged": 4,
+        "accuracy": 0.7619,
+        "precision": 0.7368,
+        "recall": 1.0,
+        "f1": 0.8485,
+        "false_uncovered_rate": 0.0,
+        "false_covered_rate": 0.7143,
+        "overall_coverage_share": 0.9048
+      },
+      {
+        "tau": 0.65,
+        "TP_in_domain_covered": 27,
+        "FN_in_domain_missed": 1,
+        "FP_uncovered_false_covered": 3,
+        "TN_uncovered_flagged": 11,
+        "accuracy": 0.9048,
+        "precision": 0.9,
+        "recall": 0.9643,
+        "f1": 0.931,
+        "false_uncovered_rate": 0.0357,
+        "false_covered_rate": 0.2143,
+        "overall_coverage_share": 0.7143
+      },
+      {
+        "tau": 0.68,
+        "TP_in_domain_covered": 27,
+        "FN_in_domain_missed": 1,
+        "FP_uncovered_false_covered": 2,
+        "TN_uncovered_flagged": 12,
+        "accuracy": 0.9286,
+        "precision": 0.931,
+        "recall": 0.9643,
+        "f1": 0.9474,
+        "false_uncovered_rate": 0.0357,
+        "false_covered_rate": 0.1429,
+        "overall_coverage_share": 0.6905
+      },
+      {
+        "tau": 0.69,
+        "TP_in_domain_covered": 25,
+        "FN_in_domain_missed": 3,
+        "FP_uncovered_false_covered": 1,
+        "TN_uncovered_flagged": 13,
+        "accuracy": 0.9048,
+        "precision": 0.9615,
+        "recall": 0.8929,
+        "f1": 0.9259,
+        "false_uncovered_rate": 0.1071,
+        "false_covered_rate": 0.0714,
+        "overall_coverage_share": 0.619
+      },
+      {
+        "tau": 0.7,
+        "TP_in_domain_covered": 25,
+        "FN_in_domain_missed": 3,
+        "FP_uncovered_false_covered": 0,
+        "TN_uncovered_flagged": 14,
+        "accuracy": 0.9286,
+        "precision": 1.0,
+        "recall": 0.8929,
+        "f1": 0.9434,
+        "false_uncovered_rate": 0.1071,
+        "false_covered_rate": 0.0,
+        "overall_coverage_share": 0.5952
+      },
+      {
+        "tau": 0.71,
+        "TP_in_domain_covered": 24,
+        "FN_in_domain_missed": 4,
+        "FP_uncovered_false_covered": 0,
+        "TN_uncovered_flagged": 14,
+        "accuracy": 0.9048,
+        "precision": 1.0,
+        "recall": 0.8571,
+        "f1": 0.9231,
+        "false_uncovered_rate": 0.1429,
+        "false_covered_rate": 0.0,
+        "overall_coverage_share": 0.5714
+      },
+      {
+        "tau": 0.72,
+        "TP_in_domain_covered": 24,
+        "FN_in_domain_missed": 4,
+        "FP_uncovered_false_covered": 0,
+        "TN_uncovered_flagged": 14,
+        "accuracy": 0.9048,
+        "precision": 1.0,
+        "recall": 0.8571,
+        "f1": 0.9231,
+        "false_uncovered_rate": 0.1429,
+        "false_covered_rate": 0.0,
+        "overall_coverage_share": 0.5714
+      },
+      {
+        "tau": 0.75,
+        "TP_in_domain_covered": 23,
+        "FN_in_domain_missed": 5,
+        "FP_uncovered_false_covered": 0,
+        "TN_uncovered_flagged": 14,
+        "accuracy": 0.881,
+        "precision": 1.0,
+        "recall": 0.8214,
+        "f1": 0.902,
+        "false_uncovered_rate": 0.1786,
+        "false_covered_rate": 0.0,
+        "overall_coverage_share": 0.5476
+      },
+      {
+        "tau": 0.8,
+        "TP_in_domain_covered": 15,
+        "FN_in_domain_missed": 13,
+        "FP_uncovered_false_covered": 0,
+        "TN_uncovered_flagged": 14,
+        "accuracy": 0.6905,
+        "precision": 1.0,
+        "recall": 0.5357,
+        "f1": 0.6977,
+        "false_uncovered_rate": 0.4643,
+        "false_covered_rate": 0.0,
+        "overall_coverage_share": 0.3571
+      },
+      {
+        "tau": 0.85,
+        "TP_in_domain_covered": 6,
+        "FN_in_domain_missed": 22,
+        "FP_uncovered_false_covered": 0,
+        "TN_uncovered_flagged": 14,
+        "accuracy": 0.4762,
+        "precision": 1.0,
+        "recall": 0.2143,
+        "f1": 0.3529,
+        "false_uncovered_rate": 0.7857,
+        "false_covered_rate": 0.0,
+        "overall_coverage_share": 0.1429
+      }
+    ],
+    "in_domain_queries_below_070": [
+      {
+        "id": "L03",
+        "query": "Can I use ChatGPT for brainstorming coursework under the GenAI policy?",
+        "nearest_golden_id": "G03",
+        "max_similarity": 0.6893
+      },
+      {
+        "id": "L25",
+        "query": "When does an incomplete grade I automatically convert into an F grade?",
+        "nearest_golden_id": "G05",
+        "max_similarity": 0.6886
+      },
+      {
+        "id": "L26",
+        "query": "Can the Head of Department condone more than 20 percent absence for illness?",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.6002
+      }
+    ],
+    "uncovered_queries_ranked_desc": [
+      {
+        "id": "L37",
+        "topic": "international_exchange_and_transfers",
+        "nearest_golden_id": "G20",
+        "max_similarity": 0.6985
+      },
+      {
+        "id": "L29",
+        "topic": "alumni_and_degree_verification",
+        "nearest_golden_id": "G24",
+        "max_similarity": 0.6842
+      },
+      {
+        "id": "L32",
+        "topic": "campus_facilities_and_services",
+        "nearest_golden_id": "G04",
+        "max_similarity": 0.6742
+      },
+      {
+        "id": "L41",
+        "topic": "alumni_and_degree_verification",
+        "nearest_golden_id": "G01",
+        "max_similarity": 0.6417
+      },
+      {
+        "id": "L31",
+        "topic": "alumni_and_degree_verification",
+        "nearest_golden_id": "G24",
+        "max_similarity": 0.641
+      },
+      {
+        "id": "L36",
+        "topic": "international_exchange_and_transfers",
+        "nearest_golden_id": "G06",
+        "max_similarity": 0.639
+      },
+      {
+        "id": "L38",
+        "topic": "career_services_and_internships",
+        "nearest_golden_id": "G01",
+        "max_similarity": 0.6379
+      },
+      {
+        "id": "L33",
+        "topic": "campus_facilities_and_services",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.6207
+      },
+      {
+        "id": "L30",
+        "topic": "alumni_and_degree_verification",
+        "nearest_golden_id": "G24",
+        "max_similarity": 0.6187
+      },
+      {
+        "id": "L34",
+        "topic": "campus_facilities_and_services",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.6089
+      },
+      {
+        "id": "L35",
+        "topic": "international_exchange_and_transfers",
+        "nearest_golden_id": "G22",
+        "max_similarity": 0.5962
+      },
+      {
+        "id": "L42",
+        "topic": "campus_facilities_and_services",
+        "nearest_golden_id": "G03",
+        "max_similarity": 0.5932
+      },
+      {
+        "id": "L39",
+        "topic": "career_services_and_internships",
+        "nearest_golden_id": "G01",
+        "max_similarity": 0.5653
+      },
+      {
+        "id": "L40",
+        "topic": "career_services_and_internships",
+        "nearest_golden_id": "G07",
+        "max_similarity": 0.537
+      }
+    ],
+    "per_query": [
+      {
+        "id": "L01",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What happens if I register for a class after getting an F in its prerequisite?",
+        "nearest_golden_id": "G01",
+        "max_similarity": 0.8091
+      },
+      {
+        "id": "L02",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "How much lecture attendance do undergraduate students need to take finals?",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.7925
+      },
+      {
+        "id": "L03",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Can I use ChatGPT for brainstorming coursework under the GenAI policy?",
+        "nearest_golden_id": "G03",
+        "max_similarity": 0.6893
+      },
+      {
+        "id": "L04",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "How much is the per-credit-hour tuition fee for BS Computer Science?",
+        "nearest_golden_id": "G04",
+        "max_similarity": 0.8645
+      },
+      {
+        "id": "L05",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What GPA points does a B+ or A- grade carry?",
+        "nearest_golden_id": "G05",
+        "max_similarity": 0.7054
+      },
+      {
+        "id": "L06",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "If I drop a course on the 12th day of classes, what fee refund do I get?",
+        "nearest_golden_id": "G06",
+        "max_similarity": 0.7698
+      },
+      {
+        "id": "L07",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Does the ORIC entrepreneurship policy permit faculty members to start spin-off companies?",
+        "nearest_golden_id": "G07",
+        "max_similarity": 0.7797
+      },
+      {
+        "id": "L08",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "When do Fall 2026 classes start according to the academic schedule?",
+        "nearest_golden_id": "G08",
+        "max_similarity": 0.9298
+      },
+      {
+        "id": "L09",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Which rule clause governs student attendance percentage in the current handbook?",
+        "nearest_golden_id": "G09",
+        "max_similarity": 0.8468
+      },
+      {
+        "id": "L10",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "How many Program Learning Outcomes apply to EE students admitted in 2024 or later?",
+        "nearest_golden_id": "G10",
+        "max_similarity": 0.7878
+      },
+      {
+        "id": "L11",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What does Clause 4.4 require for students currently placed on academic warning?",
+        "nearest_golden_id": "G11",
+        "max_similarity": 0.8041
+      },
+      {
+        "id": "L12",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What minimum CGPA avoids academic warning and allows graduation?",
+        "nearest_golden_id": "G12",
+        "max_similarity": 0.8427
+      },
+      {
+        "id": "L13",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Are there official rules for first-year student hostel room allotment?",
+        "nearest_golden_id": "G13",
+        "max_similarity": 0.9583
+      },
+      {
+        "id": "L14",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What are the campus shuttle bus routes and departure schedules?",
+        "nearest_golden_id": "G14",
+        "max_similarity": 0.8309
+      },
+      {
+        "id": "L15",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Is the admission fee payable again if a FAST alumnus joins an MS degree?",
+        "nearest_golden_id": "G24",
+        "max_similarity": 0.7731
+      },
+      {
+        "id": "L16",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "How much is the refundable security deposit collected at admission?",
+        "nearest_golden_id": "G16",
+        "max_similarity": 0.8471
+      },
+      {
+        "id": "L17",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "When does a student's first or second academic warning counter reset back to zero?",
+        "nearest_golden_id": "G17",
+        "max_similarity": 0.9485
+      },
+      {
+        "id": "L18",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What steps are listed in Clause 4.1 for semester course registration?",
+        "nearest_golden_id": "G18",
+        "max_similarity": 0.891
+      },
+      {
+        "id": "L19",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What SGPA must a merit scholarship student maintain to keep their scholarship?",
+        "nearest_golden_id": "G19",
+        "max_similarity": 0.76
+      },
+      {
+        "id": "L20",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What happens to a passed post-requisite grade if a repeated prerequisite is failed?",
+        "nearest_golden_id": "G01",
+        "max_similarity": 0.807
+      },
+      {
+        "id": "L21",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "How many earned credit hours are needed to register for Final Year Project I?",
+        "nearest_golden_id": "G25",
+        "max_similarity": 0.7834
+      },
+      {
+        "id": "L22",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What Turnitin similarity cap is enforced on Final Year Project reports?",
+        "nearest_golden_id": "G25",
+        "max_similarity": 0.8335
+      },
+      {
+        "id": "L23",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What is the maximum funding cap on an ORIC internal research seed grant?",
+        "nearest_golden_id": "G26",
+        "max_similarity": 0.8913
+      },
+      {
+        "id": "L24",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "How much is the per-semester Student Activities Fund fee?",
+        "nearest_golden_id": "G04",
+        "max_similarity": 0.7231
+      },
+      {
+        "id": "L25",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "When does an incomplete grade I automatically convert into an F grade?",
+        "nearest_golden_id": "G05",
+        "max_similarity": 0.6886
+      },
+      {
+        "id": "L26",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Can the Head of Department condone more than 20 percent absence for illness?",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.6002
+      },
+      {
+        "id": "L27",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "What is the minimum graduate student attendance percentage required for exams?",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.8188
+      },
+      {
+        "id": "L28",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Is a car parking permit fee listed for students driving to campus?",
+        "nearest_golden_id": "G20",
+        "max_similarity": 0.7967
+      },
+      {
+        "id": "L29",
+        "domain": "uncovered",
+        "topic": "alumni_and_degree_verification",
+        "query": "How can employers submit an online degree verification request for a FAST alumnus?",
+        "nearest_golden_id": "G24",
+        "max_similarity": 0.6842
+      },
+      {
+        "id": "L30",
+        "domain": "uncovered",
+        "topic": "alumni_and_degree_verification",
+        "query": "What documents and fee are required to obtain a duplicate official transcript or convocation gown?",
+        "nearest_golden_id": "G24",
+        "max_similarity": 0.6187
+      },
+      {
+        "id": "L31",
+        "domain": "uncovered",
+        "topic": "alumni_and_degree_verification",
+        "query": "How do graduating students register for the annual convocation ceremony and alumni card?",
+        "nearest_golden_id": "G24",
+        "max_similarity": 0.641
+      },
+      {
+        "id": "L32",
+        "domain": "uncovered",
+        "topic": "campus_facilities_and_services",
+        "query": "What are the daily opening hours and subsidized meal pricing at the campus cafeteria?",
+        "nearest_golden_id": "G04",
+        "max_similarity": 0.6742
+      },
+      {
+        "id": "L33",
+        "domain": "uncovered",
+        "topic": "campus_facilities_and_services",
+        "query": "Is there an on-campus medical clinic and first-aid ambulance service for students?",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.6207
+      },
+      {
+        "id": "L34",
+        "domain": "uncovered",
+        "topic": "campus_facilities_and_services",
+        "query": "How do students book indoor sports courts or reserve the campus auditorium for society events?",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.6089
+      },
+      {
+        "id": "L35",
+        "domain": "uncovered",
+        "topic": "international_exchange_and_transfers",
+        "query": "Does the university offer Erasmus or international semester exchange scholarships abroad?",
+        "nearest_golden_id": "G22",
+        "max_similarity": 0.5962
+      },
+      {
+        "id": "L36",
+        "domain": "uncovered",
+        "topic": "international_exchange_and_transfers",
+        "query": "What is the credit transfer policy for courses completed during an international exchange semester?",
+        "nearest_golden_id": "G06",
+        "max_similarity": 0.639
+      },
+      {
+        "id": "L37",
+        "domain": "uncovered",
+        "topic": "international_exchange_and_transfers",
+        "query": "How do students apply for inter-campus transfer between Islamabad and Lahore campuses?",
+        "nearest_golden_id": "G20",
+        "max_similarity": 0.6985
+      },
+      {
+        "id": "L38",
+        "domain": "uncovered",
+        "topic": "career_services_and_internships",
+        "query": "Is a six-week summer industrial internship mandatory before degree completion?",
+        "nearest_golden_id": "G01",
+        "max_similarity": 0.6379
+      },
+      {
+        "id": "L39",
+        "domain": "uncovered",
+        "topic": "career_services_and_internships",
+        "query": "How do companies register booths for the annual campus job fair through the placement office?",
+        "nearest_golden_id": "G01",
+        "max_similarity": 0.5653
+      },
+      {
+        "id": "L40",
+        "domain": "uncovered",
+        "topic": "career_services_and_internships",
+        "query": "Does the Career Services Office conduct mock technical interviews and resume reviews?",
+        "nearest_golden_id": "G07",
+        "max_similarity": 0.537
+      },
+      {
+        "id": "L41",
+        "domain": "uncovered",
+        "topic": "alumni_and_degree_verification",
+        "query": "What is the HEC attestation procedure for a provisional degree certificate after graduation?",
+        "nearest_golden_id": "G01",
+        "max_similarity": 0.6417
+      },
+      {
+        "id": "L42",
+        "domain": "uncovered",
+        "topic": "campus_facilities_and_services",
+        "query": "Are high-speed GPU compute nodes available for undergraduate thesis students via IT helpdesk?",
+        "nearest_golden_id": "G03",
+        "max_similarity": 0.5932
+      }
+    ]
+  },
+  "post_expansion": {
+    "golden_questions_count": 32,
+    "distributions": {
+      "in_domain_L01_L28": {
+        "count": 28,
+        "min": 0.6002,
+        "p10": 0.7006,
+        "p25": 0.7723,
+        "median": 0.8055,
+        "mean": 0.8062,
+        "p75": 0.8469,
+        "p90": 0.9029,
+        "max": 0.9583,
+        "std": 0.0793
+      },
+      "expanded_topics_L29_L42": {
+        "count": 14,
+        "min": 0.615,
+        "p10": 0.6446,
+        "p25": 0.7424,
+        "median": 0.7786,
+        "mean": 0.7821,
+        "p75": 0.8668,
+        "p90": 0.8893,
+        "max": 0.8914,
+        "std": 0.0899
+      }
+    },
+    "covered_count_at_070": 36,
+    "uncovered_count_at_070": 6,
+    "coverage_share_at_070": 0.8571,
+    "queries_below_070": [
+      {
+        "id": "L03",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Can I use ChatGPT for brainstorming coursework under the GenAI policy?",
+        "nearest_golden_id": "G03",
+        "max_similarity": 0.6893
+      },
+      {
+        "id": "L25",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "When does an incomplete grade I automatically convert into an F grade?",
+        "nearest_golden_id": "G05",
+        "max_similarity": 0.6886
+      },
+      {
+        "id": "L26",
+        "domain": "in_domain",
+        "topic": null,
+        "query": "Can the Head of Department condone more than 20 percent absence for illness?",
+        "nearest_golden_id": "G02",
+        "max_similarity": 0.6002
+      },
+      {
+        "id": "L37",
+        "domain": "uncovered",
+        "topic": "international_exchange_and_transfers",
+        "query": "How do students apply for inter-campus transfer between Islamabad and Lahore campuses?",
+        "nearest_golden_id": "G20",
+        "max_similarity": 0.6985
+      },
+      {
+        "id": "L40",
+        "domain": "uncovered",
+        "topic": "career_services_and_internships",
+        "query": "Does the Career Services Office conduct mock technical interviews and resume reviews?",
+        "nearest_golden_id": "G30",
+        "max_similarity": 0.615
+      },
+      {
+        "id": "L42",
+        "domain": "uncovered",
+        "topic": "campus_facilities_and_services",
+        "query": "Are high-speed GPU compute nodes available for undergraduate thesis students via IT helpdesk?",
+        "nearest_golden_id": "G32",
+        "max_similarity": 0.6215
+      }
+    ],
+    "threshold_sweep": [
+      {
+        "tau": 0.55,
+        "in_domain_L01_L28_covered": 28,
+        "expanded_topics_L29_L42_covered": 14,
+        "total_covered": 42,
+        "total_uncovered": 0,
+        "overall_coverage_share": 1.0
+      },
+      {
+        "tau": 0.6,
+        "in_domain_L01_L28_covered": 28,
+        "expanded_topics_L29_L42_covered": 14,
+        "total_covered": 42,
+        "total_uncovered": 0,
+        "overall_coverage_share": 1.0
+      },
+      {
+        "tau": 0.65,
+        "in_domain_L01_L28_covered": 27,
+        "expanded_topics_L29_L42_covered": 12,
+        "total_covered": 39,
+        "total_uncovered": 3,
+        "overall_coverage_share": 0.9286
+      },
+      {
+        "tau": 0.68,
+        "in_domain_L01_L28_covered": 27,
+        "expanded_topics_L29_L42_covered": 12,
+        "total_covered": 39,
+        "total_uncovered": 3,
+        "overall_coverage_share": 0.9286
+      },
+      {
+        "tau": 0.69,
+        "in_domain_L01_L28_covered": 25,
+        "expanded_topics_L29_L42_covered": 12,
+        "total_covered": 37,
+        "total_uncovered": 5,
+        "overall_coverage_share": 0.881
+      },
+      {
+        "tau": 0.7,
+        "in_domain_L01_L28_covered": 25,
+        "expanded_topics_L29_L42_covered": 11,
+        "total_covered": 36,
+        "total_uncovered": 6,
+        "overall_coverage_share": 0.8571
+      },
+      {
+        "tau": 0.71,
+        "in_domain_L01_L28_covered": 24,
+        "expanded_topics_L29_L42_covered": 11,
+        "total_covered": 35,
+        "total_uncovered": 7,
+        "overall_coverage_share": 0.8333
+      },
+      {
+        "tau": 0.72,
+        "in_domain_L01_L28_covered": 24,
+        "expanded_topics_L29_L42_covered": 11,
+        "total_covered": 35,
+        "total_uncovered": 7,
+        "overall_coverage_share": 0.8333
+      },
+      {
+        "tau": 0.75,
+        "in_domain_L01_L28_covered": 23,
+        "expanded_topics_L29_L42_covered": 10,
+        "total_covered": 33,
+        "total_uncovered": 9,
+        "overall_coverage_share": 0.7857
+      },
+      {
+        "tau": 0.8,
+        "in_domain_L01_L28_covered": 15,
+        "expanded_topics_L29_L42_covered": 5,
+        "total_covered": 20,
+        "total_uncovered": 22,
+        "overall_coverage_share": 0.4762
+      },
+      {
+        "tau": 0.85,
+        "in_domain_L01_L28_covered": 6,
+        "expanded_topics_L29_L42_covered": 5,
+        "total_covered": 11,
+        "total_uncovered": 31,
+        "overall_coverage_share": 0.2619
+      }
+    ]
+  },
+  "justification": {
+    "chosen_tau": 0.7,
+    "summary": "tau = 0.70 sits inside the clean pre-expansion separation window (0.6985 < tau <= 0.7054) between the highest uncovered query (L37 = 0.6985) and the lowest covered in-domain query (L05 = 0.7054).",
+    "key_evidence": [
+      "Pre-expansion distributions are strongly separated: in_domain (n=28) has median=0.8055, mean=0.8062, IQR=[0.7723, 0.8469]; uncovered (n=14) has median=0.6293, mean=0.6255, IQR=[0.5994, 0.6415] (mean gap=0.1807, median gap=0.1762).",
+      "At tau = 0.70 pre-expansion, false-covered rate on uncovered queries is 0/14 (0.0%, precision=1.0000), while 25/28 in-domain queries are marked covered (recall=0.8929, F1=0.9434, accuracy=0.9286) \u2014 the highest recall and F1 achievable with zero false-covered uncovered queries.",
+      "Lowering tau to 0.68 introduces 2 false-covered uncovered queries (L37=0.6985, L29=0.6842; false-covered rate 14.3%, precision drops 1.0000 -> 0.9310); lowering to 0.65 causes 3 false-covered queries (L37=0.6985, L29=0.6842, L32=0.6742; 21.4% false-covered rate).",
+      "Raising tau to 0.72 drops recall on valid in-domain queries (L05=0.7054 becomes false-uncovered; recall 0.8929 -> 0.8571) with zero precision benefit since precision is already 1.0000 at 0.70.",
+      "Only 3 of 28 in-domain queries fall below 0.70 (L03=0.6893, L25=0.6886, L26=0.6002) because each probes a specific sub-clause/edge case (ChatGPT brainstorming, grade I->F conversion, HoD >20% condonation) not explicitly phrased in the broader golden question (G03, G05, G02).",
+      "Post-expansion (adding G27-G32), 11 of 14 previously uncovered queries move into [0.7379, 0.8914], raising overall coverage from 25/42 (59.52%) to 36/42 (85.71%) >= 85% target."
+    ]
+  }
+}

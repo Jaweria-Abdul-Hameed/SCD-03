@@ -18,7 +18,7 @@ NAMESPACE := rahbar
 KUSTOMIZE ?= kustomize
 KUBECTL ?= kubectl
 
-.PHONY: cluster build deploy index eval test lint check clean reindex smoke corpus-to-cluster
+.PHONY: cluster build images-local deploy index eval test lint check clean reindex smoke corpus-to-cluster
 
 cluster: ## Start minikube with Calico (NetworkPolicy is silently ignored without it)
 	minikube start --driver=docker --cni=calico --memory=6144 --cpus=4
@@ -29,6 +29,16 @@ build: ## Build api, ui and indexer images (no push; SHA tag only)
 	docker build -t rahbar-api:$(TAG) ./api
 	docker build -t rahbar-ui:$(TAG) ./ui
 	docker build -t rahbar-indexer:$(TAG) ./indexer
+
+images-local: ## Build and load :local images (api, ui, indexer, eval) into Minikube
+	docker build -t ghcr.io/rahbar/api:local ./api
+	docker build -t ghcr.io/rahbar/ui:local ./ui
+	docker build -t ghcr.io/rahbar/indexer:local ./indexer
+	docker build -f eval/Dockerfile -t ghcr.io/rahbar/eval:local .
+	minikube image load ghcr.io/rahbar/api:local
+	minikube image load ghcr.io/rahbar/ui:local
+	minikube image load ghcr.io/rahbar/indexer:local
+	minikube image load ghcr.io/rahbar/eval:local
 
 corpus-to-cluster: ## Populate the corpus-data PVC from corpus/raw/ (run before make index)
 	# The indexer Job mounts the corpus-data PVC at /corpus; an empty PVC

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-22T16:30:06.763485+00:00",
+  "timestamp": "2026-11-27T19:28:32.199639+00:00",
   "total_live_queries": 42,
   "golden_questions_count": 26,
   "sim_threshold": 0.7,
@@ -15,7 +15,7 @@
         "query": "How can employers submit an online degree verification request for a FAST alumnus?",
         "nearest_golden_id": "G24",
         "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-        "max_similarity": 0.6843,
+        "max_similarity": 0.6842,
         "covered": false,
         "topic": "alumni_and_degree_verification"
       },
@@ -24,7 +24,7 @@
         "query": "What documents and fee are required to obtain a duplicate official transcript or convocation gown?",
         "nearest_golden_id": "G24",
         "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-        "max_similarity": 0.6186,
+        "max_similarity": 0.6187,
         "covered": false,
         "topic": "alumni_and_degree_verification"
       },
@@ -33,7 +33,7 @@
         "query": "How do graduating students register for the annual convocation ceremony and alumni card?",
         "nearest_golden_id": "G24",
         "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-        "max_similarity": 0.6411,
+        "max_similarity": 0.641,
         "covered": false,
         "topic": "alumni_and_degree_verification"
       },
@@ -42,7 +42,7 @@
         "query": "What is the HEC attestation procedure for a provisional degree certificate after graduation?",
         "nearest_golden_id": "G01",
         "nearest_golden_question": "Can a student register for a course after failing its prerequisite?",
-        "max_similarity": 0.6422,
+        "max_similarity": 0.6417,
         "covered": false,
         "topic": "alumni_and_degree_verification"
       }
@@ -53,7 +53,7 @@
         "query": "What are the daily opening hours and subsidized meal pricing at the campus cafeteria?",
         "nearest_golden_id": "G04",
         "nearest_golden_question": "What is the tuition fee per credit hour?",
-        "max_similarity": 0.674,
+        "max_similarity": 0.6742,
         "covered": false,
         "topic": "campus_facilities_and_services"
       },
@@ -62,7 +62,7 @@
         "query": "Is there an on-campus medical clinic and first-aid ambulance service for students?",
         "nearest_golden_id": "G02",
         "nearest_golden_question": "What is the university's attendance requirement for a course?",
-        "max_similarity": 0.6206,
+        "max_similarity": 0.6207,
         "covered": false,
         "topic": "campus_facilities_and_services"
       },
@@ -71,7 +71,7 @@
         "query": "How do students book indoor sports courts or reserve the campus auditorium for society events?",
         "nearest_golden_id": "G02",
         "nearest_golden_question": "What is the university's attendance requirement for a course?",
-        "max_similarity": 0.6086,
+        "max_similarity": 0.6089,
         "covered": false,
         "topic": "campus_facilities_and_services"
       },
@@ -80,7 +80,7 @@
         "query": "Are high-speed GPU compute nodes available for undergraduate thesis students via IT helpdesk?",
         "nearest_golden_id": "G03",
         "nearest_golden_question": "What are the key rules of the university's Generative AI policy for students?",
-        "max_similarity": 0.593,
+        "max_similarity": 0.5932,
         "covered": false,
         "topic": "campus_facilities_and_services"
       }
@@ -100,7 +100,7 @@
         "query": "How do companies register booths for the annual campus job fair through the placement office?",
         "nearest_golden_id": "G01",
         "nearest_golden_question": "Can a student register for a course after failing its prerequisite?",
-        "max_similarity": 0.5651,
+        "max_similarity": 0.5653,
         "covered": false,
         "topic": "career_services_and_internships"
       },
@@ -109,7 +109,7 @@
         "query": "Does the Career Services Office conduct mock technical interviews and resume reviews?",
         "nearest_golden_id": "G07",
         "nearest_golden_question": "What does the Faculty Entrepreneurship and Technical Start-ups Policy cover?",
-        "max_similarity": 0.5369,
+        "max_similarity": 0.537,
         "covered": false,
         "topic": "career_services_and_internships"
       }
@@ -138,7 +138,7 @@
         "query": "How do students apply for inter-campus transfer between Islamabad and Lahore campuses?",
         "nearest_golden_id": "G20",
         "nearest_golden_question": "What is the monthly student car parking permit fee on the Islamabad campus?",
-        "max_similarity": 0.6984,
+        "max_similarity": 0.6985,
         "covered": false,
         "topic": "international_exchange_and_transfers"
       }
@@ -149,7 +149,7 @@
         "query": "Can I use ChatGPT for brainstorming coursework under the GenAI policy?",
         "nearest_golden_id": "G03",
         "nearest_golden_question": "What are the key rules of the university's Generative AI policy for students?",
-        "max_similarity": 0.6895,
+        "max_similarity": 0.6893,
         "covered": false,
         "topic": "other_uncovered"
       },
@@ -167,7 +167,7 @@
         "query": "Can the Head of Department condone more than 20 percent absence for illness?",
         "nearest_golden_id": "G02",
         "nearest_golden_question": "What is the university's attendance requirement for a course?",
-        "max_similarity": 0.5998,
+        "max_similarity": 0.6002,
         "covered": false,
         "topic": "other_uncovered"
       }
@@ -179,7 +179,7 @@
       "query": "Can I use ChatGPT for brainstorming coursework under the GenAI policy?",
       "nearest_golden_id": "G03",
       "nearest_golden_question": "What are the key rules of the university's Generative AI policy for students?",
-      "max_similarity": 0.6895,
+      "max_similarity": 0.6893,
       "covered": false,
       "topic": "other_uncovered"
     },
@@ -197,7 +197,7 @@
       "query": "Can the Head of Department condone more than 20 percent absence for illness?",
       "nearest_golden_id": "G02",
       "nearest_golden_question": "What is the university's attendance requirement for a course?",
-      "max_similarity": 0.5998,
+      "max_similarity": 0.6002,
       "covered": false,
       "topic": "other_uncovered"
     },
@@ -206,7 +206,7 @@
       "query": "How can employers submit an online degree verification request for a FAST alumnus?",
       "nearest_golden_id": "G24",
       "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-      "max_similarity": 0.6843,
+      "max_similarity": 0.6842,
       "covered": false,
       "topic": "alumni_and_degree_verification"
     },
@@ -215,7 +215,7 @@
       "query": "What documents and fee are required to obtain a duplicate official transcript or convocation gown?",
       "nearest_golden_id": "G24",
       "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-      "max_similarity": 0.6186,
+      "max_similarity": 0.6187,
       "covered": false,
       "topic": "alumni_and_degree_verification"
     },
@@ -224,7 +224,7 @@
       "query": "How do graduating students register for the annual convocation ceremony and alumni card?",
       "nearest_golden_id": "G24",
       "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-      "max_similarity": 0.6411,
+      "max_similarity": 0.641,
       "covered": false,
       "topic": "alumni_and_degree_verification"
     },
@@ -233,7 +233,7 @@
       "query": "What are the daily opening hours and subsidized meal pricing at the campus cafeteria?",
       "nearest_golden_id": "G04",
       "nearest_golden_question": "What is the tuition fee per credit hour?",
-      "max_similarity": 0.674,
+      "max_similarity": 0.6742,
       "covered": false,
       "topic": "campus_facilities_and_services"
     },
@@ -242,7 +242,7 @@
       "query": "Is there an on-campus medical clinic and first-aid ambulance service for students?",
       "nearest_golden_id": "G02",
       "nearest_golden_question": "What is the university's attendance requirement for a course?",
-      "max_similarity": 0.6206,
+      "max_similarity": 0.6207,
       "covered": false,
       "topic": "campus_facilities_and_services"
     },
@@ -251,7 +251,7 @@
       "query": "How do students book indoor sports courts or reserve the campus auditorium for society events?",
       "nearest_golden_id": "G02",
       "nearest_golden_question": "What is the university's attendance requirement for a course?",
-      "max_similarity": 0.6086,
+      "max_similarity": 0.6089,
       "covered": false,
       "topic": "campus_facilities_and_services"
     },
@@ -278,7 +278,7 @@
       "query": "How do students apply for inter-campus transfer between Islamabad and Lahore campuses?",
       "nearest_golden_id": "G20",
       "nearest_golden_question": "What is the monthly student car parking permit fee on the Islamabad campus?",
-      "max_similarity": 0.6984,
+      "max_similarity": 0.6985,
       "covered": false,
       "topic": "international_exchange_and_transfers"
     },
@@ -296,7 +296,7 @@
       "query": "How do companies register booths for the annual campus job fair through the placement office?",
       "nearest_golden_id": "G01",
       "nearest_golden_question": "Can a student register for a course after failing its prerequisite?",
-      "max_similarity": 0.5651,
+      "max_similarity": 0.5653,
       "covered": false,
       "topic": "career_services_and_internships"
     },
@@ -305,7 +305,7 @@
       "query": "Does the Career Services Office conduct mock technical interviews and resume reviews?",
       "nearest_golden_id": "G07",
       "nearest_golden_question": "What does the Faculty Entrepreneurship and Technical Start-ups Policy cover?",
-      "max_similarity": 0.5369,
+      "max_similarity": 0.537,
       "covered": false,
       "topic": "career_services_and_internships"
     },
@@ -314,7 +314,7 @@
       "query": "What is the HEC attestation procedure for a provisional degree certificate after graduation?",
       "nearest_golden_id": "G01",
       "nearest_golden_question": "Can a student register for a course after failing its prerequisite?",
-      "max_similarity": 0.6422,
+      "max_similarity": 0.6417,
       "covered": false,
       "topic": "alumni_and_degree_verification"
     },
@@ -323,7 +323,7 @@
       "query": "Are high-speed GPU compute nodes available for undergraduate thesis students via IT helpdesk?",
       "nearest_golden_id": "G03",
       "nearest_golden_question": "What are the key rules of the university's Generative AI policy for students?",
-      "max_similarity": 0.593,
+      "max_similarity": 0.5932,
       "covered": false,
       "topic": "campus_facilities_and_services"
     }
@@ -334,7 +334,7 @@
       "query": "What happens if I register for a class after getting an F in its prerequisite?",
       "nearest_golden_id": "G01",
       "nearest_golden_question": "Can a student register for a course after failing its prerequisite?",
-      "max_similarity": 0.8088,
+      "max_similarity": 0.8091,
       "covered": true
     },
     {
@@ -342,7 +342,7 @@
       "query": "How much lecture attendance do undergraduate students need to take finals?",
       "nearest_golden_id": "G02",
       "nearest_golden_question": "What is the university's attendance requirement for a course?",
-      "max_similarity": 0.7927,
+      "max_similarity": 0.7925,
       "covered": true
     },
     {
@@ -350,7 +350,7 @@
       "query": "Can I use ChatGPT for brainstorming coursework under the GenAI policy?",
       "nearest_golden_id": "G03",
       "nearest_golden_question": "What are the key rules of the university's Generative AI policy for students?",
-      "max_similarity": 0.6895,
+      "max_similarity": 0.6893,
       "covered": false,
       "topic": "other_uncovered"
     },
@@ -359,7 +359,7 @@
       "query": "How much is the per-credit-hour tuition fee for BS Computer Science?",
       "nearest_golden_id": "G04",
       "nearest_golden_question": "What is the tuition fee per credit hour?",
-      "max_similarity": 0.8643,
+      "max_similarity": 0.8645,
       "covered": true
     },
     {
@@ -375,7 +375,7 @@
       "query": "If I drop a course on the 12th day of classes, what fee refund do I get?",
       "nearest_golden_id": "G06",
       "nearest_golden_question": "What is the fee refund timeline if a student withdraws from a course?",
-      "max_similarity": 0.7699,
+      "max_similarity": 0.7698,
       "covered": true
     },
     {
@@ -383,7 +383,7 @@
       "query": "Does the ORIC entrepreneurship policy permit faculty members to start spin-off companies?",
       "nearest_golden_id": "G07",
       "nearest_golden_question": "What does the Faculty Entrepreneurship and Technical Start-ups Policy cover?",
-      "max_similarity": 0.7795,
+      "max_similarity": 0.7797,
       "covered": true
     },
     {
@@ -391,7 +391,7 @@
       "query": "When do Fall 2026 classes start according to the academic schedule?",
       "nearest_golden_id": "G08",
       "nearest_golden_question": "When do Fall 2026 registration and classes begin in the 2026-27 academic calendar?",
-      "max_similarity": 0.9299,
+      "max_similarity": 0.9298,
       "covered": true
     },
     {
@@ -407,7 +407,7 @@
       "query": "How many Program Learning Outcomes apply to EE students admitted in 2024 or later?",
       "nearest_golden_id": "G10",
       "nearest_golden_question": "How many program learning outcomes (PLOs) does the Electrical Engineering program have?",
-      "max_similarity": 0.788,
+      "max_similarity": 0.7878,
       "covered": true
     },
     {
@@ -415,7 +415,7 @@
       "query": "What does Clause 4.4 require for students currently placed on academic warning?",
       "nearest_golden_id": "G11",
       "nearest_golden_question": "What does clause 4.4 say about registering for a course after failing its prerequisite?",
-      "max_similarity": 0.8043,
+      "max_similarity": 0.8041,
       "covered": true
     },
     {
@@ -439,7 +439,7 @@
       "query": "What are the campus shuttle bus routes and departure schedules?",
       "nearest_golden_id": "G14",
       "nearest_golden_question": "Which bus routes serve the university campus, and what are their timings?",
-      "max_similarity": 0.8308,
+      "max_similarity": 0.8309,
       "covered": true
     },
     {
@@ -447,7 +447,7 @@
       "query": "Is the admission fee payable again if a FAST alumnus joins an MS degree?",
       "nearest_golden_id": "G24",
       "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-      "max_similarity": 0.7729,
+      "max_similarity": 0.7731,
       "covered": true
     },
     {
@@ -463,7 +463,7 @@
       "query": "When does a student's first or second academic warning counter reset back to zero?",
       "nearest_golden_id": "G17",
       "nearest_golden_question": "When is a student's academic warning count reset to zero?",
-      "max_similarity": 0.9486,
+      "max_similarity": 0.9485,
       "covered": true
     },
     {
@@ -479,7 +479,7 @@
       "query": "What SGPA must a merit scholarship student maintain to keep their scholarship?",
       "nearest_golden_id": "G19",
       "nearest_golden_question": "What minimum semester GPA is required for continuation of a merit scholarship in the Student Handbook?",
-      "max_similarity": 0.7601,
+      "max_similarity": 0.76,
       "covered": true
     },
     {
@@ -487,7 +487,7 @@
       "query": "What happens to a passed post-requisite grade if a repeated prerequisite is failed?",
       "nearest_golden_id": "G01",
       "nearest_golden_question": "Can a student register for a course after failing its prerequisite?",
-      "max_similarity": 0.8072,
+      "max_similarity": 0.807,
       "covered": true
     },
     {
@@ -495,7 +495,7 @@
       "query": "How many earned credit hours are needed to register for Final Year Project I?",
       "nearest_golden_id": "G25",
       "nearest_golden_question": "How many earned credit hours and what Turnitin similarity limit apply to an undergraduate Final Year Project?",
-      "max_similarity": 0.7837,
+      "max_similarity": 0.7834,
       "covered": true
     },
     {
@@ -503,7 +503,7 @@
       "query": "What Turnitin similarity cap is enforced on Final Year Project reports?",
       "nearest_golden_id": "G25",
       "nearest_golden_question": "How many earned credit hours and what Turnitin similarity limit apply to an undergraduate Final Year Project?",
-      "max_similarity": 0.8337,
+      "max_similarity": 0.8335,
       "covered": true
     },
     {
@@ -519,7 +519,7 @@
       "query": "How much is the per-semester Student Activities Fund fee?",
       "nearest_golden_id": "G04",
       "nearest_golden_question": "What is the tuition fee per credit hour?",
-      "max_similarity": 0.723,
+      "max_similarity": 0.7231,
       "covered": true
     },
     {
@@ -536,7 +536,7 @@
       "query": "Can the Head of Department condone more than 20 percent absence for illness?",
       "nearest_golden_id": "G02",
       "nearest_golden_question": "What is the university's attendance requirement for a course?",
-      "max_similarity": 0.5998,
+      "max_similarity": 0.6002,
       "covered": false,
       "topic": "other_uncovered"
     },
@@ -545,7 +545,7 @@
       "query": "What is the minimum graduate student attendance percentage required for exams?",
       "nearest_golden_id": "G02",
       "nearest_golden_question": "What is the university's attendance requirement for a course?",
-      "max_similarity": 0.8187,
+      "max_similarity": 0.8188,
       "covered": true
     },
     {
@@ -561,7 +561,7 @@
       "query": "How can employers submit an online degree verification request for a FAST alumnus?",
       "nearest_golden_id": "G24",
       "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-      "max_similarity": 0.6843,
+      "max_similarity": 0.6842,
       "covered": false,
       "topic": "alumni_and_degree_verification"
     },
@@ -570,7 +570,7 @@
       "query": "What documents and fee are required to obtain a duplicate official transcript or convocation gown?",
       "nearest_golden_id": "G24",
       "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-      "max_similarity": 0.6186,
+      "max_similarity": 0.6187,
       "covered": false,
       "topic": "alumni_and_degree_verification"
     },
@@ -579,7 +579,7 @@
       "query": "How do graduating students register for the annual convocation ceremony and alumni card?",
       "nearest_golden_id": "G24",
       "nearest_golden_question": "Compare the admission fee exemption rule for FAST alumni with the refundable deposit and credit-hour tuition cost.",
-      "max_similarity": 0.6411,
+      "max_similarity": 0.641,
       "covered": false,
       "topic": "alumni_and_degree_verification"
     },
@@ -588,7 +588,7 @@
       "query": "What are the daily opening hours and subsidized meal pricing at the campus cafeteria?",
       "nearest_golden_id": "G04",
       "nearest_golden_question": "What is the tuition fee per credit hour?",
-      "max_similarity": 0.674,
+      "max_similarity": 0.6742,
       "covered": false,
       "topic": "campus_facilities_and_services"
     },
@@ -597,7 +597,7 @@
       "query": "Is there an on-campus medical clinic and first-aid ambulance service for students?",
       "nearest_golden_id": "G02",
       "nearest_golden_question": "What is the university's attendance requirement for a course?",
-      "max_similarity": 0.6206,
+      "max_similarity": 0.6207,
       "covered": false,
       "topic": "campus_facilities_and_services"
     },
@@ -606,7 +606,7 @@
       "query": "How do students book indoor sports courts or reserve the campus auditorium for society events?",
       "nearest_golden_id": "G02",
       "nearest_golden_question": "What is the university's attendance requirement for a course?",
-      "max_similarity": 0.6086,
+      "max_similarity": 0.6089,
       "covered": false,
       "topic": "campus_facilities_and_services"
     },
@@ -633,7 +633,7 @@
       "query": "How do students apply for inter-campus transfer between Islamabad and Lahore campuses?",
       "nearest_golden_id": "G20",
       "nearest_golden_question": "What is the monthly student car parking permit fee on the Islamabad campus?",
-      "max_similarity": 0.6984,
+      "max_similarity": 0.6985,
       "covered": false,
       "topic": "international_exchange_and_transfers"
     },
@@ -651,7 +651,7 @@
       "query": "How do companies register booths for the annual campus job fair through the placement office?",
       "nearest_golden_id": "G01",
       "nearest_golden_question": "Can a student register for a course after failing its prerequisite?",
-      "max_similarity": 0.5651,
+      "max_similarity": 0.5653,
       "covered": false,
       "topic": "career_services_and_internships"
     },
@@ -660,7 +660,7 @@
       "query": "Does the Career Services Office conduct mock technical interviews and resume reviews?",
       "nearest_golden_id": "G07",
       "nearest_golden_question": "What does the Faculty Entrepreneurship and Technical Start-ups Policy cover?",
-      "max_similarity": 0.5369,
+      "max_similarity": 0.537,
       "covered": false,
       "topic": "career_services_and_internships"
     },
@@ -669,7 +669,7 @@
       "query": "What is the HEC attestation procedure for a provisional degree certificate after graduation?",
       "nearest_golden_id": "G01",
       "nearest_golden_question": "Can a student register for a course after failing its prerequisite?",
-      "max_similarity": 0.6422,
+      "max_similarity": 0.6417,
       "covered": false,
       "topic": "alumni_and_degree_verification"
     },
@@ -678,7 +678,7 @@
       "query": "Are high-speed GPU compute nodes available for undergraduate thesis students via IT helpdesk?",
       "nearest_golden_id": "G03",
       "nearest_golden_question": "What are the key rules of the university's Generative AI policy for students?",
-      "max_similarity": 0.593,
+      "max_similarity": 0.5932,
       "covered": false,
       "topic": "campus_facilities_and_services"
     }
