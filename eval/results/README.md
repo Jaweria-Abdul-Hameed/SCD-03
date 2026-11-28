@@ -22,10 +22,11 @@ Sibling summary Markdown tables: `eval_baseline_20261127T204204Z.md`, `eval_cand
 ## Other Current Committed Runs (32-Question Golden Set & Part A/E Artifacts)
 
 - `eval_baseline-final_20261127T203100Z.json` / `.md` and `gate_baseline-final_20261127T203100Z.json` — Part B dual fixed-seed stochasticity run (`--stochasticity-runs 2`, `llm_judge` with `dolphin-mistral:latest`).
+- `eval_post-batch-b_20261127T212505Z.json` / `.md` and `gate_post-batch-b_20261127T212505Z.json` — Part E3 post-Batch-B in-cluster evaluation (`32` questions, `llm_judge` with `dolphin-mistral`, `recall@5=0.6190`, `faithfulness=0.8000`, `p95=10476.62 ms`) and release gate decision (`passed: false`; failed `recall@5_max_drop_vs_baseline`).
 - `coverage_pre_expansion.json` / `coverage_post_expansion.json` / `coverage_threshold_analysis.json` — Part E live-query coverage check outputs and `0.70` similarity threshold analysis.
 - `verification_batch_a_initial.json` / `verification_batch_a.json` / `verification_batch_b.json` / `verification_batch_b_rerun.json` — Part A ingestion and verification reports.
 - `a2_changed_document.json` / `a2_deleted_document.json` / `rollback_academic_rules_handbook.json` — Part A2 update, delete, and rollback records.
-- `e3_drift_batch_b_diff.json` — Part E3 Batch B drift diff (comparing historical Nov 22 baseline vs post-Batch-B run).
+- `e3_drift_batch_b_diff.json` — Part E3 Batch B drift diff comparing `baseline_k8s.json` (`eval_baseline_20261127T204204Z.json`, 32q) vs `eval_post-batch-b_20261127T212505Z.json`.
 
 ## Historical Runs (Nov 22, 26-Question Golden Set)
 
