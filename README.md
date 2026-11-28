@@ -1,9 +1,8 @@
 # RAHBAR — Grounded RAG on Kubernetes (CS4032 Assignment 03: RAGOps)
 
-> **Software Construction and Development (CS4032) — Assignment 03 (RAGOps)**  
-> **Authors:** Jaweria Abdul Hameed (`jaweriahameed06@gmail.com`) • Mohsin Khan (`mohsinkhan.devs@gmail.com`)  
-> **Assignment Specification:** [assignment_03.md](assignment_03.md)  
-> **Technical Report PDF:** [Report_CS4032_Assignment03.pdf](Report_CS4032_Assignment03.pdf)  
+> **Software Construction and Development (CS4032) — Assignment 03 (RAGOps, Fall 2026)**  
+> **Authors:** Jaweria Abdul Hameed (`i243025`, `jaweriahameed06@gmail.com`) • Mohsin Khan (`i243135`, `mohsinkhan.devs@gmail.com`)  
+> **Technical Report PDF:** [Report_CS4032_Assignment03.pdf](Report_CS4032_Assignment03.pdf) (generated natively via `python report/build_report.py` → [report/Report_CS4032_Assignment03.pdf](report/Report_CS4032_Assignment03.pdf))  
 > **Kubernetes Guide:** [k8s/README.md](k8s/README.md)  
 > **Evaluation Results Index:** [eval/results/README.md](eval/results/README.md)  
 > **Paper Foundation:** *RAGOps: Operating and Managing Retrieval-Augmented Generation Pipelines* (Xu et al., 2026)
@@ -448,6 +447,8 @@ rahbar/
 │                     # rollback-job.yaml, pvc-helper-pod.yaml, README.md
 ├── docs/             # CORPUS, PIPELINE, FAILURE-ANALYSIS, ENGINEERING-NOTES, AI-USAGE,
 │                     # ARCHITECTURE, DEMO, adr/0001-0004, evidence/
+├── report/           # build_report.py (ReportLab generator) + Report_CS4032_Assignment03.pdf
+├── screenshots/      # 13 uncropped Nov 28 cluster/terminal captures (A1-F4)
 ├── scripts/          # fetch_corpus.py, trace_tool.py, summarize_traces.py, check_submission.py,
 │                     # demo-up.ps1, demo-check.ps1, demo-down.ps1, rebuild-from-scratch.ps1
 ├── .github/workflows/{ci.yml,cd.yml}
